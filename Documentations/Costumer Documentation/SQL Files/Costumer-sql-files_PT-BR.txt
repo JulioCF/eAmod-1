@@ -201,21 +201,21 @@
         | Função: Cria todas as demais tabelas necessárias referentes a itens, mobs e etc.
         -----------------------------------------------------------------------------------------------
 
-        4a. eAmod-re.sql ou eAmod-pre.sql (Obrigatório)
+        4. eAmod-re.sql ou eAmod-pre.sql (Obrigatório)
         -----------------------------------------------------------------------------------------------
         | Local: No seu Banco de Dados principal.
         -----------------------------------------------------------------------------------------------
         | Função: Adiciona as novas colunas e linhas do eAmod a base de dados principal.
         -----------------------------------------------------------------------------------------------
 
-        4b part 1. main-extras_brAthena.sql (Obrigatório)
+        5. main-extras_brAthena.sql (Obrigatório)
         -----------------------------------------------------------------------------------------------
         | Local: No seu Banco de Dados principal.
         -----------------------------------------------------------------------------------------------
         | Função: Adiciona as novas colunas e linhas do eAmod a base de dados principal.
         -----------------------------------------------------------------------------------------------
 
-        4b part 2. logs-extras_brAthena.sql (Obrigatório)
+        6. logs-extras_brAthena.sql (Obrigatório)
         -----------------------------------------------------------------------------------------------
         | Local: Em seu Banco de Dados de logs.
         -----------------------------------------------------------------------------------------------
