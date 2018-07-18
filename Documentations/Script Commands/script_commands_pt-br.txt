@@ -878,39 +878,40 @@ Os operadores ternários usam três expressões (números, cadeias de caracteres
 Labels
 ------
 
-Within executable script code, some lines can be labels:
+Dentro do código de script executável, algumas linhas podem ser labels:
 
 <label name>:
 
-Labels are points of reference in your script, which can be used to route 
-execution with 'goto', 'menu' and 'jump_zero' commands, invoked with 'doevent' 
-and 'donpcevent' commands and are otherwise essential. A label's name may not be 
-longer than 22 characters. (23rd is the ':'.) There is some confusion in the 
-source about whether it's 22, 23 or 24 all over the place, so keeping labels 
-under 22 characters could be wise. It may only contain alphanumeric characters 
-and underscore. In addition to labels you name yourself, there are also some 
-special labels which the script engine will start execution from if a special 
-event happens:
+Labels são pontos de referência no seu script, que podem ser usados ​​para rotear
+execução com comandos 'goto', 'menu' e 'jump_zero', invocados com comandos 'doevent' 
+e 'donpcevent' e são essenciais. O nome de um marcador não pode ter mais de 22 caracteres. 
+(23 é o ':'.) Há alguma confusão na fonte sobre se é 22, 23 ou 24 em todo o lugar, então 
+manter rótulos com menos de 22 caracteres pode ser sábio. Pode conter apenas caracteres 
+alfanuméricos e sublinhados. Além das labels que você nomeia, há também algumas labels
+especiais com os quais o mecanismo de script começará a execução 
+se um evento especial ocorrer:
 
-OnClock<hour><minute>:
-OnMinute<minute>:
-OnHour<hour>:
-On<weekday><hour><minute>:
-OnDay<month><day>:
+OnClock<hora><minuto>:
+OnMinute<minuto>:
+OnHour<hora>:
+On<weekday><hora><minuto>:
+OnDay<mês><dia>:
 
-This will execute when the server clock hits the specified date or time. Hours 
-and minutes are given in military time. ('0105' will mean 01:05 AM). Weekdays 
-are Sun,Mon,Tue,Wed,Thu,Fri,Sat. Months are 01 to 12, days are 01 to 31. 
-Remember the zero. :)
+Isso será executado quando o relógio do servidor atingir a data ou a hora especificada. Horas
+e minutos são dados no tempo militar. ('0105' significa 01:05 AM). Dias da semana
+são Sun,Mon,Tue,Wed,Thu,Fri,Sat. Os meses são 01 a 12, os dias são 01 a 31.
+Lembre-se do zero. :)
 
 OnInit:
 OnInterIfInit:
 OnInterIfInitOnce:
 
-OnInit will execute every time the scripts loading is complete, including when 
-they are reloaded with @reloadscript command. OnInterIfInit will execute when 
-the map server connects to a char server, OnInterIfInitOnce will only execute 
-once and will not execute if the map server reconnects to the char server later.
+OnInit será executado toda vez que o carregamento dos scripts for concluído, 
+inclusive quando forem recarregados com o comando @reloadscript. 
+OnInterIfInit será executado quando o map server se conectar a um char server, 
+OnInterIfInitOnce será executado apenas uma vez e não será executado se
+o map server se reconectar ao char server posteriormente.
+
 
 OnAgitStart:
 OnAgitEnd:
@@ -919,281 +920,279 @@ OnAgitStart2:
 OnAgitEnd2:
 OnAgitInit2:
 
-OnAgitStart will run whenever the server shifts into WoE mode, whether it is 
-done with @agitstart GM command or with 'AgitStart' script command. OnAgitEnd 
-will do likewise for the end of WoE.
+OnAgitStart será executado sempre que o servidor mudar para o modo WoE, seja ele
+feito com o comando @agitstart GM ou com o comando de script 'AgitStart'. OnAgitEnd
+fará o mesmo para o final do WoE.
 
-OnAgitInit will run when data for all castles and all guilds that hold a castle 
-is received by map-server from the char-server after initial connect.
+OnAgitInit será executado quando os dados de todos os castelos e todas as guildas 
+que possuem um castelo forem recebidos pelo map server a partir do char server 
+após a conexão inicial.
 
-No RID will be attached while any of the above mentioned labels are triggered, so 
-no character or account-based variables will be accessible, until you attach a 
-RID with 'attachrid' (see below).
+Nenhum RID será anexado enquanto qualquer uma das labels mencionadas acima for 
+acionada, portanto, nenhuma variável baseada em personagem ou conta será acessível, 
+até que você conecte um RID com 'attachrid' (veja abaixo).
 
-The above also applies to, the last three labels, the only difference is that
-these labels are used exclusively for WoE SE, and are called independently.
+Os acimas também se aplicam aos últimas três labels, a única diferença é que
+essas labels são usados ​​exclusivamente para o WoE SE e são chamadas independentemente.
 
 OnInstanceInit:
 
-This label will be executed when an instance is created and initialized through
-the 'instance_create' command. It will run again if @reloadscript is used while
-an instance is in progress.
+Essa label será executada quando uma instância for criada e inicializada por meio do comando 'instance_create'. 
+Ela será executado novamente se @reloadscript for usado enquanto uma instância estiver em andamento.
 
 OnTouch:
 
-This label will be executed if a trigger area is defined for the NPC object it's 
-in. If it isn't present, the execution will start from the beginning of the NPC 
-code. The RID of the triggering character object will be attached.
+Esta label será executada se uma área de disparo estiver definida para o objeto NPC em que está. 
+Se não estiver presente, a execução será iniciada a partir do início do código NPC. 
+O RID do objeto do personagem acionador será conectado.
 
 OnTouch_:
 
-Similar to OnTouch, but will only run one instance. Another character is
-chosen once the triggering character leaves the area.
+Semelhante ao OnTouch, mas só executará uma instância. 
+Outro personagem é escolhido uma vez que o personagem desencadeador deixa a área.
 
 OnTouchNPC:
 
-Similar to OnTouch, but will only trigger for monsters.
+Semelhante ao OnTouch, mas só irá disparar para monstros.
 
 OnPCLoginEvent:
 OnPCLogoutEvent:
 OnPCBaseLvUpEvent:
 OnPCJobLvUpEvent:
 
-It's pretty obvious when these four special labels will be invoked.
+É bastante óbvio quando essas quatro labels especiais serão invocadas.
 
 OnPCDieEvent:
 
-This special label triggers when a player dies. The variable 'killerrid' is
-set to the ID of the killer.
+Esta label especial dispara quando um jogador morre. A variável 'killerrid' é
+definida para o ID do assassino.
 
 OnPCKillEvent:
 
-This special label triggers when a player kills another player. The variable
-'killedrid' is set to the ID of the player killed.
+Esta label especial é acionada quando um jogador mata outro jogador. A variável
+'killrid' é definido como o ID do jogador morto.
 
 OnNPCKillEvent:
 
-This special label triggers when a player kills a monster. The variable
-'killedrid' is set to the Class (mob ID) of the monster killed.
+Esta label especial dispara quando um jogador mata um monstro. A variável
+'killrid' é definida para a classe (mob ID) do monstro morto.
 
 OnPCLoadMapEvent:
 
-This special label triggers when a player steps in a map marked with the 
-'loadevent' mapflag and attaches its RID. The fact that this label requires a 
-mapflag for it to work is because, otherwise, it'd be server-wide and trigger
-every time a player would change maps. Imagine the server load with 1,000 players
-(oh the pain...)
+Esta label especial é acionada quando um jogador entra em um mapa marcado com o 
+mapflag 'loadevent' e anexa seu RID. O fato de que esta label requer um mapflag para 
+que ele funcione é porque, caso contrário, ele estaria em todo o servidor e seria acionada toda 
+vez que um jogador mudasse de mapa. Imagine a carga do servidor com 1.000 jogadores (oh a dor ...)
 
 OnPCStatCalcEvent:
 
-This special label triggers when a player's stats are recalculated, such as when
-changing stats, equipment, or maps, as well as when logging in, leveling up, and
-mounting a job mount. This can be used to grant additional item bonuses to certain
-player groups, for instance.
+Essa label especial é acionada quando as estatísticas de um jogador são recalculadas, 
+como ao alterar estatísticas, equipamentos ou mapas, bem como ao fazer login, subir de nv e upar 
+de job. Isso pode ser usado para conceder bônus de itens adicionais 
+a determinados grupos de jogadores, por exemplo.
 
 OnWhisperGlobal:
 
-This special label triggers when a player whispers the NPC, and will run with the
-player's RID attached. It can accept up to ten parameters, which will be stored
-into separate temporary character string variables @whispervar0$ to @whispervar9$.
-See 'doc/whisper_sys.txt' for further documentation.
+Esta label especial dispara quando um jogador sussurra o NPC, e executará com o
+RID do jogador anexado. Pode aceitar até dez parâmetros, que serão armazenados
+em variáveis ​​string de char temporários separados @whispervar0$ a @whispervar9$.
+Veja 'doc / whisper_sys.txt' para documentação adicional.
 
-Only the special labels which are not associated with any script command are 
-listed here. There are other kinds of labels which may be triggered in a similar 
-manner, but they are described with their associated commands.
+Apenas as labels especiais que não estão associadas a nenhum comando de script são 
+listadas aqui. Existem outros tipos de labels que podem ser acionados de maneira 
+semelhante, mas são descritos com seus comandos associados.
 
 On<label name>:
 
-These special labels are used with Mob scripts mostly, and script commands
-that requires you to point/link a command to a mob or another NPC, giving a label
-name to start from. The label name can be any of your liking, but must be
+Essas labels especiais são usados ​​principalmente com scripts Mob e comandos 
+de script que requerem que você aponte/vincule um comando a um mob ou a um outro 
+NPC, fornecendo um nome para label para iniciar. O nome da label pode ser 
+do seu agrado, mas deve ser
 
-Example:
+Exemplo:
 
 monster "prontera",123,42,"Poringz0rd",2341,23,"Master::OnThisMobDeath";
 
 amatsu,13,152,4	script	Master	767,{
-	mes "Hi there";
+	mes "Olá";
 	close;
 
 OnThisMobDeath:
-	announce "Hey, "+strcharinfo(0)+" just killed a Poringz0rd!",bc_blue|bc_all;
+	announce "Hey, "+strcharinfo(0)+" acabou de matar um Poringz0rd!!",bc_blue|bc_all;
 	end;
 }
 
-Each time you kill one, that announce will appear in blue to everyone.
+Cada vez que você mata um, esse anúncio aparecerá em azul para todos.
 
 "Global" labels
 
-There's a catch with labels and doevent. If you call a label (using doevent)
-and called label is in NPC that has trigger area, that label must end with
-"Global" to work globally (i.e. if RID is outside of the trigger area, which
-usually happens since otherwise there would be no point calling the label with
-doevent, because OnTouch would do the job). For further reference look for
-npc_event in npc.c.
+Há uma captura com labels e doevent. Se você chamar uma label (usando doevent) 
+e a label chamada estiver num NPC que tem área de gatilho, essa label deve terminar 
+com "Global" para funcionar globalmente (ou seja, se o RID estiver fora da área de gatilho, 
+o que geralmente acontece, não adianta chamar a label com doevent, 
+porque OnTouch faria o trabalho). Para referência adicional, procure por npc_event em npc.c.
 
-Scripting commands and functions
+Comandos e funções de script
 --------------------------------
 
-The commands and functions are listed here in no particular order. There's a 
-difference between commands and functions - commands leave no 'return value' 
-which might be used in a conditional statement, as a command argument, or stored 
-in a variable. Calling commands as if they were functions will sometimes work, 
-but is not advised, as this can lead to some hard to track errors. Calling 
-functions as if they were commands will mess up the stack, so 'return' command 
-will not return correctly after this happens in a particular script.
+Os comandos e funções estão listados aqui em nenhuma ordem particular. Há uma
+diferença entre comandos e funções - os comandos não deixam nenhum 'valor de retorno' 
+que pode ser usado em uma instrução condicional, como um argumento de comando, 
+ou armazenado em uma variável. Chamar comandos como se fossem funções, 
+por vezes, funcionará, mas não é aconselhável, pois isso pode levar a alguns erros 
+difíceis de rastrear. Chamar funções, como se fossem comandos, atrapalharão 
+a pilha, portanto, o comando 'return' não retornará corretamente depois que isso
+acontecer em um script específico.
 
-All commands must end with a ';'. Actually, you may expect to have multiple 
-commands on one line if you properly terminate them with a ';', but it's better 
-if you don't, since it is not certain just whether the scripting engine will 
-behave nicely if you do.
+Todos os comandos devem terminar com um ';'. Na verdade, 
+você pode esperar ter vários comandos em uma linha se terminar corretamente 
+com um ';', mas é melhor não usá-lo, já que não é certo se o mecanismo de 
+script se comportará bem se você fizer isso.
 
 -------------------------
 
 
-From here on, we will have the commands sorted as follow:
+A partir daqui, teremos os comandos classificados da seguinte forma:
 
-1.- Basic commands.
-2.- Information-retrieving commands.
-3.- Checking commands.
-4.- Player-related commands.
-5.- Mob / NPC -related commands.
-6.- Other commands.
-7.- Instance commands.
-8.- Quest Log commands.
-9.- Battleground commands.
-10.- Pet commands.
-11.- Homunculus commands.
-12.- Mercenary commands.
-13.- Party commands.
+1.- Comandos básicos.
+2.- Comandos de recuperação de informação.
+3.- Comandos de checagem.
+4.- Comandos relacionados ao jogador.
+5.- Comandos relacionados à Mob / NPC.
+6.- Outros comandos
+7.- Comandos de instância.
+8.- Comandos do Log de Missão.
+9.- Comandos de battleground.
+10.- Comandos de pet.
+11.- Comandos do homunculus.
+12.- Comandos mercenários.
+13.- Comandos de party .
 
 =====================
-|1.- Basic commands.|
+|1.- Comandos básicos.|
 =====================
 ---------------------------------------
 
 *mes "<string>"{,"<string>"{,...}};
 
-This command will display a box on the screen for the invoking character, if no
-such box is displayed already, and will print the string specified into that 
-box. There is normally no 'close' or 'next' button on this box, unless you 
-create one with 'close' or 'next', and while it's open the player can't do much 
-else, so it's important to create a button later. If the string is empty, it 
-will show up as an empty line.
+Esse comando exibirá uma caixa na tela para o personagem invocado, 
+se essa caixa já não estiver exibida, e imprimirá a string especificada nessa caixa. 
+Normalmente, não há nenhum botão 'fechar' ou 'próximo' nesta caixa, a menos que você 
+crie um com 'fechar' ou 'próximo' e, enquanto estiver aberto, o player não poderá fazer 
+muito mais, por isso é importante criar um botão mais tarde . Se a string 
+estiver vazia, aparecerá como uma linha vazia.
 
-    mes "Text that will appear in the box";
+    mes "Texto que aparecerá na caixa";
 
-Colors
+Cores
 ------
-Inside the string you may put color codes, which will alter the color of the 
-text printed after them. The color codes are all '^<R><G><B>' and contain three 
-hexadecimal numbers representing colors as if they were HTML colors - ^FF0000 is 
-bright red, ^00FF00 is bright green, ^0000FF is bright blue, ^000000 is black. 
-^FF00FF is a pure magenta, but it's also a color that is considered transparent 
-whenever the client is drawing windows on screen, so printing text in that color 
-will have kind of a weird effect. Once you've set a text's color to something, 
-you have to set it back to black unless you want all the rest of the text be in 
-that color:
+Dentro da string você pode colocar códigos de cores, que irão alterar a cor do texto impresso 
+depois deles. Os códigos de cores são todos '^ <R> <G> <B>' e contêm três números hexadecimais 
+representando as cores como se fossem cores HTML - ^ FF0000 é vermelho brilhante, ^ 00FF00 
+é verde brilhante, ^ 0000FF é azul brilhante, ^ 000000 é preto. ^ FF00FF é um magenta puro, 
+mas também é uma cor que é considerada transparente sempre que o cliente desenha janelas 
+na tela, portanto, a impressão de texto nessa cor terá um efeito meio estranho. Depois de 
+definir a cor de um texto para algo, é preciso defini-lo novamente para preto, a menos que
+você queira que todo o restante do texto esteja nessa cor:
 
-    mes "This is ^FF0000 red ^000000 and this is ^00FF00 green, ^000000 so.";
+     mes "Isto é ^FF0000 vermelho ^000000 e este é ^00FF00 verde, ^000000 assim.";
     
-Notice that the text coloring is handled purely by the client. If you use non-
-English characters, the color codes might get screwed if they stick to letters 
-with no intervening space. Separating them with spaces from the letters on 
-either side solves the problem.
+Observe que a coloração do texto é tratada apenas pelo cliente. Se você usar caracteres 
+que não sejam em inglês, os códigos de cores poderão ser corrompidos se eles se prenderem 
+a letras sem espaço intermediário. Separá-los com espaços das letras de cada lado resolve o problema.
 
-Multiple Lines
+Várias linhas
 --------------
-To display multiple lines of message while only using a single 'mes' command,
-use the script command in the following format:
+Para exibir várias linhas de mensagem enquanto estiver usando apenas 
+um único comando 'mes', use o comando script no seguinte formato:
 
-    mes "Line 1", "Line 2", "Line 3";
+    mes "Linha 1", "Linha 2", "Linha 3";
 
-This will display 3 different lines while only consuming a single line in
-the relevant script file.
+Isso exibirá 3 linhas diferentes enquanto consome apenas uma única linha no arquivo de script relevante.
 
-Navigation
+Navegação
 ----------
-For clients dated 2011-10-10aRagexe onwards, you can generate navigation links
-using HTML-like labels:
+Para clientes datados de 2011-10-10aRagexe em diante, você pode gerar links de navegação
+usando labels semelhantes a HTML:
 
-    <NAVI>Display Name<INFO>mapname,x,y,0,000,flag</INFO></NAVI>
+    <NAVI>Nome de exibição<INFO>mapname,x,y,0,000,flag</INFO></NAVI>
 
-The "flag" parameter can be:
- 0: Do not open Navigation Window (default).
- 1: Open Navigation Window.
+O parâmetro "flag" pode ser:
+ 0: não abre a janela de navegação (padrão).
+ 1: Abra a janela de navegação.
 
-The example below will make the [Tool Shop] text clickable and begin navigation
-to alberta (98,154) when clicked.
+O exemplo abaixo fará com que o texto [Tool Shop] seja clicável e inicie a navegação
+para alberta (98,154) quando clicado.
 
-    mes "Have you checked out the <NAVI>[Tool Shop]<INFO>alberta,98,154,0,000,0</INFO></NAVI>?";
+    mes "Você verificou a <NAVI>[Tool Shop]<INFO>alberta,98,154,0,000,0</INFO></NAVI>?";
 
 URLs
 ----
-Similarly, you can create links to websites that launch in a new window:
+Da mesma forma, você pode criar links para sites que são iniciados em uma nova janela:
 
-    <URL>Display Name<INFO>http://www.example.com/</INFO></URL>";
+    <URL>Nome de exibição<INFO>http://www.example.com/</INFO></URL>";
 
 ---------------------------------------
 
 *next;
 
-This command will display a 'next' button in the message window for the
-invoking character. Clicking on it will cause the window to clear and display
-a new one. Used to segment NPC-talking, next is often used in combination with
-'mes' and 'close'.
+Esse comando exibirá um botão 'next' na janela de mensagens para o jogador. 
+Clicar nele fará com que a janela seja apagada e exiba uma nova. 
+Usado para segmentar NPC-falante, next é frequentemente usado 
+em combinação com 'mes' e 'close'.
 
-If no window is currently on screen, one will be created, but once the invoking
-character clicks on it, a warning is thrown on the server console and the script
-will terminate.
+Se nenhuma janela estiver atualmente na tela, uma será criada, 
+mas assim que o jogador clicar nela, um aviso 
+será lançado no console do servidor e o script será encerrado.
 
     mes "[Woman]";
-    mes "This would appear on the page";
+    mes "Isso apareceria na página";
     next;
-    // This is needed since it is a new page and the top will now be blank
+    //  Isso é necessário, pois é uma nova página e o topo agora ficará em branco
     mes "[Woman]";
-    mes "This would appear on the 2nd page";
+    mes "Isso apareceria na segunda página";
 
 ---------------------------------------
 
 *close;
 
-This command will create a 'close' button in the message window for the invoking 
-character. If no window is currently on screen, the script execution will end. This is one 
-of the ways to end a speech from an NPC. Once the button is clicked, the NPC 
-script execution will end, and the message box will disappear.
+Este comando irá criar um botão 'close' na janela de mensagens para o jogador.
+Se nenhuma janela estiver atualmente na tela, a execução do 
+script terminará. Esta é uma das maneiras de terminar um discurso de um NPC. 
+Quando o botão for clicado, a execução do script NPC terminará e a caixa de mensagem desaparecerá.
 
     mes "[Woman]";
-    mes "I am finished talking to you. Click the close button.";
+    mes "Eu terminei de falar com você. Clique no botão fechar.";
     close;
-    mes "This command will not run at all, since the script has ended.";
+    mes "Este comando não será executado, já que o script terminou.";
 
 ---------------------------------------
 
 *close2;
 
-This command will create a 'close' button in the message window for the invoking 
-character. WARNING: If no window is currently on screen, the script execution will halt 
-indefinitely! See 'close'. There is one important difference, though - even though 
-the message box will have closed, the script execution will not stop, and commands after 
-'close2' will still run, meaning an 'end' has to be used to stop the script, unless you 
-make it stop in some other manner.
+Este comando irá criar um botão 'close' na janela de mensagens para o jogador.
+AVISO: Se nenhuma janela estiver atualmente na tela, 
+a execução do script será interrompida indefinidamente! Veja "close". 
+Há uma diferença importante - embora a caixa de mensagem seja fechada, 
+a execução do script não será interrompida e os comandos depois de 'close2' ainda 
+serão executados, significando que um 'end' deve ser usado para parar o 
+script, a menos que você o faça parar de alguma outra maneira.
 
     mes "[Woman]";
-    mes "I will warp you now.";
+    mes "Vou te teleportar agora..";
     close2;
     warp "place",50,50;
     end;
     
-Don't expect things to run smoothly if you don't make your scripts 'end'.
+Não espere que as coisas corram bem se você não fizer com que seus scripts 'finalizem'.
 
 ---------------------------------------
 
 *end;
 
-This command will stop the execution for this particular script. The two 
-versions are perfectly equivalent. It is the normal way to end a script which 
-does not use 'mes'.
+Esse comando interromperá a execução deste script específico. 
+As duas versões são perfeitamente equivalentes. 
+É o caminho normal para terminar um script que não usa 'mes'.
 
         if (BaseLevel<=10) goto L_Lvl10;
         if (BaseLevel<=20) goto L_Lvl20;
@@ -1203,74 +1202,75 @@ does not use 'mes'.
         if (BaseLevel<=60) goto L_Lvl60;
         if (BaseLevel<=70) goto L_Lvl70;
     L_Lvl10:
-        npctalk "Look at that you are still a n00b";
+        npctalk "Veja que você ainda é um n00b";
         end;
     L_Lvl20:
-        npctalk "Look at that you are getting better, but still a n00b";
+        npctalk "Veja que você está melhorando, mas ainda é um n00b";
         end;
     L_Lvl30:
-        npctalk "Look at that you are getting there, you are almost 2nd profession now right???";
+        npctalk "Olha que você está chegando lá, você está quase na segunda profissão agora certo ???";
         end;
     L_Lvl40:
-        npctalk "Look at that you are almost 2nd profession";
+        npctalk "Olha que você é quase segunda profissão";
         end;
 
-Without the use of 'end' it would travel through the labels until the end of the 
-script. If you were lvl 10 or less, you would see all the speech lines, the use 
-of 'end' stops this, and ends the script.
+Sem o uso de 'end', passaria pelas labels até o final do script. 
+Se você fosse lvl 10 ou menos, você veria todas as linhas de fala,
+o uso de 'end' parará e terminará o script.
 
 ---------------------------------------
 
 *set <variable>,<expression>;
 *set(<variable>,<expression>)
 
-This command will set a variable to the value that the expression results in. 
-Variables may either be set through this command or directly, much like any
-other programming language (refer to the "Assigning variables" section).
+Este comando irá definir uma variável para o valor que a expressão resulta.
+As variáveis ​​podem ser definidas por meio desse comando ou diretamente, 
+como qualquer outra linguagem de programação (consulte a seção "Atribuindo variáveis").
 
-This is the most basic script command and is used a lot whenever you try to do 
-anything more advanced than just printing text into a message box.
+Este é o comando de script mais básico e é muito usado sempre que você tenta fazer
+qualquer coisa mais avançada do que apenas imprimir texto em uma caixa de mensagem.
 
     set @x,100;
     
-will make @x equal 100.
+fará com que @x seja igual a 100.
 
     set @x,1+5/8+9;
     
-will compute 1+5/8+9 (which is, surprisingly, 10 - remember, all numbers are 
-integer in this language) and make @x equal it.
+calculará 1 + 5/8 + 9 (o que é, surpreendentemente, 10 - lembre-se, todos os números são
+inteiro nesta língua) e fará @x igual a antes.
 
-Returns the variable reference (since trunk r12870).
+Retorna a referência da variável (desde trunk r12870).
 
 ---------------------------------------
 
 *setd "<variable name>",<value>;
 
-Works almost identically as set, except the variable name is identified as a string 
-and can thus be constructed dynamically.
+Funciona quase identicamente como set, exceto que o nome da variável é identificado como uma string
+e pode assim ser construído dinamicamente.
 
-This command is equivalent to:
+Este comando é equivalente a:
   set getd("variable name"),<value>;
 
-Examples:
+Exemplos:
 
   setd ".@var$", "Poporing";
-  mes .@var$; // Displays "Poporing".
+  mes .@var$;  // Exibe "Poporing".
 
-  setd ".@" + .@var$ + "123$", "Poporing is cool";
-  mes .@Poporing123$; // Displays "Poporing is cool".
+  setd ".@" + .@var$ + "123$", "Poporing é legal";
+  mes .@Poporing123$;  // Exibe "Poporing é legal".
+
 
 ---------------------------------------
 
 *getd("<variable name>")
 
-Returns a reference to a variable, the name can be constructed dynamically.
-Refer to 'setd' for usage.
+Retorna uma referência a uma variável, o nome pode ser construído dinamicamente.
+Consulte 'setd' para uso.
 
-This can also be used to set an array dynamically:
+Isso também pode ser usado para definir um array dinamicamente:
   setarray getd(".array[0]"), 1, 2, 3, 4, 5;
 
-Examples:
+Exemplos:
 
   set getd("$varRefence"), 1;
   set @i, getd("$" + "pikachu");
@@ -1279,178 +1279,174 @@ Examples:
 
 *getvariableofnpc(<variable>,"<npc name>")
 
-Returns a reference to a NPC variable (. prefix) from the target NPC.
-This can only be used to get . variables.
+Retorna uma referência a uma variável NPC (. prefix) do NPC de destino.
+Isso só pode ser usado para obter. variáveis.
 
-Examples:
+Exemplos:
 
-//This will return the value of .var, note that this can't be used, since the value isn't caught.
+// Isso retornará o valor de .var, note que isso não pode ser usado, já que o valor não é capturado.
 	getvariableofnpc(.var,"TargetNPC");
 	
-//This will set the .v variable to the value of the TargetNPC's .var variable.
+// Isso definirá a variável .v com o valor da variável .var do TargetNPC.
 	set .v, getvariableofnpc(.var,"TargetNPC");
 	
-//This will set the .var variable of TargetNPC to 1.
+// Isso definirá a variável .var do TargetNPC como 1.
 	set getvariableofnpc(.var,"TargetNPC"), 1;
 
-Note: even though function objects can have .variables, 
-getvariableofnpc will not work on them.
+Nota: embora os objetos de função possam ter variáveis,
+getvariableofnpc não funcionará neles.
 
 ---------------------------------------
 
 *goto <label>;
 
-This command will make the script jump to a label, usually used in conjunction 
-with other command, such as "if", but often used on its own.
+Esse comando fará com que o script salte para uma label, 
+comumente usado em conjunto com outro comando, como "if", 
+mas frequentemente usado sozinho.
 
 	...
 	goto Label;
-	mes "This will not be seen";
+	mes "Isso não será visto";
 Label:
-	mes "This will be seen";
+	mes "Isso será visto";
 
-Note by FlavioJS: goto's are "evil" and should be avoided if possible (ò_ó)
+Nota de FlavioJS: os goto's são "maus" e devem ser evitados se possível (ò_ó)
 
 ---------------------------------------
 
 *menu "<option_text>",<target_label>{,"<option_text>",<target_label>,...};
 
-This command will create a selectable menu for the invoking character. Only one 
-menu can be on screen at the same time.
+Este comando criará um menu selecionável para o jogador. Apenas um
+menu pode estar na tela ao mesmo tempo.
 
-Depending on what the player picks from the menu, the script execution will 
-continue from the corresponding label. (it's string-label pairs, not label-
-string)
+Dependendo do que o jogador escolher no menu, a execução do script continuará na label correspondente. (são pares de label de string, não string da label)
 
-Options can be grouped together, separated by the character ':'.
+As opções podem ser agrupadas, separadas pelo caractere ':'.
 
 	menu "A:B",L_Wrong,"C",L_Right;
 
-It also sets a special temporary character variable @menu, which contains the 
-number of option the player picked. (Numbering of options starts at 1.)
-This number is consistent with empty options and grouped options.
+Também define uma variável especial de personagem temporário @menu, que contém o
+número de opções que o jogador escolheu. (A numeração de opções começa em 1.)
+Esse número é consistente com opções vazias e opções agrupadas.
 
        menu "A::B",L_Wrong,"",L_Impossible,"C",L_Right;
     L_Wrong:
-       // If they click "A" or "B" they will end up here
-	   // @menu == 1 if "A"
-	   // @menu == 2 will never happen because the option is empty
-	   // @menu == 3 if "B"
+		// Se eles clicarem em "A" ou "B", eles acabarão aqui
+		// @menu == 1 se "A"
+		// @menu == 2 nunca acontecerá porque a opção está vazia
+		// @menu == 3 se "B"
 	L_Impossible:
-	   // Empty options are not displayed and therefore can't be selected
-	   // this label will never be reached from the menu command
+		// Opções vazias não são exibidas e, portanto, não podem ser selecionadas
+		// esta label nunca será alcançada a partir do comando de menu
     L_Right:
-       // If they click "C" they will end up here
-	   // @menu == 5
+        // Se eles clicarem em "C" eles vão acabar aqui
+	    // @menu == 5
 
-If a label is '-', the script execution will continue right after the menu 
-command if that option is selected, this can be used to save you time, and 
-optimize big scripts.
+Se a label for '-', a execução do script continuará logo após o comando de menu,
+se essa opção for selecionada, isso poderá ser usado para economizar tempo 
+e otimizar os grandes scripts.
 
         menu "A::B:",-,"C",L_Right;
-        // If they click "A" or "B" they will end up here
-		// @menu == 1 if "A"
-		// @menu == 3 if "B"
+        // Se eles clicarem em "A" ou "B", eles acabarão aqui
+		// @menu == 1 se "A"
+		// @menu == 3 se "B"
     L_Right:
-        // If they click "C" they will end up here
+         // Se eles clicarem em "C" eles vão acabar aqui
 		// @menu == 5
 
-Both these examples will perform the exact same task.
+Ambos os exemplos irão executar exatamente a mesma tarefa.
 
-If you give an empty string as a menu item, the item will not display. This
-can effectively be used to script dynamic menus by using empty string for
-entries that should be unavailable at that time.
+Se você der uma string vazia como um item de menu, o item não será exibido. este
+pode ser efetivamente usado para criar scripts de menus dinâmicos usando uma string vazia para
+entradas que devem estar indisponíveis naquele momento.
 
-You can do it by using arrays, but watch carefully - this trick isn't high 
-wizardry, but minor magic at least. You can't expect to easily duplicate it 
-until you understand how it works.
+Você pode fazê-lo usando array, mas observe com atenção - esse truque não é uma grande magia, 
+mas pelo menos uma mágica menor. Você não pode esperar duplicá-lo facilmente até entender como funciona.
 
-Create a temporary array of strings to contain your menu items, and populate it 
-with the strings that should go into the menu at this execution, making sure not 
-to leave any gaps. Normally, you do it with a loop and an extra counter, like 
-this:
+Crie uma array temporária de strings para conter seus itens de menu e preencha-a com as strings que
+devem entrar no menu nessa execução, certificando-se de não deixar nenhuma lacuna. 
+Normalmente, você faz isso com um loop e um contador extra, como este:
 
 	setarray @possiblemenuitems$[0],<list of potential menu items>;
-	@j = 0; // That's the menu lines counter.
+	@j = 0; // Esse é o contador de linhas do menu.
 	
-	// We loop through the list of possible menu items.
-	// @i is our loop counter.
+	// Nós percorremos a lista de possíveis itens do menu.
+	// @i é o nosso contador de loops.
 	for( @i = 0; @i < getarraysize(@possiblemenuitems$); @i++ )
 	{
-		// That 'condition' is whatever condition that determines whether 
-		// a menu item number @i actually goes into the menu or not.
+		// Aquela 'condition' é qualquer condição que determina se
+		// um número de item do menu @i realmente entra no menu ou não.
 		
 		if (<condition>)
 		{
-			// We record the option into the list of options actually available.
+			// Gravamos a opção na lista de opções realmente disponíveis.
 			
 			@menulist$[@j] = @possiblemenuitems$[@i];
 			
-			// We just copied the string, we do need its number for later 
-			// though, so we record it as well.
+			// Acabamos de copiar a string, precisamos do número para mais tarde
+			// embora, então nós gravamos também.
 			
 			@menureference[@j] = @i;
 			
-			// Since we've just added a menu item into the list, we increment 
-			// the menu lines counter.
+			// Como acabamos de adicionar um item do menu à lista, incrementamos
+			// o contador de linhas do menu.
 			
 			@j++;
 		}
 		
-		// We go on to the next possible menu item.
+		//  Vamos para o próximo item do menu possível.
 	}
 
-This will create you an array @menulist$ which contains the text of all items 
-that should actually go into the menu based on your condition, and an array 
-@menureference, which contains their numbers in the list of possible menu items. 
-(Remember, arrays start with 0.) There's less of them than the possible menu 
-items you've defined, but the menu command can handle the empty lines - only if 
-they are last in the list, and if it's made this way, they are. Now comes a 
-dirty trick:
+Isso criará uma array @menulist$ que contém o texto de todos os itens que devem 
+realmente entrar no menu com base na sua condição, e uma array @menureference, 
+que contém números na lista de possíveis itens do menu. (Lembre-se, as arrays
+começam com 0.) Há menos deles do que os possíveis menu de itens que você definiu, mas o comando
+de menu pode manipular as linhas vazias - somente se elas forem as últimas da lista, 
+e se for feito dessa forma, agora vem um truque sujo:
 
-	// X is whatever the most menu items you expect to handle.
+	// X é qualquer um dos itens de menu que você espera manipular.
 	menu @menulist$[0],-,@menulist$[1],-,....@menulist$[<X>],-;
 
-This calls up a menu of all your items. Since you didn't copy some of the 
-possible menu items into the list, its end is empty and so no menu items will 
-show up past the end. But this menu call doesn't jump anywhere, it just 
-continues execution right after the menu command. (And it's a good thing it 
-doesn't, cause you can only explicitly define labels to jump to, and how do you 
-know which ones to define if you don't know beforehand which options will end up 
-where in your menu?)
-But how do you figure out which option the user picked? Enter the @menu.
+Isso chama um menu de todos os seus itens. Como você não copiou alguns dos itens de 
+menu possíveis na lista, o final está vazio e, portanto, nenhum item de menu será exibido 
+após o final. Mas esta chamada de menu não salta para qualquer lugar, apenas continua a 
+execução logo após o comando do menu. (E é uma coisa boa que isso não acontece, porque 
+você só pode definir explicitamente as labels para onde ir e como você sabe quais definir 
+se você não sabe de antemão quais opções vão acabar no seu menu?) Mas Como você descobre 
+qual opção o usuário escolheu? Digite o @menu.
 
-@menu contains the number of option that the user selected from the list, 
-starting with 1 for the first option. You know now which option the user picked 
-and which number in your real list of possible menu items it translated to:
+@menu contém o número de opções que o usuário selecionou da lista, 
+começando com 1 para a primeira opção. Você sabe agora qual opção o usuário 
+escolheu e qual número na sua lista real de possíveis itens de menu para os quais ele traduziu:
 
-    mes "You selected "+@possiblemenuitems$[@menureference[@menu-1]]+"!";
 
-@menu is the number of option the user picked.
-@menu-1 is the array index for the list of actually used menu items that we 
-made.
-@menureference[@menu-1] is the number of the item in the array of possible menu 
-items that we've saved just for this purpose.
+    mes "Você selecionou "+@possiblemenuitems$[@menureference[@menu-1]]+"!";
 
-And @possiblemenuitems$[@menureference[@menu-1]] is the string that we used to 
-display the menu line the user picked. (Yes, it's a handful, but it works.)
+@menu é o número de opções escolhidas pelo usuário.
+@menu-1 é o índice da array para a lista de itens de menu realmente usados ​​que fizemos.
+@menureference[@menu-1] é o número do item na array de possíveis itens 
+de menu que salvamos apenas para essa finalidade.
 
-You can set up a bunch of 'if (@menureference[@menu-1]==X) goto Y' statements to 
-route your execution based on the line selected and still generate a different 
-menu every time, which is handy when you want to, for example, make users select 
-items in any specific order before proceeding, or make a randomly shuffled menu.
+E @possiblemenuitems$[@menureference[@menu-1]] é a string que usamos para
+exibir a linha de menu escolhida pelo usuário. (Sim, é trabalhoso, mas funciona.)
 
-Kafra code bundled with the standard distribution uses a similar array-based 
-menu technique for teleport lists, but it's much simpler and doesn't use @menu, 
-probably since that wasn't documented anywhere.
+Você pode configurar várias instruções 'if (@menureference [@ menu-1] == X) goto Y' 
+para rotear sua execução com base na linha selecionada e ainda gerar um menu diferente 
+a cada vez, o que é útil quando você quiser para, por exemplo, fazer com que os usuários 
+selecionem itens em qualquer ordem específica antes de continuar, ou fazer um menu 
+embaralhado aleatoriamente.
 
-See also 'select', which is probably better in this particular case. Instead of 
-menu, you could use 'select' like this:
+O código Kafra empacotado com a distribuição padrão usa uma array baseada em
+técnica de menu para listas de teleporte, mas é muito mais simples e não usa @menu,
+provavelmente, já que isso não foi documentado em nenhum lugar.
+
+Veja também 'select', o que provavelmente é melhor neste caso particular. Ao invés de
+menu, você poderia usar 'select' assim:
 
     @dummy = select(@menulist$[0],@menulist$[1],....@menulist$[<X>]);
     
-For the purposes of the technique described above these two statements are 
-perfectly equivalent.
+Para os propósitos da técnica descrita acima, estas duas afirmações são
+perfeitamente equivalente.
 
 ---------------------------------------
 
