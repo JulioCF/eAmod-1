@@ -342,219 +342,217 @@ ele contém comandos de script que podem ser acionados e executados.
 
 ~ RID? GID? ~
 
-What a RID is and why do you need to know
+O que é um RID e por que você precisa saber
 -----------------------------------------
 
-Most scripting commands and functions will want to request data about a 
-character, store variables referenced to that character, send stuff to the 
-client connected to that specific character. Whenever a script is invoked by a 
-character, it is passed a so-called RID - this is the account ID number of a 
-character that caused the code to execute by clicking on it, walking into its 
-OnTouch zone, or otherwise.
+A maioria dos comandos e funções de script desejará solicitar dados sobre um
+char, armazene variáveis referenciadas a esse char, envie coisas para o
+cliente conectado a esse char específico. Sempre que um script é invocado por um
+char, é passado um chamado RID - este é o número de ID da conta de um
+char que provocou o código para executar clicando nele, entrando em sua
+Zona OnTouch, ou de outra forma.
 
-If you are only writing common NPCs, you don't need to bother with it. However, 
-if you use functions, if you use timers, if you use clock-based script 
-activation, you need to be aware of all cases when a script execution can be 
-triggered without a RID attached. This will make a lot of commands and functions 
-unusable, since they want data from a specific character, want to send stuff to 
-a specific client, want to store variables specific to that character, and they 
-would not know what character to work on if there's no RID.
+Se você está escrevendo apenas NPCs comuns, não precisa se preocupar com isso. Contudo,
+Se você usar funções, temporizadores, ativação de script baseada em relógio, você precisa
+estar ciente de todos os casos em que uma execução de script será acionada sem um 
+RID anexado. Isso tornará muitos comandos e funções inutilizáveis, já que eles querem 
+dados de um char específico, querem enviar coisas para um cliente específico, querem 
+armazenar variáveis específicas para esse char e  não saberão em que char trabalhar se não houver RID.
 
-Unless you use 'attachrid' to explicitly attach a character to the script first.
+A menos que você use 'attachrid' para anexar explicitamente um char ao script primeiro.
 
-Whenever we say 'invoking character', we mean 'the character who's RID is 
-attached to the running script. The script function "playerattached" can be
-used to check which is the currently attached player to the script (it will
-return 0 if the there is no player attached or the attached player no longer
-is logged on to the map-server).
+Sempre que dizemos "invocando personagem", queremos dizer "o personagem que é RID é
+anexado ao script em execução. A função de script "playerattached" pode ser
+usado para verificar qual é o jogador atualmente conectado ao script (ele retornará 0 se não 
+houver um player anexado ou o player anexado não estiver mais conectado ao servidor de mapas).
 
-But what about GID?
+Mas e quanto a GID?
 --- ---- ----- ----
 
-GID stands for the Game ID of something, this can either be the GID obtained
-through mobspawn (mob control commands) or the account ID of a character.
-Another way would be to right click on a mob, 
-NPC or char as GM sprited char to view the GID.
+GID significa o Game ID de algo, isso pode ser o GID obtido
+através de mobspawn (comandos de controle mob) ou o ID da conta de um personagem.
+Outra maneira seria clicar com o botão direito em um mob,
+NPC ou char como GM sprited char para ver o GID.
 
-This is mostly used for the new version of skill and the mob control commands
-implemented (but NEVER documented by Lance. Shame on you...).
+Isso é usado principalmente para a nova versão de habilidade e os comandos 
+de controle do mob implementados (mas NUNCA documentados pelo Lance. Que vergonha para você ...).
 
-Item and pet scripts
+Scripts de itens e animais de estimação
 --------------------
 
-Each item in the item database has three special fields - Script , OnEquip_Script
-and OnUnequip_Script. The first is script code run every time a character equips the item, 
-with the RID of the equipping character. Every time they unequip an item, all 
-temporary bonuses given by the script commands are cleared, and all the scripts 
-are executed once again to rebuild them. This also happens in several other 
-situations (like upon login) but the full list is currently unknown.
+Cada item no banco de dados de itens tem três campos especiais - Script, OnEquip_Script
+e OnUnequip_Script. O primeiro é o código de script executado toda vez que um personagem equipa o item,
+com o RID do personagem que foi equipado. Toda vez que eles desequipam um item, todos
+bônus temporários fornecidos pelos comandos de script são limpos e todos os scripts
+são executados novamente para reconstruí-los. Isso também acontece em vários outras
+situações (como no login), mas a lista completa é desconhecida.
 
-OnEquip_Script is a piece of script code run whenever the item is used by a character 
-by double-clicking on it. OnUnequip_Script runs whenever the
-equipment is unequip by a character
+OnEquip_Script é um pedaço de código de script executado sempre que o item é usado por um personagem
+clicando duas vezes nele. OnUnequip_Script é executado sempre que o
+o equipamento é desequipado por um personagem
 
-Not all script commands work properly in the item scripts. Where commands and 
-functions are known to be meant specifically for use in item scripts, they are 
-described as such.
+Nem todos os comandos de script funcionam corretamente nos scripts de itens. Onde comandos e
+funções são conhecidas por serem destinadas especificamente para uso em scripts de itens, 
+elas são descritas como tal.
 
-Every pet in the pet database has a PetScript field, which determines pet 
-behavior. It is invoked wherever a pet of the specified type is spawned. 
-(hatched from an egg, or loaded from the char server when a character who had 
-that pet following them connects) This may occur in some other situations as 
-well. Don't expect anything other than commands definitely marked as usable in 
-pet scripts to work in there reliably.
+Cada animal de estimação no banco de dados do animal de estimação tem um campo PetScript, 
+que determina o comportamento do animal de estimação. É invocado sempre que um animal de 
+estimação do tipo especificado é gerado. (chocado de um ovo, ou carregado do servidor char 
+quando um personagem que tinha o animal de estimação seguindo-os se conecta) Isso pode ocorrer 
+em algumas outras situações também. Não espere nada além de comandos definitivamente marcados 
+como utilizáveis ​​em scripts de estimação para trabalhar de forma confiável.
 
-Numbers
+Números
 -------
 
-Beside the common decimal numbers, which are nothing special whatsoever (though 
-do not expect to use fractions, since ALL numbers are integer in this language), 
-the script engine also handles hexadecimal numbers, which are otherwise 
-identical. Writing a number like '0x<hex digits>' will make it recognized as a 
-hexadecimal value. Notice that 0x10 is equal to 16. Also notice that if you try 
-to 'mes 0x10' it will print '16'.
+Além dos números decimais comuns, que não são nada de especial (embora
+não espere usar frações, já que TODOS os números são inteiros neste idioma),
+O mecanismo de script também manipula números hexadecimais, que são idênticos. 
+Escrever um número como '0x <hex digits>' fará com que seja reconhecido como um 
+valor hexadecimal. Observe que 0x10 é igual a 16. Observe também que, se você tentar 
+'mes 0x10', ele imprimirá '16'.
 
-Number values can't exceed the limits of an integer variable: Any number
-greater than INT_MAX (2147483647) or smaller than INT_MIN (-2147483648) will
-be capped to those values and will cause a warning to be reported.
+Valores numéricos não podem exceder os limites de uma variável inteira: qualquer número 
+maior que INT_MAX (2147483647) ou menor que INT_MIN (-2147483648) será limitado a 
+esses valores e fará com que um aviso seja relatado.
 
-Variables
+Varíaveis
 ---------
 
-The meat of every programming language is variables - places where you store 
-data.
+A essência de toda linguagem de programação é variável - lugares onde você armazena
+dados.
 
-In the rAthena scripting language, variable names are not case sensitive.
+Na linguagem de script rAthena, os nomes de variáveis não diferenciam maiúsculas de minúsculas.
 
-Variables are divided into and uniquely identified by the combination of:
-prefix  - determines the scope and extent (or lifetime) of the variable
-name    - an identifier consisting of '_' and alphanumeric characters
-postfix - determines the type of the variable: integer or string
+As variáveis são divididas e identificadas unicamente pela combinação de:
+prefix - determina o escopo e a extensão (ou tempo de vida) da variável
+name - um identificador que consiste em '_' e caracteres alfanuméricos
+postfix - determina o tipo da variável: integer ou string
 
-Scope can be:
-global    - global to all servers
-local     - local to the server
-account   - attached to the account of the character identified by RID
-character - attached to the character identified by RID
-npc       - attached to the NPC
-scope     - attached to the scope of the instance
+O escopo pode ser:
+global - global para todos os servidores
+local - local para o servidor
+account  - anexado à conta do personagem identificado pelo RID
+character - anexado ao personagem identificado por RID
+npc - anexado ao NPC
+scope  - anexado ao escopo da instância
 
-Extent can be:
-permanent - They still exist when the server resets.
-temporary - They cease to exist when the server resets.
+A extensão pode ser:
+permanent - Eles ainda existem quando o servidor é redefinido.
+temporary - Eles deixam de existir quando o servidor é redefinido.
 
-Prefix: scope and extent
-nothing  - A permanent variable attached to the character, the default variable
-           type. They are stored in the `global_reg_value` table using type 3.
-"@"      - A temporary variable attached to the character.
-           SVN versions before 2094 revision and RC5 version will also treat
-           'l' as a temporary variable prefix, so beware of having variable
-           names starting with 'l' if you want full backward compatibility.
-"$"      - A global permanent variable.
-           They are stored in database table `mapreg`.
-"$@"     - A global temporary variable.
-           This is important for scripts which are called with no RID
-           attached, that is, not triggered by a specific character object.
-"."      - A NPC variable.
-           They exist in the NPC and disappear when the server restarts or the 
-           NPC is reloaded. Can be accessed from inside the NPC or by calling 
-           'getvariableofnpc'. Function objects can also have .variables which 
-           are accessible from inside the function, however 'getvariableofnpc' 
-           does NOT work on function objects.
-".@"     - A scope variable.
-           They are unique to the instance and scope. Each instance has its 
-           own scope that ends when the script ends. Calling a function with 
-           callsub/callfunc starts a new scope, returning from the function 
-           ends it. When a scope ends, its variables are converted to values 
-           ('return .@var;' returns a value, not a reference).
-"'"      - An instance variable
-           These are used with the instancing system, and are unique to each 
-           party's instance.
-"#"      - A permanent local account variable.
-           They are stored in the `global_reg_value` table using type 2.
-"##"     - A permanent global account variable stored by the login server.
-           They are stored in the `global_reg_value` table using type 1.
-           The only difference you will note from normal # variables is when
-           you have multiple char-servers connected to the same login server.
-           The # variables are unique to each char-server, while the ## variables
-           are shared by all these char-servers.
+Prefix: escopo e extensão
+nothing  - Uma variável permanente anexada ao personagem, o tipo de variável padrão.
+           Eles são armazenados na tabela `global_reg_value` usando o tipo 3.
+"@"      - Uma variável temporária anexada ao personagem.
+           Versões SVN antes da revisão 2094 e versão RC5 também tratarão
+           'l' como um prefixo de variável temporária, portanto, cuidado para ter variáveis
+           nomes começando com 'l' se você quiser total compatibilidade com versões anteriores.
+"$"      - Uma variável permanente global.
+           Eles são armazenados na tabela de banco de dados `mapreg`.
+"$@"     - Uma variável temporária global.
+           Isso é importante para scripts que são chamados sem RID
+           anexado, isto é, não acionado por um objeto de char específico.
+"."      - Uma variável do NPC.
+           Eles existem no NPC e desaparecem quando o servidor reinicia ou o
+           NPC é recarregado. Pode ser acessado de dentro do NPC ou chamando
+            'getvariableofnpc'. Objetos de função também podem ter variáveis ​​que 
+	     são acessíveis dentro da função, no entanto 'getvariableofnpc' NÃO funciona 
+            em objetos de função.
+".@"     -  Uma variável de escopo.
+           Eles são exclusivos da instância e do escopo. Cada instância tem seu
+           próprio escopo que termina quando o script termina. Chamar uma função com
+           callub / callfunc inicia um novo escopo, retornando da função termina. 
+	    Quando um escopo termina, suas variáveis ​​são convertidas em valores
+           ('return. @ var;' retorna um valor, não uma referência).
+"'"      - Uma variável de instância
+           Estes são usados ​​com o sistema de instanciação, e são únicos para cada
+           instância da festa.
+"#"      -  Uma variável de conta local permanente.
+           Eles são armazenados na tabela `global_reg_value` usando o tipo 2.
+"##"     - Uma variável de conta global permanente armazenada pelo servidor de login.
+           Eles são armazenados na tabela `global_reg_value` usando o tipo 1.
+           A única diferença que você notará das # variáveis ​​normais é quando
+           você tem vários servidores de char conectados ao mesmo servidor de login.
+           As # variáveis ​​são exclusivas para cada char server, enquanto as variáveis ​​## são
+           são compartilhados por todos esses char server.
 
 Postfix: integer or string
-nothing - integer variable, can store positive and negative numbers, but only 
-          whole numbers (so don't expect to do any fractional math)
-'$'     - string variable, can store text
+nothing - variável inteira, pode armazenar números positivos e negativos, mas apenas
+          números inteiros (então não espere fazer nenhuma matemática fracionária)
+'$'     - variável de string, pode armazenar texto
 
-Examples:
-  name  - permanent character integer variable
-  name$ - permanent character string variable
- @name  - temporary character integer variable
- @name$ - temporary character string variable
- $name  - permanent global integer variable
- $name$ - permanent global string variable
-$@name  - temporary global integer variable
-$@name$ - temporary global string variable
- .name  - NPC integer variable
- .name$ - NPC string variable
-.@name  - scope integer variable
-.@name$ - scope string variable
- #name  - permanent local account integer variable
- #name$ - permanent local account string variable
-##name  - permanent global account integer variable
-##name$ - permanent global account string variable
+Exemplos:
+  name  - variável inteira de caracteres permanentes
+  name$ - variável de caracteres strings permanente
+ @name  -  variável inteira de caráter temporário
+ @name$ - variável de caracteres  string  temporária
+ $name  - variável inteira global permanente
+ $name$ - variável de string global permanente
+$@name  - variável inteira global temporária
+$@name$ - variável string global temporária
+ .name  -  variável inteira NPC
+ .name$ - variável de string NPC
+.@name  - variável inteira do escopo
+.@name$ - variável de string de escopo
+ #name  - variável inteira de conta local permanente
+ #name$ - variável permanente string da conta local
+##name  - variável inteira de conta global permanente
+##name$ - variável permanente string da conta global
 
-If a variable was never set, it is considered to equal zero for integer 
-variables or an empty string ("", nothing between the quotes) for string 
-variables. Once you set it to that, the variable is as good as forgotten 
-forever, and no trace remains of it even if it was stored with character or 
-account data.
+Se uma variável nunca foi definida, considera-se igual a zero para variáveis ​​inteiras ou uma string vazia
+ ("", nada entre as aspas) para variáveis ​​string. Depois de definir isso, a variável é tão boa quanto 
+ esquecida para sempre, e nenhum vestígio permanece dela, mesmo se ela foi armazenada com dados
+do personagem ou conta.
 
-Some variables are special, that is, they are already defined for you by the 
-scripting engine. You can see the full list somewhere in 'db/const.txt', which 
-is a file you should read, since it also allows you to replace lots of numbered 
-arguments for many commands with easier to read text. The special variables most 
-commonly used are all permanent character-based variables:
 
-Zeny        - Amount of Zeny.
-Hp          - Current amount of hit points.
-MaxHp       - Maximum amount of hit points.
-Sp          - Current spell points.
-MaxSp       - Maximum amount of spell points.
-StatusPoint - Amount of status points remaining.
-SkillPoint  - Amount of skill points remaining.
-BaseLevel   - Character's base level.
-JobLevel    - Character's job level.
-BaseExp     - Amount of base experience points.
-JobExp      - Amount of job experience points.
-NextBaseExp - Amount of base experience points needed to reach the next level.
-NextJobExp  - Amount of job experience points needed to reach the next level.
-Weight      - Amount of weight the character currently carries.
-MaxWeight   - Maximum weight the character can carry.
-Sex         - 0 if female, 1 if male.
-Class       - Character's job.
-Upper       - 0 if the character is a normal class, 1 if advanced, 2 if baby.
-BaseClass   - The character's 1-1 'normal' job, regardless of Upper value.
-              For example, this will return Job_Acolyte for Acolyte, Priest/Monk,
-              High Priest/Champion, and Arch Bishop/Sura. If the character has not
-              reached a 1-1 class, it will return Job_Novice.
-BaseJob     - The character's 'normal' job, regardless of Upper value.
-              For example, this will return Job_Acolyte for Acolyte,
-              Baby Acolyte, and High Acolyte.
-Karma       - The character's karma. Karma system is not fully functional, but 
-              this doesn't mean this doesn't work at all. Not tested.
-Manner      - The character's manner rating. Becomes negative if the player 
-              utters words forbidden through the use of 'manner.txt' client-side 
-              file.
+Algumas variáveis ​​são especiais, isto é, elas já estão definidas para você pelo mecanismo de script. 
+Você pode ver a lista completa em algum lugar em 'db / const.txt', que é um arquivo que você deve 
+ler, já que ele também permite que você substitua muitos argumentos numerados por muitos comandos 
+com textos mais fáceis de ler. As variáveis ​​especiais mais usadas são todas as variáveis ​​baseadas em 
+caracteres permanentes:
 
-While these behave as variables, do not always expect to just set them - it is 
-not certain whether this will work for all of them. Whenever there is a command 
-or a function to set something, it's usually preferable to use that instead. The 
-notable exception is Zeny, which you can and often will address directly -
-setting it will make the character own this number of Zeny.
-If you try to set Zeny to a negative number, the script will be terminated with an error.
+Zeny        - quantidade de Zeny.
+Hp          - quantidade atual de pontos de vida.
+MaxHp       - quantidade máxima de pontos de vida.
+Sp          -  pontos de magia atuais.
+MaxSp       - quantidade máxima de pontos de magia.
+StatusPoint - Quantidade de pontos de habilidade restantes.
+SkillPoint  - nível base do personagem.
+BaseLevel   -  nível do trabalho do personagem.
+JobLevel    - nível do trabalho do personagem.
+BaseExp     - Quantidade de pontos de experiência de base.
+JobExp      - Quantidade de pontos de experiência de trabalho.
+NextBaseExp - Quantidade de pontos de experiência de base necessários para atingir o próximo nível.
+NextJobExp  - Quantidade de pontos de experiência de trabalho necessários para atingir o próximo nível.
+Weight      - Quantidade de peso que o personagem carrega atualmente.
+MaxWeight   - Peso máximo que o personagem pode carregar.
+Sex         -  0 se feminino, 1 se masculino.
+Class       -  trabalho do personagem.
+Upper       -  0 se o personagem for uma classe normal, 1 se for avançado, 2 se for bebê.
+BaseClass   - O trabalho 1-1 'normal' do personagem, independentemente do valor Superior.
+              Por exemplo, isso retornará Job_Acolyte para Acolyte, Priest/Monk,
+              High Priest/Champion, e Arch Bishop/Sura. Se o personagem 
+		não atingiu uma classe 1-1, ele retornará Job_Novice.
+BaseJob     - O trabalho 'normal' do personagem, independentemente do valor Superior.
+              Por exemplo, isso retornará Job_Acolyte para Acolyte,
+              Baby Acolyte e High Acolyte.
+Karma       - O carma do personagem. O sistema de karma não é totalmente funcional, mas
+              isso não significa que isso não funcione. Não testado.
+Manner      -  Classificação da maneira do personagem. Torna-se negativo se o jogador
+              profere palavras proibidas através do uso de 'manner.txt' no lado do cliente
+              Arquivo.
 
-Some source-end constants can also be accessed in scripts. This list is located in
-'src/map/script.c' in the 'script_hardcoded_constants' function, which contains
-constants such as server defines and status options:
+Embora estes se comportem como variáveis, nem sempre espere apenas defini-los - 
+não é certo se isso funcionará para todos eles. Sempre que houver um comando ou uma 
+função para definir algo, geralmente é preferível usá-lo. A exceção notável é a Zeny, que 
+você pode e muitas vezes será sobrescrita diretamente - a configuração fará com que o personagem 
+possua esse número de Zeny. Se você tentar definir o Zeny para um número negativo,
+o script será encerrado com um erro.
+
+Algumas constantes source-end também podem ser acessadas em scripts. 
+Esta lista está localizada em 'src / map / script.c' na função 'script_hardcoded_constants', 
+que contém constantes como opções de servidor e status:
 
     PACKETVER, MAX_LEVEL, MAX_STORAGE, MAX_INVENTORY, MAX_CART, MAX_ZENY, MAX_PARTY,
     MAX_GUILD, MAX_GUILDLEVEL, MAX_GUILD_STORAGE, MAX_BG_MEMBERS, MAX_CHAT_USERS,
@@ -566,21 +564,22 @@ constants such as server defines and status options:
     Option_Wugrider, Option_Madogear, Option_Dragon2, Option_Dragon3, Option_Dragon4,
     Option_Dragon5, Option_Hanbok, Option_Oktoberfest, Option_Dragon, Option_Costume
 
-Assigning variables
+Atribuindo Variáveis
 --------- ---------
 
-As of rAthena revision 15982, variables can be accessed and assigned values directly
-without the use of the built-in 'set' function. This means that variables can be
-accessed and modified much like other programming languages.
+A partir da revisão do rAthena 15982, as variáveis podem ser acessadas e atribuídas diretamente 
+aos valores sem o uso da função 'set' incorporada. Isso significa que as variáveis podem ser 
+acessadas e modificadas de maneira semelhante a outras linguagens de programação.
 
     @x = 100;
     @x = @y = 100;
 
-Support for modifying variable values using 'set' is still supported (and required
-to exist for this new method to work) so previous scripts will continue to work.
+O suporte para modificar valores de variáveis usando 'set' ainda é suportado 
+(e é necessário que exista para que este novo método funcione) para que os scripts 
+anteriores continuem a funcionar.
 
-When assigning values, all operator methods are supported which exist in the below
-'Operators' section. For instance:
+Ao atribuir valores, todos os métodos do operador são suportados, os quais existem na seção abaixo
+'Operadores'. Por exemplo:
 
     @x += 100;
     @x -= 100;
@@ -590,60 +589,62 @@ When assigning values, all operator methods are supported which exist in the bel
     @x >>= 2;
     @x <<= 2;
 
-Will all work. For more information on available operators, see the Operators section
-described below. All operators listed there may be placed in-front of the '=' sign
-when modifying variables to perform the action as required.
+Tudo vai funcionar? Para obter mais informações sobre operadores disponíveis, consulte a seção Operadores
+descrita abaixo. Todos os operadores listados podem ser colocados na frente do sinal '=' ao 
+modificar variáveis para executar a ação conforme necessário.
 
-Note:
+Nota:
 
- !! Currently the scripting engine does not support directly copying array variables.
- !! In order to copy arrays between variables the use of 'copyarray' function is still
- !! required.
+ !! Atualmente, o mecanismo de script não suporta copiar diretamente as variáveis array.
+ !! Para copiar arrays entre variáveis, o uso da função 'copyarray' ainda é
+ !! requerido.
 
 Strings
 -------
 
-To include symbol '"' in a string you should use prefix '\"'
+Para incluir o símbolo '"' em uma string, você deve usar o prefixo '\"'
 
 
 Arrays
 ------
 
-Arrays (in rAthena at least) are essentially a set of variables going under the 
-same name. You can tell between the specific variables of an array with an 
-'array index', a number of a variable in that array:
+Arrays (pelo menos em rAthena) são essencialmente um conjunto de variáveis ​​que estão 
+sob o mesmo nome. Você pode dizer entre as variáveis ​​específicas de uma 
+array com um 'array index', um número de uma variável nessa array:
 
 <variable name>[<array index>]
 
-Variables stored in this way, inside an array, are also called 'array elements'. 
-Arrays are specifically useful for storing a set of similar data (like several 
-item IDs for example) and then looping through it. You can address any array 
-variable as if it was a normal variable:
+As variáveis ​​armazenadas dessa maneira, dentro de uma array, também são 
+chamadas de 'array elements'. Os arrays são especificamente úteis para 
+armazenar um conjunto de dados semelhantes (como vários IDs de item, por exemplo) 
+e, em seguida, percorrê-lo. Você pode endereçar qualquer varíavel array
+como se fosse uma variável normal:
 
     set @arrayofnumbers[0],1;
 
-You can also do sneaky things like using a variable (or an expression, or even a 
-value from an another array) to get at an array value:
+Você também pode fazer coisas sorrateiras, como usar uma variável (ou uma expressão, ou até mesmo uma
+valor de uma outra array) para obter um valor de array:
 
     set @x,100;
     set @arrayofnumbers[@x],10;
     
-This will make @arrayofnumbers[100] equal to 10.
+Isso fará com que @arrayofnumbers [100] seja igual a 10.
 
-Notice that index numbering always starts with 0. Arrays cannot hold more than 
-128 variables. (So the last one can't have a number higher than 127)
+Observe que a numeração de índice sempre começa com 0. Arrays não podem conter mais de
+128 variáveis. (Então o último não pode ter um número maior que 127)
 
-And array indexes probably can't be negative. Nobody tested what happens when 
-you try to get a negatively numbered variable from an array, but it's not going 
-to be pretty. :)
 
-Arrays can naturally store strings:
+E os índices de array provavelmente não podem ser negativos. Ninguém testou o que acontece quando
+você tenta obter uma variável numerada negativamente de uma array, mas não vai
+ser bonita. :)
 
-@menulines$[0] is the 0th element of the @menulines$ array of strings. Notice 
-the '$', normally denoting a string variable, before the square brackets that 
-denotes an array index.
+Arrays podem armazenar naturalmente strings:
 
-Resume of the allowed variable and array scopes
+@menulines$[0]é o 0º elemento da matriz @menulines$ de strings. Aviso prévio
+o '$', normalmente denotando uma variável de string, antes dos colchetes que
+denota um array index
+
+Resumo da variável permitida e escopos de array
 ------ -- --- ------- -------- --- ----- ------
 
 +==========+======+=======+
@@ -678,184 +679,201 @@ Resume of the allowed variable and array scopes
 |.@Int     | OK!  | OK!   |
 +----------+------+-------+
 
-Variable References
+Referências Variáveis
 -------------------
 
 //##TODO
 
 
 
-Operators
+Operadores
 ---------
 
-Operators are things you can do to variables and numbers. They are either the 
-common mathematical operations or conditional operators
+Operadores são coisas que você pode fazer com variáveis ​​e números. Eles são ou
+operações matemáticas comuns ou operadores condicionais
 
-+ - will add two numbers. If you try to add two strings, the result will be a 
-    string glued together at the +. You can add a number to a string, and the
-    result will be a string. No other math operators work with strings.
-- - will subtract two numbers. 
-* - will multiply two numbers.
-/ - will divide two numbers. Note that this is an integer division, i.e.
-    7/2 is not equal 3.5, it's equal 3.
-% - will give you the remainder of the division. 7%2 is equal to 1.
+	+ - adicionará dois números. Se você tentar adicionar duas strings, o resultado será um
+	    corda colada junto no +. Você pode adicionar um número a uma string e
+	    resultado será uma string. Nenhum outro operador matemático trabalha com strings.
+	- - subtrairá dois números.
+	* - irá multiplicar dois números.
+	/ - vai dividir dois números. Note que esta é uma divisão inteira, ou seja,
+	    7/2 não é igual a 3,5, é igual a 3.
+	% - lhe dará o restante da divisão. 7% 2 é igual a 1.
 
-There are also conditional operators. This has to do with the conditional 
-command 'if' and they are meant to return either 1 if the condition is satisfied 
-and 0 if it isn't. (That's what they call 'boolean' variables. 0 means 'False'. 
-Anything except the zero is 'True' Odd as it is, -1 and -5 and anything below 
-zero will also be True.)
+Existem também operadores condicionais. Isso tem a ver com o comando condicional 'if' e 
+eles devem retornar 1 se a condição for satisfeita e 0 se não for. (Isso é o que eles chamam 
+de variáveis ​​'booleanas'. 0 significa 'Falso'. Qualquer coisa, exceto o zero, é 'Verdadeiro'). 
+Ímpar como é, -1 e -5 e qualquer coisa abaixo de zero também será Verdadeiro.
 
-You can compare numbers to each other and you compare strings to each other, but 
-you can not compare numbers to strings.
+Você pode comparar números entre si e comparar cadeias entre si, mas não pode comparar números a cadeias de caracteres.
 
- ==  - Is true if both sides are equal. For strings, it means they are the same.
- >=  - True if the first value is equal to, or greater than, the second value.
- <=  - True if the first value is equal to, or less than, the second value
- >   - True if the first value greater than the second value
- <   - True if the first value is less than the second value
- !=  - True if the first value IS NOT equal to the second one
+	 == - É verdade se ambos os lados são iguais. Para seqüências de caracteres, isso significa que elas são iguais.
+	 >= - Verdadeiro se o primeiro valor for igual ou maior que o segundo valor.
+	 <= - Verdadeiro se o primeiro valor for igual ou menor que o segundo valor
+	 > - Verdadeiro se o primeiro valor for maior que o segundo valor
+	 <- Verdadeiro se o primeiro valor for menor que o segundo valor
+	 != - Verdadeiro se o primeiro valor NÃO é igual ao segundo
 
-Examples:
+Exemplos:
 
- 1==1 is True.
- 1<2 is True while 1>2 is False.
- @x>2 is True if @x is equal to 3. But it isn't true if @x is 2.
+		1 == 1 é verdadeiro.
+		1 <2 é verdadeiro enquanto 1> 2 é falso.
+		@x> 2 é True se @x for igual a 3. Mas não é verdade se @x for 2.
 
-Only '==' and '!=' have been tested for comparing strings. Since there's no way 
-to code a seriously complex data structure in this language, trying to sort 
-strings by alphabet would be pointless anyway.
+Somente '==' e '! =' Foram testados para comparar strings. Já que não tem jeito
+codificar uma estrutura de dados seriamente complexa nesse idioma, tentando classificar
+seqüências de caracteres pelo alfabeto seria inútil de qualquer maneira.
 
-Comparisons can be stacked in the same condition:
+As comparações podem ser empilhadas na mesma condição:
 
- && - Is True if and only if BOTH sides are true.
-      ('1==1 && 2==2' is true. '2==1 && 1==1' is false.)
- || - Is True if either side of this expression is True.
+		&& - É verdadeiro se e somente se ambos os lados forem verdadeiros.
+		('1 == 1 && 2 == 2' é verdadeiro. '2 == 1 && 1 == 1' é falso.)
+		|| - É True se um dos lados dessa expressão for Verdadeiro.
 
  1==1 && 2==2 is True.
  1==1 && 2==1 is False.
  1==1 || 2==1 is True.
 
-Logical bitwise operators work only on numbers, and they are the following:
+Exemplos:
 
- << - Left shift.
- >> - Right shift.
-	Left shift moves the binary 1(s) of a number n positions to the left,
-	which is the same as multiplying by 2, n times.
-	In the other hand, Right shift moves the binary 1(s) of a number n positions
-	to the right, which is the same as dividing by 2, n times.
-		Example:
-		set b,2;
-		set a, b << 3;
-		mes a;
-		set a, a >> 2;
-		mes a;
-	The first mes command would display 16, which is the same as 2 x (2 x 2 x 2) = 16.
-	The second mes command would display 4, which is the same as 16 / 2 = 8. 8 / 2 = 4.
- &  - And.
- |  - Or.
-	The bitwise operator AND (&) is used to test two values against each other, 
-	and results in setting bits which are active in both arguments. This can
-	be used for a few things, but in rAthena this operator is usually used to
-	create bit-masks in scripts. 
-	
-	The bitwise operator OR (|)sets to 1 a binary position if the binary position
-	of one of the numbers is 1. This way a variable can hold several values we can check,
-	known as bit-mask. A variable currently can hold up to 32 bit-masks (from position 0
-	to position 1). This is a cheap(skate) and easy way to avoid using arrays to store several checks
-	that a player can have.
-	
-	A bit-mask basically is (ab)using the variables bits to set various options in 
-	one variable. With the current limit if variables it is possible to store 32 
-	different options in one variable (by using the bits on position 0 to 31).
+	 1 == 1 é verdadeiro.
+	 1 <2 é verdadeiro enquanto 1> 2 é falso.
+	 @x> 2 é True se @x for igual a 3. Mas não é verdade se @x for 2.
 
-	Example(s):
-	- Basic example of the & operator, bit example:
-		10 & 2 = 2
-	Why? :
-		10 = 2^1 + 2^3 (2 + 8), so in bits, it would be 1010
-		2 = 2^1 (2), so in bits (same size) it would be 0010
-		The & (AND) operator sets bits which are active (1) in both arguments, so in the
-		example 1010 & 0010, only the 2^1 bit is active (1) in both. Resulting in the bit
-		0010, which is 2.
-	- Basic example of creating and using a bit-mask:
-		set @options,2|4|16; //(note: this is the same as 2+4+16, or 22)
-		if (@options & 1)	mes "Option 1 is activated";
-		if (@options & 2) mes "Option 2 is activated";
-		if (@options & 4) mes "Option 3 is activated";
-		if (@options & 8) mes "Option 4 is activated";
-		if (@options & 16) mes "Options 5 is activated";
-	This would return the messages about option 2, 3 and 5 being shown (since we've set
-	the 2,4 and 16 bit to 1).
+Somente '==' e '! =' Foram testados para comparar strings. Já que não tem jeito
+codificar uma estrutura de dados seriamente complexa nesse idioma, tentando classificar
+seqüências de caracteres pelo alfabeto seria inútil de qualquer maneira.
+
+As comparações podem ser empilhadas na mesma condição:
+
+	 && - É verdadeiro se e somente se ambos os lados forem verdadeiros.
+	      ('1 == 1 && 2 == 2' é verdadeiro. '2 == 1 && 1 == 1' é falso.)
+	 || - É True se um dos lados dessa expressão for Verdadeiro.
+
+ 1 == 1 && 2 == 2 é verdadeiro.
+ 1 == 1 && 2 == 1 é False.
+ 1 == 1 || 2 == 1 é verdadeiro.
+
+Operadores bit a bit lógicos funcionam somente em números e são os seguintes:
+
+	 << - Esquerda.
+	 >> - Deslocamento à direita.
+		Deslocamento à esquerda move o binário 1 (s) de um número n posições para a esquerda,
+		que é o mesmo que multiplicar por 2, n vezes.
+		Por outro lado, o deslocamento para a direita move o binário 1 (s) de um número n posições
+		para a direita, que é o mesmo que dividir por 2, n vezes.
+			Exemplo:
+				set b,2;
+				set a, b << 3;
+				mes a;
+				set a, a >> 2;
+				mes a;
+		O primeiro comando mes exibiria 16, que é o mesmo que 2 x (2 x 2 x 2) = 16.
+		O segundo comando mes exibirá 4, que é o mesmo que 16/2 = 8. 8/2 = 4.
+& - E.
+| - ou
+	O operador bitwise AND (&) é usado para testar dois valores um contra o outro,
+	e resulta na definição de bits que estão ativos em ambos os argumentos. Isso pode
+	ser usado para algumas coisas, mas no rAthena este operador é geralmente usado para
+	crie bit-masks em scripts.
+
+	O operador bitwise OR (|) define para 1 uma posição binária se a posição binária
+	de um dos números é 1. Desta forma, uma variável pode conter vários valores que podemos verificar,
+	conhecido como bit-mask. Atualmente, uma variável pode conter até 32 máscaras de bits (da posição 0
+	para a posição 1). Esta é uma maneira barata (skate) e fácil de evitar o uso de arrays para armazenar vários checks
+	que um jogador pode ter.
+
+	Uma máscara de bits basicamente está (ab)usando as variáveis ​​bits para definir várias opções
+	numa variável. Com o limite atual, se variáveis ​​é possível armazenar 32
+	diferentes opções em uma variável (usando os bits na posição 0 a 31).
+
+		Exemplo(s):
+		- Exemplo básico do operador &, exemplo de bit:
+			10 & 2 = 2
+		Por quê? :
+			10 = 2 ^ 1 + 2 ^ 3 (2 + 8), portanto, em bits, seria 1010
+			2 = 2 ^ 1 (2), então em bits (mesmo tamanho) seria 0010
+			O operador & (AND) define bits que estão ativos (1) em ambos os argumentos, portanto,
+			exemplo 1010 & 0010, somente o bit 2 ^ 1 está ativo (1) em ambos. Resultando no bit
+			0010, que é 2.
+		- Exemplo básico de criação e uso de uma máscara de bits:
+			set @options,2|4|16;  // (nota: isso é o mesmo que 2 + 4 + 16 ou 22)
+			if (@options & 1)	mes "A opção 1 está ativada";
+			if (@options & 2) mes "A opção 2 está ativada";
+			if (@options & 4) mes "A opção 3 está ativada";
+			if (@options & 8) mes "A opção 4 está ativada";
+			if (@options & 16) mes "A opção 5 está ativada";
+		Isso retornaria as mensagens sobre as opções 2, 3 e 5 sendo mostradas (já que definimos
+		o 2,4 e 16 bits para 1).
  ^  - Xor.
-	The bitwise operator XOR (eXclusive OR) sets a binary position to 0 if both 
-	numbers have the same value in the said position. On the other hand, it 
-	sets to 1 if they have different values in the said binary position.
-	This is another way of setting and unsetting bits in bit-masks.
+		O operador bitwise  XOR (eXclusive OR) define uma posição binária para 0 se ambos
+		números têm o mesmo valor na dita posição. Por outro lado,
+		define para 1 se eles tiverem valores diferentes na referida posição binária.
+		Esta é outra maneira de configurar e desfazer bits em máscaras de bit.
 
-	Example:
-	- First let's set the quests that are currently in progress:
-		set inProgress,1|8|16; // quest 1,8 and 16 are in progress
-	- After playing for a bit, the player starts another quest:
-		if( inProgress&2 == 0 ){
-			// this will set the bit for quest 2 (inProgress has that bit set to 0)
-			set inProgress,inProgress^2;
-			mes "Quest 2: find a newbie and be helpful to him for an hour.";
-			close;
-		}
-	- After spending some time reading info on Xor's, the player finally completes quest 1:
-		if( inProgress&1 && isComplete ){
-			// this will unset the bit for quest 1 (inProgress has that bit set to 1)
-			set inProgress,inProgress^1;
-			mes "Quest 1 complete!! You unlocked the secrets of the Xor dynasty, use them wisely.";
-			close;
-		}
+		Exemplo:
+		- Primeiro, vamos definir as missões que estão atualmente em progresso:
+			set inProgress,1|8|16; // quest 1,8 e 16 estão em andamento
+		- Depois de jogar um pouco, o jogador começa outra missão:
+			if( inProgress&2 == 0 ){
+				// isso irá definir o bit da quest 2 (inProgress tem o bit definido como 0)
+				set inProgress,inProgress^2;
+				mes "Missão 2: encontre um novato e seja útil para ele por uma hora.";
+				close;
+			}
+		- Depois de passar algum tempo lendo informações no Xor's, o jogador finalmente completa a quest 1:
+			if( inProgress&1 && isComplete ){
+				// isso irá cancelar o bit da quest 1 (inProgress tem o bit definido como 1)
+				set inProgress,inProgress^1;
+				mes "Missão 1 completa !! Você desvendou os segredos da dinastia Xor, use-os sabiamente.";
+				close;
+			}
 
-Unary operators with only with a single number, which follows the operator, and
-are following:
+Operadores unários com apenas um único número, que segue o operador, e
+estão seguindo:
 
- -  - Negation.
-	The sign of the number will be reversed. If the number was positive, it will
-	become negative and vice versa.
+ -  - Negação.
+	O sinal do número será invertido. Se o número for positivo, será
+	tornar-se negativo e vice-versa.
 
-	Example:
+	Exemplo:
 		set .@myvar,10;
-		mes "Negative 10 is "+(-.@myvar);
+		mes "Negativo 10 é "+(-.@myvar);
 
- !  - Logical Not.
-	Reverses the boolean result of an expression. True will become false and
-	false will become true.
+ !  - Não lógico.
+	Inverte o resultado booleano de uma expressão. Verdadeiro se tornará falso e
+	falso se tornará verdadeiro.
 
-	Example:
+	Exemplo:
 		if(!callfunc("F_dosomething"))
 		{
-			mes "Doing something failed.";
+			mes "Fazer algo falhou.";
 			close;
 		}
 
  ~  - Bitwise Not.
-	Reverses each bit in a number, also known as one's complement. Cleared bits
-	are set, and set bits are cleared.
+	Inverte cada bit em um número, também conhecido como complemento de um. Bits desobstruídos
+	são definidos e os bits definidos são apagados.
 
-	Example:
-	- Ensure, that quest 2 is disabled, while keeping all other active, if they are.
-		set inProgress,inProgress&(~2);  // same as set inProgress,inProgress&0xfffffffd
+	Exemplo:
+	- Assegure-se de que a quest 2 esteja desabilitada, mantendo todas as outras ativas, se estiverem.
+		set inProgress,inProgress&(~2);  // o mesmo que set inProgress, inProgress & 0xfffffffd
 
-Ternary operators take three expressions (numbers, strings or boolean), and are
-following:
+Os operadores ternários usam três expressões (números, cadeias de caracteres ou booleanas) e estão seguindo:
 
- ?: - Conditional operator
-	Very useful e.g. to replace
+ ?: - Operador condicional
+	Muito útil, por exemplo para substituir
 
 		if(Sex) mes "..."; else mes "...";
 
-	clauses with simple
+	cláusulas com simples
 
-		mes "Welcome, " + (Sex?"Mr.":"Mrs.") + " " + strcharinfo(0);
+		mes  "Bem-vindo," + (Sexo? "Senhor": "Sra.")  + " " + strcharinfo(0);
 
-	or to replace any other simple if-else clauses. It might be worth
-	mentioning that ?: has low priority and has to be enclosed with
-	parenthesis in most (if not all) cases.
+	ou para substituir qualquer outra cláusula if-else simples. Pode valer a pena
+	mencionando isso ?: tem baixa prioridade e tem que ser incluído com
+	parênteses na maioria dos casos (se não todos).
 
 Labels
 ------
