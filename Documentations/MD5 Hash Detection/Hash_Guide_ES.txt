@@ -1,31 +1,38 @@
-//  __________________________________________________________________________
-// /                                                                          \
-// |                           _                                              |
-// |                          / \                         _                   |
-// |                  ___    / _ \   _ __ ___   ____  ___| |                  |
-// |                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
-// |                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
-// |                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
-// |                                                                          |
-// |                              eAmod Script                                |
-// |                                                                          |
-// |--------------------------------------------------------------------------|
-// |                       eAmod - eAthena Modifications                      |
-// |                             Hash Guide eAmod-A                           |
-// \_________________________________________________________________________/
+ __________________________________________________________________________
+/                                                                          \
+|                           _                                              |
+|                          / \                         _                   |
+|                  ___    / _ \   _ __ ___   ____  ___| |                  |
+|                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+|                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+|                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+|                                                                          |
+|                              eAmod Script                                |
+|                                                                          |
+|--------------------------------------------------------------------------|
+|                       eAmod - eAthena Modifications                      |
+|                             Hash Guide eAmod-A                           |
+\_________________________________________________________________________/
 
-// Sistema de Hash Check para Cliente - Servidor
+
+------------------------------------------------
+| Sistema de Hash Check para Cliente - Servidor:
+------------------------------------------------
 
 Esta modificación activa una protección que hace que tu servidor solamente acepte
 un ejecutable para conectarse al mismo. Si alguien intenta usar otro .exe diferente
 o un .exe modificado, no podrá logear. Util para combatir OpenKore (consola) y
 algunas modificaciones al cliente que no permites en tu comunidad.
 
-// Consideraciones
+----------------
+| Considerações:
+----------------
 
 Esta modificación solo se puede realizar en 2011 o ejecutables inferiores.
 
-// Modificando el Ejecutable, tu cliente:
+----------------------------------------
+| Modificando el Ejecutable, tu cliente:
+----------------------------------------
 
 Necesitas un editor de Hexadecimal, como por ejemplo Hex Workshop. Lo que harás será
 abrir tu .exe y buscar la siguiente cadena hexadecimal:
