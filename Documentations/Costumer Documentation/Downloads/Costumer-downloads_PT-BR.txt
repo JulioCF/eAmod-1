@@ -25,7 +25,7 @@
 
 /*
 ----------------------------------------------------------------
-| Segue abaixo links que podem ser úteis aos clientes do eAmod.:
+| Segue abaixo links que podem ser úteis aos clientes do eAmod:
 ----------------------------------------------------------------
 
      1. Microsoft Visual C++ 2008 Express Edition SP1:
