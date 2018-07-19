@@ -1,14 +1,27 @@
-//===== Documentação rAthena ================================
-//= Documentação da Source
-//===== De: =================================================
-//= rAthena Dev Team
-//===== Última atualização: =================================
-//= 20180616
-//===== Descrição: ==========================================
-//= Lista de todos os pacotes usados em login-serv (A), char-serv (H),
-//= e map-serv (Z) para se comunicar entre eles.
-//= Consulte packet_client.txt para a comunicação com o client (C).
-//============================================================
+ __________________________________________________________________________
+/                                                                          \
+|                           _                                              |
+|                          / \                         _                   |
+|                  ___    / _ \   _ __ ___   ____  ___| |                  |
+|                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+|                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+|                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+|                                                                          |
+|                              eAmod Script                                |
+|                                                                          |
+|--------------------------------------------------------------------------|
+|                       eAmod - eAthena Modifications                      |
+|                         Documentação do Consumidor                       |
+|                                 Downloads                                |
+|--------------------------------------------------------------------------|
+| Criado por: rAthena Dev Team                                             |
+|--------------------------------------------------------------------------|
+| Descrição: Lista de todos os pacotes usados em login-serv (A),           |
+| char-serv (H) e map-serv (Z) para se comunicar entre eles.               |
+|--------------------------------------------------------------------------|
+| Changelog:                                                               |
+| 1.0 - Documento desenvolvido                                             |
+\_________________________________________________________________________/
 
 
 Este arquivo fornece informações sobre os pacotes de rAthena, ordenados por número.
