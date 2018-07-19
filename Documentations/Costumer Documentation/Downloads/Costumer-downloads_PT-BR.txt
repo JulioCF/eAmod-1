@@ -14,7 +14,7 @@
 |                         Documentação do Consumidor                       |
 |                                 Downloads                                |
 |--------------------------------------------------------------------------|
-| Criado por: shell TeMP                                                   |
+| Criado por: shellTeMP                                                    |
 |--------------------------------------------------------------------------|
 | Descrição: Documentação com links que possam auxíliar os usuários        |
 | e clientes do eAmod                                                      |
@@ -24,6 +24,7 @@
 \_________________________________________________________________________/
 
 /*
+
 ----------------------------------------------------------------
 | Segue abaixo links que podem ser úteis aos clientes do eAmod:
 ----------------------------------------------------------------
