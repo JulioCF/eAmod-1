@@ -30,7 +30,7 @@
 ------------------
 
         1. Pre-RE mode: Supported
-        2. RE mode: Not Supported
+        2. RE mode: Supported
         3. eAmod Customization: Supported
         4. eASpecial Scripts: Supported
         5. eAmod Emulator Authorization: Supported (Required)
