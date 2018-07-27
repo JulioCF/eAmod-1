@@ -1,3 +1,21 @@
+//  __________________________________________________________________________
+// /                                                                          \
+// |                           _                                              |
+// |                          / \                         _                   |
+// |                  ___    / _ \   _ __ ___   ____  ___| |                  |
+// |                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+// |                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+// |                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+// |                                                                          |
+// |                              eAmod Script                                |
+// |                                                                          |
+// |--------------------------------------------------------------------------|
+// |                       eAmod - eAthena Modifications                      |
+// |                            eAthena readme file                           |
+// \_________________________________________________________________________/
+
+/*
+
 What is the import folder for?
 
 Most people don't know the real use of the import folder. After you do, you will wonder 
@@ -31,3 +49,5 @@ So, yeah, that's what the import folder is for. I hope to see a lot more people 
 make my life as a managed server runer better.
 
 Semi-guide by Ajarn
+
+*/
