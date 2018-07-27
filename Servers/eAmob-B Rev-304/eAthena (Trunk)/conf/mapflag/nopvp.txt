@@ -20,7 +20,7 @@
 // | To disable PvP mode on a specific map add the mapname here.              | 
 // |--------------------------------------------------------------------------|
 // | Changelog:                                                               |
-// | 1.0 - Document developed                                                 |
+// | 1.0 - Document developed.                                                |
 // \_________________________________________________________________________/
 
 1@cata	mapflag	pvp	off
