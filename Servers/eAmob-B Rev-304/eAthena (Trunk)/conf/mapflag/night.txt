@@ -14,7 +14,7 @@
 // |                             eAthena Mapflag                              |
 // |                                  Night                                   |
 // |--------------------------------------------------------------------------|
-// | Created by: eAthena Dev Team                                             |
+// | Created by: Skotlex                                                      |
 // |--------------------------------------------------------------------------|
 // | Description: Map Flags for maps where the night is visible.              |
 // | 'nightenabled' specifies which maps can display "night".                 |
