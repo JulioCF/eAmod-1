@@ -19,7 +19,7 @@
 // | Description: Display Fireworks effect (Depreciated).                     |
 // |--------------------------------------------------------------------------|
 // | Changelog:                                                               |
-// | 1.0 - Document developed                                                 |
+// | 1.0 - Document developed.                                                |
 // \_________________________________________________________________________/
 
 //prontera	mapflag	fireworks
