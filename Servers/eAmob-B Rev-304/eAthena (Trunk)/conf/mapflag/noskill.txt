@@ -19,7 +19,7 @@
 // | Description: Map flags that disable skills on a map.                     |
 // |--------------------------------------------------------------------------|
 // | Changelog:                                                               |
-// | 1.0 - Document developed [L0ne_W0lf]                                     |
+// | 1.0 - Document developed. [L0ne_W0lf]                                    |
 // | 1.1 - Added additional maps. [L0ne_W0lf]                                 |
 // \_________________________________________________________________________/
 
