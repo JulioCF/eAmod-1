@@ -26,9 +26,9 @@
 // | noteleport: No Teleporting allowed.  No f-wings or b-wings.              |
 // |--------------------------------------------------------------------------|
 // | Changelog:                                                               |
-// | 1.0 - Document developed                                                 |
-// | 1.1 - Added Novice Guild Castles                                         |
-// | 1.2 - Updated with new meanings of gvg and gvg_castle                    |
+// | 1.0 - Document developed.                                                |
+// | 1.1 - Added Novice Guild Castles.                                        |
+// | 1.2 - Updated with new meanings of gvg and gvg_castle.                   |
 // \_________________________________________________________________________/
 
 // No Memory =============================
