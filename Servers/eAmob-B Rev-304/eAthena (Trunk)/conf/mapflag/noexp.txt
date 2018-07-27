@@ -20,12 +20,12 @@
 // |--------------------------------------------------------------------------|
 // | Changelog:                                                               |
 // | 1.0 - Document developed                                                 |
-// | 1.1 - Bug Corrections [Zephyrus]                                         |
-// | 1.2 - Bug Corrections [Lupus]                                            |
-// | 1.3 - Bug Corrections [Zephyrus]                                         |
-// | 1.4 - Bug Corrections [Lupus]                                            |
-// | 1.5 - Bug Corrections [Lorky]                                            |
-// | 1.6 - Added Lighthalzen (due to quests) [Lupus]                          |
+// | 1.1 - Bug Fixes. [Zephyrus]                                              |
+// | 1.2 - Bug Fixes. [Lupus]                                                 |
+// | 1.3 - Bug Fixes. [Zephyrus]                                              |
+// | 1.4 - Bug Fixes. [Lupus]                                                 |
+// | 1.5 - Bug Fixes. [Lorky]                                                 |
+// | 1.6 - Added Lighthalzen (due to quests). [Lupus]                         |
 // | 1.7 - Commented out entries. (Quests are official) [L0ne_W0lf]           |
 // \_________________________________________________________________________/
 
