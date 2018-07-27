@@ -1,14 +1,36 @@
-//===== eAthena Script =======================================
-//= Map flags that disable icewall skill
-//===== By: ==================================================
-//= eAthena Dev Team
-//=============================================================
-//= noicewall: Disables Icewall skill.
-//= To disable Icewall on a specific map add the mapname here.
-//= 1.6a Re-enabled icewalls for cities [Lupus]
-//= 1.7 Officially icewall is allowed on interoirs. [L0ne_w0lf]
-//= 1.8 fixed aru castles mapnames
-//============================================================
+//  __________________________________________________________________________
+// /                                                                          \
+// |                           _                                              |
+// |                          / \                         _                   |
+// |                  ___    / _ \   _ __ ___   ____  ___| |                  |
+// |                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+// |                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+// |                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+// |                                                                          |
+// |                              eAmod Script                                |
+// |                                                                          |
+// |--------------------------------------------------------------------------|
+// |                       eAmod - eAthena Modifications                      |
+// |                             eAthena Mapflag                              |
+// |                               No Ice Wall                                |
+// |--------------------------------------------------------------------------|
+// | Created by: eAthena Dev Team                                             |
+// |--------------------------------------------------------------------------|
+// | Description: Map flags that disable icewall skill.                       |
+// | noicewall: Disables Icewall skill.                                       |
+// | To disable Icewall on a specific map add the mapname here.               |
+// |--------------------------------------------------------------------------|
+// | Changelog:                                                               |
+// | 1.0 - Document developed                                                 |
+// | 1.1 - Bug Corrections [Zephyrus]                                         |
+// | 1.2 - Bug Corrections [Zephyrus]                                         |
+// | 1.3 - Bug Corrections [Lance]                                            |
+// | 1.4 - Bug Corrections [shellTeMP]                                        |
+// | 1.5 - Bug Corrections [shellTeMP]                                        |
+// | 1.6 - Re-enabled icewalls for cities [Lupus]                             |
+// | 1.7 - Officially icewall is allowed on interoirs. [L0ne_w0lf]            |
+// | 1.8 - Fixed aru castles mapnames. [L0ne_w0lf]                            |
+// \_________________________________________________________________________/
 
 //ayo_in01	mapflag	noicewall
 //ayo_in02	mapflag	noicewall
