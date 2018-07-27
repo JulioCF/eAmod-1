@@ -19,7 +19,7 @@
 // | Description: Map flags that enable the use of Neuralizer.                |
 // |--------------------------------------------------------------------------|
 // | Changelog:                                                               |
-// | 1.0 - Document developed [Daegaladh]                                     |
+// | 1.0 - Document developed. [Daegaladh]                                    |
 // \_________________________________________________________________________/
 
 alberta	mapflag	reset
