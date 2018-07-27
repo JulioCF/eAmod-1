@@ -19,7 +19,7 @@
 // | Description: Battleground map setting. '2' shows scoreboard.             |
 // |--------------------------------------------------------------------------|
 // | Changelog:                                                               |
-// | 1.0 - Document developed                                                 |
+// | 1.0 - Document developed.                                                |
 // \_________________________________________________________________________/
 
 bat_c01	mapflag	battleground	2
