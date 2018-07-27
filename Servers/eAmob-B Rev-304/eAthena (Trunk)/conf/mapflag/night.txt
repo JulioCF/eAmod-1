@@ -20,7 +20,7 @@
 // | 'nightenabled' specifies which maps can display "night".                 |
 // |--------------------------------------------------------------------------|
 // | Changelog:                                                               |
-// | 1.0 - Document developed [Skotlex]                                       |
+// | 1.0 - Document developed. [Skotlex]                                      |
 // \_________________________________________________________________________/
 
 
