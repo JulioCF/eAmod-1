@@ -19,7 +19,7 @@
 // | Description: Map flags that allow players to drop items/equips on death. |
 // |--------------------------------------------------------------------------|
 // | Changelog:                                                               |
-// | 1.0 - Document developed                                                 |
+// | 1.0 - Document developed.                                                |
 // \_________________________________________________________________________/
 
 //Nightmare Equipment Drops PVP
