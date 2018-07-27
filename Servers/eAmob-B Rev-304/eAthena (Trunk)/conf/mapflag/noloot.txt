@@ -19,7 +19,7 @@
 // | Description: Mapflag from a script in the NPC folder.                    |
 // |--------------------------------------------------------------------------|
 // | Changelog:                                                               |
-// | 1.0 - Document developed                                                 |
+// | 1.0 - Document developed.                                                |
 // \_________________________________________________________________________/
 
 //hunte	mapflag	noloot
