@@ -10,17 +10,18 @@
 // |                              eAmod Script                                |
 // |                                                                          |
 // |--------------------------------------------------------------------------|
-// | Script Name: Night                                                       |
+// |                       eAmod - eAthena Modifications                      |
+// |                             eAthena Mapflag                              |
+// |                                  Night                                   |
 // |--------------------------------------------------------------------------|
-// | Created by: eAthena Dev Team                                             |
+// | Created by: Skotlex                                                      |
 // |--------------------------------------------------------------------------|
-// | Versions eASU/eA/brA/Herc/rA: all/all                                    |
+// | Description: Map Flags for maps where the night is visible.              |
+// | 'nightenabled' specifies which maps can display "night".                 |
 // |--------------------------------------------------------------------------|
-// | Description:                                                             |
-// | Map Flags for Jails ( ATCommand @jail <player> )                         |
-// |'nightenabled' specifies which maps can display "night".                  |
+// | Changelog:                                                               |
+// | 1.0 - Document developed. [Skotlex]                                      |
 // \_________________________________________________________________________/
-
 
 alb2trea	mapflag	nightenabled
 alberta	mapflag	nightenabled
