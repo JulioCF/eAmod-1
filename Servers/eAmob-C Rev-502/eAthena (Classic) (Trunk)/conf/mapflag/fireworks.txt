@@ -10,14 +10,16 @@
 // |                              eAmod Script                                |
 // |                                                                          |
 // |--------------------------------------------------------------------------|
-// | Script Name: Fireworks                                                   |
+// |                       eAmod - eAthena Modifications                      |
+// |                             eAthena Mapflag                              |
+// |                                Fireworks                                 |
 // |--------------------------------------------------------------------------|
 // | Created by: Epoque                                                       |
 // |--------------------------------------------------------------------------|
-// | Versions eASU/eA/brA/Herc/rA: all/all                                    |
+// | Description: Display Fireworks effect (Depreciated).                     |
 // |--------------------------------------------------------------------------|
-// | Description: Displays Fireworks effect (Depreciated)                     |
+// | Changelog:                                                               |
+// | 1.0 - Document developed.                                                |
 // \_________________________________________________________________________/
-
 
 //prontera	mapflag	fireworks
