@@ -10,23 +10,27 @@
 // |                              eAmod Script                                |
 // |                                                                          |
 // |--------------------------------------------------------------------------|
-// | Script Name: No Memo                                                     |
+// |                       eAmod - eAthena Modifications                      |
+// |                             eAthena Mapflag                              |
+// |                                No Memo                                   |
 // |--------------------------------------------------------------------------|
 // | Created by: eAthena Dev Team                                             |
-// |--------------------------------------------------------------------------|
-// | Versions eASU/eA/brA/Herc/rA: all/all                                    |
 // |--------------------------------------------------------------------------|
 // | Description: Map flags that disable warp portal memory.                  |
 // |--------------------------------------------------------------------------|
 // | Changelog:                                                               |
-// | 1.6a added up to Hugel maps. [Lupus]                                     |
-// | 1.6b Added job_knt map. [Samuray22]                                      |
-// | 1.7 Added all novice maps. [L0ne_W0lf]                                   |
-// | 1.8 Added nameless_i location [Lupus]                                    |
-// | 1.8a Removed duplicate gef_cas nomemo mapflags [Yommy]                   |  
-// | 1.8b Removed duplicate arug_dun01 & schg_dun01 entries [Gepard]          |
+// | 1.0 - Document developed.                                                |
+// | 1.1 - Bug Fixes. [Zephyrus]                                              |
+// | 1.2 - Bug Fixes. [Zephyrus]                                              |
+// | 1.3 - Bug Fixes. [Lance]                                                 |
+// | 1.4 - Bug Fixes. [shellTeMP]                                             |
+// | 1.5 - Bug Fixes. [shellTeMP]                                             |
+// | 1.6 - Added up to Hugel maps. [Lupus]                                    |
+// | 1.7 - Added job_knt map. [Samuray22]                                     |
+// | 1.8 - Added nameless_i location. [Lupus]                                 |
+// | 1.9 - Removed duplicate gef_cas nomemo mapflags. [Yommy]                 |
+// | 2.0 - Removed duplicate arug_dun01 & schg_dun01 entries. [Gepard]        |
 // \_________________________________________________________________________/
-
 
 // Towns  ====================
 ayo_in01	mapflag	nomemo
