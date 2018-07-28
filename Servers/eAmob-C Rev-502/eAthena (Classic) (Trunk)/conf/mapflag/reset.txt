@@ -11,10 +11,16 @@
 // |                                                                          |
 // |--------------------------------------------------------------------------|
 // |                       eAmod - eAthena Modifications                      |
-// |                Map flags that enable the use of Neuralizer               |
-// |                            Made by Daegaladh                             |
+// |                             eAthena Mapflag                              |
+// |                                  Reset                                   |
+// |--------------------------------------------------------------------------|
+// | Created by: Daegaladh                                                    |
+// |--------------------------------------------------------------------------|
+// | Description: Map flags that enable the use of Neuralizer.                |
+// |--------------------------------------------------------------------------|
+// | Changelog:                                                               |
+// | 1.0 - Document developed. [Daegaladh]                                    |
 // \_________________________________________________________________________/
-
 
 alberta	mapflag	reset
 aldebaran	mapflag	reset
