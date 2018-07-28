@@ -23,7 +23,6 @@
 // | 1.0 - Document developed. [Skotlex]                                      |
 // \_________________________________________________________________________/
 
-
 alb2trea	mapflag	nightenabled
 alberta	mapflag	nightenabled
 aldebaran	mapflag	nightenabled
