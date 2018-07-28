@@ -11,10 +11,16 @@
 // |                                                                          |
 // |--------------------------------------------------------------------------|
 // |                       eAmod - eAthena Modifications                      |
-// |          Map flags that allow players to drop items/equips on death      |
-// |                       Created by eAthena Dev Team                        |
+// |                             eAthena Mapflag                              |
+// |                                 Nightmare                                |
+// |--------------------------------------------------------------------------|
+// | Created by: eAthena Dev Team                                             |
+// |--------------------------------------------------------------------------|
+// | Description: Map flags that allow players to drop items/equips on death. |
+// |--------------------------------------------------------------------------|
+// | Changelog:                                                               |
+// | 1.0 - Document developed.                                                |
 // \_________________________________________________________________________/
-
 
 //Nightmare Equipment Drops PVP
 pvp_n_1-1	mapflag	pvp_nightmaredrop	random,equip,300
