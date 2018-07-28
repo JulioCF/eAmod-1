@@ -10,23 +10,22 @@
 // |                              eAmod Script                                |
 // |                                                                          |
 // |--------------------------------------------------------------------------|
-// | Script Name: GVG                                                         |
+// |                       eAmod - eAthena Modifications                      |
+// |                             eAthena Mapflag                              |
+// |                                   GvG                                    |
 // |--------------------------------------------------------------------------|
 // | Created by: eAthena Dev Team                                             |
 // |--------------------------------------------------------------------------|
-// | Versions eASU/eA/brA/Herc/rA: all/all                                    |
-// |--------------------------------------------------------------------------|
-// | Description:                                                             |
-// | gvg: Turns on GvG mode (same as PvP except Guilds are automatically      |
-// | allied)                                                                  |
+// | Description: GvG On Map Flags.                                           |
+// | gvg: Turns on GvG mode (same as PvP except Guilds are                    |
+// | automatically allied).                                                   |
 // | gvg_castle: Describes castle maps for WoE.                               |
 // |--------------------------------------------------------------------------|
 // | Changelog:                                                               |
-// | 1.1 Added Novice Guild Castles                                           |
-// | 1.2 Updated with new meanings of gvg and gvg_castle                      |
+// | 1.0 - Document developed.                                                |
+// | 1.1 - Added Novice Guild Castles.                                        |
+// | 1.2 - Updated with new meanings of gvg and gvg_castle.                   |
 // \_________________________________________________________________________/
-
-
 
 // GvG Arenas =============
 guild_vs1	mapflag	gvg
