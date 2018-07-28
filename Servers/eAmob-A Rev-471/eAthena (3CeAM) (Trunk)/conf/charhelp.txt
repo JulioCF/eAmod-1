@@ -14,7 +14,7 @@
 // |                        eAthena character help file                       |
 // \_________________________________________________________________________/
 
-40:--- CHARACTER CMD ---
+ 40:--- CHARACTER CMD ---
  40:#statsall <char name> - Set all stats of a player to maximum.
  40:#itemlist <char name> - Displays all items of a player.
  40:#storagelist <char name> - Displays all items of a player's storage.
