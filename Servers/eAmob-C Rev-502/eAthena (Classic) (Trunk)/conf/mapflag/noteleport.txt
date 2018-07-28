@@ -10,19 +10,23 @@
 // |                              eAmod Script                                |
 // |                                                                          |
 // |--------------------------------------------------------------------------|
-// | Script Name: No Teleport                                                 |
+// |                       eAmod - eAthena Modifications                      |
+// |                             eAthena Mapflag                              |
+// |                               No Teleport                                |
 // |--------------------------------------------------------------------------|
 // | Created by: eAthena Dev Team                                             |
 // |--------------------------------------------------------------------------|
-// | Versions eASU/eA/brA/Herc/rA: all/all                                    |
-// |--------------------------------------------------------------------------|
 // | Description: Map flags that disable use of fly wings.                    |
-// | *For disabling Butterfly wings use noreturn                              |
 // |--------------------------------------------------------------------------|
 // | Changelog:                                                               |
-// | 1.6a [Lupus]                                                             |
+// | 1.0 - Document developed.                                                |
+// | 1.1 - Bug Fixes. [Zephyrus]                                              |
+// | 1.2 - Bug Fixes. [Zephyrus]                                              |
+// | 1.3 - Bug Fixes. [Lance]                                                 |
+// | 1.4 - Bug Fixes. [shellTeMP]                                             |
+// | 1.5 - Bug Fixes. [shellTeMP]                                             |
+// | 1.6 - Bug Fixes. [Lupus]                                                 |
 // \_________________________________________________________________________/
-
 
 // Cities ========================
 ayo_in01	mapflag	noteleport
