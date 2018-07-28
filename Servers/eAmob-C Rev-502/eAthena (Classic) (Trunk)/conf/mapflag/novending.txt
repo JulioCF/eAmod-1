@@ -10,18 +10,17 @@
 // |                              eAmod Script                                |
 // |                                                                          |
 // |--------------------------------------------------------------------------|
-// | Script Name: No Vending                                                  |
+// |                       eAmod - eAthena Modifications                      |
+// |                             eAthena Mapflag                              |
+// |                                No Vending                                |
 // |--------------------------------------------------------------------------|
 // | Created by: Epoque                                                       |
 // |--------------------------------------------------------------------------|
-// | Versions eASU/eA/brA/Herc/rA: all/all                                    |
-// |--------------------------------------------------------------------------|
-// | Description:  Mapflag from a script in the NPC folder.                   |
+// | Description: Mapflag from a script in the NPC folder.                    |
 // |--------------------------------------------------------------------------|
 // | Changelog:                                                               |
-// | 1.0a [Epoque]                                                            |
+// | 1.0 - Document developed. [Epoque]                                       |
 // \_________________________________________________________________________/
-
 
 //prontera	mapflag	novending
 //prt_in	mapflag	novending

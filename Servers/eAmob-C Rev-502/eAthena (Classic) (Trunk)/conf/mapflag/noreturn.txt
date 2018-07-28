@@ -10,25 +10,24 @@
 // |                              eAmod Script                                |
 // |                                                                          |
 // |--------------------------------------------------------------------------|
-// | Script Name: No Return                                                   |
+// |                       eAmod - eAthena Modifications                      |
+// |                             eAthena Mapflag                              |
+// |                                No Return                                 |
 // |--------------------------------------------------------------------------|
 // | Created by: eAthena Dev Team                                             |
 // |--------------------------------------------------------------------------|
-// | Versions eASU/eA/brA/Herc/rA: all/all                                    |
-// |--------------------------------------------------------------------------|
 // | Description: Map flags that disable use of Butterfly wings.              |
-// | *For disabling Fly wings use noteleport                                  |
 // |--------------------------------------------------------------------------|
 // | Changelog:                                                               |
-// | 1.3 According to the patch enabled Butterfly wings in the Castles [Lupus]|
-// | 1.4 Enabled Butterfly wings on PvP maps. [Skotlex]                       |
-// | 1.2 Updated with new meanings of gvg and gvg_castle                      |
-// | 1.4a Added job_knt. [Samuray22]                                          |
-// | 1.5 Commented out new_zone entries. [L0ne_W0lf]                          |
-// | 1.6 Enabled B. wings on all maps but que_hugel. [L0ne_W0lf]              |
+// | 1.0 - Document developed.                                                |
+// | 1.1 - Bug Fixes. [Lance]                                                 |
+// | 1.2 - Bug Fixes. [Lance]                                                 |
+// | 1.3 - Bug Fixes. [Lance]                                                 |
+// | 1.4 - Enabled Butterfly wings in the Castles. [Lupus]                    |
+// | 1.5 - Added job_knt. [Samuray22]                                         |
+// | 1.6 - Commented out new_zone entries. [L0ne_W0lf]                        |
+// | 1.7 - Enabled B. wings on all maps but que_hugel. [L0ne_W0lf]            |
 // \_________________________________________________________________________/
-
-
 
 // Cities ========================
 //ayo_in01	mapflag	noreturn

@@ -10,20 +10,18 @@
 // |                              eAmod Script                                |
 // |                                                                          |
 // |--------------------------------------------------------------------------|
-// | Script Name: No Skill                                                    |
+// |                       eAmod - eAthena Modifications                      |
+// |                             eAthena Mapflag                              |
+// |                                 No Skill                                 |
 // |--------------------------------------------------------------------------|
 // | Created by: eAthena Dev Team                                             |
 // |--------------------------------------------------------------------------|
-// | Versions eASU/eA/brA/Herc/rA: all/all                                    |
-// |--------------------------------------------------------------------------|
-// | Description:  Map flags that disable skills on a map.                    |
+// | Description: Map flags that disable skills on a map.                     |
 // |--------------------------------------------------------------------------|
 // | Changelog:                                                               |
-// | 1.0 [L0ne_W0lf]                                                          |
-// | 1.1 Added additional maps. [L0ne_W0lf]                                   |
+// | 1.0 - Document developed. [L0ne_W0lf]                                    |
+// | 1.1 - Added additional maps. [L0ne_W0lf]                                 |
 // \_________________________________________________________________________/
-
-
 
 //Prontera Arena ===============
 prt_are_in	mapflag	noskill
