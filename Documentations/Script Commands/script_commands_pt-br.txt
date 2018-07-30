@@ -1453,124 +1453,122 @@ perfeitamente equivalente.
 *select("<option>"{,"<option>",...})
 *prompt("<option>"{,"<option>",...})
 
-This function is a handy replacement for 'menu' for some specific cases where 
-you don't want a complex label structure - like, for example, asking simple yes-
-no questions. It will return the number of menu option picked, starting with 1. 
-Like 'menu', it will also set the variable @menu to contain the option the user 
-picked.
+Esta função é um substituto útil para o 'menu' para alguns casos específicos 
+em que você não quer uma estrutura complexa das labels - como, por exemplo, 
+fazer perguntas sim-não simples. Ele retornará o número da opção de menu 
+escolhida, começando com 1. Como 'menu', ele também irá configurar a 
+variável @menu para conter a opção escolhida pelo usuário.
 
-    if (select("Yes:No")==1) mes "You said yes, I know.";
+    if (select("Sim:Não")==1) mes "Você disse sim, eu sei.";
 
-And like 'menu', the selected option is consistent with grouped options 
-and empty options.
+E como "menu", a opção selecionada é consistente com as opções agrupadas
+e opções vazias.
 
-'prompt' works almost the same as select, except that when a character clicks
-the Cancel button, this function will return 255 instead.
-
+'prompt' funciona quase da mesma forma que select, exceto que quando um 
+personagem clica no botão "Cancel", esta função retornará 255 em seu lugar.
 ---------------------------------------
 
 *input(<variable>{,<min>{,<max>}})
 
-This command will make an input box pop up on the client connected to the 
-invoking character, to allow entering of a number or a string. This has many 
-uses, one example would be a guessing game, also making use of the 'rand' 
-function:
+Este comando fará uma box pop up aparecer no cliente conectado para o 
+jogador, para permitir a inserção de um número ou uma string. 
+Isso tem muitos usos, um exemplo seria um jogo de adivinhação, também 
+fazendo uso da função 'rand':
 
 	mes "[Woman]";
-	mes "Try and guess the number I am thinking of.";
-	mes "The number will be between 1 and 10.";
+	mes "Tente adivinhar o número em que estou pensando.";
+	mes "O número será entre 1 e 10.";
 	next;
 	.@number = rand(1,10);
 	input .@guess;
 	if (.@guess == .@number) {
 		mes "[Woman]";
-		mes "Well done, that was the number I was thinking of!";
+		mes "Bem feito, esse era o número que eu estava pensando!";
 		close;
 	} else {
 		mes "[Woman]";
-		mes "Sorry, that wasn't the number I was thinking of.";
+		mes "Desculpe, esse não era o número que eu estava pensando.";
 		close;
 	}
 
-If you give the input command a string variable to put the input in, it will 
-allow the player to enter text. Otherwise, only numbers will be allowed.
+Se você der ao comando de entrada uma variável de string para colocar a 
+entrada, ela permitirá que o jogador insira texto. Caso contrário, 
+apenas números serão permitidos.
 
 	mes "[Woman]";
-	mes "Please say HELLO";
+	mes "Por favor, diga OLÁ";
 	next;
 	input .@var$;
-	if (.@var$ == "HELLO") {
+	if (.@var$ == "OLÁ") {
 		mes "[Woman]";
-		mes "Well done, you typed it correctly.";
+		mes "Muito bem, você digitou corretamente.";
 		close;
 	} else {
 		mes "[Woman]";
-		mes "Sorry, you got it wrong.";
+		mes "Desculpe, você digitou errado.";
 		close;
 	}
 
-Normally you may not input a negative number with this command.
-This is done to prevent exploits in badly written scripts, which would 
-let people, for example, put negative amounts of Zeny into a bank script and 
-receive free Zeny as a result.
+Normalmente você não pode inserir um número negativo com este comando. 
+Isso é feito para evitar explorações em scripts mal escritos, o que 
+permitiria que as pessoas, por exemplo, colocassem quantidades negativas
+de Zeny em um script de banco e recebessem gratuitamente o Zeny.
 
-Since trunk r12192 the command has two optional arguments and a return value.
-The default value of 'min' and 'max' can be set with 'input_min_value' and 
-'input_max_value' in script_athena.conf.
-For numeric inputs the value is capped to the range [min,max]. Returns 1 if 
-the value was higher than 'max', -1 if lower than 'min' and 0 otherwise.
-For string inputs it returns 1 if the string was longer than 'max', -1 is 
-shorter than 'min' and 0 otherwise.
+Desde o trunk r12192, o comando tem dois argumentos opcionais e um valor de retorno. 
+O valor padrão de 'min' e 'max' pode ser definido com 'input_min_value' 
+e 'input_max_value' em script_athena.conf. Para entradas numéricas, o valor 
+é limitado ao intervalo [min, max]. Retorna 1 se o valor for maior que 'max', -1 
+se menor que 'min' e 0 caso contrário.Para entradas de string ele retorna 1 se a 
+string for maior que 'max', -1 é menor que 'min' e 0.
 
 ---------------------------------------
 
 *callfunc "<function>"{,<argument>,...<argument>};
 *callfunc("<function>"{,<argument>,...<argument>})
 
-This command lets you call up a function NPC. A function NPC can be called from 
-any script on any map server. Using the 'return' command it will come back to 
-the place that called it.
+Este comando permite chamar uma função NPC. Uma função NPC pode ser 
+chamada de qualquer script em qualquer map server. Usando o 
+comando 'return', ele retornará ao local que o chamou.
 
 	place,50,50,6%TAB%script%TAB%Woman%TAB%115,{
 		mes "[Woman]"
-		mes "Let's see if you win...";
+		mes "Vamos ver se você ganha ...";
 		callfunc "funcNPC";
-		mes "Well done, you have won!";
+		mes "Muito bem, você ganhou!";
 		close;
 	}
 	function%TAB%script%TAB%funcNPC%TAB%{
 		.@win = rand(2);
 		if (.@win == 0) return;
-		mes "Sorry, you lost.";
+		mes "Desculpe, você perdeu.";
 		close;
 	}
 
-You can pass arguments to your function - values telling it what exactly to do -
-which will be available there with getarg() (see 'getarg')
-Notice that returning is not mandatory, you can end execution right there.
+Você pode passar argumentos para a sua função - valores dizendo exatamente o que fazer - 
+que estarão disponíveis com getarg () (veja 'getarg') Observe que retornar não é obrigatório, 
+você pode finalizar a execução ali mesmo.
 
-If you want to return a real value from inside your function NPC, it is better 
-to write it in the function form, which will also work and will make the script 
-generally cleaner:
+Se você quiser retornar um valor real de dentro da sua função NPC, é melhor escrevê-lo 
+na forma defunção, que também funcionará e tornará o script geralmente mais limpo:
 
 	place,50,50,6%TAB%script%TAB%Man%TAB%115,{
 		mes "[Man]"
-		mes "Gimme a number!";
+		mes "Me dê um número!";
 		next;
 		input @number;
-		if (callfunc("OddFunc",@number)) mes "It's Odd!";
+		if (callfunc("OddFunc",@number)) mes "Isso é ímpar!";
 		close;
 	}
 	function%TAB%script%TAB%OddFunc%TAB%{
-		if (getarg(0)%2==0) return 0;// it's even
-		return 1;// it's odd
+		if (getarg(0)%2==0) return 0;// Isso é par
+		return 1;// Isso é ímpar
 	}
 
-Alternately, as of rAthena revision 15979 and 15981, user-defined functions
-may be called directly without the use of the 'callfunc' script command.
+Como alternativa, a partir da revisão do rAthena 15979 e 15981, as funções definidas 
+pelo usuário podem ser chamadas diretamente sem o uso do comando de script 'callfunc'.
 
 	function<tab>script<tab>SayHello<tab>{
-		mes "Hello " + getarg(0);
+		mes "Olá " + getarg(0);
 		return 0;
 	}
 
@@ -1580,28 +1578,27 @@ may be called directly without the use of the 'callfunc' script command.
 		close;
 	}
 
-Note:
+Nota:
 
- !! A user-defined function must be declared /before/ a script attempts to
- !! call it. That is to say, any functions should be placed above scripts or NPCs
- !! (or loaded in a separate file first) before attempting to call them directly.
+ !! Uma função definida pelo usuário deve ser declarada /antes/ que um script tente
+ !! chamá-la. Ou seja, qualquer função deve ser colocada acima de scripts ou NPCs
+ !! (ou carregado em um arquivo separado primeiro) antes de tentar chamá-los diretamente.
 
 ---------------------------------------
 
 *callsub <label>{,<argument>,...<argument>};
 *callsub(<label>{,<argument>,...<argument>})
 
-This command will go to a specified label within the current script (do NOT use 
-quotes around it) coming in as if it were a 'callfunc' call, and pass it 
-arguments given, if any, which can be recovered there with 'getarg'. When done 
-there, you should use the 'return' command to go back to the point from where 
-this label was called. This is used when there is a specific thing the script 
-will do over and over, this lets you use the same bit of code as many times as 
-you like, to save space and time, without creating extra NPC objects which are 
-needed with 'callfunc'. A label is not callable in this manner from another 
-script.
+Esse comando irá para uma label especificada dentro do script atual (NÃO use aspas 
+ao redor dele) como se fosse uma chamada 'callfunc', e passará os argumentos 
+dados, se houver, que podem ser recuperados com 'getarg'. Quando terminar, 
+você deve usar o comando 'return' para voltar ao ponto de onde essa label
+foi chamada. Isso é usado quando há uma coisa específica que o script fará 
+repetidas vezes, isso permite que você use o mesmo código quantas vezes quiser, 
+para economizar espaço e tempo, sem criar objetos NPC extras que são necessários 
+com 'callfunc'. Uma label não é chamada desta maneira a partir de outro script.
 
-Example 1: callsub for checking (if checks pass, return to script)
+Exemplo 1: callub para verificação (se os checks forem aprovados, retorne ao script)
 	callsub S_CheckFull, "guild_vs2",50;
 	switch( rand(4) ) {
 		case 0:	warp "guild_vs2",9,50;	end;
@@ -1614,13 +1611,13 @@ Example 1: callsub for checking (if checks pass, return to script)
 
 S_CheckFull:
 	if (getmapusers(getarg(0)) >= getarg(1)) {
-		mes "I'm sorry, this arena is full.  Please try again later.";
+		mes "Me desculpe, esta arena está cheia. Por favor, tente novamente mais tarde.";
 		close;
 	}
 	return;
 
-Example 2: callsub used repeatedly, with different arguments
-// notice how the Zeny check/delete is reused, instead of copy-pasting for every warp
+Exemplo 2: callub usado repetidamente, com argumentos diferentes
+// observe como a check/delete do Zeny é reutilizada, em vez de copiar e colar para cada warp
 	switch(select("Abyss Lake:Amatsu Dungeon:Anthell:Ayothaya Dungeon:Beacon Island, Pharos") {
 		case 1:	callsub S_DunWarp,"hu_fild05",192,207;
 		case 2:	callsub S_DunWarp,"ama_in02",119,181;
@@ -1633,14 +1630,14 @@ Example 2: callsub used repeatedly, with different arguments
 ...
 
 S_DunWarp:
-// getarg(0) = "map name"
+// getarg(0) = "nome do mapa"
 // getarg(1) = x
 // getarg(2) = y
 	if (Zeny >= 100) {
 		Zeny -= 100;
 		warp getarg(0),getarg(1),getarg(2);
 	} else {
-		mes "Dungeon warp costs 100 Zeny.";
+		mes "Teleporte para o calabouço custa 100 Zeny.";
 	}
 	close;
 
@@ -1648,66 +1645,66 @@ S_DunWarp:
 
 *getarg(<index>{,<default_value>})
 
-This function is used when you use the 'callsub' or 'callfunc' commands. In the 
-call you can specify variables that will make that call different from another 
-one. This function will return an argument the function or subroutine was 
-called with, and is the normal way to get them. 
-This is another thing that can let you use the same code more than once. 
+Esta função é usada quando você usa os comandos 'callub' ou 'callfunc'. 
+Na chamada, você pode especificar variáveis que tornem a chamada 
+diferente de outra. Esta função retornará um argumento com o qual
+a função ou sub-rotina foi chamada e é a maneira normal de obtê-los. 
+Essa é outra coisa que pode permitir que você use o mesmo código mais de uma vez.
 
-Argument numbering starts with 0, i.e. the first argument you gave is number 0. 
-If no such argument was given, a zero is returned.
+A numeração de argumentos começa com 0, ou seja, o primeiro argumento que você deu é o número 0.
+Se nenhum argumento foi dado, um zero é retornado.
 
 	place,50,50,6%TAB%script%TAB%Woman1%TAB%115,{
 		mes "[Woman]";
-		mes "Let's see if you win...";
+		mes "Vamos ver se você ganha...";
 		callfunc "funcNPC",2;
-		mes "Well done, you have won!";
+		mes "Bem feito, você ganhou!";
 		close;
 	}
 
 	place,52,50,6%TAB%script%TAB%Woman2%TAB%115,{
 		mes "[Woman]";
-		mes "Let's see if you win...";
+		mes "Vamos ver se você ganha...";
 		callfunc "funcNPC",5;
-		mes "Well done, you have won!";
+		mes "Muito bem, você ganhou!";
 		close;
 	}
 
 	function%TAB%script%TAB%funcNPC%TAB%{
 		.@win = rand(getarg(0));
 		if (.@win == 0) return;
-		mes "Sorry, you lost.";
+		mes "Desculpe, você perdeu.";
 		close;
 	|
 
-"woman1" NPC object calls the funcNPC. The argument it gives in this call is 
-stated as 2, so when the random number is generated by the 'rand' function, it 
-can only be 0 or 1. Whereas "woman2" gives 5 as the argument number 0 when 
-calling the function, so the random number could be 0, 1, 2, 3 or 4, this makes 
-"woman2" less likely to say the player won. 
+O objeto NPC "woman1" chama o funcNPC. O argumento que ele dá nesta chamada 
+é declarado como 2, então quando o número aleatório é gerado pela função 
+'rand', ele só pode ser 0 ou 1. Considerando que "woman2" fornece 5 como 
+o argumento número 0 ao chamar a função, Assim, o número aleatório pode ser 
+0, 1, 2, 3 ou 4, o que torna menos provável que "woman2" diga que o jogador venceu.
 
-You can pass multiple arguments in a function call:
+Você pode passar vários argumentos em uma callfunc:
 
 	callfunc "funcNPC",5,4,3;
 
-getarg(0) would be 5, getarg(1) would be 4 and getarg(2) would be 3.
+getarg(0) seria 5, getarg(1) seria 4 e getarg(2) seria 3.
 
-'getarg' has an optional argument since trunk r10773 and stable r10958.
-If the target argument exists, it is returned.
-Otherwise, if <default_value> is present it is returned instead, 
-if not the script terminates immediately.
+'getarg' tem um argumento opcional desde o trunk r10773 e estável r10958.Se o 
+argumento de destino existir, ele será retornado.Caso contrário, 
+se <default_value> estiver presente, ele será retornado, se não, o 
+script terminar imediatamente.
 
-In the previous example getarg(2,-1) would be 3 and getarg(3,-1) would be -1.
+No exemplo anterior, getarg(2, -1) seria 3 e getarg(3, -1) seria -1.
 
 ---------------------------------------
 
 *getargcount()
 
-This function is used when you use the 'callsub' or 'callfunc' commands. In the 
-call you can specify arguments. This function will return the number of arguments 
-provided.
+Esta função é usada quando você usa os comandos 'callub' ou 'callfunc'. 
+Na call você pode especificar argumentos. Esta função retornará 
+o número de argumentos fornecidos.
 
-Example:
+Exemplo:
 	callfunc "funcNPC",5,4,3;
 	...
 	function%TAB%script%TAB%funcNPC%TAB%{
@@ -1719,16 +1716,16 @@ Example:
 
 *return {<value>};
 
-This command causes the script execution to leave previously called function
-with callfunc or script with callsub and return to the location, where the call
-originated from. Optionally a return value can be supplied, when the call was
-done using the function form. 
+Este comando faz com que a execução do script deixe a função anteriormente 
+chamada com callfunc ou script com callub e retorne ao local, onde o calloriginated está. 
+Opcionalmente, um valor de retorno pode ser fornecido quando a chamada 
+foi feita usando a forma de função.
 
-Using this command outside of functions or scripts referenced by callsub will
-result in error and termination of the script.
+Usando este comando fora de funções ou scripts referenciados pelo callub irá 
+resultar em erro e término do script.
 
-	callfunc "<your function>";// when nothing is returned
-	set <variable>,callfunc("<your function>");// when a value is being returned
+	callfunc "<your function>";// quando nada é retornado
+	set <variable>,callfunc("<your function>");// quando um valor está sendo retornado
 
 ---------------------------------------
 
@@ -1738,62 +1735,63 @@ result in error and termination of the script.
 <code>
 }
 
-This works like callfunc, and is used for cleaner and faster scripting. The function
-must be defined and used within a script, and works like a label with arguments.
-Note that the name may only contain alphanumeric characters and underscore.
+Isso funciona como callfunc e é usado para scripts mais limpos e rápidos. 
+A função deve ser definida e usada em um script e funciona como 
+uma label com argumentos. Observe que o nome pode conter apenas 
+caracteres alfanuméricos e sublinhados.
 
-Usage:
+Uso:
 
-    1. Declare the function.
+     1. Declare a função.
 	function <function name>;
-    2. Call the function anywhere within the script.
-       It can also return a value when used with parentheses.
+     2. Chame a função em qualquer lugar dentro do script.
+        Também pode retornar um valor quando usado com parênteses.
 	<function name>;
-    3. Define the function within the script.
+     3. Defina a função dentro do script.
 	<function name> {<code>}
 
-Example:
+Exemplo:
 
 prontera,154,189,4	script	Item Seller	767,{
-	/* Function declaration */
+	/* Declaração da Função*/
 	function SF_Selling;
 
 	if (Zeny > 50) {
-		mes "Welcome!";
-		/* Function call */
+		mes "Bem-vindo!";
+		/* Chama Função */
 		SF_Selling;
 	}
-	else mes "You need 50z, sorry!";
+	else mes "Você precisa de 50z, desculpe!";
 	close;
 
 	/* Function definition */
 	function SF_Selling {
-		mes "Would you like to buy a phracon for 50z?";
+		mes "Você gostaria de comprar um phracon por 50z?";
 		next;
-		if(select("Yes","No, thanks") == 1) {
+		if(select("Sim","Não, obrigado") == 1) {
 			Zeny -= Zeny;
 			getitem 1010,1;
-			mes "Thank you!";
+			mes "Obrigado!";
 		}
 		return;
 	}
 }
 
-Example with parameters and return value:
+Exemplo com parâmetros e valor de retorno:
 
 prontera,150,150,0	script	TestNPC	123,{
-	/* Function declaration */
+	/* Declaração de Função */
 	function MyAdd;
 
-	mes "Enter two numbers.";
+	mes "Insira dois números.";
 	next;
 	input .@a;
 	input .@b;
-	/* Function call */
+	/* Chama função */
 	mes .@a+" + "+.@b+" = "+MyAdd(.@a,.@b);
 	close;
 
-	/* Function definition */
+	/* Definição da Função */
 	function MyAdd {
 		return getarg(0)+getarg(1);
 	}
@@ -1804,10 +1802,10 @@ prontera,150,150,0	script	TestNPC	123,{
 
 *is_function("<function name>")
 
-This command checks whether a function exists.
-It returns 1 if function is found, or 0 if it isn't.
+Este comando verifica se existe uma função.
+Retorna 1 se a função for encontrada ou 0 se não existir.
 
-Example:
+Exemplo:
 
 	function	script	try	{
 		dothat;
@@ -1822,160 +1820,160 @@ Example:
 
 *if (<condition>) <statement>;
 
-This is the basic conditional statement command, and just about the only one 
-available in this scripting language. 
+Este é o comando básico da instrução condicional e apenas o único disponível 
+nesta linguagem de script.
 
-The condition can be any expression. All expressions resulting in a non-zero 
-value will be considered True, including negative values. All expressions 
-resulting in a zero are false.
+A condição pode ser qualquer expressão. Todas as expressões que resultarem 
+em um valor diferente de zero serão consideradas True, incluindo 
+valores negativos. Todas as expressões que resultam em um zero são falsas (false).
 
-If the expression results in True, the statement will be executed. If it isn't 
-true, nothing happens and we move on to the next line of the script.
+Se a expressão resultar em True, a instrução será executada. Se não for
+verdade, nada acontece e passamos para a próxima linha do script.
 
-    if (1)  mes "This will always print.";
-    if (0)  mes "And this will never print.";
-    if (5)  mes "This will also always print.";
-    if (-1) mes "Funny as it is, this will also print just fine.";
+    if (1)  mes "Isso sempre será printado.";
+    if (0)  mes "E isso nunca será printado";
+    if (5)  mes "Isso também será sempre printado";
+    if (-1) mes "Engraçado como isso é, isso também vai ser printado.";
 
-For more information on conditional operators see the operators section above.
-Anything that is returned by a function can be used in a condition check without 
-bothering to store it in a specific variable:
+Para obter mais informações sobre operadores condicionais, consulte a seção operadores acima. 
+Qualquer coisa que seja retornada por uma função pode ser usada em uma verificação de 
+condição sem se preocupar em armazená-la em uma variável específica:
 
-    if (strcharinfo(0)=="Daniel Jackson") mes "It is true, you are Daniel!";
+    if (strcharinfo(0)=="Daniel Jackson") mes "É verdade, você é Daniel!";
 
-More examples of using the 'if' command in the real world:
+Mais exemplos de uso do comando 'if' no mundo real:
 
-Example 1:
+Exemplo 1:
 
 	.@answer = 1;
 	input .@input;
 	if (.@input == .@answer)
 		close;
-	mes "Sorry, your answer is incorrect.";
+	mes "Desculpe, sua resposta está incorreta.";
         close;
 
-Example 2:
+Exemplo 2:
     
 	.@answer = 1;
 	input .@input;
 	if (.@input != .@answer)
-		mes "Sorry, your answer is incorrect.";
+		mes "Desculpe, sua resposta está incorreta.";
 	close;
 
-Notice that examples 1 and 2 have the same effect.
+Observe que os exemplos 1 e 2 têm o mesmo efeito.
 
-Example 3:
+Exemplo 3:
 
 	@count++;
 	mes "[Forgetful Man]";
-	if (@count == 1) mes "This is the first time you have talked to me.";
-	if (@count == 2) mes "This is the second time you have talked to me.";
-	if (@count == 3) mes "This is the third time you have talked to me.";
+	if (@count == 1) mes "Esta é a primeira vez que você falou comigo.";
+	if (@count == 2) mes "Esta é a segunda vez que você fala comigo.";
+	if (@count == 3) mes "Esta é a terceira vez que você fala comigo.";
 	if (@count == 4) {
-		mes "This is the fourth time you have talked to me.";
-		mes "I think I am getting amnesia, I have forgotten about you...";
+		mes "Esta é a quarta vez que você falou comigo";
+		mes "Eu acho que estou ficando com amnésia, eu esqueci de você...";
 		@count = 0;
 	}
 	close;
 
-Example 4:
+Exemplo 4:
 
 	mes "[Quest Person]";
-	if (countitem(512) < 1) {  // 512 is the item ID for Apple, found in item_db
-		mes "Can you please bring me an apple?";
+	if (countitem(512) < 1) {  // 512 é o ID do item para a Maçã, encontrado em item_db
+		mes "Você pode por favor me trazer uma maçã?";
 		close;
 	}
-        mes "Oh, you brought an Apple!";
-	mes "I didn't want it, I just wanted to see one.";
+        mes "Oh, você trouxe uma maçã!";
+	mes "Eu não queria ela, só queria ver uma.";
 	close;
 
-Example 5:
+Exemplo 5:
 
 	mes "[Person Checker]";
-	if ($@name$ == "") {  // global variable not yet set
-		mes "Please tell me someones name";
+	if ($@name$ == "") {  // varíavel global ainda não definida
+		mes "Por favor me diga o nome de alguém";
 		next;
 		input $@name$;
 		$@name2$ = strcharinfo(0);
 		mes "[Person Checker]";
-		mes "Thank you.";
+		mes "Obrigado.";
 		close;
 	}
 	if ($@name$ == strcharinfo(0)) {  // player name matches $@name$
-		mes "You are the person that " +$@name2$+ " just mentioned.";
-		mes "Nice to meet you!";
+		mes "Você é a pessoa que " +$@name2$+ " havia mencionado.";
+		mes "Prazer em conhecê-lo!";
 
-		// reset the global variables
+		// redefinir as variáveis globais
 		$@name$ = "";
 		$@name2$ = "";
 
 		close;
 	}
-	mes "You are not the person that " +$name2$+ " mentioned.";
+	mes "Você não é a pessoa que " +$@name2$+ " havia mencionado.";
 	close;
 
-See 'strcharinfo' for an explanation of what this function does.
+Veja 'strcharinfo' para uma explicação sobre o que esta função faz.
 
-Example 6: Using complex conditions.
+Exemplo 6: Usando condições complexas.
 
 	mes "[Multiple Checks]";
 	if ( (@queststarted == 1) && (countitem(512) >= 5) ) {
-		mes "Well done, you have started the quest and brought me 5 Apples.";
+		mes "Muito bem, você começou a missão e me trouxe 5 maçãs.";
 		@queststarted = 0;
 		delitem 512,5;
 		close;
 	}
-	mes "Please bring me 5 apples.";
+	mes"Por favor, traga-me 5 maçãs.";
 	@queststarted = 1;
 	close;
 
-The script engine also supports nested 'if' statements:
+O mecanismo de script também suporta instruções 'if' aninhadas:
 
 	if (<condition>)
-		dothis;
+		façaisso;
 	else
-		dothat;
+		façaaquilo;
 
-If the condition isn't met, it'll do the action following the 'else'.
-We can also group several actions depending on a condition:
+Se a condição não for atendida, ela fará a ação seguindo o 'else'.
+Também podemos agrupar várias ações dependendo de uma condição:
 
 	if (<condition>) {
-		dothis1;
-		dothis2;
+		façaisso1;
+		façaisso2;
 	} else {
-		dothat1;
-		dothat2;
-		dothat3;
+		façaaquilo1;
+		façaaquilo2;
+		façaaquilo3;
 	}
 
-Remember that if you plan to do several actions upon the condition being false, and 
-you forget to use the curly braces (the { } ), the second action will be executed regardless
-the output of the condition, unless of course, you stop the execution of the script if the
-condition is true (that is, in the first grouping using a return; , and end; or a close; )
+Lembre-se que, se você planeja executar várias ações quando a condição é falsa,
+e se esquece de usar as chaves ({}), a segunda ação será executada independentemente 
+da saída da condição, a menos que você pare a execução de o script se a condição 
+for verdadeira (ou seja, no primeiro agrupamento usando um return;, end; ou um close; )
 
-Also, you can have multiple conditions nested or chained, and don't worry about limits as to
-how many nested if you can have, there is no spoon ;)
+Além disso, você pode ter várias condições aninhadas ou encadeadas, e não se 
+preocupe com limites quanto a quantos aninhados você pode ter. ;)
 
 	if (<condition 1>)
-		dothis;
+		façaisso;
 	else if (<condition 2>) {
-		dothat;
+		façaaquilo;
 		end;
 	} else
-		dothis;
+		façaisso;
 
 ---------------------------------------
 
 *jump_zero (<condition>),<label>;
 
-This command works kinda like an 'if'+'goto' combination in one go. (See 'if'). 
-If the condition is false (equal to zero) this command will immediately jump to 
-the specified label like in 'goto'. While 'if' is more generally useful, for
-some cases this could be an optimization.
+Este comando funciona como uma combinação 'if' + 'goto' de uma só vez. 
+(Veja 'if'). Se a condição for falsa (igual a zero), este comando irá pular 
+imediatamente para a label especificada, como em 'goto'. Embora 'if' seja 
+mais geralmente útil, para alguns casos isso poderia ser uma otimização.
 
-The main reason for this command is that other control statements, like
-'switch', 'for' or 'while', are disassembled into simple expressions together
-with this command when a script is parsed.
+A principal razão para este comando é que outras instruções de controle, 
+como 'switch', 'for' ou 'while', são desmontadas em expressões simples 
+juntamente com este comando quando um script é analisado.
 
 ---------------------------------------
 
