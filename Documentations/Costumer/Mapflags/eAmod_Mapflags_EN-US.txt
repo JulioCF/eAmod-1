@@ -32,7 +32,7 @@ This modification affects maps that are using custom mapflags as a whole.
 
 You need a text editor, preferably Visual Studio Code, Notepad ++, or Visual Studio.
 
-Lines that have a ++ on the front must be added.
+Lines that have a + on the front must be added.
 
 Lines that have a - on the front must be removed.
 
@@ -311,3 +311,14 @@ npc: npc/custom/eAmod/English/eAmod_nodropvending.txt
 
 
 Once you have followed this step step by step, you'll already be able to use the nocmd, nodual, and nostorage mapflags in your scripts.
+
+Don't forget to apply the eAmod_nocmd.txt, eAmod_nodual.txt, eAmod_nostorage.txt files to the "conf/mapflag/" directory and apply them to your scripts_mapflags.conf in the "conf/npc/" directory like this:
+
+// ************* @scripts_mapflags.conf
+// --------------------------------------------------------------
+// -                         Map  Flags                         -
+// --------------------------------------------------------------
+npc: conf/mapflag/eAmod_nocmd.txt
+npc: conf/mapflag/eAmod_nodual.txt
+npc: conf/mapflag/eAmod_nostorage.txt
+// ************* @scripts_mapflags.conf
