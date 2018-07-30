@@ -32,9 +32,9 @@ Essa modificação afeta os mapas que estiverem usando as mapflags customizadas 
 
 Você precisa de um editor de texto, de preferência o Visual Studio Code, Notepad++ ou o Visual Studio.
 
-As linhas que possuírem um ++ na frente, devem ser adicionadas.
+As linhas que possuírem um + na frente, devem ser adicionadas.
 
-As linhas que possuírem um -- na frente, devem ser removidas.
+As linhas que possuírem um - na frente, devem ser removidas.
 
 As linhas que possuírem um @@ na frente, simplesmente indicam as coordenadas da alteração, 
 como por exemplo a linha.
