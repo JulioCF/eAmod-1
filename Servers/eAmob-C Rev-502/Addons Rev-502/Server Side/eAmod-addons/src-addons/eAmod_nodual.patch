@@ -1,0 +1,75 @@
+/*
+*  __________________________________________________________________________
+* /                                                                          \
+* |                           _                                              |
+* |                          / \                         _                   |
+* |                  ___    / _ \   _ __ ___   ____  ___| |                  |
+* |                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+* |                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+* |                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+* |                                                                          |
+* |                              eAmod Script                                |
+* |                                                                          |
+* |--------------------------------------------------------------------------|
+* | Script Name: No Dual Client Mapflag                                      |
+* |--------------------------------------------------------------------------|
+* | Created by: shellTeMP                                                    |
+* |--------------------------------------------------------------------------|
+* | Versions eASU/eA/brA/Herc/rA: all/all                                    |
+* |--------------------------------------------------------------------------|
+* | Description: Block the using of dual client on the same IP.              |
+* \_________________________________________________________________________/
+*/
+Index: src/map/clif.c
+===================================================================
+--- src/map/clif.c	(revision 1187)
++++ src/map/clif.c	(working copy)
+@@ -9027,6 +9027,23 @@
+ 			sprintf(output, "[ Proteção Kill Steal desabilitada. KS é permitido nesse mapa]");
+ 			clif_broadcast(&sd->bl, output, strlen(output) + 1, 0x10, SELF);
+ 		}
++		
++		if(map[sd->bl.m].flag.nodual)
++		{ /* mapflag nodual [Shiraz] */
++			struct map_session_data *pl_sd;
++			struct s_mapiterator *iter = mapit_getallusers();
++			char ip[16], ip2[16];
++			
++			for(pl_sd = (TBL_PC*)mapit_first(iter); mapit_exists(iter); pl_sd = (TBL_PC*)mapit_next(iter))
++			{
++                if(strstr(ip2str(session[sd->fd]->client_addr,ip),ip2str(session[pl_sd->fd]->client_addr,ip2)) 
++				&& pl_sd->status.account_id != sd->status.account_id
++				&& sd->mapindex == pl_sd->mapindex)
++					set_eof(pl_sd->fd);
++			}
++			
++			mapit_free(iter);
++		}
+ 
+ 		map_iwall_get(sd); // Updates Walls Info on this Map to Client
+ 		sd->state.changemap = false;
+Index: src/map/map.h
+===================================================================
+--- src/map/map.h	(revision 1187)
++++ src/map/map.h	(working copy)
+@@ -544,6 +544,7 @@
+ 		unsigned guildlock :1;
+ 		unsigned src4instance : 1; // To flag this map when it's used as a src map for instances
+ 		unsigned reset :1; // [Daegaladh]
++		unsigned nodual : 1; // [Shiraz]
+ 	} flag;
+ 	struct point save;
+ 	struct npc_data *npc[MAX_NPC_PER_MAP];
+Index: src/map/npc.c
+===================================================================
+--- src/map/npc.c	(revision 1187)
++++ src/map/npc.c	(working copy)
+@@ -3237,6 +3237,8 @@
+ 		map[m].flag.guildlock=state;
+ 	else if (!strcmpi(w3,"reset"))
+ 		map[m].flag.reset=state;
++	else if (!strcmpi(w3,"nodual"))
++		map[m].flag.nodual = state;
+ 	else
+ 		ShowError("npc_parse_mapflag: mapflag nao reconhecido '%s' (arquivo '%s', linha '%d').\n", w3, filepath, strline(buffer,start-buffer));
+ 

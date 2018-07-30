@@ -1,0 +1,66 @@
+/*
+*  __________________________________________________________________________
+* /                                                                          \
+* |                           _                                              |
+* |                          / \                         _                   |
+* |                  ___    / _ \   _ __ ___   ____  ___| |                  |
+* |                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+* |                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+* |                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+* |                                                                          |
+* |                              eAmod Script                                |
+* |                                                                          |
+* |--------------------------------------------------------------------------|
+* | Script Name: No Commands Mapflag                                         |
+* |--------------------------------------------------------------------------|
+* | Created by: shellTeMP                                                    |
+* |--------------------------------------------------------------------------|
+* | Versions eASU/eA/brA/Herc/rA: all/all                                    |
+* |--------------------------------------------------------------------------|
+* | Description: Block the use of "@" commands.                              |
+* \_________________________________________________________________________/
+*/
+Index: src/map/atcommand.c
+===================================================================
+--- src/map/atcommand.c	(revision 1187)
++++ src/map/atcommand.c	(working copy)
+@@ -8890,6 +8890,14 @@
+ 		clif_displaymessage(fd, output);
+ 		return true;
+ 	}
++	
++	/* mapflag nocmd [Shiraz] */
++	if((sscanf(command, "%*c %s", output)) && strstr(map[sd->bl.m].flag.nocmd, output) && pc_get_group_id(sd) < 99)
++	{
++		sprintf(output, "Comando bloqueado neste mapa.");
++		clif_displaymessage(fd, output);
++		return false;
++	}
+ 
+ 	//Attempt to use the command
+ 	if ( (info->func(fd, (*atcmd_msg == atcommand_symbol) ? sd : ssd, command, params) != 0) )
+Index: src/map/map.h
+===================================================================
+--- src/map/map.h	(revision 1187)
++++ src/map/map.h	(working copy)
+@@ -544,6 +544,7 @@
+ 		unsigned guildlock :1;
+ 		unsigned src4instance : 1; // To flag this map when it's used as a src map for instances
+ 		unsigned reset :1; // [Daegaladh]
++		char nocmd[100]; // [Shiraz]
+ 	} flag;
+ 	struct point save;
+ 	struct npc_data *npc[MAX_NPC_PER_MAP];
+Index: src/map/npc.c
+===================================================================
+--- src/map/npc.c	(revision 1187)
++++ src/map/npc.c	(working copy)
+@@ -3237,6 +3237,8 @@
+ 		map[m].flag.guildlock=state;
+ 	else if (!strcmpi(w3,"reset"))
+ 		map[m].flag.reset=state;
++	else if(!strcmpi(w3,"nocmd"))
++		sscanf(w4, "%s", map[m].flag.nocmd);
+ 	else
+ 		ShowError("npc_parse_mapflag: mapflag nao reconhecido '%s' (arquivo '%s', linha '%d').\n", w3, filepath, strline(buffer,start-buffer));
+ 
