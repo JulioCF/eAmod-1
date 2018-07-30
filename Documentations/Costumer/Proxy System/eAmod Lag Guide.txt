@@ -1,0 +1,41 @@
+﻿ __________________________________________________________________________
+/                                                                          \
+|                           _                                              |
+|                          / \                         _                   |
+|                  ___    / _ \   _ __ ___   ____  ___| |                  |
+|                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+|                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+|                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+|                                                                          |
+|                              eAmod Script                                |
+|                                                                          |
+|--------------------------------------------------------------------------|
+|                       eAmod - eAthena Modifications                      |
+|                                Lag Guide                                 |
+|                                  Files                                   |
+|--------------------------------------------------------------------------|
+| Created by: shellTeMP                                                    |
+|--------------------------------------------------------------------------|
+| Description: Lag Guide Files are inside the RAR file and you need to use |
+| the password you received inside your eAmod package to open it and read. |
+|--------------------------------------------------------------------------|
+| Changelog:                                                               |
+| 1.0 - Document developed                                                 |
+\_________________________________________________________________________/
+
+/*
+
+------------------
+| Lag Guide Files:
+------------------
+
+        1. proxyro.c
+        2. clientinfo.xml
+        3. eAmod Lag Guide (English) EN.docx
+        4. eAmod Lag Guide (Español) ES.docx
+        5. eAmod Lag Guide (Portuguese) PT-BR.docx
+        6. eAmod Lag Guide (English) EN.PDF
+        7. eAmod Lag Guide (Español) ES.PDF
+        8. eAmod Lag Guide (Portuguese) PT-BR.PDF
+		
+/*
