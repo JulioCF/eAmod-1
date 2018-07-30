@@ -1,0 +1,313 @@
+ __________________________________________________________________________
+/                                                                          \
+|                           _                                              |
+|                          / \                         _                   |
+|                  ___    / _ \   _ __ ___   ____  ___| |                  |
+|                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+|                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+|                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+|                                                                          |
+|                              eAmod Script                                |
+|                                                                          |
+|--------------------------------------------------------------------------|
+|                       eAmod - eAthena Modifications                      |
+|                          Custom Mapflags System                          |
+\_________________________________________________________________________/
+
+---------------------------------------------
+| Custom Mapflags System - Server:
+---------------------------------------------
+
+This modification enables permission to use new mapflags on specific maps.
+
+----------------
+| Considerations:
+----------------
+
+This modification affects maps that are using custom mapflags as a whole.
+
+-----------------------
+| Applying to Mapflags:
+-----------------------
+
+You need a text editor, preferably Visual Studio Code, Notepad ++, or Visual Studio.
+
+Lines that have a ++ on the front must be added.
+
+Lines that have a - on the front must be removed.
+
+Lines that have an "@" at the front simply indicate the coordinates of the change,
+such as the line.
+
+-----------------------------------
+| Server Modifications - nocmd:
+-----------------------------------
+
+1. First open the map folder and open the file atcommand.c
+
+// @atcommand.c ************
+
+ 		clif_displaymessage(fd, output);
+ 		return true;
+ 	}
++	
++	/* mapflag nocmd [Shiraz] */
++	if((sscanf(command, "%*c %s", output)) && strstr(map[sd->bl.m].flag.nocmd, output) && pc_get_group_id(sd) < 99)
++	{
++		sprintf(output, "Command locked on this map.");
++		clif_displaymessage(fd, output);
++		return false;
++	}
+ 
+ 	//Attempt to use the command
+ 	if ( (info->func(fd, (*atcmd_msg == atcommand_symbol) ? sd : ssd, command, params) != 0) )
+
+// ************* atcommand.c
+
+2. Now let's open the file map.h
+
+// map.h ************
+
+--- src/map/map.h	(revision 1187)
++++ src/map/map.h	(working copy)
+@@ -544,6 +544,7 @@
+ 		unsigned guildlock :1;
+ 		unsigned src4instance : 1; // To flag this map when it's used as a src map for instances
+ 		unsigned reset :1; // [Daegaladh]
++		char nocmd[100]; // [Shiraz]
+ 	} flag;
+ 	struct point save;
+ 	struct npc_data *npc[MAX_NPC_PER_MAP];
+
+// ************* map.h
+
+3. Now in the npc.c file
+
+// npc.c ************
+
+--- src/map/npc.c	(revision 1187)
++++ src/map/npc.c	(working copy)
+@@ -3237,6 +3237,8 @@
+ 		map[m].flag.guildlock=state;
+ 	else if (!strcmpi(w3,"reset"))
+ 		map[m].flag.reset=state;
++	else if(!strcmpi(w3,"nocmd"))
++		sscanf(w4, "%s", map[m].flag.nocmd);
+ 	else
+ 		ShowError("npc_parse_mapflag: mapflag nao reconhecido '%s' (arquivo '%s', linha '%d').\n", w3, filepath, strline(buffer,start-buffer));
+ 
+// ************* npc.c
+
+-------------------------------------------
+| Server Modifications - nodropvending:
+-------------------------------------------
+
+1. Download the eAmod_nodropvending script in our add-ons.
+
+2. Apply it inside the npc/custom/eAmod/English folder of your emulator.
+
+3. Go to the scripts_eAmod.conf file inside your emulator's npc folder.
+
+4. And add in the part of NPCs in English:
+
+npc: npc/custom/eAmod/English/eAmod_nodropvending.txt
+
+------------------------------------
+| Modifications in the server - nodual:
+------------------------------------
+
+1. First open the map folder and open the file clif.c
+
+// @clif.c ************
+
+--- src/map/clif.c	(revision 1187)
++++ src/map/clif.c	(working copy)
+@@ -9027,6 +9027,23 @@
+ 			sprintf(output, "[ Proteção Kill Steal desabilitada. KS é permitido nesse mapa]");
+ 			clif_broadcast(&sd->bl, output, strlen(output) + 1, 0x10, SELF);
+ 		}
++		
++		if(map[sd->bl.m].flag.nodual)
++		{ /* mapflag nodual [Shiraz] */
++			struct map_session_data *pl_sd;
++			struct s_mapiterator *iter = mapit_getallusers();
++			char ip[16], ip2[16];
++			
++			for(pl_sd = (TBL_PC*)mapit_first(iter); mapit_exists(iter); pl_sd = (TBL_PC*)mapit_next(iter))
++			{
++                if(strstr(ip2str(session[sd->fd]->client_addr,ip),ip2str(session[pl_sd->fd]->client_addr,ip2)) 
++				&& pl_sd->status.account_id != sd->status.account_id
++				&& sd->mapindex == pl_sd->mapindex)
++					set_eof(pl_sd->fd);
++			}
++			
++			mapit_free(iter);
++		}
+ 
+ 		map_iwall_get(sd); // Updates Walls Info on this Map to Client
+ 		sd->state.changemap = false;
+
+// ************* clif.c
+
+
+2. Now let's open the file map.h
+
+// map.h ************
+
+--- src/map/map.h	(revision 1187)
++++ src/map/map.h	(working copy)
+@@ -544,6 +544,7 @@
+ 		unsigned guildlock :1;
+ 		unsigned src4instance : 1; // To flag this map when it's used as a src map for instances
+ 		unsigned reset :1; // [Daegaladh]
++		unsigned nodual : 1; // [Shiraz]
+ 	} flag;
+ 	struct point save;
+ 	struct npc_data *npc[MAX_NPC_PER_MAP];
+
+// ************* map.h
+
+3. Now in the npc.c file
+
+// npc.c ************
+
+--- src/map/npc.c	(revision 1187)
++++ src/map/npc.c	(working copy)
+@@ -3237,6 +3237,8 @@
+ 		map[m].flag.guildlock=state;
+ 	else if (!strcmpi(w3,"reset"))
+ 		map[m].flag.reset=state;
++	else if (!strcmpi(w3,"nodual"))
++		map[m].flag.nodual = state;
+ 	else
+ 	  ShowError ("npc_parse_mapflag: unrecognized mapflag '% s' (file '% s', line '% d'). \ N", w3, filepath, strline (buffer, start-buffer));
+ 
+// ************* npc.c
+
+---------------------------------------
+| Modifications on the server - nostorage:
+---------------------------------------
+
+1. First open the map folder and open the file clif.c
+
+// @atcommand.c ************
+
+--- src/map/atcommand.c	(revision 1187)
++++ src/map/atcommand.c	(working copy)
+@@ -818,6 +818,12 @@
+ 
+ 	if (sd->npc_id || sd->state.vending || sd->state.buyingstore || sd->state.trading || sd->state.storage_flag)
+ 		return -1;
++		
++	if(map[sd->bl.m].nostorage == 1 || map[sd->bl.m].nostorage > 2)
++	{
++		clif_displaymessage(sd->fd,"Storage use isn't allowed on this map.");
++		return -1;
++	}
+ 
+ 	if (storage_storageopen(sd) == 1)
+ 	{	//Already open.
+@@ -845,6 +851,12 @@
+ 
+ 	if (sd->npc_id || sd->state.vending || sd->state.buyingstore || sd->state.trading)
+ 		return -1;
++		
++	if(map[sd->bl.m].nostorage > 1)
++	{
++		clif_displaymessage(sd->fd,"Storage use isn't allowed on this map.");
++		return -1;
++	}
+ 
+ 	if (sd->state.storage_flag == 1) {
+ 		clif_displaymessage(fd, msg_txt(250));
+
+// ************* atcommand.c
+
+2. Now let's open map.c
+
+// @map.c ************
+
+--- src/map/map.c	(revision 1187)
++++ src/map/map.c	(working copy)
+@@ -2940,6 +2940,7 @@
+ 		map[i].nocommand = 0;  // nocommand mapflag level
+ 		map[i].bexp      = 100;  // per map base exp multiplicator
+ 		map[i].jexp      = 100;  // per map job exp multiplicator
++		map[i].nostorage = 0; // [Shiraz]
+ 		memset(map[i].drop_list, 0, sizeof(map[i].drop_list));  // pvp nightmare drop list
+ 
+ 		// adjustments
+
+// ************* @map.c
+
+3. Now in the file map.h
+
+// @map.h ************
+
+--- src/map/map.h	(revision 1187)
++++ src/map/map.h	(working copy)
+@@ -559,6 +559,7 @@
+ 	int jexp;	// map experience multiplicator
+ 	int bexp;	// map experience multiplicator
+ 	int nocommand; //Blocks @/# commands for non-gms. [Skotlex]
++	int nostorage; // [Shiraz]
+ 	/**
+ 	 * Ice wall reference counter for bugreport:3574
+ 	 * - since there are a thounsand mobs out there in a lot of maps checking on,
+	 
+// ************* @map.h
+
+4. Now go to the npc.c file
+
+// @npc.c ************
+
+--- src/map/npc.c	(revision 1187)
++++ src/map/npc.c	(working copy)
+@@ -3237,6 +3237,8 @@
+ 		map[m].flag.guildlock=state;
+ 	else if (!strcmpi(w3,"reset"))
+ 		map[m].flag.reset=state;
++	else if(!strcmpi(w3,"nostorage"))
++		map[m].nostorage = atoi(w4);
+ 	else
+ 		ShowError("npc_parse_mapflag: mapflag nao reconhecido '%s' (arquivo '%s', linha '%d').\n", w3, filepath, strline(buffer,start-buffer));
+
+// ************* @npc.c
+
+5. And finally go to storage.c
+
+// @storage.c ************
+
+--- src/map/storage.c	(revision 1187)
++++ src/map/storage.c	(working copy)
+@@ -102,6 +102,12 @@
+ 		clif_displaymessage(sd->fd, msg_txt(246));
+ 		return 1;
+ 	}
++	
++	if(map[sd->bl.m].nostorage == 1 || map[sd->bl.m].nostorage > 2)
++	{
++		clif_displaymessage(sd->fd,"Storage use isn't allowed on this map.");
++		return 1;
++	}
+ 
+ 	sd->state.storage_flag = 1;
+ 	storage_sortitem(sd->status.storage.items, ARRAYLENGTH(sd->status.storage.items));
+@@ -365,6 +371,12 @@
+ 		clif_displaymessage(sd->fd, msg_txt(246));
+ 		return 1;
+ 	}
++	
++	if(map[sd->bl.m].nostorage > 1)
++	{
++		clif_displaymessage(sd->fd,"Storage use isn't allowed on this map.");
++		return 2;
++	}
+ 
+ 	if((gstor = guild2storage2(sd->status.guild_id)) == NULL) {
+ 		intif_request_guild_storage(sd->status.account_id,sd->status.guild_id);
+
+// ************* @storage.c
+
+
+Once you have followed this step step by step, you'll already be able to use the nocmd, nodual, and nostorage mapflags in your scripts.
