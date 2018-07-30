@@ -1,0 +1,86 @@
+ __________________________________________________________________________
+/                                                                          \
+|                           _                                              |
+|                          / \                         _                   |
+|                  ___    / _ \   _ __ ___   ____  ___| |                  |
+|                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+|                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+|                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+|                                                                          |
+|                              eAmod Script                                |
+|                                                                          |
+|--------------------------------------------------------------------------|
+|                       eAmod - eAthena Modifications                      |
+|                                ChangeLog                                 |
+|                                 brAthena                                 |
+|--------------------------------------------------------------------------|
+| Created by: shellTeMP                                                    |
+|--------------------------------------------------------------------------|
+| Description: Informations about the brAthena version inside eAmob-C      |
+| Rev-502                                                                  |
+|--------------------------------------------------------------------------|
+| Changelog:                                                               |
+| 1.0 - Document developed                                                 |
+| 1.1 - Document Translated EN-US [J3MK1]                                  |
+\_________________________________________________________________________/
+
+/*
+
+------------------
+| eAthena Classic:
+------------------
+
+        1. Pre-RE mode: Supported
+        2. RE mode: Supported
+        3. eAmod Customization: Supported
+        4. eASpecial Scripts: Supported
+        5. eAmod Emulator Authorization: Supported (Required)
+        6. eAmod Hash Check Service: Supported
+
+------------
+| More info:
+------------
+
+[2.1] 03/17/2012
+* Added Instances: Octopus Cave and Maze of the Haze
+* Adding ROP items that exist in the bRO along with your translations.
+* Addition of several custom battle configurations, made by brAthena team.
+- You can edit calculations of formulas and systems through txts and configure enablement of certain functions.
+* Started addition work and support for new 3rd class skills.
+- According to KRO update for the month of March.
+* Started code for brAthena dynamic installer.
+- An installer via PHP that will do the whole process of installation and initial configuration of the emulator automatically.
+* Cleaning and enhancement of various source codes.
+* Fix of various crash problems in skills and classes.
+* Added PIN system, according to official servers.
+* Database converted to SQL.
+- Some important files remain in txt, for greater ease in changes.
+- An English database is available for users from other countries.
+* Changed renewal and pre-renewal script schema.
+- Removed folder npc/re and npc/pre-re.
+- Fused files re and pre-re files via checkre condition.
+* Updates for customer support 2012.
+* Updated build methods.
+- Removed CMake.
+- Updated Visual Studio C ++ for 2012.
+- Updated autoconf to 2.69.
+* Added the fully functional Kagerou and Oboro classes.
+* Updates of all npcs as pre renewal.
+* Modified packets to reject connection by erring the password and not closing the client.
+* Corrections of various problems in battle/status skills and formulas.
+* Restructured emulator boot files.
+- Windows startup is straightforward and no more useless codes.
+- Boot for Mac has been added.
+* Added debugging option for brathena-admin.
+* Added multiple translations of files from the npc folder.
+* Added multilingual system.
+* Added console translations with accents according to C. ASCII list.
+- Multilanguage version.
+* Added translations of all conf, battle, and db files.
+
+<Revisions: 1190: 1885>
+
+[2.0] 10/14/2012
+* Initial release.
+  
+/ *
