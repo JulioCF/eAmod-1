@@ -11,46 +11,47 @@
 |                                                                          |
 |--------------------------------------------------------------------------|
 |                       eAmod - eAthena Modifications                      |
-|                             Hash Guide eAmod-A                           |
+|                             Guia de Hash eAmod                           |
 \_________________________________________________________________________/
-
 
 ------------------------------------------------
 | Sistema de Hash Check para Cliente - Servidor:
 ------------------------------------------------
 
-Esta modificación activa una protección que hace que tu servidor solamente acepte
-un ejecutable para conectarse al mismo. Si alguien intenta usar otro .exe diferente
-o un .exe modificado, no podrá logear. Util para combatir OpenKore (consola) y
-algunas modificaciones al cliente que no permites en tu comunidad.
+Essa modificação ativa uma proteção que faz com que seu servidor aceite apenas
+um executável para se conectar a ele. Se alguém tentar usar outro arquivo .exe diferente
+ou um .exe modificado, não poderá fazer o login. Isto é útil para combater sistemas de Bot
+como o OpenKore (console) e algumas modificações no cliente que você não permite em sua comunidade.
 
 ----------------
 | Considerações:
 ----------------
 
-Esta modificación solo se puede realizar en 2011 o ejecutables inferiores.
+Essa modificação só pode ser feita em executáveis 2011 ou inferiores.
 
-----------------------------------------
-| Modificando el Ejecutable, tu cliente:
-----------------------------------------
+------------------------------------------
+| Modificando o executável do seu cliente:
+------------------------------------------
 
-Necesitas un editor de Hexadecimal, como por ejemplo Hex Workshop. Lo que harás será
-abrir tu .exe y buscar la siguiente cadena hexadecimal:
+Você precisa de um editor hexadecimal, como o Hex Workshop.
+Abra o seu EXE e procure a seguinte cadeia hexadecimal:
 
 33C083F906740D
 
-Y vas a reemplazar en esa cadena el 74 por EB para que quede así:
+E você vai substituir os valores "74" por "EB" para que fique assim:
 
 33C083F906EB0D
 
-Esta modificación activa que tu cliente envie el Hash al servidor al logear.
+Esta modificação ativa a solicitação de um Hash ao Servidor durante o Login.
 
-// Modificaciones al Servidor (Actualmente en eAmod-A):
+---------------------------------------------------
+| Modificações no servidor (atualmente em eAmod):
+---------------------------------------------------
 
-Aca va la parte para que tu servidor entienda el paquete de Hash y lo valide.
-Esta guía indica con ++ lo que hay que agregar, y con -- lo que debes quitar.
+Está é a parte para o seu servidor entender o pacote do Hash e validá-lo ponta a ponta.
+Este guia indica com "++" o que deve ser adicionado e com "--" o que você deve remover.
 
-Primero abre el archivo socket.h
+Primeiro abra o arquivo socket.h
 
 // @socket.h ************
 
@@ -80,7 +81,7 @@ struct socket_data
 
 // ************* socket.h
 
-Ahora pasamos al login server, y vamos a abrir el archivo login.c
+Agora vamos ao login-server e vamos abrir o arquivo login.c
 
 // @login.c ************
 
@@ -209,8 +210,8 @@ static struct{
 
 // ************* login.c
 
-Con esto tendremos listo la modificación de Source, pero queda pendiente
-modificar también las opciones de login_athena.conf para poder estar cambiando el Hash.
+Com isso, finalizamos a modificação do código fonte (Src), mas ainda há pendências
+modifique também as opções do login_athena.conf para poder alterar o Hash.
 
 // @login_athena.conf ************
 
@@ -225,12 +226,11 @@ import: conf/import/login_conf.txt
 
 // ************* login_athena.conf
 
-Con estas modificaciones realizadas en tu cliente y en tu servidor, ejecuta el servidor
-e intenta logear con tu cliente. Al principio fallará por que el Hash no es válido, pero
-el mensaje de error te mostrará el Hash del cliente que intenta logear. Copialo y luego lo
-pones en la opcion de client_hash: que pusimos en el último paso.
+Com essas modificações feitas em seu cliente, e em seu servidor, execute o servidor
+e tente entrar com seu cliente. Inicialmente dara errado pois o Hash não é válido, mas
+A mensagem de erro mostrará o Hash do cliente tentando fazer o login.
+Copie e cole no menu do client_hash: que colocamos no passo anterior.
 
-Suerte. Recuerda que esta guía es un beneficio por el servicio que contrataste.
-No compartas el source a nadie, es tu responsabilidad, pues si cae en manos equivocadas
-podría llegar a lugares como OpenKore y otros, en donde solo buscan dañar los servidores
-buenos de Ragnarok.
+Lembre-se de que este guia é um benefício para o serviço contratado.
+Não compartilhe a Src com ninguém. É de sua responsabilidade, porque se cair em mãos erradas
+pode chegar em lugares como o OpenKore e outros, onde eles só procuram danificar os servidores de Ragnarok.

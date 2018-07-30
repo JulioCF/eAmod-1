@@ -11,7 +11,7 @@
 |                                                                          |
 |--------------------------------------------------------------------------|
 |                       eAmod - eAthena Modifications                      |
-|                           Feature list eAmod-A                           |
+|                             Feature list eAmod                           |
 \_________________________________________________________________________/
 
 /*
@@ -51,6 +51,7 @@ is somebody don't know about something.
 - GM Tools scripts to set Delayed Shutdown, or a Player variable editor (to edit or check player quest variables).
 - GM Commands for Events.
 - @pvpmode to enter a PK mode where you can kill others players anywhere.
+- Custom mapflags for commands, drop vending, dual client and storage.
 
 
 - Renewal mechanics. Most of the new formulas (ASPD, Damage, Cards, Defense, etc).

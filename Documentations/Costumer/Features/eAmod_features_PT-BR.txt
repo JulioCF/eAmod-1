@@ -11,7 +11,7 @@
 |                                                                          |
 |--------------------------------------------------------------------------|
 |                       eAmod - eAthena Modifications                      |
-|                         Lista de Recursos eAmod-A                        |
+|                           Lista de Recursos eAmod                        |
 \_________________________________________________________________________/
 
 /*
@@ -50,6 +50,7 @@ Este documento contém a lista de todos os recursos no eAmod-A. Manteremos ele a
 - Scripts de GameMaster Tools para definir desligamento programado e com delay, ou um editor de variáveis de jogador (para editar ou verificar variáveis de quest dos jogadores).
 - Comandos de [GM]s para Eventos.
 - @pvpmode para entrar no modo PK, onde você pode matar outros jogadores em qualquer lugar.
+- Mapflags customizadas para comandos, drops durante a venda, dual client e armazém.
 
 
 - Mecânica de Renovação. A maioria das novas fórmulas (ASPD, dano, cartas, defesa, etc).
