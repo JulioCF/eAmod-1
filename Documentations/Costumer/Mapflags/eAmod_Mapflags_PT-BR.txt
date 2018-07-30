@@ -311,3 +311,14 @@ npc: npc/custom/eAmod/English/eAmod_nodropvending.txt
 
 
 Após ter seguido todo ess passo a passo, você já vai poder utilizar as mapflags nocmd, nodual e nostorage em seus scripts.
+
+Não se esqueça de aplicar os arquivos eAmod_nocmd.txt, eAmod_nodual.txt, eAmod_nostorage.txt dentro do diretório: "conf/mapflag/" e de aplica-los em seu scripts_mapflags.conf dentro do diretório "conf/npc/" dessa forma:
+
+// ************* @scripts_mapflags.conf
+// --------------------------------------------------------------
+// -                         Map  Flags                         -
+// --------------------------------------------------------------
+npc: conf/mapflag/eAmod_nocmd.txt
+npc: conf/mapflag/eAmod_nodual.txt
+npc: conf/mapflag/eAmod_nostorage.txt
+// ************* @scripts_mapflags.conf
