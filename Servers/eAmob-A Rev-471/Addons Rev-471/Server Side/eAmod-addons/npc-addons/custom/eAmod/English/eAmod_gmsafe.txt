@@ -1,0 +1,40 @@
+//  __________________________________________________________________________
+// /                                                                          \
+// |                           _                                              |
+// |                          / \                         _                   |
+// |                  ___    / _ \   _ __ ___   ____  ___| |                  |
+// |                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+// |                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+// |                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+// |                                                                          |
+// |                              eAmod Script                                |
+// |                                                                          |
+// |--------------------------------------------------------------------------|
+// | Script Name: eAmod Game Master Safe                                      |
+// |--------------------------------------------------------------------------|
+// | Created by: shellTeMP                                                    |
+// |--------------------------------------------------------------------------|
+// | Versions eASU/eA/brA/Herc/rA: all/all                                    |
+// |--------------------------------------------------------------------------|
+// | Description: It makes [GM] invisible, immune to battle against players   |
+// |  (PvP), immune to battle against monsters (PvM), and increases it's      |
+// |  standard movement speed.                                                |
+// |--------------------------------------------------------------------------|
+// | Changelog:                                                               |
+// | 1.0 - Initial Script Developed.                                          |
+// \_________________________________________________________________________/
+
+-	script	eamodgmsafe	-1,{
+
+	OnPcLoginEvent:
+		if(getgroupid() > 79)
+			atcommand( "@hide" );
+		if(getgroupid() > 79)
+			atcommand( "@monsterignore" );
+		if(getgroupid() > 79)
+			atcommand( "@battleignore" );
+		if(getgroupid() > 79)
+			atcommand( "@speed 80" );
+		end;
+
+}
