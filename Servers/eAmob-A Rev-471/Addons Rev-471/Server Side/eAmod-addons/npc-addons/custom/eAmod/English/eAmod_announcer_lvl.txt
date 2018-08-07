@@ -20,7 +20,7 @@
 // |--------------------------------------------------------------------------|
 // | Changelog:                                                               |
 // | 1.0 - Initial Script Developed. [J3MK1]                                  |
-// | 1.1 - Fix some Syntaxs [ShellTemp]                                       |
+// | 1.1 - Fix some Syntaxs [ShellTeMP]                                       |
 // | 1.2 - Fix some Syntaxs [J3MK1]                                           |
 // \_________________________________________________________________________/
 
