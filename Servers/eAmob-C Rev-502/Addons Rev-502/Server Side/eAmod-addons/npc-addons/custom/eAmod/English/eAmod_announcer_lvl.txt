@@ -19,25 +19,23 @@
 // | Description: An NPC who will announce when a player reaches level 99.    |
 // |--------------------------------------------------------------------------|
 // | Changelog:                                                               |
-// | 1.0 - Initial Script Developed.                                          |
-// | 1.1 - Fix some Syntax                                                    |
+// | 1.0 - Initial Script Developed. [J3MK1]                                  |
+// | 1.1 - Fix some Syntaxs [ShellTemp]                                       |
+// | 1.2 - Fix some Syntaxs [J3MK1]                                           |
 // \_________________________________________________________________________/
 
 -	script	AnBaseLv	-1,{
 
-	OnInit:
-	
-			set .MaxLvl, 99;
-	
+
 	OnPcBaseLvUpEvent:
 
 					if (BaseLevel==.MaxLvl) {
-
 							announce "Congratulations to "+ strcharinfo(0)+",  the player  just reached the level "+.MaxLvl+"!! ~",0;
-
 					}
 					end;
-
+	OnInit:
+	
+			set .MaxLvl, 99;
 
 }
 
