@@ -1,0 +1,100 @@
+//  __________________________________________________________________________
+// /                                                                          \
+// |                           _                                              |
+// |                          / \                         _                   |
+// |                  ___    / _ \   _ __ ___   ____  ___| |                  |
+// |                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+// |                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+// |                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+// |                                                                          |
+// |                              eAmod Script                                |
+// |                                                                          |
+// |--------------------------------------------------------------------------|
+// | Script Name: NPC Support                                                 |
+// |--------------------------------------------------------------------------|
+// | Created by: J3MK1 & ShellTemp                                            |
+// |--------------------------------------------------------------------------|
+// | Versions eASU/eA/brA/Herc/rA: all/all                                    |
+// |--------------------------------------------------------------------------|
+// | Description: NPC Normal Buffer (HEAL)                                    |
+// |              NPC VIP Buffer (HEAL, AGI, BLESS)                           |
+// |--------------------------------------------------------------------------|
+// | Changelog:                                                               |
+// | 1.0 - Initial Script Developed.                                          |
+// \_________________________________________________________________________/
+
+
+-	script	Support	-1,{
+
+	mes "[Support]";
+	mes "Hello! Would you like to receive what kind of buffs?";
+	next;
+	switch(select("- Normal Buffs:- VIP Buffs")){
+							case 1:
+									mes "[Support]";
+									mes "Ready! Good Up!";
+									percentheal 100,100;
+									emotion 10;
+									close;
+							case 2:
+									if(getgroupid() < 1 ) {
+											next;
+											mes "[Support]";
+											mes "Sorry, you must be a VIP player to receive the following buffs: Heal, Blessing, Agility and Debuff Stats";
+											close;
+        }
+ 
+
+									set .@now, gettimetick(2);
+									if( .@now < vip_delay ) {	
+											dispbottom "You still have "+(vip_delay - .@now)+" seconds left before you can use the Buffer again!";
+											close;
+											end;
+									} else {
+											mes "[Support]";
+											mes "Ready! Good Up!";
+											sc_start SC_INCREASEAGI,360000,10;
+											sc_start SC_BLESSING,360000,10;
+											sc_end SC_FREEZE;
+											sc_end SC_STONE;
+											sc_end SC_SLEEP;
+											sc_end SC_CURSE;
+											sc_end SC_CONFUSION;
+											sc_end SC_BLIND;
+											sc_end SC_BLEEDING;
+											sc_end SC_DECREASEAGI;
+											sc_end SC_POISON;
+											sc_end SC_HALLUCINATION;
+											sc_end SC_STRIPWEAPON;
+											sc_end SC_STRIPARMOR;
+											sc_end SC_STRIPSHIELD;
+											sc_end SC_STRIPHELM;
+											percentheal 100,100;
+											emotion 10;				
+											set vip_delay, gettimetick(2) + 600; // Delay of 10 min in seconds
+											close;
+											end;
+									}
+	}
+}
+//---------------------------------------------------------------------|
+// Duplicate Support All Maps                                          |
+//---------------------------------------------------------------------|
+pay_fild07,304,338,3	duplicate(Support)	Support#pay1	952
+pay_fild09,38,100,3	duplicate(Support)	Support#pay2	952
+pay_fild08,49,86,3	duplicate(Support)	Support#pay3	952
+gef_fild10,61,327,6	duplicate(Support)	Support#gef1	952
+gef_fild06,214,60,3	duplicate(Support)	Support#gef2	952
+moc_fild17,151,253,3	duplicate(Support)	Support#moc1	952
+moc_fild17,226,352,3	duplicate(Support)	Support#moc2	952
+in_sphinx4,15,217,3	duplicate(Support)	Support#moc3	952
+ra_fild12,46,219,3	duplicate(Support)	Support#ra1	952
+ra_fild04,267,66,3	duplicate(Support)	Support#ra2	952
+ra_fild05,196,202,3	duplicate(Support)	Support#ra3	952
+glast_01,359,305,3	duplicate(Support)	Support#gh1	952
+glast_01,204,131,3	duplicate(Support)	Support#gh2	952
+glast_01,204,290,3	duplicate(Support)	Support#gh3	952
+gl_prison,17,73,3	duplicate(Support)	Support#gl1	952
+gl_prison,146,176,3	duplicate(Support)	Support#gl2	952
+gl_sew03,280,296,3	duplicate(Support)	Support#gl36	952
+ayo_fild02,277,153,3	duplicate(Support)	Support#ayo1	952
