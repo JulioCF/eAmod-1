@@ -12,7 +12,7 @@
 // |--------------------------------------------------------------------------|
 // | Script Name: NPC Support                                                 |
 // |--------------------------------------------------------------------------|
-// | Created by: J3MK1 & ShellTemp                                            |
+// | Created by: J3MK1 & ShellTeMP                                            |
 // |--------------------------------------------------------------------------|
 // | Versions eASU/eA/brA/Herc/rA: all/all                                    |
 // |--------------------------------------------------------------------------|
@@ -71,7 +71,7 @@
 											sc_end SC_STRIPHELM;
 											percentheal 100,100;
 											emotion 10;				
-											set vip_delay, gettimetick(2) + 600; // Delay of 10 min in seconds
+											set vip_delay, gettimetick(2) + 600; // Delay of 10 minutes in seconds
 											close;
 											end;
 									}
