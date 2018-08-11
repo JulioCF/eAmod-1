@@ -12,6 +12,6 @@
 *                                                                            *
 * Descrição Primária.                                                        *
 * Descrição mais elaborada sobre o arquivo.                                  *
-* \author Nome Author                                                        *
+* \author Nome do Autor                                                      *
 * \date DD/MM/AAAA                                                           *
 *****************************************************************************/
