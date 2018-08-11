@@ -14,7 +14,7 @@
 |                         Documentação do Consumidor                       |
 |                               Arquivos SQL                               |
 |--------------------------------------------------------------------------|
-| Criado por: shell TeMP                                                   |
+| Criado por: shellTeMP                                                    |
 |--------------------------------------------------------------------------|
 | Descrição: Documentação explicando como efetuar o upload de seus         |
 | arquivos SQL nas diversas Builds dos pacotes eAmob.                      |

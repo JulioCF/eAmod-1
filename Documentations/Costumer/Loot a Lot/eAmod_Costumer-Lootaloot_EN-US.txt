@@ -1,0 +1,51 @@
+ __________________________________________________________________________
+/                                                                          \
+|                           _                                              |
+|                          / \                         _                   |
+|                  ___    / _ \   _ __ ___   ____  ___| |                  |
+|                 / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                  |
+|                |  __/ /  ___  \| | | | | |  (_) ) (_) |                  |
+|                 \___|/__/   \__\_| |_| |_|\____/\_____/                  |
+|                                                                          |
+|                              eAmod Script                                |
+|                                                                          |
+|--------------------------------------------------------------------------|
+|                       eAmod - eAthena Modifications                      |
+|                           Consumer Documentation                         |
+|                             Loot a Lot System                            |
+|--------------------------------------------------------------------------|
+| Created by: shellTeMP                                                    |
+|--------------------------------------------------------------------------|
+| Description: Documentation explaining how to install the Loot a Lot      |
+| Plugin in the various Builds of eAmob packages.                          |
+|--------------------------------------------------------------------------|
+| Changelog:                                                               |
+| 1.0 - Developed Document                                                 |
+\_________________________________________________________________________/
+
+/*
+
+- This guide will explore how to install the Loot a Lot to your source (src) correctly, regardless of the build in which you are using eAmod.
+
+        1. @lootalot.c (Required)
+        -----------------------------------------------------------------------------------------------
+        | Local: In your src/plugins folder.
+        -----------------------------------------------------------------------------------------------
+        | Function: This is the file containing all the features about the loot a lot.
+        -----------------------------------------------------------------------------------------------
+        | How to: Download @lootalot.c, copy and paste inside the src/plugins folder.
+        | If you can't find the plugins folder, create a folder called "plugins" by yourself.
+        -----------------------------------------------------------------------------------------------
+
+        2. items.conf (Required)
+        -----------------------------------------------------------------------------------------------
+        | Local: In your conf/battle folder.
+        -----------------------------------------------------------------------------------------------
+        | Function: The range setting of the Loot a Lot system.
+        -----------------------------------------------------------------------------------------------
+        | How to: Open or Download our item.conf inside the eAmod-addons/conf-addons/battle
+        | copy the content inside the file and paste in the last line of your original items.conf.
+        | Recompile your emulator, set your range to the Loot a Lot system and use.
+        -----------------------------------------------------------------------------------------------
+
+*/
