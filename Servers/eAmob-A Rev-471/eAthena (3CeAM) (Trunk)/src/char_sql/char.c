@@ -9,7 +9,7 @@
 *                               eAmod Script                                 *
 *                                                                            *
 ******************************************************************************
-* src/char/char.c                                                            *
+* src/char_sql/char.c                                                        *
 * Arquivo responsavel por funcoes relacionadas ao personagem                 *
 ******************************************************************************
 * Copyright (c) eAmod Dev Team                                               *
