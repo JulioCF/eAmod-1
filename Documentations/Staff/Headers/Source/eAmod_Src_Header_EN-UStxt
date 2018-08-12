@@ -8,10 +8,17 @@
 *                                                                            *
 *                               eAmod Script                                 *
 *                                                                            *
-* \file src/folder/filename.c or filename.h                                  *
+******************************************************************************
+* src/folder/filename.c ou filename.h                                        *
+* File description.                                                          *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
 *                                                                            *
-* Primary Description.                                                       *
-* More elaborate description of the file.                                    *
-* \author Author Name                                                        *
-* \date MM/DD/YYYY                                                           *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
 *****************************************************************************/
