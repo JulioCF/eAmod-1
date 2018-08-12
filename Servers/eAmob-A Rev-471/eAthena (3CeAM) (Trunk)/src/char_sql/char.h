@@ -9,7 +9,7 @@
 *                               eAmod Script                                 *
 *                                                                            *
 ******************************************************************************
-* src/char/char.h                                                            *
+* src/char_sql/char.h                                                        *
 ******************************************************************************
 * Copyright (c) eAmod Dev Team                                               *
 * Copyright (c) rAthena Dev Team                                             *
