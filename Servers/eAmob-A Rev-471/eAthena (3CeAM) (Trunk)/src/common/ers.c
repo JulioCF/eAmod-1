@@ -1,43 +1,27 @@
-/*****************************************************************************\
- *  Copyright (c) Athena Dev Teams - Licensed under GNU GPL                  *
- *  For more information, see LICENCE in the main folder                     *
- *                                                                           *
- *  <H1>Entry Reusage System</H1>                                            *
- *                                                                           *
- *  There are several root entry managers, each with a different entry size. *
- *  Each manager will keep track of how many instances have been 'created'.  *
- *  They will only automatically destroy themselves after the last instance  *
- *  is destroyed.                                                            *
- *                                                                           *
- *  Entries can be allocated from the managers.                              *
- *  If it has reusable entries (freed entry), it uses one.                   *
- *  So no assumption should be made about the data of the entry.             *
- *  Entries should be freed in the manager they where allocated from.        *
- *  Failure to do so can lead to unexpected behaviours.                      *
- *                                                                           *
- *  <H2>Advantages:</H2>                                                     *
- *  - The same manager is used for entries of the same size.                 *
- *    So entries freed in one instance of the manager can be used by other   *
- *    instances of the manager.                                              *
- *  - Much less memory allocation/deallocation - program will be faster.     *
- *  - Avoids memory fragmentaion - program will run better for longer.       *
- *                                                                           *
- *  <H2>Disavantages:</H2>                                                   *
- *  - Unused entries are almost inevitable - memory being wasted.            *
- *  - A  manager will only auto-destroy when all of its instances are        *
- *    destroyed so memory will usually only be recovered near the end.       *
- *  - Always wastes space for entries smaller than a pointer.                *
- *                                                                           *
- *  WARNING: The system is not thread-safe at the moment.                    *
- *                                                                           *
- *  HISTORY:                                                                 *
- *    0.1 - Initial version                                                  *
- *                                                                           *
- * @version 0.1 - Initial version                                            *
- * @author Flavio @ Amazon Project                                           *
- * @encoding US-ASCII                                                        *
- * @see common#ers.h                                                         *
-\*****************************************************************************/
+/****************************************************************************!
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
+*                                                                            *
+*                            eAmod Source File                               *
+*                                                                            *
+******************************************************************************
+* src/common/ers.c                                                           *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
+*****************************************************************************/
+
 #include <stdlib.h>
 
 #include "../common/cbasetypes.h"
