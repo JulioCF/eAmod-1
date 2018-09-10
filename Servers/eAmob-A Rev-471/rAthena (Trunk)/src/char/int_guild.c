@@ -9,7 +9,7 @@
 *                            eAmod Source File                               *
 *                                                                            *
 ******************************************************************************
-* src/char/int_guild.                                                        *
+* src/char/int_guild.c                                                       *
 ******************************************************************************
 * Copyright (c) eAmod Dev Team                                               *
 * Copyright (c) rAthena Dev Team                                             *
