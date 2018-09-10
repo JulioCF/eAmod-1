@@ -9,7 +9,7 @@
 *                            eAmod Source File                               *
 *                                                                            *
 ******************************************************************************
-* src/char/int_achievement.c                                                 *
+* src/char/int_achievement.h                                                 *
 ******************************************************************************
 * Copyright (c) eAmod Dev Team                                               *
 * Copyright (c) rAthena Dev Team                                             *
