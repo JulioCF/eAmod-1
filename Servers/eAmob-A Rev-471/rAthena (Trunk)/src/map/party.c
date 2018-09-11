@@ -9,7 +9,7 @@
 *                            eAmod Source File                               *
 *                                                                            *
 ******************************************************************************
-* src/map/party.c                                                             *
+* src/map/party.c                                                            *
 ******************************************************************************
 * Copyright (c) eAmod Dev Team                                               *
 * Copyright (c) rAthena Dev Team                                             *
