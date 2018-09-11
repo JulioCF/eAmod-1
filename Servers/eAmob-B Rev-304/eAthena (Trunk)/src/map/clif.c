@@ -1,13 +1,26 @@
-// (c) 2008 - 2011 eAmod Project; Andres Garbanzo / Zephyrus
-//
-//  - gaiaro.staff@yahoo.com
-//  - MSN andresjgm.cr@hotmail.com
-//  - Skype: Zephyrus_cr
-//  - Site: http://dev.terra-gaming.com
-//
-// This file is NOT public - you are not allowed to distribute it.
-// Authorized Server List : http://dev.terra-gaming.com/index.php?/topic/72-authorized-eamod-servers/
-// eAmod is a non Free, extended version of eAthena Ragnarok Private Server.
+/****************************************************************************!
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
+*                                                                            *
+*                            eAmod Source File                               *
+*                                                                            *
+******************************************************************************
+* src/map/clif.c                                                             *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
+*****************************************************************************/
 
 #include "../common/cbasetypes.h"
 #include "../common/socket.h"
@@ -254,7 +267,7 @@ static int auraTable[][3] = {
 	// Reserved for PK Mode
 	{ 586,  -1,  -1 }, // LH
 	{ 586, 362,  -1 }, // LH Mvp
-	{ 586, 362, 240 }, // 1º PK Place
+	{ 586, 362, 240 }, // 1ï½º PK Place
 	// Basic Auras
 	{ 418,  -1,  -1 }, // Red Fury
 	{ 486,  -1,  -1 }, // Blue Fury
@@ -378,7 +391,7 @@ void clif_sendauras(struct map_session_data *sd,  enum send_target type)
 }
 
 /*==========================================
- * mapI‚Ìipİ’è
+ * mapé¯–ã®ipè¨­å®š
  *------------------------------------------*/
 int clif_setip(const char* ip)
 {
@@ -406,7 +419,7 @@ void clif_setbindip(const char* ip)
 }
 
 /*==========================================
- * mapI‚Ìportİ’è
+ * mapé¯–ã®portè¨­å®š
  *------------------------------------------*/
 void clif_setport(uint16 port)
 {
@@ -414,7 +427,7 @@ void clif_setport(uint16 port)
 }
 
 /*==========================================
- * mapI‚Ìip“Ç‚İo‚µ
+ * mapé¯–ã®ipèª­ã¿å‡ºã—
  *------------------------------------------*/
 uint32 clif_getip(void)
 {
@@ -436,7 +449,7 @@ uint32 clif_refresh_ip(void)
 }
 
 /*==========================================
- * mapI‚Ìport“Ç‚İo‚µ
+ * mapé¯–ã®portèª­ã¿å‡ºã—
  *------------------------------------------*/
 uint16 clif_getport(void)
 {
@@ -462,7 +475,7 @@ static inline unsigned char clif_bl_type(struct block_list *bl) {
 #endif
 
 /*==========================================
- * clif_send‚ÅAREA*w’è—p
+ * clif_sendã§AREA*æŒ‡å®šæ™‚ç”¨
  *------------------------------------------*/
 static int clif_send_sub(struct block_list *bl, va_list ap)
 {
@@ -3139,7 +3152,7 @@ void clif_updatestatus(struct map_session_data *sd,int type)
 		WFIFOL(fd,4)=pc_nextjobexp(sd);
 		break;
 
-		// 00be I—¹
+		// 00be çµ‚äº†
 	case SP_USTR:
 	case SP_UAGI:
 	case SP_UVIT:
@@ -3151,14 +3164,14 @@ void clif_updatestatus(struct map_session_data *sd,int type)
 		len=5;
 		break;
 
-		// 013a I—¹
+		// 013a çµ‚äº†
 	case SP_ATTACKRANGE:
 		WFIFOW(fd,0)=0x13a;
 		WFIFOW(fd,2)=sd->battle_status.rhw.range;
 		len=4;
 		break;
 
-		// 0141 I—¹
+		// 0141 çµ‚äº†
 	case SP_STR:
 		WFIFOW(fd,0)=0x141;
 		WFIFOL(fd,2)=type;
@@ -3497,7 +3510,7 @@ void clif_arrowequip(struct map_session_data *sd,int val)
 	fd=sd->fd;
 	WFIFOHEAD(fd, packet_len(0x013c));
 	WFIFOW(fd,0)=0x013c;
-	WFIFOW(fd,2)=val+2;//–î‚ÌƒAƒCƒeƒ€ID
+	WFIFOW(fd,2)=val+2;//çŸ¢ã®ã‚¢ã‚¤ãƒ†ãƒ ID
 	WFIFOSET(fd,packet_len(0x013c));
 }
 
@@ -4512,7 +4525,7 @@ void clif_display_riding(struct block_list *dst, struct block_list *bl)
 }
 
 /*==========================================
- * PC•\¦
+ * PCè¡¨ç¤º
  *------------------------------------------*/
 static void clif_getareachar_pc(struct map_session_data* sd,struct map_session_data* dstsd)
 {
@@ -4923,7 +4936,7 @@ static void clif_getareachar_skillunit(struct map_session_data *sd, struct skill
 
 
 /*==========================================
- * êŠƒXƒLƒ‹ƒGƒtƒFƒNƒg‚ª‹ŠE‚©‚çÁ‚¦‚é
+ * å ´æ‰€ã‚¹ã‚­ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒè¦–ç•Œã‹ã‚‰æ¶ˆãˆã‚‹
  *------------------------------------------*/
 static void clif_clearchar_skillunit(struct skill_unit *unit, int fd)
 {
@@ -5683,7 +5696,7 @@ void clif_skill_poseffect(struct block_list *src,int skill_id,int val,int x,int 
 
 
 /*==========================================
- * êŠƒXƒLƒ‹ƒGƒtƒFƒNƒg•\¦
+ * å ´æ‰€ã‚¹ã‚­ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆè¡¨ç¤º
  *------------------------------------------*/
 //FIXME: this is just an AREA version of clif_getareachar_skillunit()
 void clif_skill_setunit(struct skill_unit *unit)
@@ -6097,7 +6110,7 @@ void clif_broadcast(struct block_list* bl, const char* mes, int len, int type, e
 
 
 /*==========================================
- * ƒOƒ[ƒoƒ‹ƒƒbƒZ[ƒW
+ * ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
  *------------------------------------------*/
 void clif_GlobalMessage(struct block_list* bl, const char* message)
 {
@@ -7345,7 +7358,7 @@ int clif_hpmeter_sub(struct block_list *bl, va_list ap)
 }
 
 /*==========================================
- * GM‚ÖêŠ‚ÆHP’Ê’m
+ * GMã¸å ´æ‰€ã¨HPé€šçŸ¥
  *------------------------------------------*/
 int clif_hpmeter(struct map_session_data *sd)
 {
@@ -8430,7 +8443,7 @@ void clif_guild_message(struct guild *g,int account_id,const char *mes,int len)
 
 
 /*==========================================
- * ƒMƒ‹ƒhƒXƒLƒ‹Š„‚èU‚è’Ê’m
+ * ã‚®ãƒ«ãƒ‰ã‚¹ã‚­ãƒ«å‰²ã‚ŠæŒ¯ã‚Šé€šçŸ¥
  *------------------------------------------*/
 int clif_guild_skillup(struct map_session_data *sd,int skill_num,int lv)
 {// TODO: Merge with clif_skillup (same packet).
@@ -9874,7 +9887,7 @@ static int clif_guess_PacketVer(int fd, int get_previous, int *error)
 // ------------
 // clif_parse_*
 // ------------
-// ƒpƒPƒbƒg“Ç‚İæ‚Á‚ÄFX‘€ì
+// ãƒ‘ã‚±ãƒƒãƒˆèª­ã¿å–ã£ã¦è‰²ã€…æ“ä½œ
 
 
 /// Request to connect to map-server.
@@ -11946,7 +11959,7 @@ void clif_parse_UseSkillToId(int fd, struct map_session_data *sd)
 }
 
 /*==========================================
- * ƒXƒLƒ‹g—piêŠw’èj
+ * ã‚¹ã‚­ãƒ«ä½¿ç”¨ï¼ˆå ´æ‰€æŒ‡å®šï¼‰
  *------------------------------------------*/
 static void clif_parse_UseSkillToPosSub(int fd, struct map_session_data *sd, short skilllv, short skillnum, short x, short y, int skillmoreinfo)
 {
@@ -13160,22 +13173,22 @@ void clif_parse_GuildRequestInfo(int fd, struct map_session_data *sd)
 
 	switch( RFIFOL(fd,2) )
 	{
-	case 0:	// ƒMƒ‹ƒhŠî–{î•ñA“¯–¿“G‘Îî•ñ
+	case 0:	// ã‚®ãƒ«ãƒ‰åŸºæœ¬æƒ…å ±ã€åŒç›Ÿæ•µå¯¾æƒ…å ±
 		clif_guild_basicinfo(sd);
 		clif_guild_allianceinfo(sd);
 		break;
-	case 1:	// ƒƒ“ƒo[ƒŠƒXƒgA–ğE–¼ƒŠƒXƒg
+	case 1:	// ãƒ¡ãƒ³ãƒãƒ¼ãƒªã‚¹ãƒˆã€å½¹è·åãƒªã‚¹ãƒˆ
 		clif_guild_positionnamelist(sd);
 		clif_guild_memberlist(sd);
 		break;
-	case 2:	// –ğE–¼ƒŠƒXƒgA–ğEî•ñƒŠƒXƒg
+	case 2:	// å½¹è·åãƒªã‚¹ãƒˆã€å½¹è·æƒ…å ±ãƒªã‚¹ãƒˆ
 		clif_guild_positionnamelist(sd);
 		clif_guild_positioninfolist(sd);
 		break;
-	case 3:	// ƒXƒLƒ‹ƒŠƒXƒg
+	case 3:	// ã‚¹ã‚­ãƒ«ãƒªã‚¹ãƒˆ
 		clif_guild_skillinfo(sd);
 		break;
-	case 4:	// ’Ç•úƒŠƒXƒg
+	case 4:	// è¿½æ”¾ãƒªã‚¹ãƒˆ
 		clif_guild_expulsionlist(sd);
 		break;
 	default:
@@ -17820,7 +17833,7 @@ static int clif_parse(int fd)
 }
 
 /*==========================================
- * ƒpƒPƒbƒgƒf[ƒ^ƒx[ƒX“Ç‚İ‚İ
+ * ãƒ‘ã‚±ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *------------------------------------------*/
 static int packetdb_readdb(void)
 {
@@ -17847,7 +17860,7 @@ static int packetdb_readdb(void)
 #endif
 #if PACKETVER < 2
 	    3, 28, 19, 11,  3, -1,  9,  5, 52, 51, 56, 58, 41,  2,  6,  6,
-#elif PACKETVER < 20071106	// 78-7b ‹T“‡ˆÈ~ lv99ƒGƒtƒFƒNƒg—p
+#elif PACKETVER < 20071106	// 78-7b äº€å³¶ä»¥é™ lv99ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨
 	    3, 28, 19, 11,  3, -1,  9,  5, 54, 53, 58, 60, 41,  2,  6,  6,
 #elif PACKETVER <= 20081217 // change in 0x78 and 0x7c
 	    3, 28, 19, 11,  3, -1,  9,  5, 55, 53, 58, 60, 42,  2,  6,  6,
@@ -17882,7 +17895,7 @@ static int packetdb_readdb(void)
 	    6,  3,106, 10, 10, 34,  0,  6,  8,  4,  4,  4, 29, -1, 10,  6,
 #if PACKETVER < 1
 	   90, 86, 24,  6, 30,102,  8,  4,  8,  4, 14, 10, -1,  6,  2,  6,
-#else	// 196 comodoˆÈ~ ó‘Ô•\¦ƒAƒCƒRƒ“—p
+#else	// 196 comodoä»¥é™ çŠ¶æ…‹è¡¨ç¤ºã‚¢ã‚¤ã‚³ãƒ³ç”¨
 	   90, 86, 24,  6, 30,102,  9,  4,  8,  4, 14, 10, -1,  6,  2,  6,
 #endif
 #if PACKETVER < 20081126
