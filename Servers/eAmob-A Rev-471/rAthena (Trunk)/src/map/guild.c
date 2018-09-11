@@ -9,7 +9,7 @@
 *                            eAmod Source File                               *
 *                                                                            *
 ******************************************************************************
-* src/map/faction.h                                                          *
+* src/map/guild.c                                                            *
 ******************************************************************************
 * Copyright (c) eAmod Dev Team                                               *
 * Copyright (c) rAthena Dev Team                                             *
