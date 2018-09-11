@@ -1,5 +1,26 @@
-// Copyright (c) Athena Dev Teams - Licensed under GNU GPL
-// For more information, see LICENCE in the main folder
+/****************************************************************************!
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
+*                                                                            *
+*                            eAmod Source File                               *
+*                                                                            *
+******************************************************************************
+* src/common/malloc.c                                                        *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
+*****************************************************************************/
 
 #include "../common/malloc.h"
 #include "../common/core.h"
@@ -129,49 +150,49 @@ void aFree_(void *p, const char *file, int line, const char *func)
 /* USE_MEMMGR */
 
 /*
- * ƒƒ‚ƒŠƒ}ƒl[ƒWƒƒ
- *     malloc , free ‚Ìˆ—‚ğŒø—¦“I‚Éo—ˆ‚é‚æ‚¤‚É‚µ‚½‚à‚ÌB
- *     •¡G‚Èˆ—‚ğs‚Á‚Ä‚¢‚é‚Ì‚ÅAáŠ±d‚­‚È‚é‚©‚à‚µ‚ê‚Ü‚¹‚ñB
+ * ãƒ¡ãƒ¢ãƒªãƒãƒãƒ¼ã‚¸ãƒ£
+ *     malloc , free ã®å‡¦ç†ã‚’åŠ¹ç‡çš„ã«å‡ºæ¥ã‚‹ã‚ˆã†ã«ã—ãŸã‚‚ã®ã€‚
+ *     è¤‡é›‘ãªå‡¦ç†ã‚’è¡Œã£ã¦ã„ã‚‹ã®ã§ã€è‹¥å¹²é‡ããªã‚‹ã‹ã‚‚ã—ã‚Œã¾ã›ã‚“ã€‚
  *
- * ƒf[ƒ^\‘¢‚È‚Çià–¾‰ºè‚Å‚·‚¢‚Ü‚¹‚ñ^^; j
- *     Eƒƒ‚ƒŠ‚ğ•¡”‚ÌuƒuƒƒbƒNv‚É•ª‚¯‚ÄA‚³‚ç‚ÉƒuƒƒbƒN‚ğ•¡”‚Ìuƒ†ƒjƒbƒgv
- *       ‚É•ª‚¯‚Ä‚¢‚Ü‚·Bƒ†ƒjƒbƒg‚ÌƒTƒCƒY‚ÍA‚PƒuƒƒbƒN‚Ì—e—Ê‚ğ•¡”ŒÂ‚É‹Ï“™”z•ª
- *       ‚µ‚½‚à‚Ì‚Å‚·B‚½‚Æ‚¦‚ÎA‚Pƒ†ƒjƒbƒg32KB‚Ìê‡AƒuƒƒbƒN‚P‚Â‚Í32Byte‚Ìƒ†
- *       ƒjƒbƒg‚ªA1024ŒÂW‚Ü‚Á‚Äo—ˆ‚Ä‚¢‚½‚èA64Byte‚Ìƒ†ƒjƒbƒg‚ª 512ŒÂW‚Ü‚Á‚Ä
- *       o—ˆ‚Ä‚¢‚½‚è‚µ‚Ü‚·Bipadding,unit_head ‚ğœ‚­j
+ * ãƒ‡ãƒ¼ã‚¿æ§‹é€ ãªã©ï¼ˆèª¬æ˜ä¸‹æ‰‹ã§ã™ã„ã¾ã›ã‚“^^; ï¼‰
+ *     ãƒ»ãƒ¡ãƒ¢ãƒªã‚’è¤‡æ•°ã®ã€Œãƒ–ãƒ­ãƒƒã‚¯ã€ã«åˆ†ã‘ã¦ã€ã•ã‚‰ã«ãƒ–ãƒ­ãƒƒã‚¯ã‚’è¤‡æ•°ã®ã€Œãƒ¦ãƒ‹ãƒƒãƒˆã€
+ *       ã«åˆ†ã‘ã¦ã„ã¾ã™ã€‚ãƒ¦ãƒ‹ãƒƒãƒˆã®ã‚µã‚¤ã‚ºã¯ã€ï¼‘ãƒ–ãƒ­ãƒƒã‚¯ã®å®¹é‡ã‚’è¤‡æ•°å€‹ã«å‡ç­‰é…åˆ†
+ *       ã—ãŸã‚‚ã®ã§ã™ã€‚ãŸã¨ãˆã°ã€ï¼‘ãƒ¦ãƒ‹ãƒƒãƒˆ32KBã®å ´åˆã€ãƒ–ãƒ­ãƒƒã‚¯ï¼‘ã¤ã¯32Byteã®ãƒ¦
+ *       ãƒ‹ãƒƒãƒˆãŒã€1024å€‹é›†ã¾ã£ã¦å‡ºæ¥ã¦ã„ãŸã‚Šã€64Byteã®ãƒ¦ãƒ‹ãƒƒãƒˆãŒ 512å€‹é›†ã¾ã£ã¦
+ *       å‡ºæ¥ã¦ã„ãŸã‚Šã—ã¾ã™ã€‚ï¼ˆpadding,unit_head ã‚’é™¤ãï¼‰
  *
- *     EƒuƒƒbƒN“¯m‚ÍƒŠƒ“ƒNƒŠƒXƒg(block_prev,block_next) ‚Å‚Â‚È‚ª‚èA“¯‚¶ƒTƒC
- *       ƒY‚ğ‚ÂƒuƒƒbƒN“¯m‚àƒŠƒ“ƒNƒŠƒXƒg(hash_prev,hash_nect) ‚Å‚Â‚È
- *       ‚ª‚Á‚Ä‚¢‚Ü‚·B‚»‚ê‚É‚æ‚èA•s—v‚Æ‚È‚Á‚½ƒƒ‚ƒŠ‚ÌÄ—˜—p‚ªŒø—¦“I‚És‚¦‚Ü‚·B
+ *     ãƒ»ãƒ–ãƒ­ãƒƒã‚¯åŒå£«ã¯ãƒªãƒ³ã‚¯ãƒªã‚¹ãƒˆ(block_prev,block_next) ã§ã¤ãªãŒã‚Šã€åŒã˜ã‚µã‚¤
+ *       ã‚ºã‚’æŒã¤ãƒ–ãƒ­ãƒƒã‚¯åŒå£«ã‚‚ãƒªãƒ³ã‚¯ãƒªã‚¹ãƒˆ(hash_prev,hash_nect) ã§ã¤ãª
+ *       ãŒã£ã¦ã„ã¾ã™ã€‚ãã‚Œã«ã‚ˆã‚Šã€ä¸è¦ã¨ãªã£ãŸãƒ¡ãƒ¢ãƒªã®å†åˆ©ç”¨ãŒåŠ¹ç‡çš„ã«è¡Œãˆã¾ã™ã€‚
  */
 
-/* ƒuƒƒbƒN‚ÌƒAƒ‰ƒCƒƒ“ƒg */
+/* ãƒ–ãƒ­ãƒƒã‚¯ã®ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆ */
 #define BLOCK_ALIGNMENT1	16
 #define BLOCK_ALIGNMENT2	64
 
-/* ƒuƒƒbƒN‚É“ü‚éƒf[ƒ^—Ê */
+/* ãƒ–ãƒ­ãƒƒã‚¯ã«å…¥ã‚‹ãƒ‡ãƒ¼ã‚¿é‡ */
 #define BLOCK_DATA_COUNT1	128
 #define BLOCK_DATA_COUNT2	608
 
-/* ƒuƒƒbƒN‚Ì‘å‚«‚³: 16*128 + 64*576 = 40KB */
+/* ãƒ–ãƒ­ãƒƒã‚¯ã®å¤§ãã•: 16*128 + 64*576 = 40KB */
 #define BLOCK_DATA_SIZE1	( BLOCK_ALIGNMENT1 * BLOCK_DATA_COUNT1 )
 #define BLOCK_DATA_SIZE2	( BLOCK_ALIGNMENT2 * BLOCK_DATA_COUNT2 )
 #define BLOCK_DATA_SIZE		( BLOCK_DATA_SIZE1 + BLOCK_DATA_SIZE2 )
 
-/* ˆê“x‚ÉŠm•Û‚·‚éƒuƒƒbƒN‚Ì”B */
+/* ä¸€åº¦ã«ç¢ºä¿ã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯ã®æ•°ã€‚ */
 #define BLOCK_ALLOC		104
 
-/* ƒuƒƒbƒN */
+/* ãƒ–ãƒ­ãƒƒã‚¯ */
 struct block {
-	struct block* block_next;		/* Ÿ‚ÉŠm•Û‚µ‚½—Ìˆæ */
-	struct block* unfill_prev;		/* Ÿ‚Ì–„‚Ü‚Á‚Ä‚¢‚È‚¢—Ìˆæ */
-	struct block* unfill_next;		/* Ÿ‚Ì–„‚Ü‚Á‚Ä‚¢‚È‚¢—Ìˆæ */
-	unsigned short unit_size;		/* ƒ†ƒjƒbƒg‚Ì‘å‚«‚³ */
-	unsigned short unit_hash;		/* ƒ†ƒjƒbƒg‚ÌƒnƒbƒVƒ… */
-	unsigned short unit_count;		/* ƒ†ƒjƒbƒg‚ÌŒÂ” */
-	unsigned short unit_used;		/* g—pƒ†ƒjƒbƒg” */
-	unsigned short unit_unfill;		/* –¢g—pƒ†ƒjƒbƒg‚ÌêŠ */
-	unsigned short unit_maxused;	/* g—pƒ†ƒjƒbƒg‚ÌÅ‘å’l */
+	struct block* block_next;		/* æ¬¡ã«ç¢ºä¿ã—ãŸé ˜åŸŸ */
+	struct block* unfill_prev;		/* æ¬¡ã®åŸ‹ã¾ã£ã¦ã„ãªã„é ˜åŸŸ */
+	struct block* unfill_next;		/* æ¬¡ã®åŸ‹ã¾ã£ã¦ã„ãªã„é ˜åŸŸ */
+	unsigned short unit_size;		/* ãƒ¦ãƒ‹ãƒƒãƒˆã®å¤§ãã• */
+	unsigned short unit_hash;		/* ãƒ¦ãƒ‹ãƒƒãƒˆã®ãƒãƒƒã‚·ãƒ¥ */
+	unsigned short unit_count;		/* ãƒ¦ãƒ‹ãƒƒãƒˆã®å€‹æ•° */
+	unsigned short unit_used;		/* ä½¿ç”¨ãƒ¦ãƒ‹ãƒƒãƒˆæ•° */
+	unsigned short unit_unfill;		/* æœªä½¿ç”¨ãƒ¦ãƒ‹ãƒƒãƒˆã®å ´æ‰€ */
+	unsigned short unit_maxused;	/* ä½¿ç”¨ãƒ¦ãƒ‹ãƒƒãƒˆã®æœ€å¤§å€¤ */
 	char   data[ BLOCK_DATA_SIZE ];
 };
 
@@ -186,7 +207,7 @@ struct unit_head {
 static struct block* hash_unfill[BLOCK_DATA_COUNT1 + BLOCK_DATA_COUNT2 + 1];
 static struct block* block_first, *block_last, block_head;
 
-/* ƒƒ‚ƒŠ‚ğg‚¢‰ñ‚¹‚È‚¢—Ìˆæ—p‚Ìƒf[ƒ^ */
+/* ãƒ¡ãƒ¢ãƒªã‚’ä½¿ã„å›ã›ãªã„é ˜åŸŸç”¨ã®ãƒ‡ãƒ¼ã‚¿ */
 struct unit_head_large {
 	size_t                  size;
 	struct unit_head_large* prev;
@@ -211,7 +232,7 @@ static unsigned short size2hash( size_t size )
 		return (unsigned short)(size - BLOCK_DATA_SIZE1 + BLOCK_ALIGNMENT2 - 1) / BLOCK_ALIGNMENT2
 				+ BLOCK_DATA_COUNT1;
 	} else {
-		return 0xffff;	// ƒuƒƒbƒN’·‚ğ’´‚¦‚éê‡‚Í hash ‚É‚µ‚È‚¢
+		return 0xffff;	// ãƒ–ãƒ­ãƒƒã‚¯é•·ã‚’è¶…ãˆã‚‹å ´åˆã¯ hash ã«ã—ãªã„
 	}
 }
 
@@ -240,8 +261,8 @@ void* _mmalloc(size_t size, const char *file, int line, const char *func )
 	}
 	memmgr_usage_bytes += size;
 
-	/* ƒuƒƒbƒN’·‚ğ’´‚¦‚é—Ìˆæ‚ÌŠm•Û‚É‚ÍAmalloc() ‚ğ—p‚¢‚é */
-	/* ‚»‚ÌÛAunit_head.block ‚É NULL ‚ğ‘ã“ü‚µ‚Ä‹æ•Ê‚·‚é */
+	/* ãƒ–ãƒ­ãƒƒã‚¯é•·ã‚’è¶…ãˆã‚‹é ˜åŸŸã®ç¢ºä¿ã«ã¯ã€malloc() ã‚’ç”¨ã„ã‚‹ */
+	/* ãã®éš›ã€unit_head.block ã« NULL ã‚’ä»£å…¥ã—ã¦åŒºåˆ¥ã™ã‚‹ */
 	if(hash2size(size_hash) > BLOCK_DATA_SIZE - sizeof(struct unit_head)) {
 		struct unit_head_large* p = (struct unit_head_large*)MALLOC(sizeof(struct unit_head_large)+size,file,line,func);
 		if(p != NULL) {
@@ -266,7 +287,7 @@ void* _mmalloc(size_t size, const char *file, int line, const char *func )
 		}
 	}
 
-	/* “¯ˆêƒTƒCƒY‚ÌƒuƒƒbƒN‚ªŠm•Û‚³‚ê‚Ä‚¢‚È‚¢AV‚½‚ÉŠm•Û‚·‚é */
+	/* åŒä¸€ã‚µã‚¤ã‚ºã®ãƒ–ãƒ­ãƒƒã‚¯ãŒç¢ºä¿ã•ã‚Œã¦ã„ãªã„æ™‚ã€æ–°ãŸã«ç¢ºä¿ã™ã‚‹ */
 	if(hash_unfill[size_hash]) {
 		block = hash_unfill[size_hash];
 	} else {
@@ -274,7 +295,7 @@ void* _mmalloc(size_t size, const char *file, int line, const char *func )
 	}
 
 	if( block->unit_unfill == 0xFFFF ) {
-		// freeÏ‚İ—Ìˆæ‚ªc‚Á‚Ä‚¢‚È‚¢
+		// freeæ¸ˆã¿é ˜åŸŸãŒæ®‹ã£ã¦ã„ãªã„
 		memmgr_assert(block->unit_used <  block->unit_count);
 		memmgr_assert(block->unit_used == block->unit_maxused);
 		head = block2unit(block, block->unit_maxused);
@@ -287,7 +308,7 @@ void* _mmalloc(size_t size, const char *file, int line, const char *func )
 	}
 
 	if( block->unit_unfill == 0xFFFF && block->unit_maxused >= block->unit_count) {
-		// ƒ†ƒjƒbƒg‚ğg‚¢‰Ê‚½‚µ‚½‚Ì‚ÅAunfillƒŠƒXƒg‚©‚çíœ
+		// ãƒ¦ãƒ‹ãƒƒãƒˆã‚’ä½¿ã„æœãŸã—ãŸã®ã§ã€unfillãƒªã‚¹ãƒˆã‹ã‚‰å‰Šé™¤
 		if( block->unfill_prev == &block_head) {
 			hash_unfill[ size_hash ] = block->unfill_next;
 		} else {
@@ -348,10 +369,10 @@ void* _mrealloc(void *memblock, size_t size, const char *file, int line, const c
 		old_size = ((struct unit_head_large *)((char *)memblock - sizeof(struct unit_head_large) + sizeof(long)))->size;
 	}
 	if(old_size > size) {
-		// ƒTƒCƒYk¬ -> ‚»‚Ì‚Ü‚Ü•Ô‚·iè”²‚«j
+		// ã‚µã‚¤ã‚ºç¸®å° -> ãã®ã¾ã¾è¿”ã™ï¼ˆæ‰‹æŠœãï¼‰
 		return memblock;
 	}  else {
-		// ƒTƒCƒYŠg‘å
+		// ã‚µã‚¤ã‚ºæ‹¡å¤§
 		void *p = _mmalloc(size,file,line,func);
 		if(p != NULL) {
 			memcpy(p,memblock,old_size);
@@ -382,7 +403,7 @@ void _mfree(void *ptr, const char *file, int line, const char *func )
 
 	head = (struct unit_head *)((char *)ptr - sizeof(struct unit_head) + sizeof(long));
 	if(head->size == 0) {
-		/* malloc() ‚Å’¼‚ÉŠm•Û‚³‚ê‚½—Ìˆæ */
+		/* malloc() ã§ç›´ã«ç¢ºä¿ã•ã‚ŒãŸé ˜åŸŸ */
 		struct unit_head_large *head_large = (struct unit_head_large *)((char *)ptr - sizeof(struct unit_head_large) + sizeof(long));
 		if(
 			*(long*)((char*)head_large + sizeof(struct unit_head_large) - sizeof(long) + head_large->size)
@@ -407,7 +428,7 @@ void _mfree(void *ptr, const char *file, int line, const char *func )
 			FREE(head_large,file,line,func);
 		}
 	} else {
-		/* ƒ†ƒjƒbƒg‰ğ•ú */
+		/* ãƒ¦ãƒ‹ãƒƒãƒˆè§£æ”¾ */
 		struct block *block = head->block;
 		if( (char*)head - (char*)block > sizeof(struct block) ) {
 			ShowError("Memory manager: args of aFree 0x%p is invalid pointer %s line %d\n", ptr, file, line);
@@ -425,11 +446,11 @@ void _mfree(void *ptr, const char *file, int line, const char *func )
 #endif
 			memmgr_assert( block->unit_used > 0 );
 			if(--block->unit_used == 0) {
-				/* ƒuƒƒbƒN‚Ì‰ğ•ú */
+				/* ãƒ–ãƒ­ãƒƒã‚¯ã®è§£æ”¾ */
 				block_free(block);
 			} else {
 				if( block->unfill_prev == NULL) {
-					// unfill ƒŠƒXƒg‚É’Ç‰Á
+					// unfill ãƒªã‚¹ãƒˆã«è¿½åŠ 
 					if( hash_unfill[ block->unit_hash ] ) {
 						hash_unfill[ block->unit_hash ]->unfill_prev = block;
 					}
@@ -444,17 +465,17 @@ void _mfree(void *ptr, const char *file, int line, const char *func )
 	}
 }
 
-/* ƒuƒƒbƒN‚ğŠm•Û‚·‚é */
+/* ãƒ–ãƒ­ãƒƒã‚¯ã‚’ç¢ºä¿ã™ã‚‹ */
 static struct block* block_malloc(unsigned short hash)
 {
 	int i;
 	struct block *p;
 	if(hash_unfill[0] != NULL) {
-		/* ƒuƒƒbƒN—p‚Ì—Ìˆæ‚ÍŠm•ÛÏ‚İ */
+		/* ãƒ–ãƒ­ãƒƒã‚¯ç”¨ã®é ˜åŸŸã¯ç¢ºä¿æ¸ˆã¿ */
 		p = hash_unfill[0];
 		hash_unfill[0] = hash_unfill[0]->unfill_next;
 	} else {
-		/* ƒuƒƒbƒN—p‚Ì—Ìˆæ‚ğV‚½‚ÉŠm•Û‚·‚é */
+		/* ãƒ–ãƒ­ãƒƒã‚¯ç”¨ã®é ˜åŸŸã‚’æ–°ãŸã«ç¢ºä¿ã™ã‚‹ */
 		p = (struct block*)MALLOC(sizeof(struct block) * (BLOCK_ALLOC), __FILE__, __LINE__, __func__ );
 		if(p == NULL) {
 			ShowFatalError("Memory manager::block_alloc failed.\n");
@@ -462,17 +483,17 @@ static struct block* block_malloc(unsigned short hash)
 		}
 
 		if(block_first == NULL) {
-			/* ‰‰ñŠm•Û */
+			/* åˆå›ç¢ºä¿ */
 			block_first = p;
 		} else {
 			block_last->block_next = p;
 		}
 		block_last = &p[BLOCK_ALLOC - 1];
 		block_last->block_next = NULL;
-		/* ƒuƒƒbƒN‚ğ˜AŒ‹‚³‚¹‚é */
+		/* ãƒ–ãƒ­ãƒƒã‚¯ã‚’é€£çµã•ã›ã‚‹ */
 		for(i=0;i<BLOCK_ALLOC;i++) {
 			if(i != 0) {
-				// p[0] ‚Í‚±‚ê‚©‚çg‚¤‚Ì‚ÅƒŠƒ“ƒN‚É‚Í‰Á‚¦‚È‚¢
+				// p[0] ã¯ã“ã‚Œã‹ã‚‰ä½¿ã†ã®ã§ãƒªãƒ³ã‚¯ã«ã¯åŠ ãˆãªã„
 				p[i].unfill_next = hash_unfill[0];
 				hash_unfill[0]   = &p[i];
 				p[i].unfill_prev = NULL;
@@ -484,7 +505,7 @@ static struct block* block_malloc(unsigned short hash)
 		}
 	}
 
-	// unfill ‚É’Ç‰Á
+	// unfill ã«è¿½åŠ 
 	memmgr_assert(hash_unfill[ hash ] == NULL);
 	hash_unfill[ hash ] = p;
 	p->unfill_prev  = &block_head;
