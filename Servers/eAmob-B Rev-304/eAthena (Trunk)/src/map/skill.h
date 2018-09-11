@@ -1,13 +1,26 @@
-// (c) 2008 - 2011 eAmod Project; Andres Garbanzo / Zephyrus
-//
-//  - gaiaro.staff@yahoo.com
-//  - MSN andresjgm.cr@hotmail.com
-//  - Skype: Zephyrus_cr
-//  - Site: http://dev.terra-gaming.com
-//
-// This file is NOT public - you are not allowed to distribute it.
-// Authorized Server List : http://dev.terra-gaming.com/index.php?/topic/72-authorized-eamod-servers/
-// eAmod is a non Free, extended version of eAthena Ragnarok Private Server.
+/****************************************************************************!
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
+*                                                                            *
+*                            eAmod Source File                               *
+*                                                                            *
+******************************************************************************
+* src/map/skill.h                                                            *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
+*****************************************************************************/
 
 #ifndef _SKILL_H_
 #define _SKILL_H_
@@ -99,7 +112,7 @@ struct skill_condition {
 	int itemid[MAX_SKILL_ITEM_REQUIRE],amount[MAX_SKILL_ITEM_REQUIRE];
 };
 
-// ƒXƒLƒ‹ƒf?ƒ^ƒx?ƒX
+// ã‚¹ã‚­ãƒ«ãƒ‡?ã‚¿ãƒ™?ã‚¹
 struct s_skill_db {
 	char name[NAME_LENGTH];
 	char desc[40];
@@ -126,7 +139,7 @@ struct s_skill_db {
 extern struct s_skill_db skill_db[MAX_SKILL_DB];
 
 #define MAX_SKILL_UNIT_LAYOUT	50
-#define MAX_SQUARE_LAYOUT		5	// 11*11‚Ìƒ†ƒjƒbƒg”z’u‚ªÅ‘å
+#define MAX_SQUARE_LAYOUT		5	// 11*11ã®ãƒ¦ãƒ‹ãƒƒãƒˆé…ç½®ãŒæœ€å¤§
 #define MAX_SKILL_UNIT_COUNT ((MAX_SQUARE_LAYOUT*2+1)*(MAX_SQUARE_LAYOUT*2+1))
 struct s_skill_unit_layout {
 	int count;
@@ -211,7 +224,7 @@ enum {
 	UF_DUALMODE      = 0x0800,	// Spells should trigger both ontimer and onplace/onout/onleft effects.
 };
 
-// ƒAƒCƒeƒ€ì¬ƒf?ƒ^ƒx?ƒX
+// ã‚¢ã‚¤ãƒ†ãƒ ä½œæˆãƒ‡?ã‚¿ãƒ™?ã‚¹
 struct s_skill_produce_db {
 	int nameid, trigger;
 	int req_skill,req_skill_lv,itemlv;
@@ -219,14 +232,14 @@ struct s_skill_produce_db {
 };
 extern struct s_skill_produce_db skill_produce_db[MAX_SKILL_PRODUCE_DB];
 
-// –îì¬ƒf?ƒ^ƒx?ƒX
+// çŸ¢ä½œæˆãƒ‡?ã‚¿ãƒ™?ã‚¹
 struct s_skill_arrow_db {
 	int nameid, trigger;
 	int cre_id[MAX_ARROW_RESOURCE],cre_amount[MAX_ARROW_RESOURCE];
 };
 extern struct s_skill_arrow_db skill_arrow_db[MAX_SKILL_ARROW_DB];
 
-// ƒAƒuƒ‰ƒJƒ_ƒuƒ‰ƒf?ƒ^ƒx?ƒX
+// ã‚¢ãƒ–ãƒ©ã‚«ãƒ€ãƒ–ãƒ©ãƒ‡?ã‚¿ãƒ™?ã‚¹
 struct s_skill_abra_db {
 	int skillid;
 	int req_lv;
@@ -268,7 +281,7 @@ int do_final_skill(void);
 //Returns the cast type of the skill: ground cast, castend damage, castend no damage
 enum { CAST_GROUND, CAST_DAMAGE, CAST_NODAMAGE };
 int skill_get_casttype(int id); //[Skotlex]
-// ƒXƒLƒ‹ƒf?ƒ^ƒx?ƒX‚Ö‚ÌƒAƒNƒZƒT
+// ã‚¹ã‚­ãƒ«ãƒ‡?ã‚¿ãƒ™?ã‚¹ã¸ã®ã‚¢ã‚¯ã‚»ã‚µ
 //
 int skill_get_index( int id );
 int	skill_get_type( int id );
@@ -321,13 +334,13 @@ int skill_castend_map( struct map_session_data *sd,short skill_num, const char *
 int skill_cleartimerskill(struct block_list *src);
 int skill_addtimerskill(struct block_list *src,unsigned int tick,int target,int x,int y,int skill_id,int skill_lv,int type,int flag);
 
-// ’Ç‰Á?‰Ê
+// è¿½åŠ ?æœ
 int skill_additional_effect( struct block_list* src, struct block_list *bl,int skillid,int skilllv,int attack_type,int dmg_lv,unsigned int tick);
 int skill_counter_additional_effect( struct block_list* src, struct block_list *bl,int skillid,int skilllv,int attack_type,unsigned int tick);
 int skill_blown(struct block_list* src, struct block_list* target, int count, int direction, int flag, bool slide);
 int skill_break_equip(struct block_list *bl, unsigned short where, int rate, int flag);
 int skill_strip_equip(struct block_list *bl, unsigned short where, int rate, int lv, int time);
-// ƒ†ƒjƒbƒgƒXƒLƒ‹
+// ãƒ¦ãƒ‹ãƒƒãƒˆã‚¹ã‚­ãƒ«
 struct skill_unit_group* skill_id2group(int group_id);
 struct skill_unit_group *skill_unitsetting(struct block_list* src, short skillid, short skilllv, short x, short y, int flag);
 struct skill_unit *skill_initunit (struct skill_unit_group *group, int idx, int x, int y, int val1, int val2);
@@ -361,7 +374,7 @@ struct skill_unit_group *skill_check_dancing( struct block_list *src );
 // Guild skills [celest]
 int skill_guildaura_sub (struct map_session_data* sd, int id, int strvit, int agidex);
 
-// ‰r¥ƒLƒƒƒ“ƒZƒ‹
+// è© å”±ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 int skill_castcancel(struct block_list *bl,int type);
 
 int skill_sit (struct map_session_data *sd, int type);
@@ -376,7 +389,7 @@ int skill_calc_heal(struct block_list *src, struct block_list *target, int skill
 bool skill_check_cloaking(struct block_list *bl, struct status_change_entry *sce);
 bool skill_check_camouflage(struct block_list *bl, struct status_change_entry *sce);
 
-// ƒXƒe?ƒ^ƒXˆÙí
+// ã‚¹ãƒ†?ã‚¿ã‚¹ç•°å¸¸
 int skill_enchant_elemental_end(struct block_list *bl, int type);
 int skillnotok(int skillid, struct map_session_data *sd);
 int skillnotok_hom(int skillid, struct homun_data *hd);
@@ -388,7 +401,7 @@ int skill_vending(struct map_session_data *sd, int nameid); // Extended Vending 
 
 int skill_chastle_mob_changetarget(struct block_list *bl,va_list ap);
 
-// ƒAƒCƒeƒ€ì¬
+// ã‚¢ã‚¤ãƒ†ãƒ ä½œæˆ
 int skill_can_produce_mix( struct map_session_data *sd, int nameid, int trigger, int qty);
 int skill_produce_mix( struct map_session_data *sd, int skill_id, int nameid, int slot1, int slot2, int slot3, int qty );
 
@@ -403,7 +416,7 @@ int skill_changematerial(struct map_session_data *sd, int n, unsigned short *ite
 int skill_stasis_check(struct block_list *bl, int src_id, int skillid);	// Stasis skill usage check. [LimitLine]
 int skill_get_elemental_type(int skill_id, int skill_lv);
 
-// mobƒXƒLƒ‹‚Ì‚½‚ß
+// mobã‚¹ã‚­ãƒ«ã®ãŸã‚
 int skill_castend_nodamage_id( struct block_list *src, struct block_list *bl,int skillid,int skilllv,unsigned int tick,int flag );
 int skill_castend_damage_id( struct block_list* src, struct block_list *bl,int skillid,int skilllv,unsigned int tick,int flag );
 int skill_castend_pos2( struct block_list *src, int x,int y,int skillid,int skilllv,unsigned int tick,int flag);
@@ -413,7 +426,7 @@ int skill_blockpc_get(struct map_session_data *sd, int skillid);
 int skill_blockhomun_start (struct homun_data*,int,int);
 int skill_blockmerc_start (struct mercenary_data*,int,int);
 
-// ƒXƒLƒ‹U?ˆêŠ‡?—
+// ã‚¹ã‚­ãƒ«æ”»?ä¸€æ‹¬?ç†
 int skill_attack( int attack_type, struct block_list* src, struct block_list *dsrc,struct block_list *bl,int skillid,int skilllv,unsigned int tick,int flag );
 
 void skill_reload(void);
