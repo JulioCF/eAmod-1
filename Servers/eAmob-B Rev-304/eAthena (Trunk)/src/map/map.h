@@ -1,13 +1,26 @@
-// (c) 2008 - 2011 eAmod Project; Andres Garbanzo / Zephyrus
-//
-//  - gaiaro.staff@yahoo.com
-//  - MSN andresjgm.cr@hotmail.com
-//  - Skype: Zephyrus_cr
-//  - Site: http://dev.terra-gaming.com
-//
-// This file is NOT public - you are not allowed to distribute it.
-// Authorized Server List : http://dev.terra-gaming.com/index.php?/topic/72-authorized-eamod-servers/
-// eAmod is a non Free, extended version of eAthena Ragnarok Private Server.
+/****************************************************************************!
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
+*                                                                            *
+*                            eAmod Source File                               *
+*                                                                            *
+******************************************************************************
+* src/map/map.h                                                              *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
+*****************************************************************************/
 
 #ifndef _MAP_H_
 #define _MAP_H_
@@ -670,15 +683,15 @@ extern char charhelp_txt[];
 
 extern char wisp_server_name[];
 
-// I‘S‘Ìî•ñ
+// é¯–å…¨ä½“æƒ…å ±
 void map_setusers(int);
 int map_getusers(void);
 int map_usercount(void);
-// blockíœŠÖ˜A
+// blockå‰Šé™¤é–¢é€£
 int map_freeblock(struct block_list *bl);
 int map_freeblock_lock(void);
 int map_freeblock_unlock(void);
-// blockŠÖ˜A
+// blocké–¢é€£
 int map_addblock(struct block_list* bl);
 int map_delblock(struct block_list* bl);
 int map_moveblock(struct block_list *, int, int, unsigned int);
@@ -692,10 +705,10 @@ int map_foreachincell(int (*func)(struct block_list*,va_list), int m, int x, int
 int map_foreachinpath(int (*func)(struct block_list*,va_list), int m, int x0, int y0, int x1, int y1, int range, int length, int type, ...);
 int map_foreachinmap(int (*func)(struct block_list*,va_list), int m, int type, ...);
 int map_pickrandominrange(int (*func)(struct block_list*,va_list), struct block_list* center, int range, int max, int ignore_id, int type, ...);
-//blockŠÖ˜A‚É’Ç‰Á
+//blocké–¢é€£ã«è¿½åŠ 
 int map_count_oncell(int m,int x,int y,int type);
 struct skill_unit *map_find_skill_unit_oncell(struct block_list *,int x,int y,int skill_id,struct skill_unit *,int flag);
-// ˆê“IobjectŠÖ˜A
+// ä¸€æ™‚çš„objecté–¢é€£
 int map_get_new_object_id(void);
 int map_search_freecell(struct block_list *src, int m, short *x, short *y, int rx, int ry, int flag);
 //
@@ -703,14 +716,14 @@ int map_quit(struct map_session_data *);
 // npc
 bool map_addnpc(int,struct npc_data *);
 
-// °ƒAƒCƒeƒ€ŠÖ˜A
+// åºŠã‚¢ã‚¤ãƒ†ãƒ é–¢é€£
 int map_clearflooritem_timer(int tid, unsigned int tick, int id, intptr_t data);
 int map_removemobs_timer(int tid, unsigned int tick, int id, intptr_t data);
 #define map_clearflooritem(id) map_clearflooritem_timer(0,0,id,1)
 int map_addflooritem(struct item *item_data,int amount,int m,int x,int y,int first_charid,int second_charid,int third_charid,int guild_id,int flags);
 int map_addflooritem_area(struct block_list* bl, int m, int x, int y, int nameid, int amount); // [Zephyrus]
 
-// ƒLƒƒƒ‰id„ƒLƒƒƒ‰–¼ •ÏŠ·ŠÖ˜A
+// ã‚­ãƒ£ãƒ©idï¼ï¼ã‚­ãƒ£ãƒ©å å¤‰æ›é–¢é€£
 void map_addnickdb(int charid, const char* nick);
 void map_delnickdb(int charid, const char* nick);
 void map_reqnickdb(struct map_session_data* sd,int charid);
@@ -763,7 +776,7 @@ bool                    mapit_exists(struct s_mapiterator* mapit);
 #define mapit_geteachnpc()  mapit_alloc(MAPIT_NORMAL,BL_NPC)
 #define mapit_geteachiddb() mapit_alloc(MAPIT_NORMAL,BL_ALL)
 
-// ‚»‚Ì‘¼
+// ãã®ä»–
 int map_check_dir(int s_dir,int t_dir);
 unsigned char map_calc_dir( struct block_list *src,int x,int y);
 int map_random_dir(struct block_list *bl, short *x, short *y); // [Skotlex]
