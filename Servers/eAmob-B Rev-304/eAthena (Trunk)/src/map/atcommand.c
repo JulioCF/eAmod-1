@@ -1,13 +1,26 @@
-// (c) 2008 - 2011 eAmod Project; Andres Garbanzo / Zephyrus
-//
-//  - gaiaro.staff@yahoo.com
-//  - MSN andresjgm.cr@hotmail.com
-//  - Skype: Zephyrus_cr
-//  - Site: http://dev.terra-gaming.com
-//
-// This file is NOT public - you are not allowed to distribute it.
-// Authorized Server List : http://dev.terra-gaming.com/index.php?/topic/72-authorized-eamod-servers/
-// eAmod is a non Free, extended version of eAthena Ragnarok Private Server.
+/****************************************************************************!
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
+*                                                                            *
+*                            eAmod Source File                               *
+*                                                                            *
+******************************************************************************
+* src/map/atcommand.c                                                        *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
+*****************************************************************************/
 
 #include "../common/cbasetypes.h"
 #include "../common/mmo.h"
@@ -8632,7 +8645,7 @@ ACMD_FUNC(maspowerr)
 }
 
 /*==========================================
- * Comando para Corazón de Ciudad [Zephyrus]
+ * Comando para CorazÃ³n de Ciudad [Zephyrus]
  *------------------------------------------
  */
 void cityheart_sub(int id, const int master_id)
@@ -8663,7 +8676,7 @@ ACMD_FUNC(cityheart)
 	hpmas = cap_value(hpmas,1,10000000);
 	allied = cap_value(allied,0,1);
 
-	// Creación del Corazón
+	// CreaciÃ³n del CorazÃ³n
 	md = (struct mob_data *)map_id2bl(mob_once_spawn_especial(sd, "this", sd->bl.x, sd->bl.y, name, MOBID_EMPERIUM, 1, "", hpmas, 0, allied, false, 0, 1, true, false, true, 0, 0, 0, false, 0, 0));
 	if (md) {
 		clif_misceffect(&md->bl,344);
@@ -9011,7 +9024,7 @@ ACMD_FUNC(charlist)
 }
 
 /*==========================================
- * Información de una cuenta [Account ID]
+ * InformaciÃ³n de una cuenta [Account ID]
  *------------------------------------------*/
 void account_info(const int fd, struct map_session_data *sd, int account_id)
 {
@@ -9179,7 +9192,7 @@ ACMD_FUNC(logininfo)
 }
 
 /*==========================================
- * Información de Membresías
+ * InformaciÃ³n de MembresÃ­as
  *------------------------------------------*/
 ACMD_FUNC(memberinfo)
 {
@@ -9432,7 +9445,7 @@ ACMD_FUNC(whosell)
 				clif_viewpoint(sd, 1, 1, b_sd[i]->bl.x, b_sd[i]->bl.y, i, 0xFFFFFF);
 		}
 		else
-			sprintf(output, "[%d] '%s' no está en tiendas...", item_array[i]->nameid, item_array[i]->jname);
+			sprintf(output, "[%d] '%s' no estÃ¡ en tiendas...", item_array[i]->nameid, item_array[i]->jname);
 
 		clif_displaymessage(sd->fd, output);
 	}
@@ -9441,7 +9454,7 @@ ACMD_FUNC(whosell)
 }
 
 /*==========================================
- * Creación de items en el suelo, en un Area.
+ * CreaciÃ³n de items en el suelo, en un Area.
  *------------------------------------------*/
 ACMD_FUNC(flooritem)
 {
@@ -10064,7 +10077,7 @@ static int atwhopk_sub(struct block_list *bl,va_list ap)
 	pl = (TBL_PC*)bl; // Esto lo retorna el Map_foreachinmap
 
 	if( !pl->state.pvpmode || pl == sd )
-		return 0; // Ignora jugadores que no estén en Modo PK o al Mismo Jugador
+		return 0; // Ignora jugadores que no estÃ©n en Modo PK o al Mismo Jugador
 
 	if( fd )
 	{

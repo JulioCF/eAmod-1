@@ -1,13 +1,26 @@
-// (c) 2008 - 2011 eAmod Project; Andres Garbanzo / Zephyrus
-//
-//  - gaiaro.staff@yahoo.com
-//  - MSN andresjgm.cr@hotmail.com
-//  - Skype: Zephyrus_cr
-//  - Site: http://dev.terra-gaming.com
-//
-// This file is NOT public - you are not allowed to distribute it.
-// Authorized Server List : http://dev.terra-gaming.com/index.php?/topic/72-authorized-eamod-servers/
-// eAmod is a non Free, extended version of eAthena Ragnarok Private Server.
+/****************************************************************************!
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
+*                                                                            *
+*                            eAmod Source File                               *
+*                                                                            *
+******************************************************************************
+* src/map/skill.c                                                            *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
+*****************************************************************************/
 
 #include "../common/cbasetypes.h"
 #include "../common/timer.h"
@@ -2473,7 +2486,7 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 					sc_start(bl, SC_MELON_BOMB, 100, skilllv, skill_get_time(GN_SLINGITEM, skilllv));	// Reduces ASPD and moviment speed
 					break;
 				case 13264:
-					sc_start(bl, SC_BANANA_BOMB, 100, skilllv, skill_get_time(GN_SLINGITEM, skilllv));	// Reduces LUK ø?Needed confirm it, may be it's bugged in kRORE?
+					sc_start(bl, SC_BANANA_BOMB, 100, skilllv, skill_get_time(GN_SLINGITEM, skilllv));	// Reduces LUK ÔΩø?Needed confirm it, may be it's bugged in kRORE?
 					sc_start(bl, SC_BANANA_BOMB_SITDOWN, 75, skilllv, skill_get_time(GN_SLINGITEM_RANGEMELEEATK,skilllv)); // Sitdown for 3 seconds.
 					break;
 			}
@@ -3807,12 +3820,12 @@ int skill_attack(int attack_type, struct block_list* src, struct block_list *dsr
 }
 
 /*==========================================
- * ÉXÉLÉãîÕ??U?óp(map_foreachinareaÇ©ÇÁåƒÇŒÇÍÇÈ)
- * flagÇ…Ç¬Ç¢Çƒ?F16?i?ÇämîF
+ * „Çπ„Ç≠„É´ÁØÑ??U?Áî®(map_foreachinarea„Åã„ÇâÂëº„Å∞„Çå„Çã)
+ * flag„Å´„Å§„ÅÑ„Å¶?F16?i?„ÇíÁ¢∫Ë™ç
  * MSB <- 00fTffff ->LSB
- *	T	=É^?ÉQÉbÉgëI?óp(BCT_*)
- *  ffff=é©óRÇ…égópâ¬î\
- *  0	=ó\ñÒ?B0Ç…å≈íË
+ *	T	=„Çø?„Ç≤„ÉÉ„ÉàÈÅ∏?Áî®(BCT_*)
+ *  ffff=Ëá™Áî±„Å´‰ΩøÁî®ÂèØËÉΩ
+ *  0	=‰∫àÁ¥Ñ?B0„Å´Âõ∫ÂÆö
  *------------------------------------------*/
 typedef int (*SkillFunc)(struct block_list *, struct block_list *, int, int, unsigned int, int);
 int skill_area_sub (struct block_list *bl, va_list ap)

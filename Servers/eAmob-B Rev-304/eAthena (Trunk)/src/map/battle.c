@@ -1,13 +1,26 @@
-// (c) 2008 - 2011 eAmod Project; Andres Garbanzo / Zephyrus
-//
-//  - gaiaro.staff@yahoo.com
-//  - MSN andresjgm.cr@hotmail.com
-//  - Skype: Zephyrus_cr
-//  - Site: http://dev.terra-gaming.com
-//
-// This file is NOT public - you are not allowed to distribute it.
-// Authorized Server List : http://dev.terra-gaming.com/index.php?/topic/72-authorized-eamod-servers/
-// eAmod is a non Free, extended version of eAthena Ragnarok Private Server.
+/****************************************************************************!
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
+*                                                                            *
+*                            eAmod Source File                               *
+*                                                                            *
+******************************************************************************
+* src/map/battle.c                                                           *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
+*****************************************************************************/
 
 #include "../common/cbasetypes.h"
 #include "../common/timer.h"
@@ -191,7 +204,7 @@ struct block_list* battle_getenemyarea(struct block_list *src, int x, int y, int
 	return bl_list[rand()%c];
 }
 
-// ƒ_??[ƒW‚Ì’x‰„
+// ãƒ€??[ã‚¸ã®é…å»¶
 struct delay_damage {
 	struct block_list *src;
 	int target;
@@ -358,7 +371,7 @@ int battle_attr_fix(struct block_list *src, struct block_list *target, int damag
 }
 
 /*==========================================
- * ƒ_??[ƒW??IŒvZ
+ * ãƒ€??[ã‚¸??Iè¨ˆç®—
  *------------------------------------------*/
 int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damage *d,int damage,int skill_num,int skill_lv,int element)
 {
@@ -1036,7 +1049,7 @@ int battle_calc_gvg_damage(struct block_list *src,struct block_list *bl,int dama
 }
 
 /*==========================================
- * HP/SP‹zû‚ÌŒvZ
+ * HP/SPå¸åã®è¨ˆç®—
  *------------------------------------------*/
 static int battle_calc_drain(int damage, int rate, int per)
 {
@@ -1055,7 +1068,7 @@ static int battle_calc_drain(int damage, int rate, int per)
 }
 
 /*==========================================
- * ?C—ûƒ_??[ƒW
+ * ?Cç·´ãƒ€??[ã‚¸
  *------------------------------------------*/
 int battle_addmastery(struct map_session_data *sd,struct block_list *target,int dmg,int type)
 {
@@ -4505,7 +4518,7 @@ struct Damage battle_calc_magic_attack_renewal(struct block_list *src, struct bl
 }
 
 /*==========================================
- * ‚»‚Ì‘¼ƒ_??[ƒWŒvZ
+ * ãã®ä»–ãƒ€??[ã‚¸è¨ˆç®—
  *------------------------------------------*/
 struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *target,int skill_num,int skill_lv,int mflag)
 {
@@ -4833,7 +4846,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 	return md;
 }
 /*==========================================
- * ƒ_??[ƒWŒvZˆêŠ‡?ˆ—?—p
+ * ãƒ€??[ã‚¸è¨ˆç®—ä¸€æ‹¬?ï¿½?ç”¨
  *------------------------------------------*/
 struct Damage battle_calc_attack(int attack_type,struct block_list *bl,struct block_list *target,int skill_num,int skill_lv,int count)
 {
@@ -5036,7 +5049,7 @@ int battle_damage_area( struct block_list *bl, va_list ap)
 }
 
 /*==========================================
- * ’Ê??UŒ‚?ˆ—?‚Ü‚Æ‚ß
+ * é€š??Uæ’ƒ?ï¿½?ã¾ã¨ã‚
  *------------------------------------------*/
 enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* target, unsigned int tick, int flag)
 {
@@ -5804,7 +5817,7 @@ int battle_check_target( struct block_list *src, struct block_list *target,int f
 	return (flag&state)?1:-1;
 }
 /*==========================================
- * Ë’ö”»’è
+ * å°„ç¨‹åˆ¤å®š
  *------------------------------------------*/
 bool battle_check_range(struct block_list *src, struct block_list *bl, int range)
 {

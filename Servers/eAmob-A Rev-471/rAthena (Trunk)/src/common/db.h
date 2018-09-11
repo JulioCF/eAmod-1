@@ -1,7 +1,27 @@
+/****************************************************************************!
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
+*                                                                            *
+*                            eAmod Source File                               *
+*                                                                            *
+******************************************************************************
+* src/common/db.h                                                            *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
+*****************************************************************************/
 /*****************************************************************************\
- *  Copyright (c) Athena Dev Teams - Licensed under GNU GPL                  *
- *  For more information, see LICENCE in the main folder                     *
- *                                                                           *
  *  This file is separated in two sections:                                  *
  *  (1) public typedefs, enums, unions, structures and defines               *
  *  (2) public functions                                                     *
@@ -877,8 +897,8 @@ struct linkdb_node {
 
 typedef void (*LinkDBFunc)(void* key, void* data, va_list args);
 
-void  linkdb_insert ( struct linkdb_node** head, void *key, void* data); // èdï°Ççló∂ÇµÇ»Ç¢
-void  linkdb_replace( struct linkdb_node** head, void *key, void* data); // èdï°Ççló∂Ç∑ÇÈ
+void  linkdb_insert ( struct linkdb_node** head, void *key, void* data); // ÈáçË§á„ÇíËÄÉÊÖÆ„Åó„Å™„ÅÑ
+void  linkdb_replace( struct linkdb_node** head, void *key, void* data); // ÈáçË§á„ÇíËÄÉÊÖÆ„Åô„Çã
 void* linkdb_search ( struct linkdb_node** head, void *key);
 void* linkdb_erase  ( struct linkdb_node** head, void *key);
 void  linkdb_final  ( struct linkdb_node** head );
