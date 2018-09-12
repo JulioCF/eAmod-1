@@ -1,18 +1,26 @@
 /****************************************************************************!
-*                _           _   _   _                                       *    
-*               | |__  _ __ / \ | |_| |__   ___ _ __   __ _                  *  
-*               | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                 *   
-*               | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                 *    
-*               |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                 *    
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
 *                                                                            *
+*                            eAmod Source File                               *
 *                                                                            *
-* \file src/login/account.h                                                  *
-* Declarações de Contas em SQL.                                              *
-* Códigos de declaração para account_sql.c                                   *
-* \author brAthena, Athena, eAthena                                          *
-* \date ?                                                                    *
-* \todo ?                                                                    *  
-*****************************************************************************/ 
+******************************************************************************
+* src/login/account.h                                                        *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
+*****************************************************************************/
 
 #ifndef __ACCOUNT_H_INCLUDED__
 #define __ACCOUNT_H_INCLUDED__
@@ -62,8 +70,8 @@ struct mmo_account {
 	char lastlogin[24];     // date+time of last successful login
 	char last_ip[16];       // save of last IP of connection
 	char birthdate[10+1];   // assigned birth date (format: YYYY-MM-DD, default: 0000-00-00)
-	char pincode[4+1];		// Sistema de código PIN
-	time_t pincode_change;	// (timestamp): última mudança do código PIN
+	char pincode[4+1];		// Sistema de cÃ³digo PIN
+	time_t pincode_change;	// (timestamp): Ãºltima mudanÃ§a do cÃ³digo PIN
 	int account_reg2_num;
 	struct global_reg account_reg2[ACCOUNT_REG2_NUM]; // account script variables (stored on login server)
 };
