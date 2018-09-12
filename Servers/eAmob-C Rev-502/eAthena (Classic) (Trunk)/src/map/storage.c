@@ -9,7 +9,7 @@
 *                            eAmod Source File                               *
 *                                                                            *
 ******************************************************************************
-* src/map/storage                                                            *
+* src/map/storage.c                                                          *
 ******************************************************************************
 * Copyright (c) eAmod Dev Team                                               *
 * Copyright (c) rAthena Dev Team                                             *
