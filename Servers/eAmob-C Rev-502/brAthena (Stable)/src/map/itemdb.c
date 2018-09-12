@@ -1,18 +1,27 @@
 /****************************************************************************!
-*                _           _   _   _                                       *    
-*               | |__  _ __ / \ | |_| |__   ___ _ __   __ _                  *  
-*               | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                 *   
-*               | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                 *    
-*               |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                 *    
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
 *                                                                            *
+*                            eAmod Source File                               *
 *                                                                            *
-* \file src/map/itemdb.c                                                     *
-* Descrição Primária.                                                        *
-* Descrição mais elaborada sobre o arquivo.                                  *
-* \author brAthena, Athena, eAthena                                          *
-* \date ?                                                                    *
-* \todo ?                                                                    *  
+******************************************************************************
+* src/map/itemdb.c                                                           *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
 *****************************************************************************/
+
 
 #include "../common/nullpo.h"
 #include "../common/malloc.h"
@@ -544,7 +553,7 @@ int itemdb_read_itemgroup_sub()
 
 			groupid = atoi(row[0]);
 			if(groupid < 0 || groupid >= MAX_ITEMGROUP) {
-				ShowWarning("itemdb_read_itemgroup: Grupo inválido %d em %s\n", groupid, db[i]);
+				ShowWarning("itemdb_read_itemgroup: Grupo invÃ¡lido %d em %s\n", groupid, db[i]);
 				continue;
 			}
 
@@ -556,7 +565,7 @@ int itemdb_read_itemgroup_sub()
 
 			k = atoi(row[2]);
 			if(itemgroup_db[groupid].qty+k >= MAX_RANDITEM) {
-				ShowWarning("itemdb_read_itemgroup: Group %d está cheio (%d entradas) em %s\n", groupid, MAX_RANDITEM, db[i]);
+				ShowWarning("itemdb_read_itemgroup: Group %d estÃ¡ cheio (%d entradas) em %s\n", groupid, MAX_RANDITEM, db[i]);
 				continue;
 			}
 
@@ -913,7 +922,7 @@ void itemdb_read_combos()
 			Sql_GetData(dbmysql_handle, i, &row[i], NULL);
 
 		if((retcount = itemdb_combo_split_atoi(row[0], items)) < 2) {
-			ShowError("itemdb_read_combos: Não tem elementos suficientes (min:2).\n");
+			ShowError("itemdb_read_combos: NÃ£o tem elementos suficientes (min:2).\n");
 			continue;
 		}
 
