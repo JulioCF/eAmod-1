@@ -1,26 +1,33 @@
 /****************************************************************************!
-*                _           _   _   _                                       *    
-*               | |__  _ __ / \ | |_| |__   ___ _ __   __ _                  *  
-*               | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                 *   
-*               | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                 *    
-*               |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                 *    
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
 *                                                                            *
+*                            eAmod Source File                               *
 *                                                                            *
-* \file src/config/const.h                                                   *
-* Descrição Primária.                                                        *
-* Descrição mais elaborada sobre o arquivo.                                  *
-* \author brAthena, rAthena                                                  *
-* \date ?                                                                    *
-* \todo ?                                                                    *  
+******************************************************************************
+* src/config/const.h                                                         *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
 *****************************************************************************/
-
 #ifndef _RRCONFIGS_CONST_
 #define _RRCONFIGS_CONST_
 
 #include "../config/secure.h"
 
 /**
- * Checagens de segurança para tempo de intervalo nos diálogos com npcs.
+ * Checagens de seguranÃ§a para tempo de intervalo nos diÃ¡logos com npcs.
  **/
 #if SECURE_NPCTIMEOUT_INTERVAL <= 0
 	#error SECURE_NPCTIMEOUT_INTERVAL should be at least 1 (1s)
@@ -30,7 +37,7 @@
 #endif
 
 /**
- * Sufixo para arquivos no banco de dados da renovação/pré-renovação
+ * Sufixo para arquivos no banco de dados da renovaÃ§Ã£o/prÃ©-renovaÃ§Ã£o
  **/
 #ifdef RENEWAL
 	#define DBPATH "_re.txt"
@@ -54,14 +61,14 @@
 #endif
 */
 
-/* Definições para corrigir vários gcc warnings */
+/* DefiniÃ§Ãµes para corrigir vÃ¡rios gcc warnings */
 #ifdef __64BIT__
 	#define __64BPRTSIZE(y) (intptr)y
 #else
 	#define __64BPRTSIZE(y) y
 #endif
 
-/* Cálculos de ATCMD_FUNC(mobinfo) HIT e FLEE */
+/* CÃ¡lculos de ATCMD_FUNC(mobinfo) HIT e FLEE */
 #ifdef RENEWAL
 	#define MOB_FLEE(mob) ( mob->lv + mob->status.agi + mob->status.luk/5 + 100 )
 	#define MOB_HIT(mob)  ( mob->lv + mob->status.dex + mob->status.luk/3 + 175 )
@@ -70,7 +77,7 @@
 	#define MOB_HIT(mob)  ( mob->lv + mob->status.dex )
 #endif
 
-/* Modo de renovação para modificações de dano conforme o nível */
+/* Modo de renovaÃ§Ã£o para modificaÃ§Ãµes de dano conforme o nÃ­vel */
 #ifdef RENEWAL_LVDMG
 	#define RE_LVL_DMOD(val) \
 		if( status_get_lv(src) > 100 && val > 0 ) \
@@ -87,7 +94,7 @@
 	#define RE_LVL_TMDMOD()
 #endif
 
-/* Número máximo de carrinhos para clientes de 2012 */
+/* NÃºmero mÃ¡ximo de carrinhos para clientes de 2012 */
 #if PACKETVER >= 20120201
 	#define NEW_CARTS
 	#define MAX_CARTS 9
@@ -95,7 +102,7 @@
 	#define MAX_CARTS 5
 #endif
 
-// Redução do tempo de conjuração variável da renovação.
+// ReduÃ§Ã£o do tempo de conjuraÃ§Ã£o variÃ¡vel da renovaÃ§Ã£o.
 #ifdef RENEWAL_CAST
 	#define VARCAST_REDUCTION(val){ \
 		if( (varcast_r += val) != 0 && varcast_r >= 0 ) \
