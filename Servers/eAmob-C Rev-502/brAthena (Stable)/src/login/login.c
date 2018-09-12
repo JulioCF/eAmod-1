@@ -1,18 +1,26 @@
 /****************************************************************************!
-*                _           _   _   _                                       *    
-*               | |__  _ __ / \ | |_| |__   ___ _ __   __ _                  *  
-*               | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                 *   
-*               | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                 *    
-*               |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                 *    
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
 *                                                                            *
+*                            eAmod Source File                               *
 *                                                                            *
-* \file src/login/login.c                                                    *
-* Servidor de Entrada (Login).                                               *
-* C骴igo para gerenciamento de entrada e autentica玢o do usu醨io.            *
-* \author brAthena, Athena, eAthena                                          *
-* \date ?                                                                    *
-* \todo ?                                                                    *  
-*****************************************************************************/ 
+******************************************************************************
+* src/login/login.c                                                          *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
+*****************************************************************************/
 
 #include "../common/core.h"
 #include "../common/db.h"
@@ -877,7 +885,7 @@ int parse_fromchar(int fd)
 				RFIFOSKIP(fd,2);
 				break;
 
-		case 0x2738: // Alterar o c骴igo PIN para uma conta
+		case 0x2738: // Alterar o c贸digo PIN para uma conta
 			if(RFIFOREST(fd) < 11)
 				return 0;
 
@@ -894,7 +902,7 @@ int parse_fromchar(int fd)
 			}
 		break;
 
-		case 0x2739: // C骴igo PIN foi digitado errado muitas vezes
+		case 0x2739: // C贸digo PIN foi digitado errado muitas vezes
 			if(RFIFOREST(fd) < 6)
 				return 0;
 
@@ -910,7 +918,7 @@ int parse_fromchar(int fd)
 				if( ld == NULL )
 					return 0;
 
-				login_log(host2ip(acc.last_ip), acc.userid, 100, "C骴igo PIN falhou, verifique o c骴igo PIN ");
+				login_log(host2ip(acc.last_ip), acc.userid, 100, "C贸digo PIN falhou, verifique o c贸digo PIN ");
 			}
 
 				remove_online_user(acc.account_id);
