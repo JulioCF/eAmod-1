@@ -1,17 +1,25 @@
 /****************************************************************************!
-*                _           _   _   _                                       *    
-*               | |__  _ __ / \ | |_| |__   ___ _ __   __ _                  *  
-*               | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                 *   
-*               | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                 *    
-*               |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                 *    
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
 *                                                                            *
+*                            eAmod Source File                               *
 *                                                                            *
-* \file src/map/pc.c                                                         *
-* Descrição Primária.                                                        *
-* Descrição mais elaborada sobre o arquivo.                                  *
-* \author brAthena, Athena, eAthena                                          *
-* \date ?                                                                    *
-* \todo ?                                                                    *  
+******************************************************************************
+* src/map/pc.c                                                               *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
 *****************************************************************************/
 #include "../common/cbasetypes.h"
 #include "../common/core.h" // get_svn_revision()
@@ -1578,7 +1586,7 @@ bool pc_authok(struct map_session_data *sd, int login_id2, time_t expiration_tim
 
 		if(battle_config.display_version == 1) {
 			char buf[256];
-			sprintf(buf, "SVN versão: %s", get_svn_revision());
+			sprintf(buf, "SVN versÃ£o: %s", get_svn_revision());
 			clif_displaymessage(sd->fd, buf);
 		}
 
@@ -6498,7 +6506,7 @@ int pc_gainexp(struct map_session_data *sd, struct block_list *src, unsigned int
 	sd->custom_data.session_job_exp += job_exp;
 	if(sd->state.showexp) {
 		sprintf(output,
-		        "Experiência de Base:%u (%.2f%%) Job:%u (%.2f%%)",base_exp,nextbp*(float)100,job_exp,nextjp*(float)100);
+		        "ExperiÃªncia de Base:%u (%.2f%%) Job:%u (%.2f%%)",base_exp,nextbp*(float)100,job_exp,nextjp*(float)100);
 		clif_disp_onlyself(sd,output,strlen(output));
 	}
 	
@@ -7261,7 +7269,7 @@ void pc_damage(struct map_session_data *sd,struct block_list *src,unsigned int h
 		
 	if( sd->state.pvpmode && src->type == BL_PC && ((TBL_PC*)src)->state.pvpmode )
 	{
-		// [Zephyrus] Actualizacion de Timer de daño PVP, en PK Mode
+		// [Zephyrus] Actualizacion de Timer de daÃ±o PVP, en PK Mode
 		struct map_session_data *pk = (TBL_PC*)src;
 		sd->idlepvp = last_tick;
 		pk->idlepvp = last_tick;

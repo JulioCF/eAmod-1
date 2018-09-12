@@ -1,18 +1,27 @@
 /****************************************************************************!
-*                _           _   _   _                                       *    
-*               | |__  _ __ / \ | |_| |__   ___ _ __   __ _                  *  
-*               | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                 *   
-*               | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                 *    
-*               |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                 *    
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
 *                                                                            *
+*                            eAmod Source File                               *
 *                                                                            *
-* \file src/map/elemental.c                                                  *
-* Descrição Primária.                                                        *
-* Descrição mais elaborada sobre o arquivo.                                  *
-* \author brAthena, Athena, eAthena                                          *
-* \date ?                                                                    *
-* \todo ?                                                                    *  
+******************************************************************************
+* src/map/elemental.c                                                        *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
 *****************************************************************************/
+
 
 #include "../common/cbasetypes.h"
 #include "../common/malloc.h"
@@ -847,12 +856,12 @@ int read_elementaldb(void)
 		status->ele_lv = ele/20;
 
 		if(status->def_ele >= ELE_MAX) {
-			ShowWarning("Elemental %d tem o tipo de elemento inválido %d (elemento máximo ? %d)\n", db->class_, status->def_ele, ELE_MAX - 1);
+			ShowWarning("Elemental %d tem o tipo de elemento invÃ¡lido %d (elemento mÃ¡ximo ? %d)\n", db->class_, status->def_ele, ELE_MAX - 1);
 			status->def_ele = ELE_NEUTRAL;
 		}
 
 		if(status->ele_lv < 1 || status->ele_lv > 4) {
-			ShowWarning("Elemental %d tem nível de elemento inválido %d (máximo ? 4)\n", db->class_, status->ele_lv);
+			ShowWarning("Elemental %d tem nÃ­vel de elemento invÃ¡lido %d (mÃ¡ximo ? 4)\n", db->class_, status->ele_lv);
 			status->ele_lv = 1;
 		}
 
@@ -913,7 +922,7 @@ int read_elemental_skilldb(void)
 
 		ARR_FIND(0, MAX_ELESKILLTREE, i, db->skill[i].id == 0 || db->skill[i].id == skill_id);
 		if(i == MAX_ELESKILLTREE) {
-			ShowWarning("Não foi possível carregar habilidade %d em Elemental %d's árvore. O número máximo de capacidade por elementar foi atingido.\n", skill_id, class_);
+			ShowWarning("NÃ£o foi possÃ­vel carregar habilidade %d em Elemental %d's Ã¡rvore. O nÃºmero mÃ¡ximo de capacidade por elementar foi atingido.\n", skill_id, class_);
 			continue;
 		}
 

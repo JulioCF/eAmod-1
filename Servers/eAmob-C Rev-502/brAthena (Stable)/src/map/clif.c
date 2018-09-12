@@ -1,18 +1,27 @@
 /****************************************************************************!
-*                _           _   _   _                                       *    
-*               | |__  _ __ / \ | |_| |__   ___ _ __   __ _                  *  
-*               | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                 *   
-*               | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                 *    
-*               |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                 *    
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
 *                                                                            *
+*                            eAmod Source File                               *
 *                                                                            *
-* \file src/map/clif.c                                                       *
-* Descrição Primária.                                                        *
-* Descrição mais elaborada sobre o arquivo.                                  *
-* \author brAthena, Athena, eAthena                                          *
-* \date ?                                                                    *
-* \todo ?                                                                    *  
+******************************************************************************
+* src/map/clif.c                                                             *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
 *****************************************************************************/
+
 
 #include "../common/cbasetypes.h"
 #include "../common/socket.h"
@@ -252,7 +261,7 @@ static int auraTable[][3] = {
 	// Reserved for PK Mode
 	{ 586,  -1,  -1 }, // LH
 	{ 586, 362,  -1 }, // LH Mvp
-	{ 586, 362, 240 }, // 1º PK Place
+	{ 586, 362, 240 }, // 1Âº PK Place
 	// Basic Auras
 	{ 418,  -1,  -1 }, // Red Fury
 	{ 486,  -1,  -1 }, // Blue Fury
@@ -9916,7 +9925,7 @@ void clif_parse_LoadEndAck(int fd,struct map_session_data *sd)
 			int warp_sd = 0;
 
 			if(map[sd->bl.m].set_castle == 2 && !(sd->status.class_ >= 4023 && sd->status.class_ <= 4045)) {
-				clif_displaymessage(sd->fd, "Castelo habilitado para classes bebï¿½s.");
+				clif_displaymessage(sd->fd, "Castelo habilitado para classes bebÃ¯Â¿Â½s.");
 				warp_sd = 1;
 			} else if(map[sd->bl.m].set_castle == 3 && !(sd->status.class_ >= 7 && sd->status.class_ <= 20)) {
 				clif_displaymessage(sd->fd, "Castelo habilitado para classes 2-1 e 2-2.");

@@ -1,17 +1,25 @@
 /****************************************************************************!
-*                _           _   _   _                                       *    
-*               | |__  _ __ / \ | |_| |__   ___ _ __   __ _                  *  
-*               | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                 *   
-*               | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                 *    
-*               |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                 *    
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
 *                                                                            *
+*                            eAmod Source File                               *
 *                                                                            *
-* \file src/map/pet.c                                                        *
-* Descrição Primária.                                                        *
-* Descrição mais elaborada sobre o arquivo.                                  *
-* \author brAthena, Athena, eAthena                                          *
-* \date ?                                                                    *
-* \todo ?                                                                    *  
+******************************************************************************
+* src/map/pet.c                                                              *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
 *****************************************************************************/
 
 #include "../common/db.h"
@@ -1028,7 +1036,7 @@ int pet_lootitem_drop(struct pet_data *pd,struct map_session_data *sd)
 	memset(pd->loot->item,0,pd->loot->max * sizeof(struct item));
 	pd->loot->count = 0;
 	pd->loot->weight = 0;
-	pd->ud.canact_tick = gettick()+10000;   //  10*1000ms?°?E?????
+	pd->ud.canact_tick = gettick()+10000;   //  10*1000ms?Â°?E?????
 
 	if(dlist->item)
 		add_timer(gettick()+540,pet_delay_item_drop,0,(intptr_t)dlist);
@@ -1232,7 +1240,7 @@ int read_petdb()
 			continue;
 
 		if(!mobdb_checkid(nameid)) {
-			ShowWarning("pet_db reading: Mob inválido %d, pet não carregado!.\n", nameid);
+			ShowWarning("pet_db reading: Mob invÃ¡lido %d, pet nÃ£o carregado!.\n", nameid);
 			continue;
 		}
 
@@ -1269,7 +1277,7 @@ int read_petdb()
 	}
 
 	if(j >= MAX_PET_DB)
-		ShowWarning("petdb: Número máximo de pets atingido [%d].\n ", MAX_PET_DB);
+		ShowWarning("petdb: NÃºmero mÃ¡ximo de pets atingido [%d].\n ", MAX_PET_DB);
 
 	ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", rows, get_database_name(48));
 	Sql_FreeResult(dbmysql_handle);

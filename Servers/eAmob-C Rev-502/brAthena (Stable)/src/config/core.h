@@ -1,26 +1,34 @@
 /****************************************************************************!
-*                _           _   _   _                                       *    
-*               | |__  _ __ / \ | |_| |__   ___ _ __   __ _                  *  
-*               | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                 *   
-*               | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                 *    
-*               |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                 *    
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
 *                                                                            *
+*                            eAmod Source File                               *
 *                                                                            *
-* \file src/config/core.h                                                    *
-* DescriÁ„o Prim·ria.                                                        *
-* DescriÁ„o mais elaborada sobre o arquivo.                                  *
-* \author brAthena, rAthena                                                  *
-* \date ?                                                                    *
-* \todo ?                                                                    *  
+******************************************************************************
+* src/config/core.h                                                          *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
 *****************************************************************************/
 
 #ifndef _CONFIG_CORE_H_
 #define _CONFIG_CORE_H_
 
-/// N˙mero m·ximo de itens a serem exibidos quando se usa @autolootid list
+/// N√∫mero m√°ximo de itens a serem exibidos quando se usa @autolootid list
 #define AUTOLOOTITEM_SIZE 10
 
-/// N˙mero m·ximo de comandos de sugest„o
+/// N√∫mero m√°ximo de comandos de sugest√£o
 #define MAX_SUGGESTIONS 10
 
 /// Comment to disable the official walk path
@@ -36,20 +44,20 @@
 /// your map-server using more resources while this is active, comment the line
 #define SCRIPT_CALLFUNC_CHECK
 
-/// Reporte anÙnimamente
-/// Descomente para n„o enviar mais reports autom·ticos.
+/// Reporte an√¥nimamente
+/// Descomente para n√£o enviar mais reports autom√°ticos.
 //#define STATS_OPT_OUT
 
 /// Descomente para habilitar o script de comando query_sql e mysql logs em modo thread.
-/// Ainda n„o È indicado us·-lo, tenha cuidado ao habilitar.
+/// Ainda n√£o √© indicado us√°-lo, tenha cuidado ao habilitar.
 //#define BETA_THREAD_TEST
 
-/// Descomente para habilitar o modo limite de cÈlulas
+/// Descomente para habilitar o modo limite de c√©lulas
 //#define CELL_NOSTACK
 
-/// Descomente para habilitar o modo de checagem de ·rea circular.
-/// Habilitando este modo, a ·rea de ataque fica mais realistica conforme servidores oficiais.
-/// Ainda n„o È indicado us·-lo, tenha cuidado ao habilitar.
+/// Descomente para habilitar o modo de checagem de √°rea circular.
+/// Habilitando este modo, a √°rea de ataque fica mais realistica conforme servidores oficiais.
+/// Ainda n√£o √© indicado us√°-lo, tenha cuidado ao habilitar.
 //#define CIRCULAR_AREA
 
 /// Uncomment to enable Non Stackable items unique ID

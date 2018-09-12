@@ -1,17 +1,25 @@
 /****************************************************************************!
-*                _           _   _   _                                       *    
-*               | |__  _ __ / \ | |_| |__   ___ _ __   __ _                  *  
-*               | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                 *   
-*               | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                 *    
-*               |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                 *    
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
 *                                                                            *
+*                            eAmod Source File                               *
 *                                                                            *
-* \file src/config/renewal.h                                                 *
-* DescriÁ„o Prim·ria.                                                        *
-* DescriÁ„o mais elaborada sobre o arquivo.                                  *
-* \author brAthena, rAthena                                                  *
-* \date ?                                                                    *
-* \todo ?                                                                    *  
+******************************************************************************
+* src/config/renewal.h                                                       *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
 *****************************************************************************/
 
 #ifndef _RENEWAL
@@ -20,42 +28,42 @@
 #define _CONFIG_RENEWAL_H_
 
 /**
- * @INFO: Este arquivo tem o proposito de definir configuraÁıes apenas da renovaÁ„o.
- * Para desabilitar uma configuraÁ„o, comente a linha que contÈm o #define com //
+ * @INFO: Este arquivo tem o proposito de definir configura√ß√µes apenas da renova√ß√£o.
+ * Para desabilitar uma configura√ß√£o, comente a linha que cont√©m o #define com //
  **/
 
-/// Modo renovaÁ„o
+/// Modo renova√ß√£o
 #define RENEWAL
 
-/// Tempo de conjuraÁ„o de habilidades, da renovaÁ„o
-/// Dentro dos padrıes da renovaÁ„o, a conjuraÁ„o:
-///  - Tem sua fÛrmula reduzida por DEX * 2 + INT
-///  - O tempo de conjuraÁ„o se divide em fÛrmula e fixo, cujo o fixo ser· adicionado por habilidades e itens.
+/// Tempo de conjura√ß√£o de habilidades, da renova√ß√£o
+/// Dentro dos padr√µes da renova√ß√£o, a conjura√ß√£o:
+///  - Tem sua f√≥rmula reduzida por DEX * 2 + INT
+///  - O tempo de conjura√ß√£o se divide em f√≥rmula e fixo, cujo o fixo ser√° adicionado por habilidades e itens.
 #define RENEWAL_CAST
 
-/// Taxa de drop da renovaÁ„o
+/// Taxa de drop da renova√ß√£o
 /// A tabela de drops pode ser analisada em: 
 #define RENEWAL_DROP
 
-/// Taxa de experiÍncia da renovaÁ„o
-/// A tabela de experiÍncia pode ser analisada em: 
+/// Taxa de experi√™ncia da renova√ß√£o
+/// A tabela de experi√™ncia pode ser analisada em: 
 #define RENEWAL_EXP
 
-/// Taxa de modificaÁ„o do dano conforme o nÌvel
+/// Taxa de modifica√ß√£o do dano conforme o n√≠vel
 #define RENEWAL_LVDMG
 
-/// Habilidade "encantar com veneno mortal" da renovaÁ„o
-/// Fora dos padrıes da renovaÁ„o a habilidade:
-///  - N„o ter· o dano reduzido por 400%
-///  - N„o ter· efeito de amplificaÁ„o com a habilidade grimtooth
-///  - Ataque com armas e status STR (forÁa) ser„o aumentados.
+/// Habilidade "encantar com veneno mortal" da renova√ß√£o
+/// Fora dos padr√µes da renova√ß√£o a habilidade:
+///  - N√£o ter√° o dano reduzido por 400%
+///  - N√£o ter√° efeito de amplifica√ß√£o com a habilidade grimtooth
+///  - Ataque com armas e status STR (for√ßa) ser√£o aumentados.
 #define RENEWAL_EDP
 
-/// Velocidade de ataque da renovaÁ„o
-/// Dentro dos par‚metros da renovaÁ„o a velocidade de ataque:
-/// - Ter· penalidade e reduÁ„o de velocidade de ataque conforme escudos utilizados.
-/// - O status de AGI (agilidade) ter„o grande influÍncia no c·lculo da fÛrmula.
-/// - Algumas habilidades e itens mudam a fÛrmula de bonificar velocidade de ataque, para valores fixos.
+/// Velocidade de ataque da renova√ß√£o
+/// Dentro dos par√¢metros da renova√ß√£o a velocidade de ataque:
+/// - Ter√° penalidade e redu√ß√£o de velocidade de ataque conforme escudos utilizados.
+/// - O status de AGI (agilidade) ter√£o grande influ√™ncia no c√°lculo da f√≥rmula.
+/// - Algumas habilidades e itens mudam a f√≥rmula de bonificar velocidade de ataque, para valores fixos.
 #define RENEWAL_ASPD
 
 #endif // _CONFIG_RENEWAL_H_

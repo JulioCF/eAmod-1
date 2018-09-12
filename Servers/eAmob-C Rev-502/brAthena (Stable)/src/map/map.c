@@ -1,18 +1,27 @@
 /****************************************************************************!
-*                _           _   _   _                                       *    
-*               | |__  _ __ / \ | |_| |__   ___ _ __   __ _                  *  
-*               | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                 *   
-*               | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                 *    
-*               |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                 *    
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
 *                                                                            *
+*                            eAmod Source File                               *
 *                                                                            *
-* \file src/map/map.c                                                        *
-* Descrição Primária.                                                        *
-* Descrição mais elaborada sobre o arquivo.                                  *
-* \author brAthena, Athena, eAthena                                          *
-* \date ?                                                                    *
-* \todo ?                                                                    *  
+******************************************************************************
+* src/map/map.c                                                              *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
 *****************************************************************************/
+
 
 #include "../common/cbasetypes.h"
 #include "../common/core.h"
@@ -3137,7 +3146,7 @@ int map_readallmaps(void)
 		map[i].index = mapindex_name2id(map[i].name);
 
 		if(uidb_get(map_db,(unsigned int)map[i].index) != NULL) {
-			ShowWarning("Mapa %s já está carregado!"CL_CLL"\n", map[i].name);
+			ShowWarning("Mapa %s jÃ¡ estÃ¡ carregado!"CL_CLL"\n", map[i].name);
 			if(map[i].cell) {
 				aFree(map[i].cell);
 				map[i].cell = NULL;
@@ -3467,7 +3476,7 @@ int inter_config_read(char *cfgName)
 	return 0;
 }
 
-/* Função destinada a leitura dos banco de dados em formato SQL */
+/* FunÃ§Ã£o destinada a leitura dos banco de dados em formato SQL */
 
 void sv_readsqldb(char *name, char *next_name, int param_size, int max_allowed, bool (*sub_parse_row)(char *string[], int columns, int current))
 {
@@ -3518,7 +3527,7 @@ void sv_readsqldb(char *name, char *next_name, int param_size, int max_allowed, 
 	}
 }
 
-/* Função para identificação das databases [brAthena] */
+/* FunÃ§Ã£o para identificaÃ§Ã£o das databases [brAthena] */
 
 char *get_database_name(int database_id)
 {

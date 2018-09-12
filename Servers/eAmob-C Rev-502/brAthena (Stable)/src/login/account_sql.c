@@ -1,18 +1,26 @@
 /****************************************************************************!
-*                _           _   _   _                                       *    
-*               | |__  _ __ / \ | |_| |__   ___ _ __   __ _                  *  
-*               | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                 *   
-*               | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                 *    
-*               |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                 *    
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
 *                                                                            *
+*                            eAmod Source File                               *
 *                                                                            *
-* \file src/login/account_sql.c                                              *
-* Contas em SQL.                                                             *
-* Códigos de interação das contas com o SQL.                                 *
-* \author brAthena, Athena, eAthena                                          *
-* \date ?                                                                    *
-* \todo ?                                                                    *  
-*****************************************************************************/ 
+******************************************************************************
+* src/login/account_sql.c                                                    *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
+*****************************************************************************/
 
 #include "../common/malloc.h"
 #include "../common/mmo.h"
@@ -490,7 +498,7 @@ static bool mmo_auth_fromsql(AccountDB_SQL *db, struct mmo_account *acc, int acc
 	char *data;
 	int i = 0;
 	
-	// Sistema Vip - rotina de expiração do vip.
+	// Sistema Vip - rotina de expiraÃ§Ã£o do vip.
 	if(bra_config.enable_system_vip) {
 		if(SQL_SUCCESS != Sql_Query(sql_handle, "UPDATE `%s` SET `group_id`=0 WHERE `account_id`=%d AND `group_id`=%d AND (`date_vip` IS NULL OR `date_vip` < NOW())", db->account_db, account_id, bra_config.level_vip))
 			Sql_ShowDebug(sql_handle);

@@ -1,17 +1,25 @@
 /****************************************************************************!
-*                _           _   _   _                                       *    
-*               | |__  _ __ / \ | |_| |__   ___ _ __   __ _                  *  
-*               | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                 *   
-*               | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                 *    
-*               |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                 *    
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
 *                                                                            *
+*                            eAmod Source File                               *
 *                                                                            *
-* \file src/map/skill.c                                                      *
-* Descrição Primária.                                                        *
-* Descrição mais elaborada sobre o arquivo.                                  *
-* \author brAthena, Athena, eAthena                                          *
-* \date ?                                                                    *
-* \todo ?                                                                    *  
+******************************************************************************
+* src/map/skill.c                                                            *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
 *****************************************************************************/
 
 #include "../common/cbasetypes.h"
@@ -557,7 +565,7 @@ int skill_calc_heal(struct block_list *src, struct block_list *target, uint16 sk
 #ifdef RENEWAL
 			/**
 			 * Renewal Heal Formula
-			 * Formula: ( [(Base Level + INT) / 5] × 30 ) × (Heal Level / 10) × (Modifiers) + MATK
+			 * Formula: ( [(Base Level + INT) / 5] Ã— 30 ) Ã— (Heal Level / 10) Ã— (Modifiers) + MATK
 			 **/
 			hp = (status_get_lv(src) + status_get_int(src)) / 5 * 30  * skill_lv / 10;
 #else
@@ -8864,7 +8872,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 
 		case SO_ARRULLO:
 			{
-				// [(15 + 5 * Skill Level) + ( Caster’s INT / 5 ) + ( Caster’s Job Level / 5 ) - ( Target’s INT / 6 ) - ( Target’s LUK / 10 )] %
+				// [(15 + 5 * Skill Level) + ( CasterÂ’s INT / 5 ) + ( CasterÂ’s Job Level / 5 ) - ( TargetÂ’s INT / 6 ) - ( TargetÂ’s LUK / 10 )] %
 				int rate = (15 + 5 * skill_lv) + status_get_int(src)/5 + (sd ? sd->status.job_level : 0);
 				rate -= status_get_int(bl)/6 - status_get_luk(bl)/10;
 				clif_skill_nodamage(src, bl, skill_id, skill_lv, 1);
@@ -8874,7 +8882,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 
 		case WM_LULLABY_DEEPSLEEP:
 			if(flag&1){
-				//[(Skill Level x 4) + (Voice Lessons Skill Level x 2) + (Caster’s Base Level / 15) + (Caster’s Job Level / 5)] %
+				//[(Skill Level x 4) + (Voice Lessons Skill Level x 2) + (CasterÂ’s Base Level / 15) + (CasterÂ’s Job Level / 5)] %
 				int rate = (4 * skill_lv) + ( (sd) ? pc_checkskill(sd,WM_LESSON)*2 + sd->status.job_level/5 : 0 ) + status_get_lv(src) / 15;
 				if(bl != src)
 				sc_start(src,bl,type,rate,skill_lv,skill_get_time(skill_id,skill_lv));
@@ -13251,7 +13259,7 @@ int skill_check_condition_castbegin(struct map_session_data *sd, uint16 skill_id
 				if(map_foreachinrange(mob_count_sub, &sd->bl, skill_get_splash(skill_id, skill_lv), BL_MOB,
 				                      MOBID_EMPERIUM, MOBID_GUARIDAN_STONE1, MOBID_GUARIDAN_STONE2)) {
 					char output[128];
-					sprintf(output, "Você está muito perto de uma pedra ou emperium para usar esta habilidade");
+					sprintf(output, "VocÃª estÃ¡ muito perto de uma pedra ou emperium para usar esta habilidade");
 					clif_colormes(sd, COLOR_RED, output);
 					return 0;
 				}

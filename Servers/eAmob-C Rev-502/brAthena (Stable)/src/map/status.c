@@ -1,17 +1,25 @@
 /****************************************************************************!
-*                _           _   _   _                                       *    
-*               | |__  _ __ / \ | |_| |__   ___ _ __   __ _                  *  
-*               | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                 *   
-*               | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                 *    
-*               |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                 *    
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
 *                                                                            *
+*                            eAmod Source File                               *
 *                                                                            *
-* \file src/map/status.c                                                     *
-* Descrição Primária.                                                        *
-* Descrição mais elaborada sobre o arquivo.                                  *
-* \author brAthena, Athena, eAthena                                          *
-* \date ?                                                                    *
-* \todo ?                                                                    *  
+******************************************************************************
+* src/map/status.c                                                           *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
 *****************************************************************************/
 
 #include "../common/cbasetypes.h"
@@ -1926,7 +1934,7 @@ static unsigned short status_base_atk(const struct block_list *bl, const struct 
 	str += dstr*dstr;
 	if(bl->type == BL_PC)
 #ifdef RENEWAL
-		if(battle_config.bRO_Renewal)    // Fórmula de ataque base [brAthena - bRO]
+		if(battle_config.bRO_Renewal)    // FÃ³rmula de ataque base [brAthena - bRO]
 			str = (rstr*12/10 + dex/5 + status->luk/3 + ((TBL_PC *)bl)->status.base_level/4);
 		else
 			str = (rstr*10 + dex*10/5 + status->luk*10/3 + ((TBL_PC *)bl)->status.base_level*10/4)/10;
@@ -1948,7 +1956,7 @@ static inline unsigned short status_base_matk_max(const struct status_data *stat
 #else
 unsigned short status_base_matk(const struct status_data *status, int level)
 {
-	if(battle_config.bRO_Renewal)    // Fórmula de ataque mágico [brAthena - bRO]
+	if(battle_config.bRO_Renewal)    // FÃ³rmula de ataque mÃ¡gico [brAthena - bRO]
 		return status->int_+(status->int_*15/10)+(status->dex/5)+(status->luk/3)+(level/4);
 	else
 		return status->int_+(status->int_/2)+(status->dex/5)+(status->luk/3)+(level/4);
@@ -1970,8 +1978,8 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int lev
 	status->hit += level + status->dex + status->luk/3 + 175; //base level + ( every 1 dex = +1 hit ) + (every 3 luk = +1 hit) + 175
 	status->flee += level + status->agi + status->luk/5 + 100; //base level + ( every 1 agi = +1 flee ) + (every 5 luk = +1 flee) + 100
 	if(battle_config.bRO_Renewal) {
-		status->def2 += (status->vit/2) + (status->agi/5) + (status->str/5) + (level/6); // Defesa fisíca por atributos - [brAthena - bRO]
-		status->mdef2 += (status->int_ / 2) + (status->vit / 5) + (status->dex / 4) + (level/6); // Defesa mágica por atributos - [brAthena - bRO]
+		status->def2 += (status->vit/2) + (status->agi/5) + (status->str/5) + (level/6); // Defesa fisÃ­ca por atributos - [brAthena - bRO]
+		status->mdef2 += (status->int_ / 2) + (status->vit / 5) + (status->dex / 4) + (level/6); // Defesa mÃ¡gica por atributos - [brAthena - bRO]
 	} else {
 		status->def2 += (int)(((float)level + status->vit)/2 + ((float)status->agi/5)); //base level + (every 2 vit = +1 def) + (every 5 agi = +1 def)
 		status->mdef2 += (int)(status->int_ + ((float)level/4) + ((float)status->dex/5) + ((float)status->vit/5)); //(every 4 base level = +1 mdef) + (every 1 int = +1 mdef) + (every 5 dex = +1 mdef) + (every 5 vit = +1 mdef)
