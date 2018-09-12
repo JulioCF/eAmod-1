@@ -1,32 +1,40 @@
 /****************************************************************************!
-*                _           _   _   _                                       *    
-*               | |__  _ __ / \ | |_| |__   ___ _ __   __ _                  *  
-*               | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                 *   
-*               | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                 *    
-*               |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                 *    
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
 *                                                                            *
+*                            eAmod Source File                               *
 *                                                                            *
-* \file src/config/secure.h                                                  *
-* DescriÁ„o Prim·ria.                                                        *
-* DescriÁ„o mais elaborada sobre o arquivo.                                  *
-* \author brAthena, rAthena                                                  *
-* \date ?                                                                    *
-* \todo ?                                                                    *  
+******************************************************************************
+* src/config/secure.h                                                        *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
 *****************************************************************************/
 
 #ifndef _CONFIG_SECURE_H_
 #define _CONFIG_SECURE_H_
 
 /**
- * Tempo de habilitaÁ„o no di·logo para npcs.
- * Quando habilitado, todos os di·logos com npcs s„o desabilitados conforme n˙mero de segundos.
+ * Tempo de habilita√ß√£o no di√°logo para npcs.
+ * Quando habilitado, todos os di√°logos com npcs s√£o desabilitados conforme n√∫mero de segundos.
  * - ? : Tempo em segundos (ex: 10)
  * - 0 : Disabilitado
  **/
 #define SECURE_NPCTIMEOUT 0
 
 /**
- * Tempo de intervalo no di·logo para npcs.
+ * Tempo de intervalo no di√°logo para npcs.
  * Default: 1s
  **/
 #define SECURE_NPCTIMEOUT_INTERVAL 1
