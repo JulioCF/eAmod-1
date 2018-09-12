@@ -1,13 +1,26 @@
-// (c) 2008 - 2011 eAmod Project; Andres Garbanzo / Zephyrus
-//
-//  - gaiaro.staff@yahoo.com
-//  - MSN andresjgm.cr@hotmail.com
-//  - Skype: Zephyrus_cr
-//  - Site: http://dev.terra-gaming.com
-//
-// This file is NOT public - you are not allowed to distribute it.
-// Authorized Server List : http://dev.terra-gaming.com/index.php?/topic/72-authorized-eamod-servers/
-// eAmod is a non Free, extended version of eAthena Ragnarok Private Server.
+/****************************************************************************!
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
+*                                                                            *
+*                            eAmod Source File                               *
+*                                                                            *
+******************************************************************************
+* src/map/itemdb.c                                                           *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
+*****************************************************************************/
 
 #include "../common/nullpo.h"
 #include "../common/malloc.h"
@@ -37,7 +50,7 @@ int coins_db[MAX_COIN_DB]; // Extended Vending System
 struct item_data dummy_item; //This is the default dummy item used for non-existant items. [Skotlex]
 
 /*==========================================
- * –¼‘O‚ÅŒŸõ—p
+ * åå‰ã§æ¤œç´¢ç”¨
  *------------------------------------------*/
 // name = item alias, so we should find items aliases first. if not found then look for "jname" (full name)
 static int itemdb_searchname_sub(DBKey key,void *data,va_list ap)
@@ -62,7 +75,7 @@ static int itemdb_searchname_sub(DBKey key,void *data,va_list ap)
 }
 
 /*==========================================
- * –¼‘O‚ÅŒŸõ
+ * åå‰ã§æ¤œç´¢
  *------------------------------------------*/
 struct item_data* itemdb_searchname(const char *str)
 {
@@ -144,7 +157,7 @@ int itemdb_searchname_array(struct item_data** data, int size, const char *str)
 
 
 /*==========================================
- * ” ŒnƒAƒCƒeƒ€ŒŸõ
+ * ç®±ç³»ã‚¢ã‚¤ãƒ†ãƒ æ¤œç´¢
  *------------------------------------------*/
 int itemdb_searchrandomid(int group)
 {
@@ -488,7 +501,7 @@ int itemdb_isidentified(int nameid)
 }
 
 /*==========================================
- * ƒAƒCƒeƒ€g—p‰Â”\ƒtƒ‰ƒO‚ÌƒI[ƒo[ƒ‰ƒCƒh
+ * ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨å¯èƒ½ãƒ•ãƒ©ã‚°ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰
  *------------------------------------------*/
 static bool itemdb_read_itemavail(char* str[], int columns, int current)
 {// <nameid>,<sprite>
@@ -739,7 +752,7 @@ static int itemdb_read_customrates(void)
 }
 
 /*==========================================
- * ‘•”õ§ŒÀƒtƒ@ƒCƒ‹“Ç‚İo‚µ
+ * è£…å‚™åˆ¶é™ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿å‡ºã—
  *------------------------------------------*/
 static bool itemdb_read_noequip(char* str[], int columns, int current)
 {// <nameid>,<mode>
@@ -999,7 +1012,7 @@ static bool itemdb_parse_dbrow(char** str, const char* source, int line, int scr
 }
 
 /*==========================================
- * ƒAƒCƒeƒ€ƒf[ƒ^ƒx[ƒX‚Ì“Ç‚İ‚İ
+ * ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã®èª­ã¿è¾¼ã¿
  *------------------------------------------*/
 static int itemdb_readdb(void)
 {
