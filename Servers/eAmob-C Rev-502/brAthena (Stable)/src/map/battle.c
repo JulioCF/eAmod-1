@@ -1,18 +1,27 @@
 /****************************************************************************!
-*                _           _   _   _                                       *    
-*               | |__  _ __ / \ | |_| |__   ___ _ __   __ _                  *  
-*               | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                 *   
-*               | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                 *    
-*               |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                 *    
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
 *                                                                            *
+*                            eAmod Source File                               *
 *                                                                            *
-* \file src/map/battle.c                                                     *
-* Descrição Primária.                                                        *
-* Descrição mais elaborada sobre o arquivo.                                  *
-* \author brAthena, Athena, eAthena                                          *
-* \date ?                                                                    *
-* \todo ?                                                                    *  
-*****************************************************************************/ 
+******************************************************************************
+* src/map/battle.c                                                           *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
+*****************************************************************************/
+
 
 #include "../common/cbasetypes.h"
 #include "../common/timer.h"
@@ -1980,7 +1989,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 
 	if(sd && !skill_id) {    //Check for double attack.
 		if(((skill_lv = pc_checkskill(sd,TF_DOUBLE)) > 0 && sd->weapontype1 == W_DAGGER)
-		   || (sd->special_state.double_attack && sd->weapontype1 != W_FIST) // Condição do bônus (Chapéu de Jibóia)
+		   || (sd->special_state.double_attack && sd->weapontype1 != W_FIST) // CondiÃ§Ã£o do bÃ´nus (ChapÃ©u de JibÃ³ia)
 		   || (sd->bonus.double_rate > 0 && sd->weapontype1 != W_FIST)   //Will fail bare-handed
 		   || (sc && sc->data[SC_KAGEMUSYA] && sd->weapontype1 != W_FIST)) { // Need confirmation
 			//Success chance is not added, the higher one is used [Skotlex]
@@ -2802,7 +2811,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case NC_ARMSCANNON:
 					switch(tstatus->size) {
 						case SZ_SMALL: if(battle_config.bRO_Renewal) skillratio += 400 + 300 * skill_lv * status_get_lv(src)/120; else skillratio += 100 + 500 * skill_lv; break; // Pequeno
-						case SZ_MEDIUM: if(battle_config.bRO_Renewal) skillratio += 350 + 300 * skill_lv * status_get_lv(src)/120; else skillratio += 100 + 400 * skill_lv; break; // Médio
+						case SZ_MEDIUM: if(battle_config.bRO_Renewal) skillratio += 350 + 300 * skill_lv * status_get_lv(src)/120; else skillratio += 100 + 400 * skill_lv; break; // MÃ©dio
 						case SZ_BIG: if(battle_config.bRO_Renewal) skillratio += 300 + 300 * skill_lv * status_get_lv(src)/120; else skillratio += 100 + 300 * skill_lv; break; // Grande
 					}
 					RE_LVL_DMOD(100);
@@ -3953,7 +3962,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 #ifdef RENEWAL
 							skillratio += 90;
 						//if(sd && sd->sc.data[SC_KAHU_ENTEN])
-							//skillratio += 20; // bônus de 20%
+							//skillratio += 20; // bÃ´nus de 20%
 #else
 							skillratio -= 10;
 #endif	
@@ -3962,14 +3971,14 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						case NJ_HYOUSENSOU:
 							skillratio += 70;
 						//if(sd && sd->sc.data[SC_HYOUHU_HUBUKI])
-							//skillratio += 5; // bônus de 5%
+							//skillratio += 5; // bÃ´nus de 5%
 							break;
 #endif
 						case NJ_KAENSIN:
 #ifdef RENEWAL
 							skillratio += 90;
 						//if(sd && sd->sc.data[SC_KAHU_ENTEN])
-							//skillratio += 5; // bônus de 5%
+							//skillratio += 5; // bÃ´nus de 5%
 #else
 							skillratio -= 50;
 #endif
@@ -3978,7 +3987,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 #ifdef RENEWAL
 							skillratio += 150 + 150*skill_lv;
 						//if(sd && sd->sc.data[SC_KAHU_ENTEN])
-							//skillratio += 15; // bônus de 15%
+							//skillratio += 15; // bÃ´nus de 15%
 #else
 							skillratio += 50*(skill_lv-1);
 #endif
@@ -3987,7 +3996,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 #ifdef RENEWAL
 							skillratio += 100 + 50*skill_lv;
 						//if(sd && sd->sc.data[SC_HYOUHU_HUBUKI])
-							//skillratio += 25; // bônus de 25%
+							//skillratio += 25; // bÃ´nus de 25%
 #else
 							skillratio += 50*skill_lv;
 #endif
@@ -3996,7 +4005,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 #ifdef RENEWAL
 							skillratio += 160 + 40*skill_lv;
 						//if(sd && sd->sc.data[SC_KAZEHU_SEIRAN])
-							//skillratio += 15; // bônus de 15%
+							//skillratio += 15; // bÃ´nus de 15%
 #else
 							skillratio += 60 + 40*skill_lv;
 #endif
@@ -4005,7 +4014,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 #ifdef RENEWAL
 							skillratio += 100 + 100*skill_lv;
 						//if(sd && sd->sc.data[SC_KAZEHU_SEIRAN])
-							//skillratio += 10; // bônus de 10%
+							//skillratio += 10; // bÃ´nus de 10%
 #else
 						case NPC_ENERGYDRAIN:
 							skillratio += 100*skill_lv;
@@ -4015,7 +4024,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 #ifdef RENEWAL
 							skillratio += 150;
 						//if(sd && sd->sc.data[SC_KAZEHU_SEIRAN])
-							//skillratio += 20; // bônus de 20%
+							//skillratio += 20; // bÃ´nus de 20%
 #else
 							skillratio += 50;
 #endif
@@ -4311,7 +4320,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 			 * RE MDEF Reduction
 			 * Damage = Magic Attack * (1000+eMDEF)/(1000+eMDEF) - sMDEF
 			 **/
-			if(battle_config.bRO_Renewal)    // Fórmula de Defesa Mágica por Equipamentos [brAthena - bRO]
+			if(battle_config.bRO_Renewal)    // FÃ³rmula de Defesa MÃ¡gica por Equipamentos [brAthena - bRO]
 				ad.damage = ad.damage * 1115 / (1115 - mdef2) / 2;
 			else
 				ad.damage = ad.damage * (1000 + mdef) / (1000 + mdef * 10) - mdef2;
@@ -4435,7 +4444,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 	}
 
 	s_ele = skill_get_ele(skill_id, skill_lv);
-	/* Recepção de elemento da arma (-1), Recepção do elemento através de status / efeitos(-2) & Recepção de elemento aleatório(-3) [brAthena] */
+	/* RecepÃ§Ã£o de elemento da arma (-1), RecepÃ§Ã£o do elemento atravÃ©s de status / efeitos(-2) & RecepÃ§Ã£o de elemento aleatÃ³rio(-3) [brAthena] */
 	if(s_ele == -1)
 		s_ele = sstatus->rhw.ele;
 	else if(s_ele == -2)
@@ -4551,7 +4560,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		case NPC_EVILLAND:
 			md.damage = skill_calc_heal(src,target,skill_id,skill_lv,false);
 			break;
-		case RK_DRAGONBREATH_WATER: // Conforme informação dano é o RK_DRAGONBREATH?
+		case RK_DRAGONBREATH_WATER: // Conforme informaÃ§Ã£o dano Ã© o RK_DRAGONBREATH?
 		case RK_DRAGONBREATH:
 			md.damage = ((status_get_hp(src) / 50) + (status_get_max_sp(src) / 4)) * skill_lv;
 			RE_LVL_MDMOD(150);
