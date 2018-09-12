@@ -1,18 +1,26 @@
 /****************************************************************************!
-*                _           _   _   _                                       *    
-*               | |__  _ __ / \ | |_| |__   ___ _ __   __ _                  *  
-*               | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                 *   
-*               | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                 *    
-*               |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                 *    
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
 *                                                                            *
+*                            eAmod Source File                               *
 *                                                                            *
-* \file src/char/char.c                                                      *
-* DescriÁ„o Prim·ria.                                                        *
-* DescriÁ„o mais elaborada sobre o arquivo.                                  *
-* \author brAthena, Athena, eAthena                                          *
-* \date ?                                                                    *
-* \todo ?                                                                    *  
-*****************************************************************************/ 
+******************************************************************************
+* src/char/char.c                                                            *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
+*****************************************************************************/
 
 #include "../common/cbasetypes.h"
 #include "../common/core.h"
@@ -153,7 +161,7 @@ struct char_session_data {
 	time_t pincode_change;
 	uint16 pincode_try;
 	// Sistema de mudar slot
-	unsigned int char_moves[MAX_CHARS]; // personagem se move ‡ esquerda
+	unsigned int char_moves[MAX_CHARS]; // personagem se move √† esquerda
 };
 
 int max_connect_user = -1;
@@ -170,7 +178,7 @@ int guild_add_members = 6;
 int bg_regular_rewards[3] = { 0, 0, 0 };
 int bg_ranked_rewards[3] = { 0, 0, 0 };
 
-// Sistema de cÛdigo PIN
+// Sistema de c√≥digo PIN
 #define PINCODE_OK 0
 #define PINCODE_ASK 1
 #define PINCODE_NOTSET 2
@@ -1286,7 +1294,7 @@ int mmo_chars_fromsql(struct char_session_data *sd, uint8 *buf)
 		j += mmo_char_tobuf(WBUFP(buf, j), &p);
 
 		// Sistema de mudar slot
-		// armazena a informaÁ„o necess·ria para a sess„o
+		// armazena a informa√ß√£o necess√°ria para a sess√£o
 		sd->char_moves[p.slot] = p.character_moves;
 	}
 
@@ -2804,9 +2812,9 @@ int parse_fromlogin(int fd)
 						mmo_char_send006b(i, sd);
 #if PACKETVER >=  20110309
 					if(pincode_enabled) {
-						// Sistema de cÛdigo PIN habilitado
+						// Sistema de c√≥digo PIN habilitado
 						if(strlen(sd->pincode) <= 0) {
-							// N„o definiu ainda nenhum cÛdigo PIN
+							// N√£o definiu ainda nenhum c√≥digo PIN
 							if(pincode_enabled) {
 								pincode_sendstate(i, sd, PINCODE_NEW);
 							}else{
@@ -2817,19 +2825,19 @@ int parse_fromlogin(int fd)
 								struct online_char_data* node = (struct online_char_data*)idb_get(online_char_db, sd->account_id);
 
 								if(node != NULL && node->pincode_success) {
-									// Usu·rio j· passou da verificaÁ„o
+									// Usu√°rio j√° passou da verifica√ß√£o
 									pincode_sendstate(i, sd, PINCODE_OK);
 								}else{
-									// Pedir ao usu·rio o seu cÛdigo PIN
+									// Pedir ao usu√°rio o seu c√≥digo PIN
 									pincode_sendstate(i, sd, PINCODE_ASK);
 								}
 							}else{
-								// Usu·rio n„o mudou a muito tempo o seu cÛdigo PIN
+								// Usu√°rio n√£o mudou a muito tempo o seu c√≥digo PIN
 								pincode_sendstate(i, sd, PINCODE_EXPIRED);
 							}
 						}
 					}else{
-						// Sistema de cÛdigo PIN, desativado
+						// Sistema de c√≥digo PIN, desativado
 						pincode_sendstate( i, sd, PINCODE_OK );
 					}
 #endif
@@ -5085,7 +5093,7 @@ int parse_char(int fd)
 			RFIFOSKIP(fd,6);
 		break;
 
-		// SolicitaÁ„o de alteraÁ„o do cÛdigo PIN
+		// Solicita√ß√£o de altera√ß√£o do c√≥digo PIN
 		case 0x8be:
 			if(RFIFOREST(fd) < 14)
 				return 0;
@@ -5111,7 +5119,7 @@ int parse_char(int fd)
 			RFIFOSKIP(fd,10);
 		break;
 
-		// solicitaÁ„o para movimentar o personagem
+		// solicita√ß√£o para movimentar o personagem
 		case 0x8d4:
 			if(RFIFOREST(fd) < 8)
 				return 0;
@@ -5297,7 +5305,7 @@ int check_connect_login_server(int tid, unsigned int tick, int id, intptr_t data
 }
 
 //------------------------------------------------
-//Sistema de cÛdigo PIN
+//Sistema de c√≥digo PIN
 //------------------------------------------------
 void pincode_check(int fd, struct char_session_data* sd) {
 	char pin[5] = "\0\0\0\0";
@@ -5355,15 +5363,15 @@ void pincode_setnew(int fd, struct char_session_data* sd) {
 	pincode_sendstate(fd, sd, PINCODE_OK);
 }
 
-// 0 = desativado / PIN È correto
+// 0 = desativado / PIN √© correto
 // 1 = Pedir PIN - cliente envia 0x8b8
 // 2 = Criar um novo PIN - cliente envia 0x8ba
 // 3 = PIN deve ser mudado - cliente 0x8be
 // 4 = Criar novo PIN - cliente envia 0x8ba
 // 5 = Cliente mostra msgstr(1896)
-// 6 = Cliente mostra msgstr(1897) incapaz de usar seu n˙mero KSSN
-// 7 = Char selecionar janela mostra um bot„o - cliente envia 0x8c5
-// 8 = CÛdigo PIN estava incorreto
+// 6 = Cliente mostra msgstr(1897) incapaz de usar seu n√∫mero KSSN
+// 7 = Char selecionar janela mostra um bot√£o - cliente envia 0x8c5
+// 8 = C√≥digo PIN estava incorreto
 void pincode_sendstate(int fd, struct char_session_data* sd, uint16 state) {
 	WFIFOHEAD(fd, 12);
 	WFIFOW(fd, 0) = 0x8b9;
@@ -5414,13 +5422,13 @@ void pincode_decrypt(unsigned long userSeed, char* pin) {
 //Sistema de mudar slot
 //------------------------------------------------
 void moveCharSlot(int fd, struct char_session_data* sd, unsigned short from, unsigned short to) {
-	// mudaram muitas vezes, ou ele est· desabilitado ?
+	// mudaram muitas vezes, ou ele est√° desabilitado ?
 	if(!char_move_enabled || (!char_moves_unlimited && sd->char_moves[from] <= 0)) {
 		moveCharSlotReply(fd, sd, from, 1);
 		return;
 	}
 
-	// N„o tem nenhum personagem de slot escolhido ?
+	// N√£o tem nenhum personagem de slot escolhido ?
 	if(sd->found_char[from] <= 0) {
 		moveCharSlotReply(fd, sd, from, 1);
 		return;
@@ -5428,8 +5436,8 @@ void moveCharSlot(int fd, struct char_session_data* sd, unsigned short from, uns
 
 	if(sd->found_char[to] > 0) {
 		// Tentando colocar char em um slot ocupado
-		if(char_movetoused) { // TODO:  verificar se o alvo est· em processo de exclus„o
-			// Admin usa troca em tri‚ngulo
+		if(char_movetoused) { // TODO:  verificar se o alvo est√° em processo de exclus√£o
+			// Admin usa troca em tri√¢ngulo
 			if(	   SQL_ERROR == Sql_QueryStr(sql_handle, "START TRANSACTION")
 				|| SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `char_num`='%d' WHERE `char_id` = '%d'", char_db, to, sd->found_char[from])
 				|| SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `char_num`='%d' WHERE `char_id` = '%d'", char_db, from, sd->found_char[to])
@@ -5441,7 +5449,7 @@ void moveCharSlot(int fd, struct char_session_data* sd, unsigned short from, uns
 				return;
 			}
 		}else{
-			// Admin n„o permite
+			// Admin n√£o permite
 			moveCharSlotReply(fd, sd, from, 1);
 			return;
 		}
@@ -5456,12 +5464,12 @@ void moveCharSlot(int fd, struct char_session_data* sd, unsigned short from, uns
 		Sql_Query(sql_handle, "UPDATE `%s` SET `moves`='%d' WHERE `char_id`='%d'", char_db, sd->char_moves[from], sd->found_char[from]);
 	}
 
-	// Personagem movido com Íxito - tempo para notificar o cliente
+	// Personagem movido com √™xito - tempo para notificar o cliente
 	moveCharSlotReply(fd, sd, from, 0);
 	mmo_char_send006b(fd, sd);
 }
 
-// raz„o
+// raz√£o
 // 0: successo
 // 1: falhou
 void moveCharSlotReply(int fd, struct char_session_data* sd, unsigned short index, short reason) {
