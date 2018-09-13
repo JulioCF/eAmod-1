@@ -1,14 +1,26 @@
-// (c) 2008 - 2011 eAmod Project; Andres Garbanzo / Zephyrus
-//
-//  - gaiaro.staff@yahoo.com
-//  - MSN andresjgm.cr@hotmail.com
-//  - Skype: Zephyrus_cr
-//  - Site: http://dev.terra-gaming.com
-//
-// This file is NOT public - you are not allowed to distribute it.
-// Authorized Server List : http://dev.terra-gaming.com/index.php?/topic/72-authorized-eamod-servers/
-// eAmod is a non Free, extended version of eAthena Ragnarok Private Server.
-
+/****************************************************************************!
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
+*                                                                            *
+*                            eAmod Source File                               *
+*                                                                            *
+******************************************************************************
+* src/map/script.c                                                           *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
+*****************************************************************************/
 //#define DEBUG_DISP
 //#define DEBUG_DISASM
 //#define DEBUG_RUN
@@ -277,9 +289,9 @@ static struct {
 		int count;
 		int flag;
 		struct linkdb_node *case_label;
-	} curly[256];		// ‰EƒJƒbƒR‚Ìî•ñ
-	int curly_count;	// ‰EƒJƒbƒR‚Ì”
-	int index;			// ƒXƒNƒŠƒvƒg“à‚Åg—p‚µ‚½\•¶‚Ì”
+	} curly[256];		// å³ã‚«ãƒƒã‚³ã®æƒ…å ±
+	int curly_count;	// å³ã‚«ãƒƒã‚³ã®æ•°
+	int index;			// ã‚¹ã‚¯ãƒªãƒ—ãƒˆå†…ã§ä½¿ç”¨ã—ãŸæ§‹æ–‡ã®æ•°
 } syntax;
 
 const char* parse_curly_close(const char* p);
@@ -308,7 +320,7 @@ extern script_function buildin_func[];
 static struct linkdb_node* sleep_db;// int oid -> struct script_state*
 
 /*==========================================
- * ƒ[ƒJƒ‹ƒvƒƒgƒ^ƒCƒvéŒ¾ (•K—v‚È•¨‚Ì‚İ)
+ * ãƒ­ãƒ¼ã‚«ãƒ«ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€ (å¿…è¦ãªç‰©ã®ã¿)
  *------------------------------------------*/
 const char* parse_subexpr(const char* p,int limit);
 int run_func(struct script_state *st);
@@ -549,7 +561,7 @@ static void script_reportfunc(struct script_state* st)
 
 
 /*==========================================
- * ƒGƒ‰[ƒƒbƒZ[ƒWo—Í
+ * ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡ºåŠ›
  *------------------------------------------*/
 static void disp_error_message2(const char *mes,const char *pos,int report)
 {
@@ -739,7 +751,7 @@ static void add_scripti(int a)
 
 ///
 /// @param l The id of the str_data entry
-// Å‘å16M‚Ü‚Å
+// æœ€å¤§16Mã¾ã§
 static void add_scriptl(int l)
 {
 	int backpatch = str_data[l].backpatch;
@@ -754,7 +766,7 @@ static void add_scriptl(int l)
 		break;
 	case C_NOP:
 	case C_USERFUNC:
-		// ƒ‰ƒxƒ‹‚Ì‰Â”\«‚ª‚ ‚é‚Ì‚Åbackpatch—pƒf[ƒ^–„‚ß‚İ
+		// ãƒ©ãƒ™ãƒ«ã®å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã§backpatchç”¨ãƒ‡ãƒ¼ã‚¿åŸ‹ã‚è¾¼ã¿
 		add_scriptc(C_NAME);
 		str_data[l].backpatch = script_pos;
 		add_scriptb(backpatch);
@@ -776,7 +788,7 @@ static void add_scriptl(int l)
 }
 
 /*==========================================
- * ƒ‰ƒxƒ‹‚ğ‰ğŒˆ‚·‚é
+ * ãƒ©ãƒ™ãƒ«ã‚’è§£æ±ºã™ã‚‹
  *------------------------------------------*/
 void set_label(int l,int pos, const char* script_pos)
 {
@@ -997,7 +1009,7 @@ static void parse_nextline(bool first, const char* p)
 }
 
 /*==========================================
- * €‚Ì‰ğÍ
+ * é …ã®è§£æ
  *------------------------------------------*/
 const char* parse_simpleexpr(const char *p)
 {
@@ -1083,7 +1095,7 @@ const char* parse_simpleexpr(const char *p)
 }
 
 /*==========================================
- * ®‚Ì‰ğÍ
+ * å¼ã®è§£æ
  *------------------------------------------*/
 const char* parse_subexpr(const char* p,int limit)
 {
@@ -1145,7 +1157,7 @@ const char* parse_subexpr(const char* p,int limit)
 }
 
 /*==========================================
- * ®‚Ì•]‰¿
+ * å¼ã®è©•ä¾¡
  *------------------------------------------*/
 const char* parse_expr(const char *p)
 {
@@ -1159,7 +1171,7 @@ const char* parse_expr(const char *p)
 }
 
 /*==========================================
- * s‚Ì‰ğÍ
+ * è¡Œã®è§£æ
  *------------------------------------------*/
 const char* parse_line(const char* p)
 {
@@ -1167,7 +1179,7 @@ const char* parse_line(const char* p)
 
 	p=skip_space(p);
 	if(*p==';') {
-		// if(); for(); while(); ‚Ì‚½‚ß‚É•Â‚¶”»’è
+		// if(); for(); while(); ã®ãŸã‚ã«é–‰ã˜åˆ¤å®š
 		p = parse_syntax_close(p + 1);
 		return p;
 	}
@@ -1185,7 +1197,7 @@ const char* parse_line(const char* p)
 		return parse_curly_close(p);
 	}
 
-	// \•¶ŠÖ˜A‚Ìˆ—
+	// æ§‹æ–‡é–¢é€£ã®å‡¦ç†
 	p2 = parse_syntax(p);
 	if(p2 != NULL)
 		return p2;
@@ -1201,13 +1213,13 @@ const char* parse_line(const char* p)
 			disp_error_message("parse_line: need ';'",p);
 	}
 
-	// if, for , while ‚Ì•Â‚¶”»’è
+	// if, for , while ã®é–‰ã˜åˆ¤å®š
 	p = parse_syntax_close(p+1);
 
 	return p;
 }
 
-// { ... } ‚Ì•Â‚¶ˆ—
+// { ... } ã®é–‰ã˜å‡¦ç†
 const char* parse_curly_close(const char* p)
 {
 	if(syntax.curly_count <= 0) {
@@ -1215,46 +1227,46 @@ const char* parse_curly_close(const char* p)
 		return p + 1;
 	} else if(syntax.curly[syntax.curly_count-1].type == TYPE_NULL) {
 		syntax.curly_count--;
-		// if, for , while ‚Ì•Â‚¶”»’è
+		// if, for , while ã®é–‰ã˜åˆ¤å®š
 		p = parse_syntax_close(p + 1);
 		return p;
 	} else if(syntax.curly[syntax.curly_count-1].type == TYPE_SWITCH) {
-		// switch() •Â‚¶”»’è
+		// switch() é–‰ã˜åˆ¤å®š
 		int pos = syntax.curly_count-1;
 		char label[256];
 		int l;
-		// ˆê•Ï”‚ğÁ‚·
+		// ä¸€æ™‚å¤‰æ•°ã‚’æ¶ˆã™
 		sprintf(label,"set $@__SW%x_VAL,0;",syntax.curly[pos].index);
 		syntax.curly[syntax.curly_count++].type = TYPE_NULL;
 		parse_line(label);
 		syntax.curly_count--;
 
-		// –³ğŒ‚ÅI—¹ƒ|ƒCƒ“ƒ^‚ÉˆÚ“®
+		// ç„¡æ¡ä»¶ã§çµ‚äº†ãƒã‚¤ãƒ³ã‚¿ã«ç§»å‹•
 		sprintf(label,"goto __SW%x_FIN;",syntax.curly[pos].index);
 		syntax.curly[syntax.curly_count++].type = TYPE_NULL;
 		parse_line(label);
 		syntax.curly_count--;
 
-		// Œ»İ’n‚Ìƒ‰ƒxƒ‹‚ğ•t‚¯‚é
+		// ç¾åœ¨åœ°ã®ãƒ©ãƒ™ãƒ«ã‚’ä»˜ã‘ã‚‹
 		sprintf(label,"__SW%x_%x",syntax.curly[pos].index,syntax.curly[pos].count);
 		l=add_str(label);
 		set_label(l,script_pos, p);
 
 		if(syntax.curly[pos].flag) {
-			// default ‚ª‘¶İ‚·‚é
+			// default ãŒå­˜åœ¨ã™ã‚‹
 			sprintf(label,"goto __SW%x_DEF;",syntax.curly[pos].index);
 			syntax.curly[syntax.curly_count++].type = TYPE_NULL;
 			parse_line(label);
 			syntax.curly_count--;
 		}
 
-		// I—¹ƒ‰ƒxƒ‹‚ğ•t‚¯‚é
+		// çµ‚äº†ãƒ©ãƒ™ãƒ«ã‚’ä»˜ã‘ã‚‹
 		sprintf(label,"__SW%x_FIN",syntax.curly[pos].index);
 		l=add_str(label);
 		set_label(l,script_pos, p);
 		linkdb_final(&syntax.curly[pos].case_label);	// free the list of case label
 		syntax.curly_count--;
-		// if, for , while ‚Ì•Â‚¶”»’è
+		// if, for , while ã®é–‰ã˜åˆ¤å®š
 		p = parse_syntax_close(p + 1);
 		return p;
 	} else {
@@ -1263,9 +1275,9 @@ const char* parse_curly_close(const char* p)
 	}
 }
 
-// \•¶ŠÖ˜A‚Ìˆ—
+// æ§‹æ–‡é–¢é€£ã®å‡¦ç†
 //	 break, case, continue, default, do, for, function,
-//	 if, switch, while ‚ğ‚±‚Ì“à•”‚Åˆ—‚µ‚Ü‚·B
+//	 if, switch, while ã‚’ã“ã®å†…éƒ¨ã§å‡¦ç†ã—ã¾ã™ã€‚
 const char* parse_syntax(const char* p)
 {
 	const char *p2 = skip_word(p);
@@ -1274,7 +1286,7 @@ const char* parse_syntax(const char* p)
 	case 'B':
 	case 'b':
 		if(p2 - p == 5 && !strncasecmp(p,"break",5)) {
-			// break ‚Ìˆ—
+			// break ã®å‡¦ç†
 			char label[256];
 			int pos = syntax.curly_count - 1;
 			while(pos >= 0) {
@@ -1303,7 +1315,7 @@ const char* parse_syntax(const char* p)
 			p = skip_space(p2);
 			if(*p != ';')
 				disp_error_message("parse_syntax: need ';'",p);
-			// if, for , while ‚Ì•Â‚¶”»’è
+			// if, for , while ã®é–‰ã˜åˆ¤å®š
 			p = parse_syntax_close(p + 1);
 			return p;
 		}
@@ -1311,7 +1323,7 @@ const char* parse_syntax(const char* p)
 	case 'c':
 	case 'C':
 		if(p2 - p == 4 && !strncasecmp(p,"case",4)) {
-			// case ‚Ìˆ—
+			// case ã®å‡¦ç†
 			int pos = syntax.curly_count-1;
 			if(pos < 0 || syntax.curly[pos].type != TYPE_SWITCH) {
 				disp_error_message("parse_syntax: unexpected 'case' ",p);
@@ -1321,18 +1333,18 @@ const char* parse_syntax(const char* p)
 				int  l,v;
 				char *np;
 				if(syntax.curly[pos].count != 1) {
-					// FALLTHRU —p‚ÌƒWƒƒƒ“ƒv
+					// FALLTHRU ç”¨ã®ã‚¸ãƒ£ãƒ³ãƒ—
 					sprintf(label,"goto __SW%x_%xJ;",syntax.curly[pos].index,syntax.curly[pos].count);
 					syntax.curly[syntax.curly_count++].type = TYPE_NULL;
 					parse_line(label);
 					syntax.curly_count--;
 
-					// Œ»İ’n‚Ìƒ‰ƒxƒ‹‚ğ•t‚¯‚é
+					// ç¾åœ¨åœ°ã®ãƒ©ãƒ™ãƒ«ã‚’ä»˜ã‘ã‚‹
 					sprintf(label,"__SW%x_%x",syntax.curly[pos].index,syntax.curly[pos].count);
 					l=add_str(label);
 					set_label(l,script_pos, p);
 				}
-				// switch ”»’è•¶
+				// switch åˆ¤å®šæ–‡
 				p = skip_space(p2);
 				if(p == p2) {
 					disp_error_message("parse_syntax: expect space ' '",p);
@@ -1360,12 +1372,12 @@ const char* parse_syntax(const char* p)
 				sprintf(label,"if(%d != $@__SW%x_VAL) goto __SW%x_%x;",
 					v,syntax.curly[pos].index,syntax.curly[pos].index,syntax.curly[pos].count+1);
 				syntax.curly[syntax.curly_count++].type = TYPE_NULL;
-				// ‚Q‰ñparse ‚µ‚È‚¢‚Æƒ_ƒ
+				// ï¼’å›parse ã—ãªã„ã¨ãƒ€ãƒ¡
 				p2 = parse_line(label);
 				parse_line(p2);
 				syntax.curly_count--;
 				if(syntax.curly[pos].count != 1) {
-					// FALLTHRU I—¹Œã‚Ìƒ‰ƒxƒ‹
+					// FALLTHRU çµ‚äº†å¾Œã®ãƒ©ãƒ™ãƒ«
 					sprintf(label,"__SW%x_%xJ",syntax.curly[pos].index,syntax.curly[pos].count);
 					l=add_str(label);
 					set_label(l,script_pos,p);
@@ -1384,13 +1396,13 @@ const char* parse_syntax(const char* p)
 			}
 			return p + 1;
 		} else if(p2 - p == 8 && !strncasecmp(p,"continue",8)) {
-			// continue ‚Ìˆ—
+			// continue ã®å‡¦ç†
 			char label[256];
 			int pos = syntax.curly_count - 1;
 			while(pos >= 0) {
 				if(syntax.curly[pos].type == TYPE_DO) {
 					sprintf(label,"goto __DO%x_NXT;",syntax.curly[pos].index);
-					syntax.curly[pos].flag = 1; // continue —p‚ÌƒŠƒ“ƒN’£‚éƒtƒ‰ƒO
+					syntax.curly[pos].flag = 1; // continue ç”¨ã®ãƒªãƒ³ã‚¯å¼µã‚‹ãƒ•ãƒ©ã‚°
 					break;
 				} else if(syntax.curly[pos].type == TYPE_FOR) {
 					sprintf(label,"goto __FR%x_NXT;",syntax.curly[pos].index);
@@ -1411,7 +1423,7 @@ const char* parse_syntax(const char* p)
 			p = skip_space(p2);
 			if(*p != ';')
 				disp_error_message("parse_syntax: need ';'",p);
-			// if, for , while ‚Ì•Â‚¶”»’è
+			// if, for , while ã®é–‰ã˜åˆ¤å®š
 			p = parse_syntax_close(p + 1);
 			return p;
 		}
@@ -1419,7 +1431,7 @@ const char* parse_syntax(const char* p)
 	case 'd':
 	case 'D':
 		if(p2 - p == 7 && !strncasecmp(p,"default",7)) {
-			// switch - default ‚Ìˆ—
+			// switch - default ã®å‡¦ç†
 			int pos = syntax.curly_count-1;
 			if(pos < 0 || syntax.curly[pos].type != TYPE_SWITCH) {
 				disp_error_message("parse_syntax: unexpected 'default'",p);
@@ -1428,7 +1440,7 @@ const char* parse_syntax(const char* p)
 			} else {
 				char label[256];
 				int l;
-				// Œ»İ’n‚Ìƒ‰ƒxƒ‹‚ğ•t‚¯‚é
+				// ç¾åœ¨åœ°ã®ãƒ©ãƒ™ãƒ«ã‚’ä»˜ã‘ã‚‹
 				p = skip_space(p2);
 				if(*p != ':') {
 					disp_error_message("parse_syntax: need ':'",p);
@@ -1437,13 +1449,13 @@ const char* parse_syntax(const char* p)
 				l=add_str(label);
 				set_label(l,script_pos,p);
 
-				// –³ğŒ‚ÅŸ‚ÌƒŠƒ“ƒN‚É”ò‚Î‚·
+				// ç„¡æ¡ä»¶ã§æ¬¡ã®ãƒªãƒ³ã‚¯ã«é£›ã°ã™
 				sprintf(label,"goto __SW%x_%x;",syntax.curly[pos].index,syntax.curly[pos].count+1);
 				syntax.curly[syntax.curly_count++].type = TYPE_NULL;
 				parse_line(label);
 				syntax.curly_count--;
 
-				// default ‚Ìƒ‰ƒxƒ‹‚ğ•t‚¯‚é
+				// default ã®ãƒ©ãƒ™ãƒ«ã‚’ä»˜ã‘ã‚‹
 				sprintf(label,"__SW%x_DEF",syntax.curly[pos].index);
 				l=add_str(label);
 				set_label(l,script_pos,p);
@@ -1461,7 +1473,7 @@ const char* parse_syntax(const char* p)
 			syntax.curly[syntax.curly_count].count = 1;
 			syntax.curly[syntax.curly_count].index = syntax.index++;
 			syntax.curly[syntax.curly_count].flag  = 0;
-			// Œ»İ’n‚Ìƒ‰ƒxƒ‹Œ`¬‚·‚é
+			// ç¾åœ¨åœ°ã®ãƒ©ãƒ™ãƒ«å½¢æˆã™ã‚‹
 			sprintf(label,"__DO%x_BGN",syntax.curly[syntax.curly_count].index);
 			l=add_str(label);
 			set_label(l,script_pos,p);
@@ -1487,22 +1499,22 @@ const char* parse_syntax(const char* p)
 				disp_error_message("parse_syntax: need '('",p);
 			p++;
 
-			// ‰Šú‰»•¶‚ğÀs‚·‚é
+			// åˆæœŸåŒ–æ–‡ã‚’å®Ÿè¡Œã™ã‚‹
 			syntax.curly[syntax.curly_count++].type = TYPE_NULL;
 			p=parse_line(p);
 			syntax.curly_count--;
 
-			// ğŒ”»’fŠJn‚Ìƒ‰ƒxƒ‹Œ`¬‚·‚é
+			// æ¡ä»¶åˆ¤æ–­é–‹å§‹ã®ãƒ©ãƒ™ãƒ«å½¢æˆã™ã‚‹
 			sprintf(label,"__FR%x_J",syntax.curly[pos].index);
 			l=add_str(label);
 			set_label(l,script_pos,p);
 
 			p=skip_space(p);
 			if(*p == ';') {
-				// for(;;) ‚Ìƒpƒ^[ƒ“‚È‚Ì‚Å•K‚¸^
+				// for(;;) ã®ãƒ‘ã‚¿ãƒ¼ãƒ³ãªã®ã§å¿…ãšçœŸ
 				;
 			} else {
-				// ğŒ‚ª‹U‚È‚çI—¹’n“_‚É”ò‚Î‚·
+				// æ¡ä»¶ãŒå½ãªã‚‰çµ‚äº†åœ°ç‚¹ã«é£›ã°ã™
 				sprintf(label,"__FR%x_FIN",syntax.curly[pos].index);
 				add_scriptl(add_str("jump_zero"));
 				add_scriptc(C_ARG);
@@ -1515,32 +1527,32 @@ const char* parse_syntax(const char* p)
 				disp_error_message("parse_syntax: need ';'",p);
 			p++;
 
-			// ƒ‹[ƒvŠJn‚É”ò‚Î‚·
+			// ãƒ«ãƒ¼ãƒ—é–‹å§‹ã«é£›ã°ã™
 			sprintf(label,"goto __FR%x_BGN;",syntax.curly[pos].index);
 			syntax.curly[syntax.curly_count++].type = TYPE_NULL;
 			parse_line(label);
 			syntax.curly_count--;
 
-			// Ÿ‚Ìƒ‹[ƒv‚Ö‚Ìƒ‰ƒxƒ‹Œ`¬‚·‚é
+			// æ¬¡ã®ãƒ«ãƒ¼ãƒ—ã¸ã®ãƒ©ãƒ™ãƒ«å½¢æˆã™ã‚‹
 			sprintf(label,"__FR%x_NXT",syntax.curly[pos].index);
 			l=add_str(label);
 			set_label(l,script_pos,p);
 
-			// Ÿ‚Ìƒ‹[ƒv‚É“ü‚é‚Ìˆ—
-			// for ÅŒã‚Ì ')' ‚ğ ';' ‚Æ‚µ‚Äˆµ‚¤ƒtƒ‰ƒO
+			// æ¬¡ã®ãƒ«ãƒ¼ãƒ—ã«å…¥ã‚‹æ™‚ã®å‡¦ç†
+			// for æœ€å¾Œã® ')' ã‚’ ';' ã¨ã—ã¦æ‰±ã†ãƒ•ãƒ©ã‚°
 			parse_syntax_for_flag = 1;
 			syntax.curly[syntax.curly_count++].type = TYPE_NULL;
 			p=parse_line(p);
 			syntax.curly_count--;
 			parse_syntax_for_flag = 0;
 
-			// ğŒ”»’èˆ—‚É”ò‚Î‚·
+			// æ¡ä»¶åˆ¤å®šå‡¦ç†ã«é£›ã°ã™
 			sprintf(label,"goto __FR%x_J;",syntax.curly[pos].index);
 			syntax.curly[syntax.curly_count++].type = TYPE_NULL;
 			parse_line(label);
 			syntax.curly_count--;
 
-			// ƒ‹[ƒvŠJn‚Ìƒ‰ƒxƒ‹•t‚¯
+			// ãƒ«ãƒ¼ãƒ—é–‹å§‹ã®ãƒ©ãƒ™ãƒ«ä»˜ã‘
 			sprintf(label,"__FR%x_BGN",syntax.curly[pos].index);
 			l=add_str(label);
 			set_label(l,script_pos,p);
@@ -1567,7 +1579,7 @@ const char* parse_syntax(const char* p)
 				else
 					disp_error_message("parse_syntax:function: function name is invalid", func_name);
 
-				// if, for , while ‚Ì•Â‚¶”»’è
+				// if, for , while ã®é–‰ã˜åˆ¤å®š
 				p = parse_syntax_close(p2 + 1);
 				return p;
 			}
@@ -1612,7 +1624,7 @@ const char* parse_syntax(const char* p)
 	case 'i':
 	case 'I':
 		if(p2 - p == 2 && !strncasecmp(p,"if",2)) {
-			// if() ‚Ìˆ—
+			// if() ã®å‡¦ç†
 			char label[256];
 			p=skip_space(p2);
 			if(*p != '(') { //Prevent if this {} non-c syntax. from Rayce (jA)
@@ -1636,7 +1648,7 @@ const char* parse_syntax(const char* p)
 	case 's':
 	case 'S':
 		if(p2 - p == 6 && !strncasecmp(p,"switch",6)) {
-			// switch() ‚Ìˆ—
+			// switch() ã®å‡¦ç†
 			char label[256];
 			p=skip_space(p2);
 			if(*p != '(') {
@@ -1673,12 +1685,12 @@ const char* parse_syntax(const char* p)
 			syntax.curly[syntax.curly_count].count = 1;
 			syntax.curly[syntax.curly_count].index = syntax.index++;
 			syntax.curly[syntax.curly_count].flag  = 0;
-			// ğŒ”»’fŠJn‚Ìƒ‰ƒxƒ‹Œ`¬‚·‚é
+			// æ¡ä»¶åˆ¤æ–­é–‹å§‹ã®ãƒ©ãƒ™ãƒ«å½¢æˆã™ã‚‹
 			sprintf(label,"__WL%x_NXT",syntax.curly[syntax.curly_count].index);
 			l=add_str(label);
 			set_label(l,script_pos,p);
 
-			// ğŒ‚ª‹U‚È‚çI—¹’n“_‚É”ò‚Î‚·
+			// æ¡ä»¶ãŒå½ãªã‚‰çµ‚äº†åœ°ç‚¹ã«é£›ã°ã™
 			sprintf(label,"__WL%x_FIN",syntax.curly[syntax.curly_count].index);
 			syntax.curly_count++;
 			add_scriptl(add_str("jump_zero"));
@@ -1695,7 +1707,7 @@ const char* parse_syntax(const char* p)
 }
 
 const char* parse_syntax_close(const char *p) {
-	// if(...) for(...) hoge(); ‚Ì‚æ‚¤‚ÉA‚P“x•Â‚¶‚ç‚ê‚½‚çÄ“x•Â‚¶‚ç‚ê‚é‚©Šm”F‚·‚é
+	// if(...) for(...) hoge(); ã®ã‚ˆã†ã«ã€ï¼‘åº¦é–‰ã˜ã‚‰ã‚ŒãŸã‚‰å†åº¦é–‰ã˜ã‚‰ã‚Œã‚‹ã‹ç¢ºèªã™ã‚‹
 	int flag;
 
 	do {
@@ -1704,9 +1716,9 @@ const char* parse_syntax_close(const char *p) {
 	return p;
 }
 
-// if, for , while , do ‚Ì•Â‚¶”»’è
-//	 flag == 1 : •Â‚¶‚ç‚ê‚½
-//	 flag == 0 : •Â‚¶‚ç‚ê‚È‚¢
+// if, for , while , do ã®é–‰ã˜åˆ¤å®š
+//	 flag == 1 : é–‰ã˜ã‚‰ã‚ŒãŸ
+//	 flag == 0 : é–‰ã˜ã‚‰ã‚Œãªã„
 const char* parse_syntax_close_sub(const char* p,int* flag)
 {
 	char label[256];
@@ -1724,13 +1736,13 @@ const char* parse_syntax_close_sub(const char* p,int* flag)
 		// if-block and else-block end is a new line
 		parse_nextline(false, p);
 
-		// if ÅIêŠ‚Ö”ò‚Î‚·
+		// if æœ€çµ‚å ´æ‰€ã¸é£›ã°ã™
 		sprintf(label,"goto __IF%x_FIN;",syntax.curly[pos].index);
 		syntax.curly[syntax.curly_count++].type = TYPE_NULL;
 		parse_line(label);
 		syntax.curly_count--;
 
-		// Œ»İ’n‚Ìƒ‰ƒxƒ‹‚ğ•t‚¯‚é
+		// ç¾åœ¨åœ°ã®ãƒ©ãƒ™ãƒ«ã‚’ä»˜ã‘ã‚‹
 		sprintf(label,"__IF%x_%x",syntax.curly[pos].index,syntax.curly[pos].count);
 		l=add_str(label);
 		set_label(l,script_pos,p);
@@ -1766,14 +1778,14 @@ const char* parse_syntax_close_sub(const char* p,int* flag)
 				}
 			}
 		}
-		// if •Â‚¶
+		// if é–‰ã˜
 		syntax.curly_count--;
-		// ÅI’n‚Ìƒ‰ƒxƒ‹‚ğ•t‚¯‚é
+		// æœ€çµ‚åœ°ã®ãƒ©ãƒ™ãƒ«ã‚’ä»˜ã‘ã‚‹
 		sprintf(label,"__IF%x_FIN",syntax.curly[pos].index);
 		l=add_str(label);
 		set_label(l,script_pos,p);
 		if(syntax.curly[pos].flag == 1) {
-			// ‚±‚Ìif‚É‘Î‚·‚éelse‚¶‚á‚È‚¢‚Ì‚Åƒ|ƒCƒ“ƒ^‚ÌˆÊ’u‚Í“¯‚¶
+			// ã“ã®ifã«å¯¾ã™ã‚‹elseã˜ã‚ƒãªã„ã®ã§ãƒã‚¤ãƒ³ã‚¿ã®ä½ç½®ã¯åŒã˜
 			return bp;
 		}
 		return p;
@@ -1783,13 +1795,13 @@ const char* parse_syntax_close_sub(const char* p,int* flag)
 		const char *p2;
 
 		if(syntax.curly[pos].flag) {
-			// Œ»İ’n‚Ìƒ‰ƒxƒ‹Œ`¬‚·‚é(continue ‚Å‚±‚±‚É—ˆ‚é)
+			// ç¾åœ¨åœ°ã®ãƒ©ãƒ™ãƒ«å½¢æˆã™ã‚‹(continue ã§ã“ã“ã«æ¥ã‚‹)
 			sprintf(label,"__DO%x_NXT",syntax.curly[pos].index);
 			l=add_str(label);
 			set_label(l,script_pos,p);
 		}
 
-		// ğŒ‚ª‹U‚È‚çI—¹’n“_‚É”ò‚Î‚·
+		// æ¡ä»¶ãŒå½ãªã‚‰çµ‚äº†åœ°ç‚¹ã«é£›ã°ã™
 		p = skip_space(p);
 		p2 = skip_word(p);
 		if(p2 - p != 5 || strncasecmp(p,"while",5))
@@ -1811,13 +1823,13 @@ const char* parse_syntax_close_sub(const char* p,int* flag)
 		add_scriptl(add_str(label));
 		add_scriptc(C_FUNC);
 
-		// ŠJn’n“_‚É”ò‚Î‚·
+		// é–‹å§‹åœ°ç‚¹ã«é£›ã°ã™
 		sprintf(label,"goto __DO%x_BGN;",syntax.curly[pos].index);
 		syntax.curly[syntax.curly_count++].type = TYPE_NULL;
 		parse_line(label);
 		syntax.curly_count--;
 
-		// ğŒI—¹’n“_‚Ìƒ‰ƒxƒ‹Œ`¬‚·‚é
+		// æ¡ä»¶çµ‚äº†åœ°ç‚¹ã®ãƒ©ãƒ™ãƒ«å½¢æˆã™ã‚‹
 		sprintf(label,"__DO%x_FIN",syntax.curly[pos].index);
 		l=add_str(label);
 		set_label(l,script_pos,p);
@@ -1833,13 +1845,13 @@ const char* parse_syntax_close_sub(const char* p,int* flag)
 		// for-block end is a new line
 		parse_nextline(false, p);
 
-		// Ÿ‚Ìƒ‹[ƒv‚É”ò‚Î‚·
+		// æ¬¡ã®ãƒ«ãƒ¼ãƒ—ã«é£›ã°ã™
 		sprintf(label,"goto __FR%x_NXT;",syntax.curly[pos].index);
 		syntax.curly[syntax.curly_count++].type = TYPE_NULL;
 		parse_line(label);
 		syntax.curly_count--;
 
-		// for I—¹‚Ìƒ‰ƒxƒ‹•t‚¯
+		// for çµ‚äº†ã®ãƒ©ãƒ™ãƒ«ä»˜ã‘
 		sprintf(label,"__FR%x_FIN",syntax.curly[pos].index);
 		l=add_str(label);
 		set_label(l,script_pos,p);
@@ -1849,13 +1861,13 @@ const char* parse_syntax_close_sub(const char* p,int* flag)
 		// while-block end is a new line
 		parse_nextline(false, p);
 
-		// while ğŒ”»’f‚Ö”ò‚Î‚·
+		// while æ¡ä»¶åˆ¤æ–­ã¸é£›ã°ã™
 		sprintf(label,"goto __WL%x_NXT;",syntax.curly[pos].index);
 		syntax.curly[syntax.curly_count++].type = TYPE_NULL;
 		parse_line(label);
 		syntax.curly_count--;
 
-		// while I—¹‚Ìƒ‰ƒxƒ‹•t‚¯
+		// while çµ‚äº†ã®ãƒ©ãƒ™ãƒ«ä»˜ã‘
 		sprintf(label,"__WL%x_FIN",syntax.curly[pos].index);
 		l=add_str(label);
 		set_label(l,script_pos,p);
@@ -1865,13 +1877,13 @@ const char* parse_syntax_close_sub(const char* p,int* flag)
 		int pos = syntax.curly_count-1;
 		char label[256];
 		int l;
-		// –ß‚·
+		// æˆ»ã™
 		sprintf(label,"return;");
 		syntax.curly[syntax.curly_count++].type = TYPE_NULL;
 		parse_line(label);
 		syntax.curly_count--;
 
-		// Œ»İ’n‚Ìƒ‰ƒxƒ‹‚ğ•t‚¯‚é
+		// ç¾åœ¨åœ°ã®ãƒ©ãƒ™ãƒ«ã‚’ä»˜ã‘ã‚‹
 		sprintf(label,"__FN%x_FIN",syntax.curly[pos].index);
 		l=add_str(label);
 		set_label(l,script_pos,p);
@@ -1884,7 +1896,7 @@ const char* parse_syntax_close_sub(const char* p,int* flag)
 }
 
 /*==========================================
- * ‘g‚İ‚İŠÖ”‚Ì’Ç‰Á
+ * çµ„ã¿è¾¼ã¿é–¢æ•°ã®è¿½åŠ 
  *------------------------------------------*/
 static void add_buildin_func(void)
 {
@@ -1952,7 +1964,7 @@ void script_set_constant(const char* name, int value, bool isparameter)
 }
 
 /*==========================================
- * ’è”ƒf[ƒ^ƒx[ƒX‚Ì“Ç‚İ‚İ
+ * å®šæ•°ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã®èª­ã¿è¾¼ã¿
  *------------------------------------------*/
 static void read_constdb(void)
 {
@@ -1980,7 +1992,7 @@ static void read_constdb(void)
 }
 
 /*==========================================
- * ƒGƒ‰[•\¦
+ * ã‚¨ãƒ©ãƒ¼è¡¨ç¤º
  *------------------------------------------*/
 static const char* script_print_line(StringBuf* buf, const char* p, const char* mark, int line)
 {
@@ -2002,7 +2014,7 @@ static const char* script_print_line(StringBuf* buf, const char* p, const char* 
 
 void script_error(const char* src, const char* file, int start_line, const char* error_msg, const char* error_pos)
 {
-	// ƒGƒ‰[‚ª”­¶‚µ‚½s‚ğ‹‚ß‚é
+	// ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸè¡Œã‚’æ±‚ã‚ã‚‹
 	int j;
 	int line = start_line;
 	const char *p;
@@ -2037,7 +2049,7 @@ void script_error(const char* src, const char* file, int start_line, const char*
 }
 
 /*==========================================
- * ƒXƒNƒŠƒvƒg‚Ì‰ğÍ
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®è§£æ
  *------------------------------------------*/
 struct script_code* parse_script(const char *src,const char *file,int line,int options)
 {
@@ -2133,7 +2145,7 @@ struct script_code* parse_script(const char *src,const char *file,int line,int o
 	{
 		if( *p == '\0' )
 			disp_error_message("unexpected end of script",p);
-		// label‚¾‚¯“Áêˆ—
+		// labelã ã‘ç‰¹æ®Šå‡¦ç†
 		tmpp=skip_space(skip_word(p));
 		if(*tmpp==':' && !(!strncasecmp(p,"default:",8) && p + 7 == tmpp)){
 			i=add_word(p);
@@ -2145,7 +2157,7 @@ struct script_code* parse_script(const char *src,const char *file,int line,int o
 			continue;
 		}
 
-		// ‘¼‚Í‘S•”ˆê‚­‚½
+		// ä»–ã¯å…¨éƒ¨ä¸€ç·’ããŸ
 		p=parse_line(p);
 		p=skip_space(p);
 
@@ -2733,7 +2745,7 @@ void pop_stack(struct script_state* st, int start, int end)
 ///
 
 /*==========================================
- * ƒXƒNƒŠƒvƒgˆË‘¶•Ï”AŠÖ”ˆË‘¶•Ï”‚Ì‰ğ•ú
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆä¾å­˜å¤‰æ•°ã€é–¢æ•°ä¾å­˜å¤‰æ•°ã®è§£æ”¾
  *------------------------------------------*/
 void script_free_vars(struct linkdb_node **node)
 {
@@ -2742,7 +2754,7 @@ void script_free_vars(struct linkdb_node **node)
 	{
 		const char* name = get_str((int)(n->key)&0x00ffffff);
 		if( is_string_variable(name) )
-			aFree(n->data); // •¶šŒ^•Ï”‚È‚Ì‚ÅAƒf[ƒ^íœ
+			aFree(n->data); // æ–‡å­—å‹å¤‰æ•°ãªã®ã§ã€ãƒ‡ãƒ¼ã‚¿å‰Šé™¤
 		n = n->next;
 	}
 	linkdb_final( node );
@@ -2803,10 +2815,10 @@ void script_free_state(struct script_state* st)
 }
 
 //
-// Às•”main
+// å®Ÿè¡Œéƒ¨main
 //
 /*==========================================
- * ƒRƒ}ƒ“ƒh‚Ì“Ç‚İæ‚è
+ * ã‚³ãƒãƒ³ãƒ‰ã®èª­ã¿å–ã‚Š
  *------------------------------------------*/
 c_op get_com(unsigned char *script,int *pos)
 {
@@ -2823,7 +2835,7 @@ c_op get_com(unsigned char *script,int *pos)
 }
 
 /*==========================================
- * ”’l‚ÌŠ“¾
+ * æ•°å€¤ã®æ‰€å¾—
  *------------------------------------------*/
 int get_num(unsigned char *script,int *pos)
 {
@@ -2837,7 +2849,7 @@ int get_num(unsigned char *script,int *pos)
 }
 
 /*==========================================
- * ƒXƒ^ƒbƒN‚©‚ç’l‚ğæ‚èo‚·
+ * ã‚¹ã‚¿ãƒƒã‚¯ã‹ã‚‰å€¤ã‚’å–ã‚Šå‡ºã™
  *------------------------------------------*/
 int pop_val(struct script_state* st)
 {
@@ -3279,7 +3291,7 @@ void script_stop_sleeptimers(int id)
 }
 
 /*==========================================
- * w’èƒm[ƒh‚ğsleep_db‚©‚çíœ
+ * æŒ‡å®šãƒãƒ¼ãƒ‰ã‚’sleep_dbã‹ã‚‰å‰Šé™¤
  *------------------------------------------*/
 struct linkdb_node* script_erase_sleepdb(struct linkdb_node *n)
 {
@@ -3295,11 +3307,11 @@ struct linkdb_node* script_erase_sleepdb(struct linkdb_node *n)
 		n->next->prev = n->prev;
 	retnode = n->next;
 	aFree( n );
-	return retnode;		// Ÿ‚Ìƒm[ƒh‚ğ•Ô‚·
+	return retnode;		// æ¬¡ã®ãƒãƒ¼ãƒ‰ã‚’è¿”ã™
 }
 
 /*==========================================
- * sleep—pƒ^ƒCƒ}[ŠÖ”
+ * sleepç”¨ã‚¿ã‚¤ãƒãƒ¼é–¢æ•°
  *------------------------------------------*/
 int run_script_timer(int tid, unsigned int tick, int id, intptr_t data)
 {
@@ -3384,7 +3396,7 @@ static void script_attach_state(struct script_state* st)
 }
 
 /*==========================================
- * ƒXƒNƒŠƒvƒg‚ÌÀsƒƒCƒ“•”•ª
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®å®Ÿè¡Œãƒ¡ã‚¤ãƒ³éƒ¨åˆ†
  *------------------------------------------*/
 void run_script_main(struct script_state *st)
 {
@@ -3693,7 +3705,7 @@ void script_setarray_pc(struct map_session_data* sd, const char* varname, uint8 
 
 
 /*==========================================
- * I—¹
+ * çµ‚äº†
  *------------------------------------------*/
 int do_final_script()
 {
@@ -3775,7 +3787,7 @@ int do_final_script()
 	return 0;
 }
 /*==========================================
- * ‰Šú‰»
+ * åˆæœŸåŒ–
  *------------------------------------------*/
 int do_init_script()
 {
@@ -4425,7 +4437,7 @@ BUILDIN_FUNC(warp)
 	return 0;
 }
 /*==========================================
- * ƒGƒŠƒAw’èƒ[ƒv
+ * ã‚¨ãƒªã‚¢æŒ‡å®šãƒ¯ãƒ¼ãƒ—
  *------------------------------------------*/
 static int buildin_areawarp_sub(struct block_list *bl,va_list ap)
 {
@@ -5572,7 +5584,7 @@ BUILDIN_FUNC(countitem2)
 }
 
 /*==========================================
- * d—Êƒ`ƒFƒbƒN
+ * é‡é‡ãƒã‚§ãƒƒã‚¯
  *------------------------------------------*/
 BUILDIN_FUNC(checkweight)
 {
@@ -5780,7 +5792,7 @@ BUILDIN_FUNC(getitem2)
 	c3=(short)script_getnum(st,9);
 	c4=(short)script_getnum(st,10);
 
-	if(nameid<0) { // ƒ‰ƒ“ƒ_ƒ€
+	if(nameid<0) { // ãƒ©ãƒ³ãƒ€ãƒ 
 		nameid=itemdb_searchrandomid(-nameid);
 		flag = 1;
 	}
@@ -6474,7 +6486,7 @@ BUILDIN_FUNC(makeitem)
 	} else
 		m=map_mapname2mapid(mapname);
 
-	if(nameid<0) { // ƒ‰ƒ“ƒ_ƒ€
+	if(nameid<0) { // ãƒ©ãƒ³ãƒ€ãƒ 
 		nameid=itemdb_searchrandomid(-nameid);
 		flag = 1;
 	}
@@ -6814,7 +6826,7 @@ BUILDIN_FUNC(disableitemuse)
 }
 
 /*==========================================
- *ƒLƒƒƒ‰ŠÖŒW‚Ìƒpƒ‰ƒ[ƒ^æ“¾
+ *ã‚­ãƒ£ãƒ©é–¢ä¿‚ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
  *------------------------------------------*/
 BUILDIN_FUNC(readparam)
 {
@@ -6837,7 +6849,7 @@ BUILDIN_FUNC(readparam)
 	return 0;
 }
 /*==========================================
- *ƒLƒƒƒ‰ŠÖŒW‚ÌIDæ“¾
+ *ã‚­ãƒ£ãƒ©é–¢ä¿‚ã®IDå–å¾—
  *------------------------------------------*/
 BUILDIN_FUNC(getcharid)
 {
@@ -6901,7 +6913,7 @@ BUILDIN_FUNC(getnpcid)
 	return 0;
 }
 /*==========================================
- *w’èID‚ÌPT–¼æ“¾
+ *æŒ‡å®šIDã®PTåå–å¾—
  *------------------------------------------*/
 BUILDIN_FUNC(getpartyname)
 {
@@ -6921,7 +6933,7 @@ BUILDIN_FUNC(getpartyname)
 	return 0;
 }
 /*==========================================
- *w’èID‚ÌPTl”‚Æƒƒ“ƒo[IDæ“¾
+ *æŒ‡å®šIDã®PTäººæ•°ã¨ãƒ¡ãƒ³ãƒãƒ¼IDå–å¾—
  *------------------------------------------*/
 BUILDIN_FUNC(getpartymember)
 {
@@ -6993,7 +7005,7 @@ BUILDIN_FUNC(getpartyleader)
 }
 
 /*==========================================
- *w’èID‚ÌƒMƒ‹ƒh–¼æ“¾
+ *æŒ‡å®šIDã®ã‚®ãƒ«ãƒ‰åå–å¾—
  *------------------------------------------*/
 BUILDIN_FUNC(getguildname)
 {
@@ -7014,7 +7026,7 @@ BUILDIN_FUNC(getguildname)
 }
 
 /*==========================================
- *w’èID‚ÌGuildMaster–¼æ“¾
+ *æŒ‡å®šIDã®GuildMasteråå–å¾—
  *------------------------------------------*/
 BUILDIN_FUNC(getguildmaster)
 {
@@ -7053,7 +7065,7 @@ BUILDIN_FUNC(getguildmasterid)
 }
 
 /*==========================================
- * ƒLƒƒƒ‰ƒNƒ^‚Ì–¼‘O
+ * ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®åå‰
  *------------------------------------------*/
 BUILDIN_FUNC(strcharinfo)
 {
@@ -7105,7 +7117,7 @@ BUILDIN_FUNC(strcharinfo)
 }
 
 /*==========================================
- * ŒÄ‚Ño‚µŒ³‚ÌNPCî•ñ‚ğæ“¾‚·‚é
+ * å‘¼ã³å‡ºã—å…ƒã®NPCæƒ…å ±ã‚’å–å¾—ã™ã‚‹
  *------------------------------------------*/
 BUILDIN_FUNC(strnpcinfo)
 {
@@ -7194,7 +7206,7 @@ BUILDIN_FUNC(getequipid)
 }
 
 /*==========================================
- * ‘•”õ–¼•¶š—ñi¸˜Bƒƒjƒ…[—pj
+ * è£…å‚™åæ–‡å­—åˆ—ï¼ˆç²¾éŒ¬ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”¨ï¼‰
  *------------------------------------------*/
 BUILDIN_FUNC(getequipname)
 {
@@ -7317,7 +7329,7 @@ BUILDIN_FUNC(repairall)
 }
 
 /*==========================================
- * ‘•”õƒ`ƒFƒbƒN
+ * è£…å‚™ãƒã‚§ãƒƒã‚¯
  *------------------------------------------*/
 BUILDIN_FUNC(getequipisequiped)
 {
@@ -7340,7 +7352,7 @@ BUILDIN_FUNC(getequipisequiped)
 }
 
 /*==========================================
- * ‘•”õ•i¸˜B‰Â”\ƒ`ƒFƒbƒN
+ * è£…å‚™å“ç²¾éŒ¬å¯èƒ½ãƒã‚§ãƒƒã‚¯
  *------------------------------------------*/
 BUILDIN_FUNC(getequipisenableref)
 {
@@ -7363,7 +7375,7 @@ BUILDIN_FUNC(getequipisenableref)
 }
 
 /*==========================================
- * ‘•”õ•iŠÓ’èƒ`ƒFƒbƒN
+ * è£…å‚™å“é‘‘å®šãƒã‚§ãƒƒã‚¯
  *------------------------------------------*/
 BUILDIN_FUNC(getequipisidentify)
 {
@@ -7386,7 +7398,7 @@ BUILDIN_FUNC(getequipisidentify)
 }
 
 /*==========================================
- * ‘•”õ•i¸˜B“x
+ * è£…å‚™å“ç²¾éŒ¬åº¦
  *------------------------------------------*/
 BUILDIN_FUNC(getequiprefinerycnt)
 {
@@ -7409,7 +7421,7 @@ BUILDIN_FUNC(getequiprefinerycnt)
 }
 
 /*==========================================
- * ‘•”õ•i•ŠíLV
+ * è£…å‚™å“æ­¦å™¨LV
  *------------------------------------------*/
 BUILDIN_FUNC(getequipweaponlv)
 {
@@ -7474,7 +7486,7 @@ BUILDIN_FUNC(getequipisbounded)
 }
 
 /*==========================================
- * ‘•”õ•i¸˜B¬Œ÷—¦
+ * è£…å‚™å“ç²¾éŒ¬æˆåŠŸç‡
  *------------------------------------------*/
 BUILDIN_FUNC(getequippercentrefinery)
 {
@@ -7542,7 +7554,7 @@ BUILDIN_FUNC(costume)
 }
 
 /*==========================================
- * Armor Enchanting
+ * æ¤rmor Enchanting
  *------------------------------------------*/
 BUILDIN_FUNC(successenchant)
 {
@@ -7611,7 +7623,7 @@ BUILDIN_FUNC(failedenchant)
 }
 
 /*==========================================
- * ¸˜B¬Œ÷
+ * ç²¾éŒ¬æˆåŠŸ
  *------------------------------------------*/
 BUILDIN_FUNC(successrefitem)
 {
@@ -7675,7 +7687,7 @@ BUILDIN_FUNC(successrefitem)
 }
 
 /*==========================================
- * ¸˜B¸”s
+ * ç²¾éŒ¬å¤±æ•—
  *------------------------------------------*/
 BUILDIN_FUNC(failedrefitem)
 {
@@ -7701,11 +7713,11 @@ BUILDIN_FUNC(failedrefitem)
 
 		sd->status.inventory[i].refine = 0;
 		pc_unequipitem(sd,i,3);
-		// ¸˜B¸”sƒGƒtƒFƒNƒg‚ÌƒpƒPƒbƒg
+		// ç²¾éŒ¬å¤±æ•—ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒ‘ã‚±ãƒƒãƒˆ
 		clif_refine(sd->fd,1,i,sd->status.inventory[i].refine);
 
 		pc_delitem(sd,i,1,0,2,LOG_TYPE_SCRIPT);
-		// ‘¼‚Ìl‚É‚à¸”s‚ğ’Ê’m
+		// ä»–ã®äººã«ã‚‚å¤±æ•—ã‚’é€šçŸ¥
 		clif_misceffect(&sd->bl,2);
 	}
 
@@ -8671,7 +8683,7 @@ BUILDIN_FUNC(gettimestr)
 }
 
 /*==========================================
- * ƒJƒvƒ‰‘qŒÉ‚ğŠJ‚­
+ * ã‚«ãƒ—ãƒ©å€‰åº«ã‚’é–‹ã
  *------------------------------------------*/
 BUILDIN_FUNC(openstorage)
 {
@@ -8711,7 +8723,7 @@ BUILDIN_FUNC(openrentstorage) // [ZephStorage]
 	return 0;
 }
 /*==========================================
- * ƒAƒCƒeƒ€‚É‚æ‚éƒXƒLƒ‹”­“®
+ * ã‚¢ã‚¤ãƒ†ãƒ ã«ã‚ˆã‚‹ã‚¹ã‚­ãƒ«ç™ºå‹•
  *------------------------------------------*/
 /// itemskill <skill id>,<level>
 /// itemskill "<skill name>",<level>
@@ -8734,7 +8746,7 @@ BUILDIN_FUNC(itemskill)
 	return 0;
 }
 /*==========================================
- * ƒAƒCƒeƒ€ì¬
+ * ã‚¢ã‚¤ãƒ†ãƒ ä½œæˆ
  *------------------------------------------*/
 BUILDIN_FUNC(produce)
 {
@@ -8784,7 +8796,7 @@ BUILDIN_FUNC(makerune)
 	return 0;
 }
 /*==========================================
- * NPC‚Åƒyƒbƒgì‚é
+ * NPCã§ãƒšãƒƒãƒˆä½œã‚‹
  *------------------------------------------*/
 BUILDIN_FUNC(makepet)
 {
@@ -8812,7 +8824,7 @@ BUILDIN_FUNC(makepet)
 	return 0;
 }
 /*==========================================
- * NPC‚ÅŒoŒ±’lã‚°‚é
+ * NPCã§çµŒé¨“å€¤ä¸Šã’ã‚‹
  *------------------------------------------*/
 BUILDIN_FUNC(getexp)
 {
@@ -8882,7 +8894,7 @@ BUILDIN_FUNC(guildchangegm)
 }
 
 /*==========================================
- * ƒ‚ƒ“ƒXƒ^[”­¶
+ * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç™ºç”Ÿ
  *------------------------------------------*/
 BUILDIN_FUNC(monster)
 {
@@ -9083,7 +9095,7 @@ BUILDIN_FUNC(getmobdrops)
 	return 0;
 }
 /*==========================================
- * ƒ‚ƒ“ƒXƒ^[”­¶
+ * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç™ºç”Ÿ
  *------------------------------------------*/
 BUILDIN_FUNC(areamonster)
 {
@@ -9127,7 +9139,7 @@ BUILDIN_FUNC(areamonster)
 	return 0;
 }
 /*==========================================
- * ƒ‚ƒ“ƒXƒ^[íœ
+ * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼å‰Šé™¤
  *------------------------------------------*/
  static int buildin_killmonster_sub_strip(struct block_list *bl,va_list ap)
 { //same fix but with killmonster instead - stripping events from mobs.
@@ -9282,7 +9294,7 @@ BUILDIN_FUNC(clone)
 	return 0;
 }
 /*==========================================
- * ƒCƒxƒ“ƒgÀs
+ * ã‚¤ãƒ™ãƒ³ãƒˆå®Ÿè¡Œ
  *------------------------------------------*/
 BUILDIN_FUNC(doevent)
 {
@@ -9299,7 +9311,7 @@ BUILDIN_FUNC(doevent)
 	return 0;
 }
 /*==========================================
- * NPCå‘ÌƒCƒxƒ“ƒgÀs
+ * NPCä¸»ä½“ã‚¤ãƒ™ãƒ³ãƒˆå®Ÿè¡Œ
  *------------------------------------------*/
 BUILDIN_FUNC(donpcevent)
 {
@@ -9323,7 +9335,7 @@ BUILDIN_FUNC(cmdothernpc)	// Added by RoVeRT
 }
 
 /*==========================================
- * ƒCƒxƒ“ƒgƒ^ƒCƒ}[’Ç‰Á
+ * ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒãƒ¼è¿½åŠ 
  *------------------------------------------*/
 BUILDIN_FUNC(addtimer)
 {
@@ -9340,7 +9352,7 @@ BUILDIN_FUNC(addtimer)
 	return 0;
 }
 /*==========================================
- * ƒCƒxƒ“ƒgƒ^ƒCƒ}[íœ
+ * ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒãƒ¼å‰Šé™¤
  *------------------------------------------*/
 BUILDIN_FUNC(deltimer)
 {
@@ -9357,7 +9369,7 @@ BUILDIN_FUNC(deltimer)
 	return 0;
 }
 /*==========================================
- * ƒCƒxƒ“ƒgƒ^ƒCƒ}[‚ÌƒJƒEƒ“ƒg’l’Ç‰Á
+ * ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒãƒ¼ã®ã‚«ã‚¦ãƒ³ãƒˆå€¤è¿½åŠ 
  *------------------------------------------*/
 BUILDIN_FUNC(addtimercount)
 {
@@ -9377,7 +9389,7 @@ BUILDIN_FUNC(addtimercount)
 }
 
 /*==========================================
- * NPCƒ^ƒCƒ}[‰Šú‰»
+ * NPCã‚¿ã‚¤ãƒãƒ¼åˆæœŸåŒ–
  *------------------------------------------*/
 BUILDIN_FUNC(initnpctimer)
 {
@@ -9425,7 +9437,7 @@ BUILDIN_FUNC(initnpctimer)
 	return 0;
 }
 /*==========================================
- * NPCƒ^ƒCƒ}[ŠJn
+ * NPCã‚¿ã‚¤ãƒãƒ¼é–‹å§‹
  *------------------------------------------*/
 BUILDIN_FUNC(startnpctimer)
 {
@@ -9472,7 +9484,7 @@ BUILDIN_FUNC(startnpctimer)
 	return 0;
 }
 /*==========================================
- * NPCƒ^ƒCƒ}[’â~
+ * NPCã‚¿ã‚¤ãƒãƒ¼åœæ­¢
  *------------------------------------------*/
 BUILDIN_FUNC(stopnpctimer)
 {
@@ -9514,7 +9526,7 @@ BUILDIN_FUNC(stopnpctimer)
 	return 0;
 }
 /*==========================================
- * NPCƒ^ƒCƒ}[î•ñŠ“¾
+ * NPCã‚¿ã‚¤ãƒãƒ¼æƒ…å ±æ‰€å¾—
  *------------------------------------------*/
 BUILDIN_FUNC(getnpctimer)
 {
@@ -9559,7 +9571,7 @@ BUILDIN_FUNC(getnpctimer)
 	return 0;
 }
 /*==========================================
- * NPCƒ^ƒCƒ}[’lİ’è
+ * NPCã‚¿ã‚¤ãƒãƒ¼å€¤è¨­å®š
  *------------------------------------------*/
 BUILDIN_FUNC(setnpctimer)
 {
@@ -9655,7 +9667,7 @@ BUILDIN_FUNC(playerattached)
 }
 
 /*==========================================
- * “V‚ÌºƒAƒiƒEƒ“ƒX
+ * å¤©ã®å£°ã‚¢ãƒŠã‚¦ãƒ³ã‚¹
  *------------------------------------------*/
 BUILDIN_FUNC(announce)
 {
@@ -9711,7 +9723,7 @@ BUILDIN_FUNC(bgannounce)
 }
 
 /*==========================================
- * “V‚ÌºƒAƒiƒEƒ“ƒXi“Á’èƒ}ƒbƒvj
+ * å¤©ã®å£°ã‚¢ãƒŠã‚¦ãƒ³ã‚¹ï¼ˆç‰¹å®šãƒãƒƒãƒ—ï¼‰
  *------------------------------------------*/
 static int buildin_announce_sub(struct block_list *bl, va_list ap)
 {
@@ -9750,7 +9762,7 @@ BUILDIN_FUNC(mapannounce)
 	return 0;
 }
 /*==========================================
- * “V‚ÌºƒAƒiƒEƒ“ƒXi“Á’èƒGƒŠƒAj
+ * å¤©ã®å£°ã‚¢ãƒŠã‚¦ãƒ³ã‚¹ï¼ˆç‰¹å®šã‚¨ãƒªã‚¢ï¼‰
  *------------------------------------------*/
 BUILDIN_FUNC(areaannounce)
 {
@@ -9777,7 +9789,7 @@ BUILDIN_FUNC(areaannounce)
 }
 
 /*==========================================
- * ƒ†[ƒU[”Š“¾
+ * ãƒ¦ãƒ¼ã‚¶ãƒ¼æ•°æ‰€å¾—
  *------------------------------------------*/
 BUILDIN_FUNC(getusers)
 {
@@ -9871,7 +9883,7 @@ BUILDIN_FUNC(getmapguildusers)
 	return 0;
 }
 /*==========================================
- * ƒ}ƒbƒvw’èƒ†[ƒU[”Š“¾
+ * ãƒãƒƒãƒ—æŒ‡å®šãƒ¦ãƒ¼ã‚¶ãƒ¼æ•°æ‰€å¾—
  *------------------------------------------*/
 BUILDIN_FUNC(getmapusers)
 {
@@ -9886,7 +9898,7 @@ BUILDIN_FUNC(getmapusers)
 	return 0;
 }
 /*==========================================
- * ƒGƒŠƒAw’èƒ†[ƒU[”Š“¾
+ * ã‚¨ãƒªã‚¢æŒ‡å®šãƒ¦ãƒ¼ã‚¶ãƒ¼æ•°æ‰€å¾—
  *------------------------------------------*/
 static int buildin_getareausers_sub(struct block_list *bl,va_list ap)
 {
@@ -9914,7 +9926,7 @@ BUILDIN_FUNC(getareausers)
 }
 
 /*==========================================
- * ƒGƒŠƒAw’èƒhƒƒbƒvƒAƒCƒeƒ€”Š“¾
+ * ã‚¨ãƒªã‚¢æŒ‡å®šãƒ‰ãƒ­ãƒƒãƒ—ã‚¢ã‚¤ãƒ†ãƒ æ•°æ‰€å¾—
  *------------------------------------------*/
 static int buildin_getareadropitem_sub(struct block_list *bl,va_list ap)
 {
@@ -9960,7 +9972,7 @@ BUILDIN_FUNC(getareadropitem)
 	return 0;
 }
 /*==========================================
- * NPC‚Ì—LŒø‰»
+ * NPCã®æœ‰åŠ¹åŒ–
  *------------------------------------------*/
 BUILDIN_FUNC(enablenpc)
 {
@@ -9970,7 +9982,7 @@ BUILDIN_FUNC(enablenpc)
 	return 0;
 }
 /*==========================================
- * NPC‚Ì–³Œø‰»
+ * NPCã®ç„¡åŠ¹åŒ–
  *------------------------------------------*/
 BUILDIN_FUNC(disablenpc)
 {
@@ -9981,7 +9993,7 @@ BUILDIN_FUNC(disablenpc)
 }
 
 /*==========================================
- * ‰B‚ê‚Ä‚¢‚éNPC‚Ì•\¦
+ * éš ã‚Œã¦ã„ã‚‹NPCã®è¡¨ç¤º
  *------------------------------------------*/
 BUILDIN_FUNC(hideoffnpc)
 {
@@ -9991,7 +10003,7 @@ BUILDIN_FUNC(hideoffnpc)
 	return 0;
 }
 /*==========================================
- * NPC‚ğƒnƒCƒfƒBƒ“ƒO
+ * NPCã‚’ãƒã‚¤ãƒ‡ã‚£ãƒ³ã‚°
  *------------------------------------------*/
 BUILDIN_FUNC(hideonnpc)
 {
@@ -10153,7 +10165,7 @@ BUILDIN_FUNC(sc_end)
 }
 
 /*==========================================
- * ó‘ÔˆÙí‘Ï«‚ğŒvZ‚µ‚½Šm—¦‚ğ•Ô‚·
+ * çŠ¶æ…‹ç•°å¸¸è€æ€§ã‚’è¨ˆç®—ã—ãŸç¢ºç‡ã‚’è¿”ã™
  *------------------------------------------*/
 BUILDIN_FUNC(getscrate)
 {
@@ -10162,7 +10174,7 @@ BUILDIN_FUNC(getscrate)
 
 	type=script_getnum(st,2);
 	rate=script_getnum(st,3);
-	if( script_hasdata(st,4) ) //w’è‚µ‚½ƒLƒƒƒ‰‚Ì‘Ï«‚ğŒvZ‚·‚é
+	if( script_hasdata(st,4) ) //æŒ‡å®šã—ãŸã‚­ãƒ£ãƒ©ã®è€æ€§ã‚’è¨ˆç®—ã™ã‚‹
 		bl = map_id2bl(script_getnum(st,4));
 	else
 		bl = map_id2bl(st->rid);
@@ -10186,7 +10198,7 @@ BUILDIN_FUNC(debugmes)
 }
 
 /*==========================================
- *•ßŠlƒAƒCƒeƒ€g—p
+ *æ•ç²ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨
  *------------------------------------------*/
 BUILDIN_FUNC(catchpet)
 {
@@ -10275,7 +10287,7 @@ BUILDIN_FUNC(roclass)
 }
 
 /*==========================================
- *Œg‘Ñ—‘›z‰»‹@g—p
+ *æºå¸¯åµå­µåŒ–æ©Ÿä½¿ç”¨
  *------------------------------------------*/
 BUILDIN_FUNC(birthpet)
 {
@@ -10310,7 +10322,7 @@ BUILDIN_FUNC(resetlvl)
 	return 0;
 }
 /*==========================================
- * ƒXƒe[ƒ^ƒXƒŠƒZƒbƒg
+ * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒªã‚»ãƒƒãƒˆ
  *------------------------------------------*/
 BUILDIN_FUNC(resetstatus)
 {
@@ -10381,7 +10393,7 @@ BUILDIN_FUNC(changebase)
 }
 
 /*==========================================
- * «•Ê•ÏŠ·
+ * æ€§åˆ¥å¤‰æ›
  *------------------------------------------*/
 BUILDIN_FUNC(changesex)
 {
@@ -10401,16 +10413,16 @@ BUILDIN_FUNC(globalmes)
 	struct npc_data *nd = (struct npc_data *)bl;
 	const char *name=NULL,*mes;
 
-	mes=script_getstr(st,2);	// ƒƒbƒZ[ƒW‚Ìæ“¾
+	mes=script_getstr(st,2);	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®å–å¾—
 	if(mes==NULL) return 0;
 	
-	if(script_hasdata(st,3)){	// NPC–¼‚Ìæ“¾(123#456)
+	if(script_hasdata(st,3)){	// NPCåã®å–å¾—(123#456)
 		name=script_getstr(st,3);
 	} else {
 		name=nd->name;
 	}
 
-	npc_globalmessage(name,mes);	// ƒOƒ[ƒoƒ‹ƒƒbƒZ[ƒW‘—M
+	npc_globalmessage(name,mes);	// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€ä¿¡
 
 	return 0;
 }
@@ -10659,7 +10671,7 @@ static void script_detach_rid(struct script_state* st)
 }
 
 /*==========================================
- * RID‚ÌƒAƒ^ƒbƒ`
+ * RIDã®ã‚¢ã‚¿ãƒƒãƒ
  *------------------------------------------*/
 BUILDIN_FUNC(attachrid)
 {
@@ -10677,7 +10689,7 @@ BUILDIN_FUNC(attachrid)
 	return 0;
 }
 /*==========================================
- * RID‚Ìƒfƒ^ƒbƒ`
+ * RIDã®ãƒ‡ã‚¿ãƒƒãƒ
  *------------------------------------------*/
 BUILDIN_FUNC(detachrid)
 {
@@ -10685,7 +10697,7 @@ BUILDIN_FUNC(detachrid)
 	return 0;
 }
 /*==========================================
- * ‘¶İƒ`ƒFƒbƒN
+ * å­˜åœ¨ãƒã‚§ãƒƒã‚¯
  *------------------------------------------*/
 BUILDIN_FUNC(isloggedin)
 {
@@ -11368,7 +11380,7 @@ BUILDIN_FUNC(setcastledata)
 }
 
 /* =====================================================================
- * ƒMƒ‹ƒhî•ñ‚ğ—v‹‚·‚é
+ * ã‚®ãƒ«ãƒ‰æƒ…å ±ã‚’è¦æ±‚ã™ã‚‹
  * ---------------------------------------------------------------------*/
 BUILDIN_FUNC(requestguildinfo)
 {
@@ -11450,7 +11462,7 @@ BUILDIN_FUNC(successremovecards)
 			item_tmp.nameid=sd->status.inventory[i].card[c];
 			item_tmp.identify=1;
 
-			if((flag=pc_additem(sd,&item_tmp,1,LOG_TYPE_SCRIPT))){	// ‚Ä‚È‚¢‚È‚çƒhƒƒbƒv
+			if((flag=pc_additem(sd,&item_tmp,1,LOG_TYPE_SCRIPT))){	// æŒã¦ãªã„ãªã‚‰ãƒ‰ãƒ­ãƒƒãƒ—
 				clif_additem(sd,0,0,flag);
 				map_addflooritem(&item_tmp,1,sd->bl.m,sd->bl.x,sd->bl.y,0,0,0,0,0);
 			}
@@ -11458,7 +11470,7 @@ BUILDIN_FUNC(successremovecards)
 	}
 
 	if(cardflag == 1)
-	{	// ƒJ[ƒh‚ğæ‚èœ‚¢‚½ƒAƒCƒeƒ€Š“¾
+	{	// ã‚«ãƒ¼ãƒ‰ã‚’å–ã‚Šé™¤ã„ãŸã‚¢ã‚¤ãƒ†ãƒ æ‰€å¾—
 		int flag;
 		struct item item_tmp;
 		item_tmp.id=0,item_tmp.nameid=sd->status.inventory[i].nameid;
@@ -11473,7 +11485,7 @@ BUILDIN_FUNC(successremovecards)
 
 		pc_delitem(sd,i,1,0,3,LOG_TYPE_SCRIPT);
 
-		if((flag=pc_additem(sd,&item_tmp,1,LOG_TYPE_SCRIPT))){	// ‚à‚Ä‚È‚¢‚È‚çƒhƒƒbƒv
+		if((flag=pc_additem(sd,&item_tmp,1,LOG_TYPE_SCRIPT))){	// ã‚‚ã¦ãªã„ãªã‚‰ãƒ‰ãƒ­ãƒƒãƒ—
 			clif_additem(sd,0,0,flag);
 			map_addflooritem(&item_tmp,1,sd->bl.m,sd->bl.x,sd->bl.y,0,0,0,0,0);
 		}
@@ -11533,7 +11545,7 @@ BUILDIN_FUNC(failedremovecards)
 	{
 		if(typefail == 0 || typefail == 2)
 			pc_delitem(sd,i,1,0,2,LOG_TYPE_SCRIPT);
-		if(typefail == 1){	// ƒJ[ƒh‚Ì‚İ‘¹¸i•‹ï‚ğ•Ô‚·j
+		if(typefail == 1){	// ã‚«ãƒ¼ãƒ‰ã®ã¿æå¤±ï¼ˆæ­¦å…·ã‚’è¿”ã™ï¼‰
 			int flag;
 			struct item item_tmp;
 			item_tmp.id=0,item_tmp.nameid=sd->status.inventory[i].nameid;
@@ -11922,7 +11934,7 @@ BUILDIN_FUNC(guardianinfo)
 }
 
 /*==========================================
- * ID‚©‚çItem–¼
+ * IDã‹ã‚‰Itemå
  *------------------------------------------*/
 BUILDIN_FUNC(getitemname)
 {
@@ -12185,7 +12197,7 @@ BUILDIN_FUNC(petloot)
 	return 0;
 }
 /*==========================================
- * PC‚ÌŠ•iî•ñ“Ç‚İæ‚è
+ * PCã®æ‰€æŒå“æƒ…å ±èª­ã¿å–ã‚Š
  *------------------------------------------*/
 BUILDIN_FUNC(getinventorylist)
 {
@@ -12292,9 +12304,9 @@ BUILDIN_FUNC(isdisguised)
 }
 
 /*==========================================
- * NPCƒNƒ‰ƒXƒ`ƒFƒ“ƒW
- * class‚Í•Ï‚í‚è‚½‚¢class
- * type‚Í’Êí0‚È‚Ì‚©‚ÈH
+ * NPCã‚¯ãƒ©ã‚¹ãƒã‚§ãƒ³ã‚¸
+ * classã¯å¤‰ã‚ã‚ŠãŸã„class
+ * typeã¯é€šå¸¸0ãªã®ã‹ãªï¼Ÿ
  *------------------------------------------*/
 BUILDIN_FUNC(classchange)
 {
@@ -12310,7 +12322,7 @@ BUILDIN_FUNC(classchange)
 }
 
 /*==========================================
- * NPC‚©‚ç”­¶‚·‚éƒGƒtƒFƒNƒg
+ * NPCã‹ã‚‰ç™ºç”Ÿã™ã‚‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *------------------------------------------*/
 BUILDIN_FUNC(misceffect)
 {
@@ -12397,7 +12409,7 @@ BUILDIN_FUNC(playBGMall)
 }
 
 /*==========================================
- * ƒTƒEƒ“ƒhƒGƒtƒFƒNƒg
+ * ã‚µã‚¦ãƒ³ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *------------------------------------------*/
 BUILDIN_FUNC(soundeffect)
 {
@@ -18122,1234 +18134,4 @@ BUILDIN_FUNC(instance_warpall)
 		return 0;
 
 	mapindex = map_id2index(m);
-	for( i = 0; i < MAX_PARTY; i++ )
-		if( (pl_sd = p->data[i].sd) && map[pl_sd->bl.m].instance_id == st->instance_id ) pc_setpos(pl_sd,mapindex,x,y,CLR_TELEPORT);
-
-	return 0;
-}
-
-/*==========================================
- * PlayTime
- *------------------------------------------*/
-BUILDIN_FUNC(get_playtime)
-{
-	struct map_session_data *sd = script_rid2sd(st);
-	if( sd == NULL )
-		return 0;
-	
-	pc_calc_playtime(sd);
-	script_pushint(st,sd->status.playtime);
-	return 0;
-}
-/*==========================================
- * Premium account check
- *------------------------------------------*/
-BUILDIN_FUNC(isPremium)
-{
-	struct map_session_data *sd = script_rid2sd(st);
-	if( sd == NULL || !pc_isPremium(sd) )
-		script_pushint(st,0);
-	else
-		script_pushint(st,1);
-	return 0;
-}
-/*==========================================
- * Hunting Missions [Zephyrus]
- *------------------------------------------*/
-BUILDIN_FUNC(mission_sethunting)
-{
-	struct map_session_data *sd = script_rid2sd(st);
-	int index, i;
-	char varname[32];
-
-	if( sd == NULL )
-		return 0;
-
-	index = script_getnum(st,2);
-	if( index < 1 || index > 5 )
-		return 0; // Invalid Index
-
-	i = index - 1;
-
-	sprintf(varname, "Mission_ID%d", index);
-	sd->hunting[i].mob_id = script_getnum(st,3);
-	pc_setglobalreg(sd, varname, sd->hunting[i].mob_id);
-
-	sprintf(varname, "Mission_Count%d", index);
-	sd->hunting[i].count = script_getnum(st,4);
-	pc_setglobalreg(sd, varname, sd->hunting[i].count);
-
-	return 0;
-}
-
-BUILDIN_FUNC(mission_settime)
-{
-	struct map_session_data *sd = script_rid2sd(st);
-
-	if( sd == NULL )
-		return 0;
-
-	sd->hunting_time = script_getnum(st,2);
-	pc_setglobalreg(sd, "Mission_Tick", sd->hunting_time);
-
-	return 0;
-}
-
-/*==========================================
- * Custom Fonts
- *------------------------------------------*/
-BUILDIN_FUNC(setfont)
-{
-	struct map_session_data *sd = script_rid2sd(st);
-	int font = script_getnum(st,2);
-	if( sd == NULL )
-		return 0;
-
-	if( sd->user_font != font )
-		sd->user_font = font;
-	else
-		sd->user_font = 0;
-	
-	clif_font(sd);
-	return 0;
-}
-
-static int buildin_mobuseskill_sub(struct block_list *bl,va_list ap)
-{
-	TBL_MOB* md		= (TBL_MOB*)bl;
-	struct block_list *tbl;
-	int mobid		= va_arg(ap,int);
-	int skillid		= va_arg(ap,int);
-	int skilllv		= va_arg(ap,int);
-	int casttime	= va_arg(ap,int);
-	int cancel		= va_arg(ap,int);
-	int emotion		= va_arg(ap,int);
-	int target		= va_arg(ap,int);
-
-	if( md->class_ != mobid )
-		return 0;
-
-	// 0:self, 1:target, 2:master, default:random
-	switch( target )
-	{
-		case 0: tbl = map_id2bl(md->bl.id); break;
-		case 1: tbl = map_id2bl(md->target_id); break;
-		case 2: tbl = map_id2bl(md->master_id); break;
-		default:tbl = battle_getenemy(&md->bl, DEFAULT_ENEMY_TYPE(md),skill_get_range2(&md->bl, skillid, skilllv)); break;
-	}
-
-	if( !tbl )
-		return 0;
-
-	if( md->ud.skilltimer != INVALID_TIMER ) // Cancel the casting skill.
-		unit_skillcastcancel(bl,0);
-
-	if( skill_get_casttype(skillid) == CAST_GROUND )
-		unit_skilluse_pos2(&md->bl, tbl->x, tbl->y, skillid, skilllv, casttime, cancel);
-	else
-		unit_skilluse_id2(&md->bl, tbl->id, skillid, skilllv, casttime, cancel);
-
-	clif_emotion(&md->bl, emotion);
-
-	return 0;
-}
-/*==========================================
- * areamobuseskill "Map Name",<x>,<y>,<range>,<Mob ID>,"Skill Name"/<Skill ID>,<Skill Lv>,<Cast Time>,<Cancelable>,<Emotion>,<Target Type>;
- *------------------------------------------*/
-BUILDIN_FUNC(areamobuseskill)
-{
-	struct block_list center;
-	int m,range,mobid,skillid,skilllv,casttime,emotion,target,cancel;
-
-	if( (m = map_mapname2mapid(script_getstr(st,2))) < 0 )
-	{
-		ShowError("areamobuseskill: invalid map name.\n");
-		return 0;
-	}
-
-	if( map[m].flag.src4instance && st->instance_id && (m = instance_mapid2imapid(m, st->instance_id)) < 0 )
-		return 0;
-
-	center.m = m;
-	center.x = script_getnum(st,3);
-	center.y = script_getnum(st,4);
-	range = script_getnum(st,5);
-	mobid = script_getnum(st,6);
-	skillid = ( script_isstring(st,7) ? skill_name2id(script_getstr(st,7)) : script_getnum(st,7) );
-	if( (skilllv = script_getnum(st,8)) > battle_config.mob_max_skilllvl )
-		skilllv = battle_config.mob_max_skilllvl;
-
-	casttime = script_getnum(st,9);
-	cancel = script_getnum(st,10);
-	emotion = script_getnum(st,11);
-	target = script_getnum(st,12);
-	
-	map_foreachinrange(buildin_mobuseskill_sub, &center, range, BL_MOB, mobid, skillid, skilllv, casttime, cancel, emotion, target);
-	return 0;
-}
-
-
-BUILDIN_FUNC(progressbar)
-{
-#if PACKETVER >= 20080318
-	struct map_session_data * sd = script_rid2sd(st);
-	const char * color;
-	unsigned int second;
-
-	if( !st || !sd )
-		return 0;
-
-	st->state = STOP;
-
-	color = script_getstr(st,2);
-	second = script_getnum(st,3);
-
-	sd->progressbar.npc_id = st->oid;
-	sd->progressbar.timeout = gettick() + second*1000;
-
-	clif_progressbar(sd, strtol(color, (char **)NULL, 0), second);
-#endif
-	return 0;
-}
-
-BUILDIN_FUNC(pushpc)
-{
-	int direction, cells, dx, dy;
-	struct map_session_data* sd;
-
-	if((sd = script_rid2sd(st))==NULL)
-	{
-		return 0;
-	}
-
-	direction = script_getnum(st,2);
-	cells     = script_getnum(st,3);
-
-	if(direction<0 || direction>7)
-	{
-		ShowWarning("buildin_pushpc: Invalid direction %d specified.\n", direction);
-		script_reportsrc(st);
-
-		direction%= 8;  // trim spin-over
-	}
-
-	if(!cells)
-	{// zero distance
-		return 0;
-	}
-	else if(cells<0)
-	{// pushing backwards
-		direction = (direction+4)%8;  // turn around
-		cells     = -cells;
-	}
-
-	dx = dirx[direction];
-	dy = diry[direction];
-
-	unit_blown(&sd->bl, dx, dy, cells, 0);
-	return 0;
-}
-
-
-/// Invokes buying store preparation window
-/// buyingstore <slots>;
-BUILDIN_FUNC(buyingstore)
-{
-	struct map_session_data* sd;
-
-	if( ( sd = script_rid2sd(st) ) == NULL )
-	{
-		return 0;
-	}
-
-	buyingstore_setup(sd, script_getnum(st,2));
-	return 0;
-}
-
-
-/// Invokes search store info window
-/// searchstores <uses>,<effect>;
-BUILDIN_FUNC(searchstores)
-{
-	unsigned short effect;
-	unsigned int uses;
-	struct map_session_data* sd;
-
-	if( ( sd = script_rid2sd(st) ) == NULL )
-	{
-		return 0;
-	}
-
-	uses   = script_getnum(st,2);
-	effect = script_getnum(st,3);
-
-	if( !uses )
-	{
-		ShowError("buildin_searchstores: Amount of uses cannot be zero.\n");
-		return 1;
-	}
-
-	if( effect > 1 )
-	{
-		ShowError("buildin_searchstores: Invalid effect id %hu, specified.\n", effect);
-		return 1;
-	}
-
-	searchstore_open(sd, uses, effect);
-	return 0;
-}
-
-
-/// Displays a number as large digital clock.
-/// showdigit <value>[,<type>];
-BUILDIN_FUNC(showdigit)
-{
-	unsigned int type = 0;
-	int value;
-	struct map_session_data* sd;
-
-	if( ( sd = script_rid2sd(st) ) == NULL )
-	{
-		return 0;
-	}
-
-	value = script_getnum(st,2);
-
-	if( script_hasdata(st,3) )
-	{
-		type = script_getnum(st,3);
-
-		if( type > 3 )
-		{
-			ShowError("buildin_showdigit: Invalid type %u.\n", type);
-			return 1;
-		}
-	}
-
-	clif_showdigit(sd, (unsigned char)type, value);
-	return 0;
-}
-
-/*==========================================
- * PvP Event Start/Stop Scripts
- *------------------------------------------*/
-BUILDIN_FUNC(pvpeventstart)
-{
-	struct map_session_data *pl_sd;
-	struct s_mapiterator* iter;
-
-	iter = mapit_getallusers();
-	for( pl_sd = (TBL_PC*)mapit_first(iter); mapit_exists(iter); pl_sd = (TBL_PC*)mapit_next(iter) )
-		pl_sd->pvpevent_fame = 0;
-
-	mapit_free(iter);
-
-	memset(pvpevent_fame_list, 0, sizeof(pvpevent_fame_list));
-	pvpevent_flag = 1;
-	return 0;
-}
-
-BUILDIN_FUNC(pvpeventstop)
-{
-	memset(pvpevent_fame_list, 0, sizeof(pvpevent_fame_list));
-	pvpevent_flag = 0;
-	return 0;
-}
-
-BUILDIN_FUNC(pvpeventcheck)
-{
-	script_pushint(st,pvpevent_flag);
-	return 0;
-}
-
-BUILDIN_FUNC(pvpevent_addpoints)
-{
-	struct map_session_data *sd = script_rid2sd(st);
-	int value = script_getnum(st,2);
-	if( sd == NULL ) return 0;
-
-	sd->pvpevent_fame += value;
-	pc_pvpevent_addfame(sd, true);
-
-	return 0;
-}
-/*==========================================
- * Ranking Reset
- *------------------------------------------*/
-BUILDIN_FUNC(rankreset)
-{
-	int type = script_getnum(st,2);
-	if( type >= 0 && type <= 2 )
-		pc_ranking_reset(type,true);
-
-	return 0;
-}
-/*==========================================
- * Item Destroy
- *------------------------------------------*/
-BUILDIN_FUNC(item_remove4all)
-{
-	int nameid = script_getnum(st,2);
-	pc_item_remove4all(nameid,true);
-
-	return 0;
-}
-/*==========================================
- * Guild Ranking - Zeny Investments
- *------------------------------------------*/
-BUILDIN_FUNC(guild_addzenyeco)
-{
-	struct map_session_data *sd = script_rid2sd(st);
-	struct guild_castle *gc;
-	struct guild *g;
-
-	int value = script_getnum(st,2);
-	if( sd == NULL || sd->status.guild_id == 0 || (g = guild_search(sd->status.guild_id)) == NULL || (gc = guild_mapindex2gc(map[sd->bl.m].index)) == NULL )
-		return 0;
-
-	add2limit(g->castle[gc->castle_id].zeny_eco, value, UINT_MAX);
-	g->castle[gc->castle_id].changed = true;
-	if( !agit_flag )
-	{
-		intif_guild_save_score(g->guild_id, gc->castle_id, &g->castle[gc->castle_id]);
-		g->castle[gc->castle_id].changed = false;
-	}
-	return 0;
-}
-
-BUILDIN_FUNC(guild_addzenydef)
-{
-	struct map_session_data *sd = script_rid2sd(st);
-	struct guild_castle *gc;
-	struct guild *g;
-
-	int value = script_getnum(st,2);
-	if( sd == NULL || sd->status.guild_id == 0 || (g = guild_search(sd->status.guild_id)) == NULL || (gc = guild_mapindex2gc(map[sd->bl.m].index)) == NULL )
-		return 0;
-
-	add2limit(g->castle[gc->castle_id].zeny_def, value, UINT_MAX);
-	g->castle[gc->castle_id].changed = true;
-	if( !agit_flag )
-	{
-		intif_guild_save_score(g->guild_id, gc->castle_id, &g->castle[gc->castle_id]);
-		g->castle[gc->castle_id].changed = false;
-	}
-	return 0;
-}
-
-/*==========================================
- * Character PvP Mode
- *------------------------------------------*/
-BUILDIN_FUNC(getpvpmode)
-{
-	int result = 0;
-	struct map_session_data *sd = script_rid2sd(st);
-	if( sd && sd->state.pvpmode )
-		result = 1;
-
-	script_pushint(st,result);
-	return 0;
-}
-
-/*==========================================
- * Item Security System
- *------------------------------------------*/
-BUILDIN_FUNC(setsecurity)
-{
-	struct map_session_data *sd = script_rid2sd(st);
-	int value = script_getnum(st,2);
-	if( sd == NULL )
-		return 0;
-
-	sd->state.secure_items = (value)?1:0;
-	return 0;
-}
-
-BUILDIN_FUNC(getsecurity)
-{
-	struct map_session_data *sd = script_rid2sd(st);
-	if( sd == NULL )
-		return 0;
-
-	script_pushint(st,sd->state.secure_items);
-	return 0;
-}
-
-BUILDIN_FUNC(bindatcmd)
-{
-	const char* atcmd;
-	const char* eventName;
-	int i = 0, level = 0, level2 = 0;
-
-	atcmd = script_getstr(st,2);
-	eventName = script_getstr(st,3);
-
-	if( script_hasdata(st,4) ) level = script_getnum(st,4);
-	if( script_hasdata(st,5) ) level2 = script_getnum(st,5);
-
-	// check if event is already binded
-	ARR_FIND(0, MAX_ATCMD_BINDINGS, i, strcmp(atcmd_binding[i].command,atcmd) == 0);
-	if( i < MAX_ATCMD_BINDINGS )
-	{
-		safestrncpy(atcmd_binding[i].npc_event, eventName, 50);
-		atcmd_binding[i].level = level;
-		atcmd_binding[i].level2 = level2;
-	}
-	else
-	{ // make new binding
-		ARR_FIND(0, MAX_ATCMD_BINDINGS, i, atcmd_binding[i].command[0] == '\0');
-		if( i < MAX_ATCMD_BINDINGS )
-		{
-			safestrncpy(atcmd_binding[i].command, atcmd, 50);
-			safestrncpy(atcmd_binding[i].npc_event, eventName, 50);
-			atcmd_binding[i].level = level;
-			atcmd_binding[i].level2 = level2;
-		}
-	}
-
-	return 0;
-}
-
-BUILDIN_FUNC(unbindatcmd)
-{
-	const char* atcmd;
-	int i =  0;
-
-	atcmd = script_getstr(st, 2);
-
-	ARR_FIND(0, MAX_ATCMD_BINDINGS, i, strcmp(atcmd_binding[i].command, atcmd) == 0);
-	if( i < MAX_ATCMD_BINDINGS )
-		memset(&atcmd_binding[i],0,sizeof(atcmd_binding[0]));
-
-	return 0;
-}
-
-BUILDIN_FUNC(useatcmd)
-{
-	TBL_PC dummy_sd;
-	TBL_PC* sd;
-	int fd;
-	const char* cmd;
-
-	cmd = script_getstr(st,2);
-
-	if( st->rid )
-	{
-		sd = script_rid2sd(st);
-		fd = sd->fd;
-	}
-	else
-	{ // Use a dummy character.
-		sd = &dummy_sd;
-		fd = 0;
-
-		memset(&dummy_sd, 0, sizeof(TBL_PC));
-		if( st->oid )
-		{
-			struct block_list* bl = map_id2bl(st->oid);
-			memcpy(&dummy_sd.bl, bl, sizeof(struct block_list));
-			if( bl->type == BL_NPC )
-				safestrncpy(dummy_sd.status.name, ((TBL_NPC*)bl)->name, NAME_LENGTH);
-		}
-	}
-
-	// compatibility with previous implementation (deprecated!)
-	if( cmd[0] != atcommand_symbol )
-	{
-		cmd += strlen(sd->status.name);
-		while( *cmd != atcommand_symbol && *cmd != 0 )
-			cmd++;
-	}
-
-	is_atcommand(fd, sd, cmd, 2);
-	return 0;
-}
-
-// Graveyard System
-BUILDIN_FUNC(graveyard_info)
-{
-	struct tm *datetime;
-	char buf[128], *output = NULL;
-
-	struct npc_data* nd = map_id2nd(st->oid);
-	int type = script_getnum(st,2);
-
-	if( !nd ) return 0;
-
-	switch( type )
-	{
-	case 1: // Killer Name
-		output = aStrdup(nd->graveyard.killed_by);
-		break;
-	case 2: // Killed Time
-		datetime = localtime(&nd->graveyard.killed_time);
-		strftime(buf, sizeof(buf)-1, "%A, %B %d %Y %X.", datetime);
-		output = aStrdup(buf);
-		break;
-	default: // Victim Name
-		output = aStrdup(nd->graveyard.name);
-		break;
-	}
-
-	if( output )
-		script_pushstr(st,output);
-	else
-		script_pushconststr(st,"");
-
-	return 0;
-}
-
-// Achievement System
-BUILDIN_FUNC(achieve)
-{
-	struct map_session_data* sd = script_rid2sd(st);
-	int id = script_getnum(st,2);
-	struct achievement_data *ad;
-
-	if( (ad = achievement_search(id)) != NULL )
-		achievement_complete(sd,ad);
-
-	return 0;
-}
-
-BUILDIN_FUNC(achievement_info)
-{
-	struct achievement_data *ad;
-	int id, flag;
-
-	id = script_getnum(st,2);
-	flag = script_getnum(st,3);
-
-	if( (ad = achievement_search(id)) == NULL )
-	{
-		ShowError("buildin:achievement_info: No achievement found with id %d.\n",id);
-		return 0;
-	}
-
-	switch( flag )
-	{
-	case 0: // Status
-		{
-			struct map_session_data* sd = script_rid2sd(st);
-			int index;
-			if( !sd )
-			{
-				ShowError("buildin:achievement_info: No player attached.\n");
-				return 0;
-			}
-			index = achievement_index(sd,id);
-			script_pushint(st,(index >= 0 && sd->achievement[index].completed) ? 1 : 0);
-		}
-		break;
-	case 1: // Name
-		script_pushconststr(st,ad->name);
-		break;
-	case 2: // Cut-in
-		script_pushconststr(st,ad->cutin);
-		break;
-	case 3: // Reward Base Exp
-		script_pushint(st,ad->bexp);
-		break;
-	case 4: // Reward Base Exp
-		script_pushint(st,ad->jexp);
-		break;
-	case 5: // Reward Item ID
-		script_pushint(st,ad->nameid);
-		break;
-	}
-
-	return 0;
-}
-
-// Faction and Language System
-BUILDIN_FUNC(setfaction)
-{
-	struct faction_data* fd;
-	struct map_session_data* sd = script_rid2sd(st);
-	int id = script_getnum(st,2);
-
-	if( sd && (fd = faction_search(id)) != NULL )
-	{
-		char output[256];
-		sd->status.faction_id = id;
-		snprintf(output,sizeof(output),"- You have joined the faction [ %s ] -",fd->name);
-		clif_broadcast2(&sd->bl,output,strlen(output) + 1,0xFFA500,0x190,20,0,0,SELF);
-		status_calc_pc(sd,0);
-		sd->lang_id = fd->lang_id;
-	}
-
-	return 0;
-}
-
-BUILDIN_FUNC(language)
-{
-	struct lang_data* ld;
-	struct map_session_data* sd = script_rid2sd(st);
-	int id = script_getnum(st,2);
-
-	if( sd && (ld = lang_search(id)) != NULL )
-	{
-		char output[256];
-		sd->lang_id = id;
-		snprintf(output,sizeof(output),"- Now you will speak and understand [ %s ] -",ld->name);
-		clif_broadcast2(&sd->bl,output,strlen(output) + 1,0xFFA500,0x190,20,0,0,SELF);
-	}
-
-	return 0;
-}
-
-BUILDIN_FUNC(learnlang)
-{
-	struct lang_data* ld;
-	struct map_session_data* sd = script_rid2sd(st);
-	int id = script_getnum(st,2);
-
-	if( sd && (ld = lang_search(id)) != NULL && !(sd->lang_mastery&lang_pow[id-1]) )
-	{
-		char output[256];
-		sd->lang_mastery |= lang_pow[id-1];
-		pc_setglobalreg(sd,"eAmod_Languages",sd->lang_mastery);
-		snprintf(output,sizeof(output),"- You learn to speak and understand [ %s ] -",ld->name);
-		clif_broadcast2(&sd->bl,output,strlen(output) + 1,0x00FF00,0x190,20,0,0,SELF);
-	}
-
-	return 0;
-}
-
-BUILDIN_FUNC(unlearnlang)
-{
-	struct lang_data* ld;
-	struct map_session_data* sd = script_rid2sd(st);
-	int id = script_getnum(st,2);
-
-	if( sd && (ld = lang_search(id)) != NULL && (sd->lang_mastery&lang_pow[id-1]) )
-	{
-		char output[256];
-		sd->lang_mastery &= ~lang_pow[id-1];
-		pc_setglobalreg(sd,"eAmod_Languages",sd->lang_mastery);
-		snprintf(output,sizeof(output),"- You can't speak and understand [ %s ] anymore -",ld->name);
-		clif_broadcast2(&sd->bl,output,strlen(output) + 1,0xC0C0C0,0x190,20,0,0,SELF);
-	}
-
-	return 0;
-}
-
-// declarations that were supposed to be exported from npc_chat.c
-#ifdef PCRE_SUPPORT
-BUILDIN_FUNC(defpattern);
-BUILDIN_FUNC(activatepset);
-BUILDIN_FUNC(deactivatepset);
-BUILDIN_FUNC(deletepset);
-#endif
-
-/// script command definitions
-/// for an explanation on args, see add_buildin_func
-struct script_function buildin_func[] = {
-	// NPC interaction
-	BUILDIN_DEF(mes,"s"),
-	BUILDIN_DEF(next,""),
-	BUILDIN_DEF(close,""),
-	BUILDIN_DEF(close2,""),
-	BUILDIN_DEF(menu,"sl*"),
-	BUILDIN_DEF(select,"s*"), //for future jA script compatibility
-	BUILDIN_DEF(prompt,"s*"),
-	//
-	BUILDIN_DEF(goto,"l"),
-	BUILDIN_DEF(callsub,"l*"),
-	BUILDIN_DEF(callfunc,"s*"),
-	BUILDIN_DEF(return,"?"),
-	BUILDIN_DEF(getarg,"i?"),
-	BUILDIN_DEF(jobchange,"i?"),
-	BUILDIN_DEF(jobname,"i"),
-	BUILDIN_DEF(input,"r??"),
-	BUILDIN_DEF(warp,"sii"),
-	BUILDIN_DEF(areawarp,"siiiisii??"),
-	BUILDIN_DEF(warpchar,"siii"), // [LuzZza]
-	BUILDIN_DEF(warpparty,"siii?"), // [Fredzilla] [Paradox924X]
-	BUILDIN_DEF(warpguild,"siii"), // [Fredzilla]
-	BUILDIN_DEF(setlook,"ii"),
-	BUILDIN_DEF(changelook,"ii"), // Simulates but don't Store it
-	BUILDIN_DEF(set,"rv"),
-	BUILDIN_DEF(setarray,"rv*"),
-	BUILDIN_DEF(cleararray,"rvi"),
-	BUILDIN_DEF(copyarray,"rri"),
-	BUILDIN_DEF(getarraysize,"r"),
-	BUILDIN_DEF(deletearray,"r?"),
-	BUILDIN_DEF(getelementofarray,"ri"),
-	BUILDIN_DEF(getitem,"vi?"),
-	BUILDIN_DEF(storeitem,"vi?"),
-	BUILDIN_DEF(rentitem,"vi"),
-	BUILDIN_DEF(itembound,"vi?"),
-	BUILDIN_DEF(getitem2,"viiiiiiii?"),
-	BUILDIN_DEF(storeitem2,"viiiiiiii?"),
-	BUILDIN_DEF(checkspace,"viiiiiiii"),
-	BUILDIN_DEF(rentitem2,"viiiiiiii"),
-	BUILDIN_DEF(itembound2,"viiiiiiii?"),
-	BUILDIN_DEF(getnameditem,"vv"),
-	BUILDIN_DEF2(grouprandomitem,"groupranditem","i"),
-	BUILDIN_DEF(makeitem,"visii"),
-	BUILDIN_DEF(delitem,"vi?"),
-	BUILDIN_DEF(delitem2,"viiiiiiii?"),
-	BUILDIN_DEF2(enableitemuse,"enable_items",""),
-	BUILDIN_DEF2(disableitemuse,"disable_items",""),
-	BUILDIN_DEF(cutin,"si"),
-	BUILDIN_DEF(viewpoint,"iiiii"),
-	BUILDIN_DEF(viewpointmap,"siiiii"),
-	BUILDIN_DEF(heal,"ii"),
-	BUILDIN_DEF(itemheal,"ii"),
-	BUILDIN_DEF(madoheal,"ii"),
-	BUILDIN_DEF(percentheal,"ii"),
-	BUILDIN_DEF(rand,"i?"),
-	BUILDIN_DEF(countitem,"v"),
-	BUILDIN_DEF(countitem2,"viiiiiii"),
-	BUILDIN_DEF(checkweight,"vi"),
-	BUILDIN_DEF(readparam,"i?"),
-	BUILDIN_DEF(getcharid,"i?"),
-	BUILDIN_DEF(getnpcid,"i?"),
-	BUILDIN_DEF(getpartyname,"i"),
-	BUILDIN_DEF(getpartymember,"i?"),
-	BUILDIN_DEF(getpartyleader,"i?"),
-	BUILDIN_DEF(getguildname,"i"),
-	BUILDIN_DEF(getguildmaster,"i"),
-	BUILDIN_DEF(getguildmasterid,"i"),
-	BUILDIN_DEF(strcharinfo,"i"),
-	BUILDIN_DEF(strnpcinfo,"i"),
-	BUILDIN_DEF(getequipid,"i"),
-	BUILDIN_DEF(getequipname,"i"),
-	BUILDIN_DEF(getbrokenid,"i"), // [Valaris]
-	BUILDIN_DEF(repair,"i"), // [Valaris]
-	BUILDIN_DEF(repairall,""),
-	BUILDIN_DEF(getequipisequiped,"i"),
-	BUILDIN_DEF(getequipisenableref,"i"),
-	BUILDIN_DEF(getequipisidentify,"i"),
-	BUILDIN_DEF(getequiprefinerycnt,"i"),
-	BUILDIN_DEF(getequipweaponlv,"i"),
-	BUILDIN_DEF(getequippercentrefinery,"i"),
-	BUILDIN_DEF(getequipisrental,"i"),
-	BUILDIN_DEF(getequipisbounded,"i"),
-	BUILDIN_DEF(successrefitem,"i"),
-	BUILDIN_DEF(failedrefitem,"i"),
-	BUILDIN_DEF(failedrefitemR,"ii"),
-	BUILDIN_DEF(statusup,"i"),
-	BUILDIN_DEF(statusup2,"ii"),
-	BUILDIN_DEF(bonus,"iv"),
-	BUILDIN_DEF2(bonus,"bonus2","ivi"),
-	BUILDIN_DEF2(bonus,"bonus3","ivii"),
-	BUILDIN_DEF2(bonus,"bonus4","ivvii"),
-	BUILDIN_DEF2(bonus,"bonus5","ivviii"),
-	BUILDIN_DEF(autobonus,"sii??"),
-	BUILDIN_DEF(autobonus2,"sii??"),
-	BUILDIN_DEF(autobonus3,"siiv?"),
-	BUILDIN_DEF(skill,"vi?"),
-	BUILDIN_DEF(addtoskill,"vi?"), // [Valaris]
-	BUILDIN_DEF(guildskill,"vi"),
-	BUILDIN_DEF(getskilllv,"v"),
-	BUILDIN_DEF(getgdskilllv,"iv"),
-	BUILDIN_DEF(basicskillcheck,""),
-	BUILDIN_DEF(getgmlevel,""),
-	BUILDIN_DEF(end,""),
-	BUILDIN_DEF(checkoption,"i"),
-	BUILDIN_DEF(setoption,"i?"),
-	BUILDIN_DEF(setcart,"?"),
-	BUILDIN_DEF(checkcart,""),
-	BUILDIN_DEF(setfalcon,"?"),
-	BUILDIN_DEF(checkfalcon,""),
-	BUILDIN_DEF(setriding,"?"),
-	BUILDIN_DEF(checkriding,""),
-	BUILDIN_DEF(checkdragon,""),
-	BUILDIN_DEF(setwug,"?"),
-	BUILDIN_DEF(checkwug,""),
-	BUILDIN_DEF(setwugrider,"?"),
-	BUILDIN_DEF(checkwugrider,""),
-	BUILDIN_DEF(setmadogear,"?"),
-	BUILDIN_DEF(checkmadogear,""),
-	BUILDIN_DEF2(savepoint,"save","sii"),
-	BUILDIN_DEF(savepoint,"sii"),
-	BUILDIN_DEF(gettimetick,"i"),
-	BUILDIN_DEF(gettime,"i"),
-	BUILDIN_DEF(gettimestr,"si"),
-	BUILDIN_DEF(openstorage,""),
-	BUILDIN_DEF(guildopenstorage,""),
-	BUILDIN_DEF(openrentstorage,""),
-	BUILDIN_DEF(itemskill,"vi"),
-	BUILDIN_DEF(produce,"i"),
-	BUILDIN_DEF(makerune,"i"),
-	BUILDIN_DEF(cooking,"i"),
-	BUILDIN_DEF(monster,"siisii?"),
-	BUILDIN_DEF(mobdemolition,"siiiiii"),
-	BUILDIN_DEF2(mobevent,"mobevent","siisiiiiiiiiiiiiii?"),
-	BUILDIN_DEF(getmobrandid,"ii"),
-	BUILDIN_DEF(getmobdrops,"i"),
-	BUILDIN_DEF(invocar,"ii"),
-	BUILDIN_DEF(areamonster,"siiiisii?"),
-	BUILDIN_DEF(killmonster,"ss?"),
-	BUILDIN_DEF(killmonsterall,"s?"),
-	BUILDIN_DEF(clone,"siisi????"),
-	BUILDIN_DEF(doevent,"s"),
-	BUILDIN_DEF(donpcevent,"s"),
-	BUILDIN_DEF(cmdothernpc,"ss"),
-	BUILDIN_DEF(addtimer,"is"),
-	BUILDIN_DEF(deltimer,"s"),
-	BUILDIN_DEF(addtimercount,"si"),
-	BUILDIN_DEF(initnpctimer,"??"),
-	BUILDIN_DEF(stopnpctimer,"??"),
-	BUILDIN_DEF(startnpctimer,"??"),
-	BUILDIN_DEF(setnpctimer,"i?"),
-	BUILDIN_DEF(getnpctimer,"i?"),
-	BUILDIN_DEF(attachnpctimer,"?"), // attached the player id to the npc timer [Celest]
-	BUILDIN_DEF(detachnpctimer,"?"), // detached the player id from the npc timer [Celest]
-	BUILDIN_DEF(playerattached,""), // returns id of the current attached player. [Skotlex]
-	BUILDIN_DEF(announce,"si?????"),
-	BUILDIN_DEF(mapannounce,"ssi?????"),
-	BUILDIN_DEF(areaannounce,"siiiisi?????"),
-	BUILDIN_DEF(getusers,"i"),
-	BUILDIN_DEF(getmapguildusers,"si"),
-	BUILDIN_DEF(getmapusers,"s"),
-	BUILDIN_DEF(getareausers,"siiii"),
-	BUILDIN_DEF(getareadropitem,"siiiiv"),
-	BUILDIN_DEF(enablenpc,"s"),
-	BUILDIN_DEF(disablenpc,"s"),
-	BUILDIN_DEF(hideoffnpc,"s"),
-	BUILDIN_DEF(hideonnpc,"s"),
-	BUILDIN_DEF(sc_start,"iii?"),
-	BUILDIN_DEF(sc_start2,"iiii?"),
-	BUILDIN_DEF(sc_start4,"iiiiii?"),
-	BUILDIN_DEF(sc_end,"i?"),
-	BUILDIN_DEF(getscrate,"ii?"),
-	BUILDIN_DEF(debugmes,"s"),
-	BUILDIN_DEF2(catchpet,"pet","i"),
-	BUILDIN_DEF2(birthpet,"bpet",""),
-	BUILDIN_DEF(resetlvl,"i"),
-	BUILDIN_DEF(resetstatus,""),
-	BUILDIN_DEF(resetskill,""),
-	BUILDIN_DEF(skillpointcount,""),
-	BUILDIN_DEF(changebase,"i?"),
-	BUILDIN_DEF(changesex,""),
-	BUILDIN_DEF(waitingroom,"si?????"),
-	BUILDIN_DEF(delwaitingroom,"?"),
-	BUILDIN_DEF2(waitingroomkickall,"kickwaitingroomall","?"),
-	BUILDIN_DEF(enablewaitingroomevent,"?"),
-	BUILDIN_DEF(disablewaitingroomevent,"?"),
-	BUILDIN_DEF2(enablewaitingroomevent,"enablearena",""),		// Added by RoVeRT
-	BUILDIN_DEF2(disablewaitingroomevent,"disablearena",""),	// Added by RoVeRT
-	BUILDIN_DEF(getwaitingroomstate,"i?"),
-	BUILDIN_DEF(warpwaitingpc,"sii?"),
-	BUILDIN_DEF(attachrid,"i"),
-	BUILDIN_DEF(detachrid,""),
-	BUILDIN_DEF(isloggedin,"i?"),
-	BUILDIN_DEF(setmapflagnosave,"ssii"),
-	BUILDIN_DEF(getmapflag,"si"),
-	BUILDIN_DEF(setmapflag,"si?"),
-	BUILDIN_DEF(removemapflag,"si"),
-	BUILDIN_DEF(pvpon,"s"),
-	BUILDIN_DEF(pvpoff,"s"),
-	BUILDIN_DEF(gvgon,"s"),
-	BUILDIN_DEF(gvgoff,"s"),
-	BUILDIN_DEF(emotion,"i??"),
-	BUILDIN_DEF(maprespawnguildid,"sii"),
-	BUILDIN_DEF(agitstart,"?"),	// <Agit>
-	BUILDIN_DEF(agitend,""),
-	BUILDIN_DEF(agitcheck,""),   // <Agitcheck>
-	BUILDIN_DEF(flagemblem,"i?"),	// Flag Emblem
-	BUILDIN_DEF(getcastlename,"s"),
-	BUILDIN_DEF(getcastledata,"si?"),
-	BUILDIN_DEF(setcastledata,"sii"),
-	BUILDIN_DEF(requestguildinfo,"i?"),
-	BUILDIN_DEF(getequipcardcnt,"i"),
-	BUILDIN_DEF(successremovecards,"i"),
-	BUILDIN_DEF(failedremovecards,"ii"),
-	BUILDIN_DEF(marriage,"s"),
-	BUILDIN_DEF2(wedding_effect,"wedding",""),
-	BUILDIN_DEF(divorce,""),
-	BUILDIN_DEF(ispartneron,""),
-	BUILDIN_DEF(getpartnerid,""),
-	BUILDIN_DEF(getchildid,""),
-	BUILDIN_DEF(getmotherid,""),
-	BUILDIN_DEF(getfatherid,""),
-	BUILDIN_DEF(warppartner,"sii"),
-	BUILDIN_DEF(getitemname,"v"),
-	BUILDIN_DEF(getitemslots,"i"),
-	BUILDIN_DEF(makepet,"i"),
-	BUILDIN_DEF(getexp,"ii?"), // [Zephyrus] Added Custom Exp Rates
-	BUILDIN_DEF(getinventorylist,""),
-	BUILDIN_DEF(getskilllist,""),
-	BUILDIN_DEF(clearitem,""),
-	BUILDIN_DEF(classchange,"ii"),
-	BUILDIN_DEF(misceffect,"i"),
-	BUILDIN_DEF(playBGM,"s"),
-	BUILDIN_DEF(playBGMall,"s?????"),
-	BUILDIN_DEF(soundeffect,"si"),
-	BUILDIN_DEF(soundeffectall,"si?????"),	// SoundEffectAll [Codemaster]
-	BUILDIN_DEF(strmobinfo,"ii"),	// display mob data [Valaris]
-	BUILDIN_DEF(guardian,"siisi??"),	// summon guardians
-	BUILDIN_DEF(guardianinfo,"sii"),	// display guardian data [Valaris]
-	BUILDIN_DEF(petskillbonus,"iiii"), // [Valaris]
-	BUILDIN_DEF(petrecovery,"ii"), // [Valaris]
-	BUILDIN_DEF(petloot,"i"), // [Valaris]
-	BUILDIN_DEF(petheal,"iiii"), // [Valaris]
-	BUILDIN_DEF(petskillattack,"viii"), // [Skotlex]
-	BUILDIN_DEF(petskillattack2,"viiii"), // [Valaris]
-	BUILDIN_DEF(petskillsupport,"viiii"), // [Skotlex]
-	BUILDIN_DEF(skilleffect,"vi"), // skill effect [Celest]
-	BUILDIN_DEF(npcskilleffect,"viii"), // npc skill effect [Valaris]
-	BUILDIN_DEF(specialeffect,"i??"), // npc skill effect [Valaris]
-	BUILDIN_DEF(specialeffect2,"i??"), // skill effect on players[Valaris]
-	BUILDIN_DEF(nude,""), // nude command [Valaris]
-	BUILDIN_DEF(mapwarp,"ssii??"),		// Added by RoVeRT
-	BUILDIN_DEF(atcommand,"s"), // [MouseJstr]
-	BUILDIN_DEF(charcommand,"s"), // [MouseJstr]
-	BUILDIN_DEF(movenpc,"sii"), // [MouseJstr]
-	BUILDIN_DEF(message,"ss"), // [MouseJstr]
-	BUILDIN_DEF(npctalk,"s"), // [Valaris]
-	BUILDIN_DEF(mobcount,"ss"),
-	BUILDIN_DEF(getlook,"i"),
-	BUILDIN_DEF(getsavepoint,"i"),
-	BUILDIN_DEF(npcspeed,"i"), // [Valaris]
-	BUILDIN_DEF(npcwalkto,"ii"), // [Valaris]
-	BUILDIN_DEF(npcstop,""), // [Valaris]
-	BUILDIN_DEF(getmapxy,"rrri?"),	//by Lorky [Lupus]
-	BUILDIN_DEF(checkoption1,"i"),
-	BUILDIN_DEF(checkoption2,"i"),
-	BUILDIN_DEF(guildgetexp,"i"),
-	BUILDIN_DEF(guildchangegm,"is"),
-	BUILDIN_DEF(logmes,"s"), //this command actls as MES but rints info into LOG file either SQL/TXT [Lupus]
-	BUILDIN_DEF(summon,"si??"), // summons a slave monster [Celest]
-	BUILDIN_DEF(summonspecial,"siiii?"), // Un Slave Monster del tipo evento [Zephyrus] - (nombre del mob, class, hp+, tiempo del mob, mostrarhp, evento)
-	BUILDIN_DEF(summongroup,"ii*"), // El anterior pero en grupos
-	BUILDIN_DEF(isnight,""), // check whether it is night time [Celest]
-	BUILDIN_DEF(isday,""), // check whether it is day time [Celest]
-	BUILDIN_DEF(isequipped,"i*"), // check whether another item/card has been equipped [Celest]
-	BUILDIN_DEF(isequippedcnt,"i*"), // check how many items/cards are being equipped [Celest]
-	BUILDIN_DEF(cardscnt,"i*"), // check how many items/cards are being equipped in the same arm [Lupus]
-	BUILDIN_DEF(getrefine,""), // returns the refined number of the current item, or an item with index specified [celest]
-	BUILDIN_DEF(night,""), // sets the server to night time
-	BUILDIN_DEF(day,""), // sets the server to day time
-#ifdef PCRE_SUPPORT
-	BUILDIN_DEF(defpattern,"iss"), // Define pattern to listen for [MouseJstr]
-	BUILDIN_DEF(activatepset,"i"), // Activate a pattern set [MouseJstr]
-	BUILDIN_DEF(deactivatepset,"i"), // Deactive a pattern set [MouseJstr]
-	BUILDIN_DEF(deletepset,"i"), // Delete a pattern set [MouseJstr]
-#endif
-	BUILDIN_DEF(dispbottom,"s"), //added from jA [Lupus]
-	BUILDIN_DEF(getusersname,""),
-	BUILDIN_DEF(recovery,""),
-	BUILDIN_DEF(getpetinfo,"i"),
-	BUILDIN_DEF(gethominfo,"i"),
-	BUILDIN_DEF(getmercinfo,"i?"),
-	BUILDIN_DEF(checkequipedcard,"i"),
-	BUILDIN_DEF(jump_zero,"il"), //for future jA script compatibility
-	BUILDIN_DEF(globalmes,"s?"),
-	BUILDIN_DEF(getmapmobs,"s"), //end jA addition
-	BUILDIN_DEF(unequip,"i"), // unequip command [Spectre]
-	BUILDIN_DEF(getstrlen,"s"), //strlen [Valaris]
-	BUILDIN_DEF(charisalpha,"si"), //isalpha [Valaris]
-	BUILDIN_DEF(charat,"si"),
-	BUILDIN_DEF(setchar,"ssi"),
-	BUILDIN_DEF(insertchar,"ssi"),
-	BUILDIN_DEF(delchar,"si"),
-	BUILDIN_DEF(strtoupper,"s"),
-	BUILDIN_DEF(strtolower,"s"),
-	BUILDIN_DEF(charisupper, "si"),
-	BUILDIN_DEF(charislower, "si"),
-	BUILDIN_DEF(substr,"sii"),
-	BUILDIN_DEF(explode, "rss"),
-	BUILDIN_DEF(implode, "r?"),
-	BUILDIN_DEF(sprintf,"s*"),  // [Mirei]
-	BUILDIN_DEF(sscanf,"ss*"),  // [Mirei]
-	BUILDIN_DEF(strpos,"ss?"),
-	BUILDIN_DEF(replacestr,"sss??"),
-	BUILDIN_DEF(countstr,"ss?"),
-	BUILDIN_DEF(setnpcdisplay,"sv??"),
-	BUILDIN_DEF(compare,"ss"), // Lordalfa - To bring strstr to scripting Engine.
-	BUILDIN_DEF(getiteminfo,"ii"), //[Lupus] returns Items Buy / sell Price, etc info
-	BUILDIN_DEF(getitemisrefinable,"i"), // [Zephyrus] Report if the item is refinable
-	BUILDIN_DEF(getitemisequipable,"i"), // [Zephyrus] Reports if the item is equipable by sd
-	BUILDIN_DEF(setiteminfo,"iii"), //[Lupus] set Items Buy / sell Price, etc info
-	BUILDIN_DEF(getequipcardid,"ii"), //[Lupus] returns CARD ID or other info from CARD slot N of equipped item
-	// [zBuffer] List of mathematics commands --->
-	BUILDIN_DEF(sqrt,"i"),
-	BUILDIN_DEF(pow,"ii"),
-	BUILDIN_DEF(distance,"iiii"),
-	// <--- [zBuffer] List of mathematics commands
-	BUILDIN_DEF(md5,"s"),
-	// [zBuffer] List of dynamic var commands --->
-	BUILDIN_DEF(getd,"s"),
-	BUILDIN_DEF(setd,"sv"),
-	// <--- [zBuffer] List of dynamic var commands
-	BUILDIN_DEF(petstat,"i"),
-	BUILDIN_DEF(callshop,"s?"), // [Skotlex]
-	BUILDIN_DEF(npcshopitem,"sii*"), // [Lance]
-	BUILDIN_DEF(npcshopadditem,"sii*"),
-	BUILDIN_DEF(npcshopdelitem,"si*"),
-	BUILDIN_DEF(npcshopattach,"s?"),
-	BUILDIN_DEF(equip,"i"),
-	BUILDIN_DEF(setbattleflag,"si"),
-	BUILDIN_DEF(getbattleflag,"s"),
-	BUILDIN_DEF(setitemscript,"is?"), //Set NEW item bonus script. Lupus
-	BUILDIN_DEF(disguise,"i"), //disguise player. Lupus
-	BUILDIN_DEF(undisguise,""), //undisguise player. Lupus
-	BUILDIN_DEF(isdisguised,""), // [Zephyrus]
-	BUILDIN_DEF(getmonsterinfo,"ii"), //Lupus
-	BUILDIN_DEF(axtoi,"s"),
-	BUILDIN_DEF(query_sql,"s*"),
-	BUILDIN_DEF(query_logsql,"s*"),
-	BUILDIN_DEF(escape_sql,"s"),
-	BUILDIN_DEF(atoi,"s"),
-	// [zBuffer] List of player cont commands --->
-	BUILDIN_DEF(rid2name,"i"),
-	BUILDIN_DEF(pcfollow,"ii"),
-	BUILDIN_DEF(pcstopfollow,"i"),
-	BUILDIN_DEF(pcblock,"ii?"),
-	// <--- [zBuffer] List of player cont commands
-	// [zBuffer] List of mob control commands --->
-	BUILDIN_DEF(unitwalk,"ii?"),
-	BUILDIN_DEF(unitkill,"i"),
-	BUILDIN_DEF(unitwarp,"isii"),
-	BUILDIN_DEF(unitattack,"iv?"),
-	BUILDIN_DEF(unitstop,"i"),
-	BUILDIN_DEF(unittalk,"is"),
-	BUILDIN_DEF(unitemote,"ii"),
-	BUILDIN_DEF(unitskilluseid,"ivi?"), // originally by Qamera [Celest]
-	BUILDIN_DEF(unitskillusepos,"iviii"), // [Celest]
-// <--- [zBuffer] List of mob control commands
-	BUILDIN_DEF(sleep,"i"),
-	BUILDIN_DEF(sleep2,"i"),
-	BUILDIN_DEF(awake,"s"),
-	BUILDIN_DEF(getvariableofnpc,"rs"),
-	BUILDIN_DEF(warpportal,"iisii"),
-	BUILDIN_DEF2(homunculus_evolution,"homevolution",""),	//[orn]
-	BUILDIN_DEF2(homunculus_shuffle,"homshuffle",""),	//[Zephyrus]
-	BUILDIN_DEF(eaclass,"?"),	//[Skotlex]
-	BUILDIN_DEF(roclass,"i?"),	//[Skotlex]
-	BUILDIN_DEF(checkvending,"?"),
-	BUILDIN_DEF(checkchatting,"?"),
-	BUILDIN_DEF(openmail,""),
-	BUILDIN_DEF(openauction,""),
-	BUILDIN_DEF(checkcell,"siii"),
-	BUILDIN_DEF(setcell,"siiiiii"),
-	BUILDIN_DEF(chatmessage,"sii"),
-	BUILDIN_DEF(strcmpi,"ss"),
-	BUILDIN_DEF(flooritem,"ii"),
-	BUILDIN_DEF(flooritem2xy,"siiii"),
-	BUILDIN_DEF(partyitem,"ii"),
-	BUILDIN_DEF(mission_sethunting,"iii"),
-	BUILDIN_DEF(mission_settime,"i"),
-	BUILDIN_DEF(killslaves,""),
-	BUILDIN_DEF(class2ancientwoe,""),
-	BUILDIN_DEF(pvpeventstart,""),
-	BUILDIN_DEF(pvpeventstop,""),
-	BUILDIN_DEF(pvpeventcheck,""),
-	BUILDIN_DEF(pvpevent_addpoints,"i"),
-	BUILDIN_DEF(setwall,"siiiiis"),
-	BUILDIN_DEF(delwall,"s"),
-	BUILDIN_DEF(searchitem,"rs"),
-	BUILDIN_DEF(mercenary_create,"ii"),
-	BUILDIN_DEF(mercenary_heal,"ii"),
-	BUILDIN_DEF(mercenary_sc_start,"iii"),
-	BUILDIN_DEF(mercenary_get_calls,"i"),
-	BUILDIN_DEF(mercenary_get_faith,"i"),
-	BUILDIN_DEF(mercenary_set_calls,"ii"),
-	BUILDIN_DEF(mercenary_set_faith,"ii"),
-	BUILDIN_DEF(readbook,"ii"),
-	BUILDIN_DEF(setfont,"i"),
-	BUILDIN_DEF(areamobuseskill,"siiiiviiiii"),
-	BUILDIN_DEF(progressbar,"si"),
-	BUILDIN_DEF(pushpc,"ii"),
-	BUILDIN_DEF(buyingstore,"i"),
-	BUILDIN_DEF(searchstores,"ii"),
-	BUILDIN_DEF(showdigit,"i?"),
-	// BattleGround
-	BUILDIN_DEF(bg_logincount,""),
-	BUILDIN_DEF(map_logincount,"s"),
-	BUILDIN_DEF(bg_team_create,"siiiss"),
-
-	BUILDIN_DEF(bg_queue_create,"ss?"),
-	BUILDIN_DEF(bg_queue_event,"is"),
-	BUILDIN_DEF(bg_queue_join,"i"),
-	BUILDIN_DEF(bg_queue_partyjoin,"ii"),
-	BUILDIN_DEF(bg_queue_leave,"i"),
-	BUILDIN_DEF(bg_queue_data,"ii"),
-	BUILDIN_DEF(bg_queue2team,"iisiiiss"),
-	BUILDIN_DEF(bg_queue2team_single,"iisii"),
-	BUILDIN_DEF(bg_queue2teams,"iiiiii*"),
-	BUILDIN_DEF(bg_queue_checkstart,"iiii"),
-	BUILDIN_DEF(bg_balance_teams,"iiiii*"),
-
-	BUILDIN_DEF(waitingroom2bg,"siiiss"),
-	BUILDIN_DEF(waitingroom2bg_single,"isiis"),
-	BUILDIN_DEF(bg_team_setxy,"iii"),
-	BUILDIN_DEF(bg_team_reveal,"i"),
-	BUILDIN_DEF(bg_team_setquest,"ii"),
-	BUILDIN_DEF(bg_warp,"isii"),
-	BUILDIN_DEF(bg_monster,"isiisi?"),
-	BUILDIN_DEF(bg_monster_reveal,"iii"),
-	BUILDIN_DEF(bg_monster_set_team,"ii"),
-	BUILDIN_DEF(bg_monster_inmunity,"ii"),
-	BUILDIN_DEF(bg_leave,""),
-	BUILDIN_DEF(bg_cleanmap,"s"),
-	BUILDIN_DEF(bg_destroy,"i"),
-	BUILDIN_DEF(bg_clean,"i"),
-	BUILDIN_DEF(areapercentheal,"siiiiii"),
-	BUILDIN_DEF(bg_get_data,"ii"),
-	BUILDIN_DEF(bg_getareausers,"isiiii"),
-	BUILDIN_DEF(bg_rankpoints,"si?"),
-	BUILDIN_DEF(bg_rankpoints_area,"isiiiisi"),
-	BUILDIN_DEF(bg_updatescore,"sii"),
-	BUILDIN_DEF(bg_team_updatescore,"ii"),
-	BUILDIN_DEF(bg_team_guildid,"i"),
-	BUILDIN_DEF(bg_getitem,"iii"),
-	BUILDIN_DEF(bg_getkafrapoints,"ii"),
-	BUILDIN_DEF(bg_reward,"iiiiisiii"),
-	BUILDIN_DEF(bgannounce,"s?????"),
-
-	// Instancing
-	BUILDIN_DEF(instance_create,"si"),
-	BUILDIN_DEF(instance_destroy,"?"),
-	BUILDIN_DEF(instance_attachmap,"si?"),
-	BUILDIN_DEF(instance_detachmap,"s?"),
-	BUILDIN_DEF(instance_attach,"i"),
-	BUILDIN_DEF(instance_id,"?"),
-	BUILDIN_DEF(instance_set_timeout,"ii?"),
-	BUILDIN_DEF(instance_init,"i"),
-	BUILDIN_DEF(instance_announce,"isi?????"),
-	BUILDIN_DEF(instance_npcname,"s?"),
-	BUILDIN_DEF(has_instance,"s?"),
-	BUILDIN_DEF(instance_warpall,"sii?"),
-
-	//Quest Log System [Inkfish]
-	BUILDIN_DEF(setquest, "i"),
-	BUILDIN_DEF(erasequest, "i"),
-	BUILDIN_DEF(completequest, "i"),
-	BUILDIN_DEF(checkquest, "i?"),
-	BUILDIN_DEF(changequest, "ii"),
-	BUILDIN_DEF(showevent, "ii"),
-	// Enchanting - Costume
-	BUILDIN_DEF(costume,"i"),
-	BUILDIN_DEF(successenchant,"ii"),
-	BUILDIN_DEF(failedenchant,"i"),
-
-	BUILDIN_DEF(get_playtime,""),
-	BUILDIN_DEF(isPremium,""),
-	BUILDIN_DEF(rankreset,"i"),
-	BUILDIN_DEF(item_remove4all,"i"),
-	BUILDIN_DEF(guild_addzenyeco,"i"),
-	BUILDIN_DEF(guild_addzenydef,"i"),
-	BUILDIN_DEF(getpvpmode,""),
-	BUILDIN_DEF(setsecurity,"i"),
-	BUILDIN_DEF(getsecurity,""),
-
-	// At Command Events [ToastOfDoom]
-	BUILDIN_DEF(bindatcmd, "ss??"),
-	BUILDIN_DEF(unbindatcmd, "s"),
-	BUILDIN_DEF(useatcmd, "s"),
-
-	BUILDIN_DEF(graveyard_info,"i"),
-	BUILDIN_DEF(achieve,"i"),
-	BUILDIN_DEF(achievement_info,"ii"),
-	BUILDIN_DEF(setfaction,"i"),
-	BUILDIN_DEF(language,"i"),
-	BUILDIN_DEF(learnlang,"i"),
-	BUILDIN_DEF(unlearnlang,"i"),
-
-	{NULL,NULL,NULL},
-};
+	for( i = 0; i < MAX_PARTY
