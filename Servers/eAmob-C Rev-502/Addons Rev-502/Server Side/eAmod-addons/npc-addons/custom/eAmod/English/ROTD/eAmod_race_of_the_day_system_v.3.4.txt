@@ -105,12 +105,12 @@ close;
 
 OnInit:
   //  -------------------
-	// | Minimum gm level
+  // | Minimum gm level
   //  -------------------
 	set .gm_level,80;
 
   //  -------------------
-	// | Monster race list
+  // | Monster race list
   //  -------------------
 	setarray .rotd$[0],
 		"Formless",
