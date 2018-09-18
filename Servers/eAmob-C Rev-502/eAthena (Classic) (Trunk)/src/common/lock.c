@@ -1,26 +1,5 @@
-/****************************************************************************!
-*                            _                                               *
-*                           / \                         _                    *
-*                   ___    / _ \   _ __ ___   ____  ___| |                   *
-*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
-*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
-*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
-*                                                                            *
-*                            eAmod Source File                               *
-*                                                                            *
-******************************************************************************
-* src/common/lock.c                                                          *
-******************************************************************************
-* Copyright (c) eAmod Dev Team                                               *
-* Copyright (c) rAthena Dev Team                                             *
-* Copyright (c) brAthena Dev Team                                            *
-* Copyright (c) Hercules Dev Team                                            *
-* Copyright (c) 3CeAM Dev Team                                               *
-* Copyright (c) Athena Dev Teams                                             *
-*                                                                            *
-* Licensed under GNU GPL                                                     *
-* For more information read the LICENSE file in the root of the emulator     *
-*****************************************************************************/
+// Copyright (c) Athena Dev Teams - Licensed under GNU GPL
+// For more information, see LICENCE in the main folder
 
 #include "cbasetypes.h"
 #include "showmsg.h"
@@ -36,15 +15,15 @@
 #include <io.h>
 #endif
 
-// æ›¸ãè¾¼ã¿ãƒ•ã‚¡ã‚¤ãƒ«ã®ä¿è­·å‡¦ç†
-// ï¼ˆæ›¸ãè¾¼ã¿ãŒçµ‚ã‚ã‚‹ã¾ã§ã€æ—§ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¿ç®¡ã—ã¦ãŠãï¼‰
+// ‘‚«‚İƒtƒ@ƒCƒ‹‚Ì•ÛŒìˆ—
+// i‘‚«‚İ‚ªI‚í‚é‚Ü‚ÅA‹Œƒtƒ@ƒCƒ‹‚ğ•ÛŠÇ‚µ‚Ä‚¨‚­j
 
-// æ–°ã—ã„ãƒ•ã‚¡ã‚¤ãƒ«ã®æ›¸ãè¾¼ã¿é–‹å§‹
+// V‚µ‚¢ƒtƒ@ƒCƒ‹‚Ì‘‚«‚İŠJn
 FILE* lock_fopen (const char* filename, int *info) {
 	char newfile[512];
 	int no = 0;
 
-	// å®‰å…¨ãªãƒ•ã‚¡ã‚¤ãƒ«åã‚’å¾—ã‚‹ï¼ˆæ‰‹æŠœãï¼‰
+	// ˆÀ‘S‚Èƒtƒ@ƒCƒ‹–¼‚ğ“¾‚éiè”²‚«j
 	do {
 		sprintf(newfile, "%s_%04d.tmp", filename, ++no);
 	} while(exists(newfile) && no < 9999);
@@ -52,7 +31,7 @@ FILE* lock_fopen (const char* filename, int *info) {
 	return fopen(newfile,"w");
 }
 
-// æ—§ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤ï¼†æ–°ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒªãƒãƒ¼ãƒ 
+// ‹Œƒtƒ@ƒCƒ‹‚ğíœ•Vƒtƒ@ƒCƒ‹‚ğƒŠƒl[ƒ€
 int lock_fclose (FILE *fp, const char* filename, int *info) {
 	int ret = 1;
 	char newfile[512];
@@ -65,7 +44,7 @@ int lock_fclose (FILE *fp, const char* filename, int *info) {
 		if (exists(oldfile)) remove(oldfile);	// remove backup file if it already exists
 		rename (filename, oldfile);				// backup our older data instead of deleting it
 
-		// ã“ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§è½ã¡ã‚‹ã¨æœ€æ‚ªã€‚
+		// ‚±‚Ìƒ^ƒCƒ~ƒ“ƒO‚Å—‚¿‚é‚ÆÅˆ«B
 		if ((ret = rename(newfile,filename)) != 0) {	// rename our temporary file to its correct name
 #if defined(__NETBSD__) || defined(_WIN32) || defined(sun) || defined (_sun) || defined (__sun__)
 			ShowError("%s - '"CL_WHITE"%s"CL_RESET"'\n", strerror(errno), newfile);

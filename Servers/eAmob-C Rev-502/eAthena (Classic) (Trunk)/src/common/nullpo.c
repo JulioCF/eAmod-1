@@ -1,39 +1,18 @@
-/****************************************************************************!
-*                            _                                               *
-*                           / \                         _                    *
-*                   ___    / _ \   _ __ ___   ____  ___| |                   *
-*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
-*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
-*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
-*                                                                            *
-*                            eAmod Source File                               *
-*                                                                            *
-******************************************************************************
-* src/common/nullpo.c                                                        *
-******************************************************************************
-* Copyright (c) eAmod Dev Team                                               *
-* Copyright (c) rAthena Dev Team                                             *
-* Copyright (c) brAthena Dev Team                                            *
-* Copyright (c) Hercules Dev Team                                            *
-* Copyright (c) 3CeAM Dev Team                                               *
-* Copyright (c) Athena Dev Teams                                             *
-*                                                                            *
-* Licensed under GNU GPL                                                     *
-* For more information read the LICENSE file in the root of the emulator     *
-*****************************************************************************/
+// Copyright (c) Athena Dev Teams - Licensed under GNU GPL
+// For more information, see LICENCE in the main folder
 
 #include <stdio.h>
 #include <stdarg.h>
 #include <string.h>
 #include "nullpo.h"
 #include "../common/showmsg.h"
-// #include "logs.h" // å¸ƒçŸ³ã—ã¦ã¿ã‚‹
+// #include "logs.h" // •zÎ‚µ‚Ä‚İ‚é
 
 static void nullpo_info_core(const char *file, int line, const char *func, 
                              const char *fmt, va_list ap);
 
 /*======================================
- * Nullãƒã‚§ãƒƒã‚¯ åŠã³ æƒ…å ±å‡ºåŠ›
+ * Nullƒ`ƒFƒbƒN ‹y‚Ñ î•ño—Í
  *--------------------------------------*/
 int nullpo_chk_f(const char *file, int line, const char *func, const void *target,
                  const char *fmt, ...)
@@ -60,7 +39,7 @@ int nullpo_chk(const char *file, int line, const char *func, const void *target)
 
 
 /*======================================
- * nullpoæƒ…å ±å‡ºåŠ›(å¤–éƒ¨å‘¼å‡ºã—å‘ã‘ãƒ©ãƒƒãƒ‘)
+ * nullpoî•ño—Í(ŠO•”ŒÄo‚µŒü‚¯ƒ‰ƒbƒp)
  *--------------------------------------*/
 void nullpo_info_f(const char *file, int line, const char *func, 
                  const char *fmt, ...)
@@ -79,7 +58,7 @@ void nullpo_info(const char *file, int line, const char *func)
 
 
 /*======================================
- * nullpoæƒ…å ±å‡ºåŠ›(Main)
+ * nullpoî•ño—Í(Main)
  *--------------------------------------*/
 static void nullpo_info_core(const char *file, int line, const char *func, 
                              const char *fmt, va_list ap)
@@ -100,13 +79,13 @@ static void nullpo_info_core(const char *file, int line, const char *func,
 		{
 			vprintf(fmt, ap);
 			
-			// æœ€å¾Œã«æ”¹è¡Œã—ãŸã‹ç¢ºèª
+			// ÅŒã‚É‰üs‚µ‚½‚©Šm”F
 			if (fmt[strlen(fmt)-1] != '\n')
 				ShowMessage("\n");
 		}
 	}
 	ShowMessage("--- end nullpo info ----------------------------------------\n");
 	
-	// ã“ã“ã‚‰ã§nullpoãƒ­ã‚°ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãå‡ºã›ãŸã‚‰
-	// ã¾ã¨ã‚ã¦æå‡ºã§ãã‚‹ãªã¨æ€ã£ã¦ã„ãŸã‚Šã€‚
+	// ‚±‚±‚ç‚ÅnullpoƒƒO‚ğƒtƒ@ƒCƒ‹‚É‘‚«o‚¹‚½‚ç
+	// ‚Ü‚Æ‚ß‚Ä’ño‚Å‚«‚é‚È‚Æv‚Á‚Ä‚¢‚½‚èB
 }

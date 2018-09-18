@@ -1,26 +1,13 @@
-/****************************************************************************!
-*                            _                                               *
-*                           / \                         _                    *
-*                   ___    / _ \   _ __ ___   ____  ___| |                   *
-*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
-*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
-*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
-*                                                                            *
-*                            eAmod Source File                               *
-*                                                                            *
-******************************************************************************
-* src/char_sql/inter.c                                                       *
-******************************************************************************
-* Copyright (c) eAmod Dev Team                                               *
-* Copyright (c) rAthena Dev Team                                             *
-* Copyright (c) brAthena Dev Team                                            *
-* Copyright (c) Hercules Dev Team                                            *
-* Copyright (c) 3CeAM Dev Team                                               *
-* Copyright (c) Athena Dev Teams                                             *
-*                                                                            *
-* Licensed under GNU GPL                                                     *
-* For more information read the LICENSE file in the root of the emulator     *
-*****************************************************************************/
+// (c) 2008 - 2011 eAmod Project; Andres Garbanzo / Zephyrus
+//
+//  - gaiaro.staff@yahoo.com
+//  - MSN andresjgm.cr@hotmail.com
+//  - Skype: Zephyrus_cr
+//  - Site: http://dev.terra-gaming.com
+//
+// This file is NOT public - you are not allowed to distribute it.
+// Authorized Server List : http://dev.terra-gaming.com/index.php?/topic/72-authorized-eamod-servers/
+// eAmod is a non Free, extended version of eAthena Ragnarok Private Server.
 
 #include "../common/mmo.h"
 #include "../common/db.h"
@@ -47,8 +34,8 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define WISDATA_TTL (60*1000)	// Wisãƒ‡ãƒ¼ã‚¿ã®ç”Ÿå­˜æ™‚é–“(60ç§’)
-#define WISDELLIST_MAX 256			// Wisãƒ‡ãƒ¼ã‚¿å‰Šé™¤ãƒªã‚¹ãƒˆã®è¦ç´ æ•°
+#define WISDATA_TTL (60*1000)	// Wisƒf[ƒ^‚Ì¶‘¶ŠÔ(60•b)
+#define WISDELLIST_MAX 256			// Wisƒf[ƒ^íœƒŠƒXƒg‚Ì—v‘f”
 
 
 Sql* sql_handle = NULL;
@@ -728,11 +715,11 @@ int inter_parse_frommap(int fd)
 	int cmd;
 	int len = 0;
 	cmd = RFIFOW(fd,0);
-	// interé¯–ç®¡è½„ã‹ã‚’èª¿ã¹ã‚‹
+	// interIŠÇŠ‚©‚ğ’²‚×‚é
 	if(cmd < 0x3000 || cmd >= 0x3000 + ARRAYLENGTH(inter_recv_packet_length) || inter_recv_packet_length[cmd - 0x3000] == 0)
 		return 0;
 
-	// ãƒ‘ã‚±ãƒƒãƒˆé•·ã‚’èª¿ã¹ã‚‹
+	// ƒpƒPƒbƒg’·‚ğ’²‚×‚é
 	if((len = inter_check_length(fd, inter_recv_packet_length[cmd - 0x3000])) == 0)
 		return 2;
 

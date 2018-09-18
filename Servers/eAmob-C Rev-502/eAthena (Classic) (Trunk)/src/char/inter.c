@@ -1,26 +1,5 @@
-/****************************************************************************!
-*                            _                                               *
-*                           / \                         _                    *
-*                   ___    / _ \   _ __ ___   ____  ___| |                   *
-*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
-*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
-*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
-*                                                                            *
-*                            eAmod Source File                               *
-*                                                                            *
-******************************************************************************
-* src/char/inter.c                                                           *
-******************************************************************************
-* Copyright (c) eAmod Dev Team                                               *
-* Copyright (c) rAthena Dev Team                                             *
-* Copyright (c) brAthena Dev Team                                            *
-* Copyright (c) Hercules Dev Team                                            *
-* Copyright (c) 3CeAM Dev Team                                               *
-* Copyright (c) Athena Dev Teams                                             *
-*                                                                            *
-* Licensed under GNU GPL                                                     *
-* For more information read the LICENSE file in the root of the emulator     *
-*****************************************************************************/
+// Copyright (c) Athena Dev Teams - Licensed under GNU GPL
+// For more information, see LICENCE in the main folder
 
 #include "../common/db.h"
 #include "../common/mmo.h"
@@ -94,7 +73,7 @@ static int wis_dellist[WISDELLIST_MAX], wis_delnum;
 
 //--------------------------------------------------------
 
-// ã‚¢ã‚«ã‚¦ãƒ³ãƒˆå¤‰æ•°ã‚’æ–‡å­—åˆ—ã¸å¤‰æ›
+// ƒAƒJƒEƒ“ƒg•Ï”‚ğ•¶š—ñ‚Ö•ÏŠ·
 int inter_accreg_tostr(char *str, struct accreg *reg) {
 	int j;
 	char *p = str;
@@ -107,7 +86,7 @@ int inter_accreg_tostr(char *str, struct accreg *reg) {
 	return 0;
 }
 #endif //TXT_SQL_CONVERT
-// ã‚¢ã‚«ã‚¦ãƒ³ãƒˆå¤‰æ•°ã‚’æ–‡å­—åˆ—ã‹ã‚‰å¤‰æ›
+// ƒAƒJƒEƒ“ƒg•Ï”‚ğ•¶š—ñ‚©‚ç•ÏŠ·
 int inter_accreg_fromstr(const char *str, struct accreg *reg) {
 	int j, n;
 	const char *p = str;
@@ -124,7 +103,7 @@ int inter_accreg_fromstr(const char *str, struct accreg *reg) {
 	return 0;
 }
 #ifndef TXT_SQL_CONVERT
-// ã‚¢ã‚«ã‚¦ãƒ³ãƒˆå¤‰æ•°ã®èª­ã¿è¾¼ã¿
+// ƒAƒJƒEƒ“ƒg•Ï”‚Ì“Ç‚İ‚İ
 int inter_accreg_init(void) {
 	char line[8192];
 	FILE *fp;
@@ -155,7 +134,7 @@ int inter_accreg_init(void) {
 	return 0;
 }
 
-// ã‚¢ã‚«ã‚¦ãƒ³ãƒˆå¤‰æ•°ã®ã‚»ãƒ¼ãƒ–ç”¨
+// ƒAƒJƒEƒ“ƒg•Ï”‚ÌƒZ[ƒu—p
 int inter_accreg_save_sub(DBKey key, void *data, va_list ap) {
 	char line[8192];
 	FILE *fp;
@@ -170,7 +149,7 @@ int inter_accreg_save_sub(DBKey key, void *data, va_list ap) {
 	return 0;
 }
 
-// ã‚¢ã‚«ã‚¦ãƒ³ãƒˆå¤‰æ•°ã®ã‚»ãƒ¼ãƒ–
+// ƒAƒJƒEƒ“ƒg•Ï”‚ÌƒZ[ƒu
 int inter_accreg_save(void) {
 	FILE *fp;
 	int lock;
@@ -188,7 +167,7 @@ int inter_accreg_save(void) {
 //--------------------------------------------------------
 #endif //TXT_SQL_CONVERT
 /*==========================================
- * è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€
+ * İ’èƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş
  *------------------------------------------*/
 static int inter_config_read(const char *cfgName) {
 	char line[1024], w1[1024], w2[1024];
@@ -242,7 +221,7 @@ static int inter_config_read(const char *cfgName) {
 	return 0;
 }
 #ifndef TXT_SQL_CONVERT
-// ãƒ­ã‚°æ›¸ãå‡ºã—
+// ƒƒO‘‚«o‚µ
 int inter_log(char *fmt,...) {
 	FILE *logfp;
 	va_list ap;
@@ -258,7 +237,7 @@ int inter_log(char *fmt,...) {
 	return 0;
 }
 
-// ã‚»ãƒ¼ãƒ–
+// ƒZ[ƒu
 int inter_save(void) {
 #ifdef ENABLE_SC_SAVING
 	inter_status_save();
@@ -275,7 +254,7 @@ int inter_save(void) {
 }
 #endif //TXT_SQL_CONVERT
 
-// åˆæœŸåŒ–
+// ‰Šú‰»
 int inter_init_txt(const char *file)
 {
 	inter_config_read(file);
@@ -307,7 +286,7 @@ void inter_final(void) {
 	return;
 }
 
-// ãƒãƒƒãƒ—ã‚µãƒ¼ãƒãƒ¼æ¥ç¶š
+// ƒ}ƒbƒvƒT[ƒo[Ú‘±
 int inter_mapif_init(int fd) {
 	inter_guild_mapif_init(fd);
 
@@ -397,7 +376,7 @@ static void mapif_account_reg(int fd, unsigned char *src)
 	mapif_sendallwos(fd, src, WBUFW(src,2));
 }
 
-// ã‚¢ã‚«ã‚¦ãƒ³ãƒˆå¤‰æ•°è¦æ±‚è¿”ä¿¡
+// ƒAƒJƒEƒ“ƒg•Ï”—v‹•ÔM
 int mapif_account_reg_reply(int fd,int account_id, int char_id)
 {
 	struct accreg *reg = (struct accreg*)idb_get(accreg_db,account_id);
@@ -581,7 +560,7 @@ static void* create_accreg(DBKey key, va_list args) {
 	return reg;
 }
 
-// ã‚¢ã‚«ã‚¦ãƒ³ãƒˆå¤‰æ•°ä¿å­˜è¦æ±‚
+// ƒAƒJƒEƒ“ƒg•Ï”•Û‘¶—v‹
 int mapif_parse_Registry(int fd) {
 	int j, p, len;
 	struct accreg *reg;
@@ -608,7 +587,7 @@ int mapif_parse_Registry(int fd) {
 		p +=len+1;
 	}
 	reg->reg_num=j;
-	mapif_account_reg(fd, RFIFOP(fd,0));	// ä»–ã®MAPã‚µãƒ¼ãƒãƒ¼ã«é€ä¿¡
+	mapif_account_reg(fd, RFIFOP(fd,0));	// ‘¼‚ÌMAPƒT[ƒo[‚É‘—M
 
 	return 0;
 }
@@ -696,23 +675,23 @@ int inter_check_length(int fd, int length)
 	return length;
 }
 
-// map server ã‹ã‚‰ã®é€šä¿¡ï¼ˆï¼‘ãƒ‘ã‚±ãƒƒãƒˆã®ã¿è§£æã™ã‚‹ã“ã¨ï¼‰
-// ã‚¨ãƒ©ãƒ¼ãªã‚‰0(false)ã€å‡¦ç†ã§ããŸãªã‚‰1ã€
-// ãƒ‘ã‚±ãƒƒãƒˆé•·ãŒè¶³ã‚Šãªã‘ã‚Œã°2ã‚’ã‹ãˆã•ãªã‘ã‚Œã°ãªã‚‰ãªã„
+// map server ‚©‚ç‚Ì’ÊMi‚PƒpƒPƒbƒg‚Ì‚İ‰ğÍ‚·‚é‚±‚Æj
+// ƒGƒ‰[‚È‚ç0(false)Aˆ—‚Å‚«‚½‚È‚ç1A
+// ƒpƒPƒbƒg’·‚ª‘«‚è‚È‚¯‚ê‚Î2‚ğ‚©‚¦‚³‚È‚¯‚ê‚Î‚È‚ç‚È‚¢
 int inter_parse_frommap(int fd) {
 	int cmd, len;
 	RFIFOHEAD(fd);
 	cmd = RFIFOW(fd,0);
 	len = 0;
 
-	// interé¯–ç®¡è½„ã‹ã‚’èª¿ã¹ã‚‹
+	// interIŠÇŠ‚©‚ğ’²‚×‚é
 	if (cmd < 0x3000 || cmd >= 0x3000 + ARRAYLENGTH(inter_recv_packet_length))
 		return 0;
 	
 	if (inter_recv_packet_length[cmd-0x3000] == 0) //This is necessary, because otherwise we return 2 and the char server will just hang waiting for packets! [Skotlex]
 		return 0;
 
-	// ãƒ‘ã‚±ãƒƒãƒˆé•·ã‚’èª¿ã¹ã‚‹
+	// ƒpƒPƒbƒg’·‚ğ’²‚×‚é
 	if ((len = inter_check_length(fd, inter_recv_packet_length[cmd - 0x3000])) == 0)
 		return 2;
 

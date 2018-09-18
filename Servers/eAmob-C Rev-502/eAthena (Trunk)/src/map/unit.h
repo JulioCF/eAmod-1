@@ -1,26 +1,5 @@
-/****************************************************************************!
-*                            _                                               *
-*                           / \                         _                    *
-*                   ___    / _ \   _ __ ___   ____  ___| |                   *
-*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
-*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
-*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
-*                                                                            *
-*                            eAmod Source File                               *
-*                                                                            *
-******************************************************************************
-* src/map/unit.h                                                             *
-******************************************************************************
-* Copyright (c) eAmod Dev Team                                               *
-* Copyright (c) rAthena Dev Team                                             *
-* Copyright (c) brAthena Dev Team                                            *
-* Copyright (c) Hercules Dev Team                                            *
-* Copyright (c) 3CeAM Dev Team                                               *
-* Copyright (c) Athena Dev Teams                                             *
-*                                                                            *
-* Licensed under GNU GPL                                                     *
-* For more information read the LICENSE file in the root of the emulator     *
-*****************************************************************************/
+// Copyright (c) Athena Dev Teams - Licensed under GNU GPL
+// For more information, see LICENCE in the main folder
 
 #ifndef _UNIT_H_
 #define _UNIT_H_
@@ -82,60 +61,60 @@ struct view_data {
 	unsigned dead_sit : 2;
 };
 
-// PC, MOB, PET ã«å…±é€šã™ã‚‹å‡¦ç†ã‚’ï¼‘ã¤ã«ã¾ã¨ã‚ã‚‹è¨ˆç”»
+// PC, MOB, PET ‚É‹¤’Ê‚·‚éˆ—‚ğ‚P‚Â‚É‚Ü‚Æ‚ß‚éŒv‰æ
 
-// æ­©è¡Œé–‹å§‹
-//     æˆ»ã‚Šå€¤ã¯ã€0 ( æˆåŠŸ ), 1 ( å¤±æ•— )
+// •àsŠJn
+//     –ß‚è’l‚ÍA0 ( ¬Œ÷ ), 1 ( ¸”s )
 int unit_walktoxy( struct block_list *bl, short x, short y, int easy);
 int unit_walktobl( struct block_list *bl, struct block_list *target, int range, int easy);
 int unit_run(struct block_list *bl);
 int unit_calc_pos(struct block_list *bl, int tx, int ty, int dir);
 
-// æ­©è¡Œåœæ­¢
-// typeã¯ä»¥ä¸‹ã®çµ„ã¿åˆã‚ã› : 
-//     1: ä½ç½®æƒ…å ±ã®é€ä¿¡( ã“ã®é–¢æ•°ã®å¾Œã«ä½ç½®æƒ…å ±ã‚’é€ä¿¡ã™ã‚‹å ´åˆã¯ä¸è¦ )
-//     2: ãƒ€ãƒ¡ãƒ¼ã‚¸ãƒ‡ã‚£ãƒ¬ã‚¤æœ‰ã‚Š
-//     4: ä¸æ˜(MOBã®ã¿ï¼Ÿ)
+// •às’â~
+// type‚ÍˆÈ‰º‚Ì‘g‚İ‡‚í‚¹ : 
+//     1: ˆÊ’uî•ñ‚Ì‘—M( ‚±‚ÌŠÖ”‚ÌŒã‚ÉˆÊ’uî•ñ‚ğ‘—M‚·‚éê‡‚Í•s—v )
+//     2: ƒ_ƒ[ƒWƒfƒBƒŒƒC—L‚è
+//     4: •s–¾(MOB‚Ì‚İH)
 int unit_stop_walking(struct block_list *bl,int type);
 int unit_can_move(struct block_list *bl);
 int unit_is_walking(struct block_list *bl);
 int unit_set_walkdelay(struct block_list *bl, unsigned int tick, int delay, int type);
 
 int unit_escape(struct block_list *bl, struct block_list *target, short dist);
-// ä½ç½®ã®å¼·åˆ¶ç§»å‹•(å¹ãé£›ã°ã—ãªã©)
+// ˆÊ’u‚Ì‹­§ˆÚ“®(‚«”ò‚Î‚µ‚È‚Ç)
 int unit_movepos(struct block_list *bl, short dst_x, short dst_y, int easy, bool checkpath);
 int unit_warp(struct block_list *bl, short map, short x, short y, clr_type type);
 int unit_setdir(struct block_list *bl,unsigned char dir);
 uint8 unit_getdir(struct block_list *bl);
 int unit_blown(struct block_list* bl, int dx, int dy, int count, int flag);
 
-// ãã“ã¾ã§æ­©è¡Œã§ãŸã©ã‚Šç€ã‘ã‚‹ã‹ã®åˆ¤å®š
+// ‚»‚±‚Ü‚Å•às‚Å‚½‚Ç‚è’…‚¯‚é‚©‚Ì”»’è
 bool unit_can_reach_pos(struct block_list *bl,int x,int y,int easy);
 bool unit_can_reach_bl(struct block_list *bl,struct block_list *tbl, int range, int easy, short *x, short *y);
 
-// æ”»æ’ƒé–¢é€£
+// UŒ‚ŠÖ˜A
 int unit_stop_attack(struct block_list *bl);
 int unit_attack(struct block_list *src,int target_id,int continuous);
 int unit_cancel_combo(struct block_list *bl);
 
-// ã‚¹ã‚­ãƒ«ä½¿ç”¨
+// ƒXƒLƒ‹g—p
 int unit_skilluse_id(struct block_list *src, int target_id, short skill_num, short skill_lv);
 int unit_skilluse_pos(struct block_list *src, short skill_x, short skill_y, short skill_num, short skill_lv);
 
-// ã‚¹ã‚­ãƒ«ä½¿ç”¨( è£œæ­£æ¸ˆã¿ã‚­ãƒ£ã‚¹ãƒˆæ™‚é–“ã€ã‚­ãƒ£ãƒ³ã‚»ãƒ«ä¸å¯è¨­å®šä»˜ã )
+// ƒXƒLƒ‹g—p( •â³Ï‚İƒLƒƒƒXƒgŠÔAƒLƒƒƒ“ƒZƒ‹•s‰Âİ’è•t‚« )
 int unit_skilluse_id2(struct block_list *src, int target_id, short skill_num, short skill_lv, int casttime, int castcancel);
 int unit_skilluse_pos2( struct block_list *src, short skill_x, short skill_y, short skill_num, short skill_lv, int casttime, int castcancel);
 
-// è© å”±ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+// ‰r¥ƒLƒƒƒ“ƒZƒ‹
 int unit_skillcastcancel(struct block_list *bl,int type);
 
 int unit_counttargeted(struct block_list *bl,int target_lv);
 
-// unit_data ã®åˆæœŸåŒ–å‡¦ç†
+// unit_data ‚Ì‰Šú‰»ˆ—
 void unit_dataset(struct block_list *bl);
 
 int unit_fixdamage(struct block_list *src,struct block_list *target,unsigned int tick,int sdelay,int ddelay,int damage,int div,int type,int damage2);
-// ãã®ä»–
+// ‚»‚Ì‘¼
 struct unit_data* unit_bl2ud(struct block_list *bl);
 void unit_remove_map_pc(struct map_session_data *sd, clr_type clrtype);
 void unit_free_pc(struct map_session_data *sd);
@@ -143,7 +122,7 @@ int unit_remove_map(struct block_list *bl, clr_type clrtype);
 int unit_free(struct block_list *bl, clr_type clrtype);
 int unit_changeviewsize(struct block_list *bl,short size);
 
-// åˆæœŸåŒ–ãƒ«ãƒ¼ãƒãƒ³
+// ‰Šú‰»ƒ‹[ƒ`ƒ“
 int do_init_unit(void);
 int do_final_unit(void);
 

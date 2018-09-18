@@ -1,26 +1,5 @@
-/****************************************************************************!
-*                            _                                               *
-*                           / \                         _                    *
-*                   ___    / _ \   _ __ ___   ____  ___| |                   *
-*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
-*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
-*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
-*                                                                            *
-*                            eAmod Source File                               *
-*                                                                            *
-******************************************************************************
-* src/char/char.c                                                            *
-******************************************************************************
-* Copyright (c) eAmod Dev Team                                               *
-* Copyright (c) rAthena Dev Team                                             *
-* Copyright (c) brAthena Dev Team                                            *
-* Copyright (c) Hercules Dev Team                                            *
-* Copyright (c) 3CeAM Dev Team                                               *
-* Copyright (c) Athena Dev Teams                                             *
-*                                                                            *
-* Licensed under GNU GPL                                                     *
-* For more information read the LICENSE file in the root of the emulator     *
-*****************************************************************************/
+// Copyright (c) Athena Dev Teams - Licensed under GNU GPL
+// For more information, see LICENCE in the main folder
 
 #include "../common/cbasetypes.h"
 #include "../common/core.h"
@@ -861,7 +840,7 @@ int mmo_char_fromstr(char *str, struct mmo_charstatus *p, struct global_reg *reg
 	}
 #endif //TXT_SQL_CONVERT
 	if (str[next] == '\n' || str[next] == '\r')
-		return 1;	// æ–°è¦ãƒ‡ãƒ¼ã‚¿
+		return 1;	// V‹Kƒf[ƒ^
 
 	next++;
 
@@ -947,7 +926,7 @@ int mmo_char_fromstr(char *str, struct mmo_charstatus *p, struct global_reg *reg
 
 	next++;
 
-	for(i = 0; str[next] && str[next] != '\t' && str[next] != '\n' && str[next] != '\r'; i++) { // global_regå®Ÿè£…ä»¥å‰ã®athena.txtäº’æ›ã®ãŸã‚ä¸€å¿œ'\n'ãƒã‚§ãƒƒã‚¯
+	for(i = 0; str[next] && str[next] != '\t' && str[next] != '\n' && str[next] != '\r'; i++) { // global_regÀ‘•ˆÈ‘O‚Ìathena.txtŒİŠ·‚Ì‚½‚ßˆê‰'\n'ƒ`ƒFƒbƒN
 		if (sscanf(str + next, "%[^,],%[^ ] %n", reg[i].str, reg[i].value, &len) != 2) { 
 			// because some scripts are not correct, the str can be "". So, we must check that.
 			// If it's, we must not refuse the character, but just this REG value.
@@ -1989,7 +1968,7 @@ int mmo_char_send006b(int fd, struct char_session_data* sd)
 	return 0;
 }
 
-// é›¢å©š(charå‰Šé™¤æ™‚ã«ä½¿ç”¨)
+// —£¥(charíœ‚Ég—p)
 int char_divorce(struct mmo_charstatus *cs)
 {
 	if (cs == NULL)
@@ -2072,12 +2051,12 @@ void disconnect_player(int account_id)
 		set_eof(i);
 }
 
-// ã‚­ãƒ£ãƒ©å‰Šé™¤ã«ä¼´ã†ãƒ‡ãƒ¼ã‚¿å‰Šé™¤
+// ƒLƒƒƒ‰íœ‚É”º‚¤ƒf[ƒ^íœ
 static int char_delete(struct mmo_charstatus *cs)
 {
 	int j;
 
-	// ãƒšãƒƒãƒˆå‰Šé™¤
+	// ƒyƒbƒgíœ
 	if (cs->pet_id)
 		inter_pet_delete(cs->pet_id);
 	if (cs->hom_id)
@@ -2088,21 +2067,21 @@ static int char_delete(struct mmo_charstatus *cs)
 	for (j = 0; j < MAX_CART; j++)
 		if (cs->cart[j].card[0] == (short)0xff00)
 			inter_pet_delete( MakeDWord(cs->cart[j].card[1],cs->cart[j].card[2]) );
-	// ã‚®ãƒ«ãƒ‰è„±é€€
+	// ƒMƒ‹ƒh’E‘Ş
 	if (cs->guild_id)
 		inter_guild_leave(cs->guild_id, cs->account_id, cs->char_id);
-	// ãƒ‘ãƒ¼ãƒ†ã‚£ãƒ¼è„±é€€
+	// ƒp[ƒeƒB[’E‘Ş
 	if (cs->party_id)
 		inter_party_leave(cs->party_id, cs->account_id, cs->char_id);
-	// é›¢å©š
+	// —£¥
 	if (cs->partner_id){
-		// é›¢å©šæƒ…å ±ã‚’mapã«é€šçŸ¥
+		// —£¥î•ñ‚ğmap‚É’Ê’m
 		unsigned char buf[10];
 		WBUFW(buf,0) = 0x2b12;
 		WBUFL(buf,2) = cs->char_id;
 		WBUFL(buf,6) = cs->partner_id;
 		mapif_sendall(buf,10);
-		// é›¢å©š
+		// —£¥
 		char_divorce(cs);
 	}
 #ifdef ENABLE_SC_SAVING
@@ -3523,7 +3502,7 @@ int search_mapserver(unsigned short map, uint32 ip, uint16 port)
 	return -1;
 }
 
-// char_mapifã®åˆæœŸåŒ–å‡¦ç†ï¼ˆç¾åœ¨ã¯inter_mapifåˆæœŸåŒ–ã®ã¿ï¼‰
+// char_mapif‚Ì‰Šú‰»ˆ—iŒ»İ‚Íinter_mapif‰Šú‰»‚Ì‚İj
 static int char_mapif_init(int fd)
 {
 	return inter_mapif_init(fd);
@@ -4851,7 +4830,7 @@ int do_init(int argc, char **argv)
 #ifdef ENABLE_SC_SAVING
 	status_init();
 #endif
-	inter_init_txt((argc > 2) ? argv[2] : inter_cfgName);	// inter server åˆæœŸåŒ–
+	inter_init_txt((argc > 2) ? argv[2] : inter_cfgName);	// inter server ‰Šú‰»
 	ShowInfo("char server initialized.\n");
 
 	if ((naddr_ != 0) && (!login_ip || !char_ip))

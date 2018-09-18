@@ -1,26 +1,5 @@
-/****************************************************************************!
-*                            _                                               *
-*                           / \                         _                    *
-*                   ___    / _ \   _ __ ___   ____  ___| |                   *
-*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
-*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
-*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
-*                                                                            *
-*                            eAmod Source File                               *
-*                                                                            *
-******************************************************************************
-* src/map/party.c                                                            *
-******************************************************************************
-* Copyright (c) eAmod Dev Team                                               *
-* Copyright (c) rAthena Dev Team                                             *
-* Copyright (c) brAthena Dev Team                                            *
-* Copyright (c) Hercules Dev Team                                            *
-* Copyright (c) 3CeAM Dev Team                                               *
-* Copyright (c) Athena Dev Teams                                             *
-*                                                                            *
-* Licensed under GNU GPL                                                     *
-* For more information read the LICENSE file in the root of the emulator     *
-*****************************************************************************/
+// Copyright (c) Athena Dev Teams - Licensed under GNU GPL
+// For more information, see LICENCE in the main folder
 
 #include "../common/cbasetypes.h"
 #include "../common/timer.h"
@@ -137,14 +116,14 @@ static TBL_PC* party_sd_check(int party_id, int account_id, int char_id)
 }
 
 /*==========================================
- * ÂIâ€”Â¹
+ * I—¹
  *------------------------------------------*/
 void do_final_party(void)
 {
 	party_db->destroy(party_db,NULL);
 	party_booking_db->destroy(party_booking_db,NULL); // Party Booking [Spiria]
 }
-// Ââ€°Å Ãºâ€°Â»
+// ‰Šú‰»
 void do_init_party(void)
 {
 	party_db = idb_alloc(DB_OPT_RELEASE_DATA);

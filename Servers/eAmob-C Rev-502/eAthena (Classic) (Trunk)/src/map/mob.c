@@ -1,26 +1,13 @@
-/****************************************************************************!
-*                            _                                               *
-*                           / \                         _                    *
-*                   ___    / _ \   _ __ ___   ____  ___| |                   *
-*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
-*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
-*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
-*                                                                            *
-*                            eAmod Source File                               *
-*                                                                            *
-******************************************************************************
-* src/map/mob.c                                                              *
-******************************************************************************
-* Copyright (c) eAmod Dev Team                                               *
-* Copyright (c) rAthena Dev Team                                             *
-* Copyright (c) brAthena Dev Team                                            *
-* Copyright (c) Hercules Dev Team                                            *
-* Copyright (c) 3CeAM Dev Team                                               *
-* Copyright (c) Athena Dev Teams                                             *
-*                                                                            *
-* Licensed under GNU GPL                                                     *
-* For more information read the LICENSE file in the root of the emulator     *
-*****************************************************************************/
+// (c) 2008 - 2011 eAmod Project; Andres Garbanzo / Zephyrus
+//
+//  - gaiaro.staff@yahoo.com
+//  - MSN andresjgm.cr@hotmail.com
+//  - Skype: Zephyrus_cr
+//  - Site: http://dev.terra-gaming.com
+//
+// This file is NOT public - you are not allowed to distribute it.
+// Authorized Server List : http://dev.terra-gaming.com/index.php?/topic/72-authorized-eamod-servers/
+// eAmod is a non Free, extended version of eAthena Ragnarok Private Server.
 
 #include "../common/cbasetypes.h"
 #include "../common/timer.h"
@@ -438,7 +425,7 @@ bool mob_ksprotected (struct block_list *src, struct block_list *target)
 }
 
 /*==========================================
- * Script de Evento - Crea un Area de Explosiones que puede daîƒr segun el tipo:
+ * Script de Evento - Crea un Area de Explosiones que puede dañar segun el tipo:
  * 0 = Jugadores y Mob
  * 1 = Solamente Mob
  *------------------------------------------*/
@@ -3050,7 +3037,7 @@ int mob_class_change (struct mob_data *md, int class_)
 }
 
 /*==========================================
- * mobå›å¾©
+ * mob‰ñ•œ
  *------------------------------------------*/
 void mob_heal(struct mob_data *md,unsigned int heal)
 {
@@ -3092,7 +3079,7 @@ int mob_warpslave(struct block_list *bl, int range)
 }
 
 /*==========================================
- * ç”»é¢å†…ã®å–ã‚Šå·»ãã®æ•°è¨ˆç®—ç”¨(foreachinarea)
+ * ‰æ–Ê“à‚Ìæ‚èŠª‚«‚Ì”ŒvZ—p(foreachinarea)
  *------------------------------------------*/
 int mob_countslave_sub(struct block_list *bl,va_list ap)
 {
@@ -3107,7 +3094,7 @@ int mob_countslave_sub(struct block_list *bl,va_list ap)
 }
 
 /*==========================================
- * ç”»é¢å†…ã®å–ã‚Šå·»ãã®æ•°è¨ˆç®—
+ * ‰æ–Ê“à‚Ìæ‚èŠª‚«‚Ì”ŒvZ
  *------------------------------------------*/
 int mob_countslave(struct block_list *bl)
 {
@@ -3222,7 +3209,7 @@ int mob_summonslave(struct mob_data *md2,int *value,int amount,int skill_id)
 }
 
 /*==========================================
- *MOBskillã‹ã‚‰è©²å½“skillidã®skillidxã‚’è¿”ã™
+ *MOBskill‚©‚çŠY“–skillid‚Ìskillidx‚ğ•Ô‚·
  *------------------------------------------*/
 int mob_skillid2skillidx(int class_,int skillid)
 {
@@ -3791,7 +3778,7 @@ int mob_clone_delete(struct mob_data *md)
 }
 
 //
-// åˆæœŸåŒ–
+// ‰Šú‰»
 //
 /*==========================================
  * Since un-setting [ mob ] up was used, it is an initial provisional value setup.
@@ -4240,7 +4227,7 @@ static bool mob_readdb_mobavail(char* str[], int columns, int current)
 
 	class_=atoi(str[0]);
 
-	if(mob_db(class_) == mob_dummy)	// å€¤ãŒç•°å¸¸ãªã‚‰å‡¦ç†ã—ãªã„ã€‚
+	if(mob_db(class_) == mob_dummy)	// ’l‚ªˆÙí‚È‚çˆ—‚µ‚È‚¢B
 	{
 		ShowWarning("mob_readdb_mobavail: Unknown mob id %d.\n", class_);
 		return false;
