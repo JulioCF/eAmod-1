@@ -1,5 +1,26 @@
-// Copyright (c) Athena Dev Teams - Licensed under GNU GPL
-// For more information, see LICENCE in the main folder
+/****************************************************************************!
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
+*                                                                            *
+*                            eAmod Source File                               *
+*                                                                            *
+******************************************************************************
+* src/map/pet.c                                                              *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
+*****************************************************************************/
 
 #include "../common/db.h"
 #include "../common/timer.h"
@@ -1050,7 +1071,7 @@ int pet_lootitem_drop(struct pet_data *pd,struct map_session_data *sd)
 	memset(pd->loot->item,0,pd->loot->max * sizeof(struct item));
 	pd->loot->count = 0;
 	pd->loot->weight = 0;
-	pd->ud.canact_tick = gettick()+10000;	//	10*1000ms‚ÌŠÔE‚í‚È‚¢
+	pd->ud.canact_tick = gettick()+10000;	//	10*1000msã®é–“æ‹¾ã‚ãªã„
 
 	if (dlist->item)
 		add_timer(gettick()+540,pet_delay_item_drop,0,(intptr_t)dlist);
@@ -1214,7 +1235,7 @@ int pet_skill_support_timer(int tid, unsigned int tick, int id, intptr_t data)
 }
 
 /*==========================================
- *ƒyƒbƒgƒf[ƒ^“Ç‚İ‚İ
+ *ãƒšãƒƒãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
  *------------------------------------------*/ 
 int read_petdb()
 {
@@ -1362,7 +1383,7 @@ int read_petdb()
 }
 
 /*==========================================
- * ƒXƒLƒ‹ŠÖŒW‰Šú‰»ˆ—
+ * ã‚¹ã‚­ãƒ«é–¢ä¿‚åˆæœŸåŒ–å‡¦ç†
  *------------------------------------------*/
 int do_init_pet(void)
 {
