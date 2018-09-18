@@ -1,27 +1,5 @@
-/****************************************************************************!
-*                            _                                               *
-*                           / \                         _                    *
-*                   ___    / _ \   _ __ ___   ____  ___| |                   *
-*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
-*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
-*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
-*                                                                            *
-*                            eAmod Source File                               *
-*                                                                            *
-******************************************************************************
-* src/map/atcommand.c                                                        *
-******************************************************************************
-* Copyright (c) eAmod Dev Team                                               *
-* Copyright (c) rAthena Dev Team                                             *
-* Copyright (c) brAthena Dev Team                                            *
-* Copyright (c) Hercules Dev Team                                            *
-* Copyright (c) 3CeAM Dev Team                                               *
-* Copyright (c) Athena Dev Teams                                             *
-*                                                                            *
-* Licensed under GNU GPL                                                     *
-* For more information read the LICENSE file in the root of the emulator     *
-*****************************************************************************/
-
+// Copyright (c) Athena Dev Teams - Licensed under GNU GPL
+// For more information, see LICENCE in the main folder
 
 #include "../common/cbasetypes.h"
 #include "../common/mmo.h"
@@ -8682,7 +8660,7 @@ ACMD_FUNC(maspowerr)
 }
 
 /*==========================================
- * Comando para CorazÃ³n de Ciudad [Zephyrus]
+ * Comando para Corazón de Ciudad [Zephyrus]
  *------------------------------------------
  */
 void cityheart_sub(int id, const int master_id)
@@ -8713,7 +8691,7 @@ ACMD_FUNC(cityheart)
 	hpmas = cap_value(hpmas,1,10000000);
 	allied = cap_value(allied,0,1);
 
-	// CreaciÃ³n del CorazÃ³n
+	// Creación del Corazón
 	md = (struct mob_data *)map_id2bl(mob_once_spawn_especial(sd, "this", sd->bl.x, sd->bl.y, name, MOBID_EMPERIUM, 1, "", hpmas, 0, allied, false, 0, 1, true, false, true, 0, 0, 0, false, 0, 0));
 	if (md) {
 		clif_misceffect(&md->bl,344);
@@ -9061,7 +9039,7 @@ ACMD_FUNC(charlist)
 }
 
 /*==========================================
- * InformaciÃ³n de una cuenta [Account ID]
+ * Información de una cuenta [Account ID]
  *------------------------------------------*/
 void account_info(const int fd, struct map_session_data *sd, int account_id)
 {
@@ -9229,7 +9207,7 @@ ACMD_FUNC(logininfo)
 }
 
 /*==========================================
- * InformaciÃ³n de MembresÃ­as
+ * Información de Membresías
  *------------------------------------------*/
 ACMD_FUNC(memberinfo)
 {
@@ -9482,7 +9460,7 @@ ACMD_FUNC(whosell)
 				clif_viewpoint(sd, 1, 1, b_sd[i]->bl.x, b_sd[i]->bl.y, i, 0xFFFFFF);
 		}
 		else
-			sprintf(output, "[%d] '%s' no estÃ¡ en tiendas...", item_array[i]->nameid, item_array[i]->jname);
+			sprintf(output, "[%d] '%s' no está en tiendas...", item_array[i]->nameid, item_array[i]->jname);
 
 		clif_displaymessage(sd->fd, output);
 	}
@@ -9491,7 +9469,7 @@ ACMD_FUNC(whosell)
 }
 
 /*==========================================
- * CreaciÃ³n de items en el suelo, en un Area.
+ * Creación de items en el suelo, en un Area.
  *------------------------------------------*/
 ACMD_FUNC(flooritem)
 {
@@ -10114,7 +10092,7 @@ static int atwhopk_sub(struct block_list *bl,va_list ap)
 	pl = (TBL_PC*)bl; // Esto lo retorna el Map_foreachinmap
 
 	if( !pl->state.pvpmode || pl == sd )
-		return 0; // Ignora jugadores que no estÃ©n en Modo PK o al Mismo Jugador
+		return 0; // Ignora jugadores que no estén en Modo PK o al Mismo Jugador
 
 	if( fd )
 	{

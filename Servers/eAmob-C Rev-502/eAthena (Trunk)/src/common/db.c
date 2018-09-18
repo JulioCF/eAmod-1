@@ -1,27 +1,7 @@
-/****************************************************************************!
-*                            _                                               *
-*                           / \                         _                    *
-*                   ___    / _ \   _ __ ___   ____  ___| |                   *
-*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
-*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
-*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
-*                                                                            *
-*                            eAmod Source File                               *
-*                                                                            *
-******************************************************************************
-* src/common/db.c                                                            *
-******************************************************************************
-* Copyright (c) eAmod Dev Team                                               *
-* Copyright (c) rAthena Dev Team                                             *
-* Copyright (c) brAthena Dev Team                                            *
-* Copyright (c) Hercules Dev Team                                            *
-* Copyright (c) 3CeAM Dev Team                                               *
-* Copyright (c) Athena Dev Teams                                             *
-*                                                                            *
-* Licensed under GNU GPL                                                     *
-* For more information read the LICENSE file in the root of the emulator     *
-*****************************************************************************/
 /*****************************************************************************\
+ *  Copyright (c) Athena Dev Teams - Licensed under GNU GPL
+ *  For more information, see LICENCE in the main folder
+ *
  *  This file is separated in five sections:
  *  (1) Private typedefs, enums, structures, defines and gblobal variables
  *  (2) Private functions
@@ -2647,7 +2627,7 @@ void* linkdb_search( struct linkdb_node** head, void *key)
 	while( node ) {
 		if( node->key == key ) {
 			if( node->prev && n > 5 ) {
-				// å‡¦ç†åŠ¹ç‡æ”¹å–„ã®ç‚ºã«headã«ç§»å‹•ã•ã›ã‚‹
+				// ˆ—Œø—¦‰ü‘P‚Ìˆ×‚Éhead‚ÉˆÚ“®‚³‚¹‚é
 				if(node->prev) node->prev->next = node->next;
 				if(node->next) node->next->prev = node->prev;
 				node->next = *head;
@@ -2694,7 +2674,7 @@ void linkdb_replace( struct linkdb_node** head, void *key, void *data )
 	while( node ) {
 		if( node->key == key ) {
 			if( node->prev && n > 5 ) {
-				// å‡¦ç†åŠ¹ç‡æ”¹å–„ã®ç‚ºã«headã«ç§»å‹•ã•ã›ã‚‹
+				// ˆ—Œø—¦‰ü‘P‚Ìˆ×‚Éhead‚ÉˆÚ“®‚³‚¹‚é
 				if(node->prev) node->prev->next = node->next;
 				if(node->next) node->next->prev = node->prev;
 				node->next = *head;
@@ -2708,7 +2688,7 @@ void linkdb_replace( struct linkdb_node** head, void *key, void *data )
 		node = node->next;
 		n++;
 	}
-	// è¦‹ã¤ã‹ã‚‰ãªã„ã®ã§æŒ¿å…¥
+	// Œ©‚Â‚©‚ç‚È‚¢‚Ì‚Å‘}“ü
 	linkdb_insert( head, key, data );
 }
 

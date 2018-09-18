@@ -1,26 +1,5 @@
-/****************************************************************************!
-*                            _                                               *
-*                           / \                         _                    *
-*                   ___    / _ \   _ __ ___   ____  ___| |                   *
-*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
-*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
-*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
-*                                                                            *
-*                            eAmod Source File                               *
-*                                                                            *
-******************************************************************************
-* src/map/battle.c                                                           *
-******************************************************************************
-* Copyright (c) eAmod Dev Team                                               *
-* Copyright (c) rAthena Dev Team                                             *
-* Copyright (c) brAthena Dev Team                                            *
-* Copyright (c) Hercules Dev Team                                            *
-* Copyright (c) 3CeAM Dev Team                                               *
-* Copyright (c) Athena Dev Teams                                             *
-*                                                                            *
-* Licensed under GNU GPL                                                     *
-* For more information read the LICENSE file in the root of the emulator     *
-*****************************************************************************/
+// Copyright (c) Athena Dev Teams - Licensed under GNU GPL
+// For more information, see LICENCE in the main folder
 
 #include "../common/cbasetypes.h"
 #include "../common/timer.h"
@@ -164,7 +143,7 @@ struct block_list* battle_getenemy(struct block_list *target, int type, int rang
 	return bl_list[rand()%c];
 }
 
-// ãƒ€??[ã‚¸ã®é…å»¶
+// ƒ_??[ƒW‚Ì’x‰„
 struct delay_damage {
 	struct block_list *src;
 	int target;
@@ -289,7 +268,7 @@ int battle_attr_fix(struct block_list *src, struct block_list *target, int damag
 }
 
 /*==========================================
- * ãƒ€??[ã‚¸??Iè¨ˆç®—
+ * ƒ_??[ƒW??IŒvZ
  *------------------------------------------*/
 int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damage *d,int damage,int skill_num,int skill_lv)
 {
@@ -815,7 +794,7 @@ int battle_calc_gvg_damage(struct block_list *src,struct block_list *bl,int dama
 }
 
 /*==========================================
- * HP/SPå¸åã®è¨ˆç®—
+ * HP/SP‹zû‚ÌŒvZ
  *------------------------------------------*/
 static int battle_calc_drain(int damage, int rate, int per)
 {
@@ -834,7 +813,7 @@ static int battle_calc_drain(int damage, int rate, int per)
 }
 
 /*==========================================
- * ?Cç·´ãƒ€??[ã‚¸
+ * ?C—ûƒ_??[ƒW
  *------------------------------------------*/
 int battle_addmastery(struct map_session_data *sd,struct block_list *target,int dmg,int type)
 {
@@ -2797,7 +2776,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 }
 
 /*==========================================
- * ãã®ä»–ãƒ€??[ã‚¸è¨ˆç®—
+ * ‚»‚Ì‘¼ƒ_??[ƒWŒvZ
  *------------------------------------------*/
 struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *target,int skill_num,int skill_lv,int mflag)
 {
@@ -3055,7 +3034,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 	return md;
 }
 /*==========================================
- * ãƒ€??[ã‚¸è¨ˆç®—ä¸€æ‹¬?ï¿½?ç”¨
+ * ƒ_??[ƒWŒvZˆêŠ‡?ˆ—?—p
  *------------------------------------------*/
 struct Damage battle_calc_attack(int attack_type,struct block_list *bl,struct block_list *target,int skill_num,int skill_lv,int count)
 {
@@ -3164,7 +3143,7 @@ void battle_drain(TBL_PC *sd, struct block_list *tbl, int rdamage, int ldamage, 
 }
 
 /*==========================================
- * é€š??Uæ’ƒ?ï¿½?ã¾ã¨ã‚
+ * ’Ê??UŒ‚?ˆ—?‚Ü‚Æ‚ß
  *------------------------------------------*/
 enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* target, unsigned int tick, int flag)
 {
@@ -3806,7 +3785,7 @@ int battle_check_target( struct block_list *src, struct block_list *target,int f
 	return (flag&state)?1:-1;
 }
 /*==========================================
- * å°„ç¨‹åˆ¤å®š
+ * Ë’ö”»’è
  *------------------------------------------*/
 bool battle_check_range(struct block_list *src, struct block_list *bl, int range)
 {

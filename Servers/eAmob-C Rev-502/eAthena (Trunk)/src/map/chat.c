@@ -1,27 +1,5 @@
-/****************************************************************************!
-*                            _                                               *
-*                           / \                         _                    *
-*                   ___    / _ \   _ __ ___   ____  ___| |                   *
-*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
-*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
-*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
-*                                                                            *
-*                            eAmod Source File                               *
-*                                                                            *
-******************************************************************************
-* src/map/chat.c                                                             *
-******************************************************************************
-* Copyright (c) eAmod Dev Team                                               *
-* Copyright (c) rAthena Dev Team                                             *
-* Copyright (c) brAthena Dev Team                                            *
-* Copyright (c) Hercules Dev Team                                            *
-* Copyright (c) 3CeAM Dev Team                                               *
-* Copyright (c) Athena Dev Teams                                             *
-*                                                                            *
-* Licensed under GNU GPL                                                     *
-* For more information read the LICENSE file in the root of the emulator     *
-*****************************************************************************/
-
+// Copyright (c) Athena Dev Teams - Licensed under GNU GPL
+// For more information, see LICENCE in the main folder
 
 #include "../common/cbasetypes.h"
 #include "../common/malloc.h"
@@ -172,11 +150,11 @@ int chat_joinchat(struct map_session_data* sd, int chatid, const char* pass)
 
 	pc_setchatid(sd,cd->bl.id);
 
-	clif_joinchatok(sd,cd);	// æ–°ãŸã«å‚åŠ ã—ãŸäººã«ã¯å…¨å“¡ã®ãƒªã‚¹ãƒˆ
-	clif_addchat(cd,sd);	// æ—¢ã«ä¸­ã«å±…ãŸäººã«ã¯è¿½åŠ ã—ãŸäººã®å ±å‘Š
-	clif_dispchat(cd,0);	// å‘¨å›²ã®äººã«ã¯äººæ•°å¤‰åŒ–å ±å‘Š
+	clif_joinchatok(sd,cd);	// V‚½‚ÉQ‰Á‚µ‚½l‚É‚Í‘Sˆõ‚ÌƒŠƒXƒg
+	clif_addchat(cd,sd);	// Šù‚É’†‚É‹‚½l‚É‚Í’Ç‰Á‚µ‚½l‚Ì•ñ
+	clif_dispchat(cd,0);	// üˆÍ‚Ìl‚É‚Íl”•Ï‰»•ñ
 
-	chat_triggerevent(cd); // ã‚¤ãƒ™ãƒ³ãƒˆ
+	chat_triggerevent(cd); // ƒCƒxƒ“ƒg
 	
 	return 0;
 }
@@ -389,7 +367,7 @@ int chat_deletenpcchat(struct npc_data* nd)
 }
 
 /*==========================================
- * è¦å®šäººæ•°ä»¥ä¸Šã§ã‚¤ãƒ™ãƒ³ãƒˆãŒå®šç¾©ã•ã‚Œã¦ã‚‹ãªã‚‰å®Ÿè¡Œ
+ * ‹K’èl”ˆÈã‚ÅƒCƒxƒ“ƒg‚ª’è‹`‚³‚ê‚Ä‚é‚È‚çÀs
  *------------------------------------------*/
 int chat_triggerevent(struct chat_data *cd)
 {

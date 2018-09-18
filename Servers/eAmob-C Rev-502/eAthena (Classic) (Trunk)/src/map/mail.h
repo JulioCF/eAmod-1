@@ -1,26 +1,13 @@
-/****************************************************************************!
-*                            _                                               *
-*                           / \                         _                    *
-*                   ___    / _ \   _ __ ___   ____  ___| |                   *
-*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
-*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
-*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
-*                                                                            *
-*                            eAmod Source File                               *
-*                                                                            *
-******************************************************************************
-* src/map/mail.h                                                             *
-******************************************************************************
-* Copyright (c) eAmod Dev Team                                               *
-* Copyright (c) rAthena Dev Team                                             *
-* Copyright (c) brAthena Dev Team                                            *
-* Copyright (c) Hercules Dev Team                                            *
-* Copyright (c) 3CeAM Dev Team                                               *
-* Copyright (c) Athena Dev Teams                                             *
-*                                                                            *
-* Licensed under GNU GPL                                                     *
-* For more information read the LICENSE file in the root of the emulator     *
-*****************************************************************************/
+// (c) 2008 - 2011 eAmod Project; Andres Garbanzo / Zephyrus
+//
+//  - gaiaro.staff@yahoo.com
+//  - MSN andresjgm.cr@hotmail.com
+//  - Skype: Zephyrus_cr
+//  - Site: http://dev.terra-gaming.com
+//
+// This file is NOT public - you are not allowed to distribute it.
+// Authorized Server List : http://dev.terra-gaming.com/index.php?/topic/72-authorized-eamod-servers/
+// eAmod is a non Free, extended version of eAthena Ragnarok Private Server.
 
 #ifndef _MAIL_H_
 #define _MAIL_H_

@@ -1,26 +1,13 @@
-/****************************************************************************!
-*                            _                                               *
-*                           / \                         _                    *
-*                   ___    / _ \   _ __ ___   ____  ___| |                   *
-*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
-*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
-*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
-*                                                                            *
-*                            eAmod Source File                               *
-*                                                                            *
-******************************************************************************
-* src/map/unit.c                                                             *
-******************************************************************************
-* Copyright (c) eAmod Dev Team                                               *
-* Copyright (c) rAthena Dev Team                                             *
-* Copyright (c) brAthena Dev Team                                            *
-* Copyright (c) Hercules Dev Team                                            *
-* Copyright (c) 3CeAM Dev Team                                               *
-* Copyright (c) Athena Dev Teams                                             *
-*                                                                            *
-* Licensed under GNU GPL                                                     *
-* For more information read the LICENSE file in the root of the emulator     *
-*****************************************************************************/
+// (c) 2008 - 2011 eAmod Project; Andres Garbanzo / Zephyrus
+//
+//  - gaiaro.staff@yahoo.com
+//  - MSN andresjgm.cr@hotmail.com
+//  - Skype: Zephyrus_cr
+//  - Site: http://dev.terra-gaming.com
+//
+// This file is NOT public - you are not allowed to distribute it.
+// Authorized Server List : http://dev.terra-gaming.com/index.php?/topic/72-authorized-eamod-servers/
+// eAmod is a non Free, extended version of eAthena Ragnarok Private Server.
 
 #include "../common/showmsg.h"
 #include "../common/timer.h"
@@ -158,7 +145,7 @@ static int unit_walktoxy_timer(int tid, unsigned int tick, int id, intptr_t data
 		return 0;
 	}
 	ud->walktimer = INVALID_TIMER;
-	if( bl->prev == NULL ) return 0; // block_list ã‹ã‚‰æŠœã‘ã¦ã„ã‚‹ã®ã§ç§»å‹•åœæ­¢ã™ã‚‹
+	if( bl->prev == NULL ) return 0; // block_list ‚©‚ç”²‚¯‚Ä‚¢‚é‚Ì‚ÅˆÚ“®’â~‚·‚é
 
 	if(ud->walkpath.path_pos>=ud->walkpath.path_len)
 		return 0;
@@ -177,7 +164,7 @@ static int unit_walktoxy_timer(int tid, unsigned int tick, int id, intptr_t data
 	if(map_getcell(bl->m,x+dx,y+dy,CELL_CHKNOPASS))
 		return unit_walktoxy_sub(bl);
 	
-	// ãƒã‚·ãƒªã‚«åˆ¤å®š
+	// ƒoƒVƒŠƒJ”»’è
 
 	map_foreachinmovearea(clif_outsight, bl, AREA_SIZE, dx, dy, sd?BL_ALL:BL_PC, bl);
 
@@ -346,8 +333,8 @@ int unit_walktoxy( struct block_list *bl, short x, short y, int flag)
 		map_random_dir(bl, &ud->to_x, &ud->to_y);
 
 	if(ud->walktimer != INVALID_TIMER) {
-		// ç¾åœ¨æ­©ã„ã¦ã„ã‚‹æœ€ä¸­ã®ç›®çš„åœ°å¤‰æ›´ãªã®ã§ãƒã‚¹ç›®ã®ä¸­å¿ƒã«æ¥ãŸæ™‚ã«
-		// timeré–¢æ•°ã‹ã‚‰unit_walktoxy_subã‚’å‘¼ã¶ã‚ˆã†ã«ã™ã‚‹
+		// Œ»İ•à‚¢‚Ä‚¢‚éÅ’†‚Ì–Ú“I’n•ÏX‚È‚Ì‚Åƒ}ƒX–Ú‚Ì’†S‚É—ˆ‚½‚É
+		// timerŠÖ”‚©‚çunit_walktoxy_sub‚ğŒÄ‚Ô‚æ‚¤‚É‚·‚é
 		ud->state.change_walk_target = 1;
 		return 1;
 	}
@@ -1051,7 +1038,7 @@ int unit_skilluse_id2(struct block_list *src, int target_id, short skill_num, sh
 
 	nullpo_ret(src);
 	if(status_isdead(src))
-		return 0; // æ­»ã‚“ã§ã„ãªã„ã‹
+		return 0; // €‚ñ‚Å‚¢‚È‚¢‚©
 
 	sd = BL_CAST(BL_PC, src);
 	ud = unit_bl2ud(src);
@@ -1163,7 +1150,7 @@ int unit_skilluse_id2(struct block_list *src, int target_id, short skill_num, sh
 		return 0;
 
 	tstatus = status_get_status_data(target);
-	//ç›´å‰ã®ã‚¹ã‚­ãƒ«çŠ¶æ³ã®è¨˜éŒ²
+	//’¼‘O‚ÌƒXƒLƒ‹ó‹µ‚Ì‹L˜^
 	if(sd) {
 		if( skill_get_inf2(skill_num)&INF2_CHORUS_SKILL )
 		{
@@ -1423,7 +1410,7 @@ int unit_skilluse_pos2( struct block_list *src, short skill_x, short skill_y, sh
 
 	nullpo_ret(src);
 
-	if(!src->prev) return 0; // map ä¸Šã«å­˜åœ¨ã™ã‚‹ã‹
+	if(!src->prev) return 0; // map ã‚É‘¶İ‚·‚é‚©
 	if(status_isdead(src)) return 0;
 
 	sd = BL_CAST(BL_PC, src);
@@ -1452,7 +1439,7 @@ int unit_skilluse_pos2( struct block_list *src, short skill_x, short skill_y, sh
 		return 0;
 	}
 
-	/* å°„ç¨‹ã¨éšœå®³ç‰©ãƒã‚§ãƒƒã‚¯ */
+	/* Ë’ö‚ÆáŠQ•¨ƒ`ƒFƒbƒN */
 	bl.type = BL_NUL;
 	bl.m = src->m;
 	bl.x = skill_x;
@@ -1550,8 +1537,8 @@ int unit_unattackable(struct block_list *bl)
 }
 
 /*==========================================
- * æ”»æ’ƒè¦æ±‚
- * typeãŒ1ãªã‚‰ç¶™ç¶šæ”»æ’ƒ
+ * UŒ‚—v‹
+ * type‚ª1‚È‚çŒp‘±UŒ‚
  *------------------------------------------*/
 int unit_attack(struct block_list *src,int target_id,int continuous)
 {
@@ -1638,7 +1625,7 @@ bool unit_can_reach_pos(struct block_list *bl,int x,int y, int easy)
 {
 	nullpo_retr(false, bl);
 
-	if( bl->x==x && bl->y==y )	// åŒã˜ãƒã‚¹
+	if( bl->x==x && bl->y==y )	// “¯‚¶ƒ}ƒX
 		return true;
 
 	return path_search(NULL,bl->m,bl->x,bl->y,x,y,easy,CELL_CHKNOREACH);
@@ -1740,7 +1727,7 @@ int	unit_calc_pos(struct block_list *bl, int tx, int ty, int dir)
 }
 
 /*==========================================
- * PCã®æ”»æ’ƒ (timeré–¢æ•°)
+ * PC‚ÌUŒ‚ (timerŠÖ”)
  *------------------------------------------*/
 static int unit_attack_timer_sub(struct block_list* src, int tid, unsigned int tick)
 {
@@ -1943,7 +1930,7 @@ int unit_skillcastcancel(struct block_list *bl,int type)
 	return 1;
 }
 
-// unit_data ã®åˆæœŸåŒ–å‡¦ç†
+// unit_data ‚Ì‰Šú‰»ˆ—
 void unit_dataset(struct block_list *bl)
 {
 	struct unit_data *ud;
@@ -2002,7 +1989,7 @@ int unit_fixdamage(struct block_list *src,struct block_list *target,unsigned int
 }
 
 /*==========================================
- * è¦‹ãŸç›®ã®ã‚µã‚¤ã‚ºã‚’å¤‰æ›´ã™ã‚‹
+ * Œ©‚½–Ú‚ÌƒTƒCƒY‚ğ•ÏX‚·‚é
  *------------------------------------------*/
 int unit_changeviewsize(struct block_list *bl,short size)
 {

@@ -1,26 +1,13 @@
-/****************************************************************************!
-*                            _                                               *
-*                           / \                         _                    *
-*                   ___    / _ \   _ __ ___   ____  ___| |                   *
-*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
-*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
-*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
-*                                                                            *
-*                            eAmod Source File                               *
-*                                                                            *
-******************************************************************************
-* src/map/map.c                                                              *
-******************************************************************************
-* Copyright (c) eAmod Dev Team                                               *
-* Copyright (c) rAthena Dev Team                                             *
-* Copyright (c) brAthena Dev Team                                            *
-* Copyright (c) Hercules Dev Team                                            *
-* Copyright (c) 3CeAM Dev Team                                               *
-* Copyright (c) Athena Dev Teams                                             *
-*                                                                            *
-* Licensed under GNU GPL                                                     *
-* For more information read the LICENSE file in the root of the emulator     *
-*****************************************************************************/
+// (c) 2008 - 2011 eAmod Project; Andres Garbanzo / Zephyrus
+//
+//  - gaiaro.staff@yahoo.com
+//  - MSN andresjgm.cr@hotmail.com
+//  - Skype: Zephyrus_cr
+//  - Site: http://dev.terra-gaming.com
+//
+// This file is NOT public - you are not allowed to distribute it.
+// Authorized Server List : http://dev.terra-gaming.com/index.php?/topic/72-authorized-eamod-servers/
+// eAmod is a non Free, extended version of eAthena Ragnarok Private Server.
 
 #include "../common/cbasetypes.h"
 #include "../common/core.h"
@@ -116,7 +103,7 @@ char *SCRIPT_CONF_NAME;
 char *MSG_CONF_NAME;
 char *GRF_PATH_FILENAME;
 
-// æ¥µåŠ› staticã§ãƒ­?ã‚«ãƒ«ã«?ã‚ã‚‹
+// ‹É—Í static‚Åƒ?ƒJƒ‹‚É?‚ß‚é
 static DBMap* id_db=NULL; // int id -> struct block_list*
 static DBMap* pc_db=NULL; // int id -> struct map_session_data*
 static DBMap* mobid_db=NULL; // int id -> struct mob_data*
@@ -209,12 +196,12 @@ int map_usercount(void)
 }
 
 //
-// blockå‰Šé™¤ã®å®‰å…¨æ€§ç¢ºä¿?ç†
+// blockíœ‚ÌˆÀ‘S«Šm•Û?—
 //
 
 /*==========================================
- * blockã‚’freeã™ã‚‹ã¨ãfreeã®?ã‚ã‚Šã«å‘¼ã¶
- * ãƒ­ãƒƒã‚¯ã•ã‚Œã¦ã„ã‚‹ã¨ãã¯ãƒãƒƒãƒ•ã‚¡ã«ãŸã‚ã‚‹
+ * block‚ğfree‚·‚é‚Æ‚«free‚Ì?‚í‚è‚ÉŒÄ‚Ô
+ * ƒƒbƒN‚³‚ê‚Ä‚¢‚é‚Æ‚«‚Íƒoƒbƒtƒ@‚É‚½‚ß‚é
  *------------------------------------------*/
 int map_freeblock (struct block_list *bl)
 {
@@ -231,7 +218,7 @@ int map_freeblock (struct block_list *bl)
 	return block_free_lock;
 }
 /*==========================================
- * blockã®freeã‚’ä¸€å¸‚Iã«ç¦æ­¢ã™ã‚‹
+ * block‚Ìfree‚ğˆêsI‚É‹Ö~‚·‚é
  *------------------------------------------*/
 int map_freeblock_lock (void)
 {
@@ -239,9 +226,9 @@ int map_freeblock_lock (void)
 }
 
 /*==========================================
- * blockã®freeã®ãƒ­ãƒƒã‚¯ã‚’è§£é™¤ã™ã‚‹
- * ã“ã®ã¨ãã€ãƒ­ãƒƒã‚¯ãŒå®Œå…¨ã«ãªããªã‚‹ã¨
- * ãƒãƒƒãƒ•ã‚¡ã«ãŸã¾ã£ã¦ã„ãŸblockã‚’å…¨éƒ¨å‰Šé™¤
+ * block‚Ìfree‚ÌƒƒbƒN‚ğ‰ğœ‚·‚é
+ * ‚±‚Ì‚Æ‚«AƒƒbƒN‚ªŠ®‘S‚É‚È‚­‚È‚é‚Æ
+ * ƒoƒbƒtƒ@‚É‚½‚Ü‚Á‚Ä‚¢‚½block‚ğ‘S•”íœ
  *------------------------------------------*/
 int map_freeblock_unlock (void)
 {
@@ -261,10 +248,10 @@ int map_freeblock_unlock (void)
 	return block_free_lock;
 }
 
-// map_freeblock_lock() ã‚’å‘¼ã‚“ã§ map_freeblock_unlock() ã‚’å‘¼ã°ãªã„
-// é–¢æ•°ãŒã‚ã£ãŸã®ã§ã€å®šæœŸçš„ã«block_free_lockã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ã€‚
-// ã“ã®é–¢æ•°ã¯ã€do_timer() ã®ãƒˆãƒƒãƒ—ãƒ¬ãƒ™ãƒ«ã‹ã‚‰å‘¼ã°ã‚Œã‚‹ã®ã§ã€
-// block_free_lock ã‚’ç›´æ¥ã„ã˜ã£ã¦ã‚‚æ”¯éšœç„¡ã„ã¯ãšã€‚
+// map_freeblock_lock() ‚ğŒÄ‚ñ‚Å map_freeblock_unlock() ‚ğŒÄ‚Î‚È‚¢
+// ŠÖ”‚ª‚ ‚Á‚½‚Ì‚ÅA’èŠú“I‚Éblock_free_lock‚ğƒŠƒZƒbƒg‚·‚é‚æ‚¤‚É‚·‚éB
+// ‚±‚ÌŠÖ”‚ÍAdo_timer() ‚ÌƒgƒbƒvƒŒƒxƒ‹‚©‚çŒÄ‚Î‚ê‚é‚Ì‚ÅA
+// block_free_lock ‚ğ’¼Ú‚¢‚¶‚Á‚Ä‚àxá–³‚¢‚Í‚¸B
 
 int map_freeblock_timer(int tid, unsigned int tick, int id, intptr_t data)
 {
@@ -278,11 +265,11 @@ int map_freeblock_timer(int tid, unsigned int tick, int id, intptr_t data)
 }
 
 //
-// blockåŒ–?ç†
+// block‰»?—
 //
 /*==========================================
- * map[]ã®block_listã‹ã‚‰?ãŒã£ã¦ã„ã‚‹å ´åˆã«
- * bl->prevã«bl_headã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å…¥ã‚Œã¦ãŠã
+ * map[]‚Ìblock_list‚©‚ç?‚ª‚Á‚Ä‚¢‚éê‡‚É
+ * bl->prev‚Ébl_head‚ÌƒAƒhƒŒƒX‚ğ“ü‚ê‚Ä‚¨‚­
  *------------------------------------------*/
 static struct block_list bl_head;
 
@@ -365,10 +352,10 @@ int map_delblock(struct block_list* bl)
 	int pos;
 	nullpo_ret(bl);
 
-	// ?ã«blocklistã‹ã‚‰?ã‘ã¦ã„ã‚‹
+	// ?‚Éblocklist‚©‚ç?‚¯‚Ä‚¢‚é
 	if (bl->prev == NULL) {
 		if (bl->next != NULL) {
-			// prevãŒNULLã§nextãŒNULLã§ãªã„ã®ã¯æœ‰ã£ã¦ã¯ãªã‚‰ãªã„
+			// prev‚ªNULL‚Ånext‚ªNULL‚Å‚È‚¢‚Ì‚Í—L‚Á‚Ä‚Í‚È‚ç‚È‚¢
 			ShowError("map_delblock error : bl->next!=NULL\n");
 		}
 		return 0;
@@ -383,7 +370,7 @@ int map_delblock(struct block_list* bl)
 	if (bl->next)
 		bl->next->prev = bl->prev;
 	if (bl->prev == &bl_head) {
-		// ãƒªã‚¹ãƒˆã®é ­ãªã®ã§ã€map[]ã®block_listã‚’æ›´æ–°ã™ã‚‹
+		// ƒŠƒXƒg‚Ì“ª‚È‚Ì‚ÅAmap[]‚Ìblock_list‚ğXV‚·‚é
 		if (bl->type == BL_MOB) {
 			map[bl->m].block_mob[pos] = bl->next;
 		} else {
@@ -603,10 +590,10 @@ int map_foreachinrange(int (*func)(struct block_list*,va_list), struct block_lis
 	if(bl_list_count>=BL_LIST_MAX)
 		ShowWarning("map_foreachinrange: block count too many!\n");
 
-	map_freeblock_lock();	// ãƒ¡ãƒ¢ãƒªã‹ã‚‰ã®è§£æ”¾ã‚’ç¦æ­¢ã™ã‚‹
+	map_freeblock_lock();	// ƒƒ‚ƒŠ‚©‚ç‚Ì‰ğ•ú‚ğ‹Ö~‚·‚é
 
 	for(i=blockcount;i<bl_list_count;i++)
-		if(bl_list[i]->prev)	// æœ‰?ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
+		if(bl_list[i]->prev)	// —L?‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
 		{
 			va_list ap;
 			va_start(ap, type);
@@ -614,7 +601,7 @@ int map_foreachinrange(int (*func)(struct block_list*,va_list), struct block_lis
 			va_end(ap);
 		}
 
-	map_freeblock_unlock();	// è§£æ”¾ã‚’è¨±å¯ã™ã‚‹
+	map_freeblock_unlock();	// ‰ğ•ú‚ğ‹–‰Â‚·‚é
 
 	bl_list_count = blockcount;
 	return returnCount;	//[Skotlex]
@@ -675,10 +662,10 @@ int map_foreachinshootrange(int (*func)(struct block_list*,va_list),struct block
 	if(bl_list_count>=BL_LIST_MAX)
 			ShowWarning("map_foreachinrange: block count too many!\n");
 
-	map_freeblock_lock();	// ãƒ¡ãƒ¢ãƒªã‹ã‚‰ã®è§£æ”¾ã‚’ç¦æ­¢ã™ã‚‹
+	map_freeblock_lock();	// ƒƒ‚ƒŠ‚©‚ç‚Ì‰ğ•ú‚ğ‹Ö~‚·‚é
 
 	for(i=blockcount;i<bl_list_count;i++)
-		if(bl_list[i]->prev)	// æœ‰?ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
+		if(bl_list[i]->prev)	// —L?‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
 		{
 			va_list ap;
 			va_start(ap, type);
@@ -686,7 +673,7 @@ int map_foreachinshootrange(int (*func)(struct block_list*,va_list),struct block
 			va_end(ap);
 		}
 
-	map_freeblock_unlock();	// è§£æ”¾ã‚’è¨±å¯ã™ã‚‹
+	map_freeblock_unlock();	// ‰ğ•ú‚ğ‹–‰Â‚·‚é
 
 	bl_list_count = blockcount;
 	return returnCount;	//[Skotlex]
@@ -742,10 +729,10 @@ int map_forcountinrange(int (*func)(struct block_list*,va_list), struct block_li
 	if(bl_list_count>=BL_LIST_MAX)
 		ShowWarning("map_forcountinrange: block count too many!\n");
 
-	map_freeblock_lock();	// ãƒ¡ãƒ¢ãƒªã‹ã‚‰ã®è§£æ”¾ã‚’ç¦æ­¢ã™ã‚‹
+	map_freeblock_lock();	// ƒƒ‚ƒŠ‚©‚ç‚Ì‰ğ•ú‚ğ‹Ö~‚·‚é
 
 	for(i=blockcount;i<bl_list_count;i++)
-		if(bl_list[i]->prev)	// æœ‰?ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
+		if(bl_list[i]->prev)	// —L?‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
 		{
 			va_list ap;
 			va_start(ap, type);
@@ -755,16 +742,16 @@ int map_forcountinrange(int (*func)(struct block_list*,va_list), struct block_li
 				break;
 		}
 
-	map_freeblock_unlock();	// è§£æ”¾ã‚’è¨±å¯ã™ã‚‹
+	map_freeblock_unlock();	// ‰ğ•ú‚ğ‹–‰Â‚·‚é
 
 	bl_list_count = blockcount;
 	return returnCount;	//[Skotlex]
 }
 
 /*==========================================
- * map m (x0,y0)-(x1,y1)?ã®å…¨objã«?ã—ã¦
- * funcã‚’å‘¼ã¶
- * type!=0 ãªã‚‰ãã®ç¨®é¡ã®ã¿
+ * map m (x0,y0)-(x1,y1)?‚Ì‘Sobj‚É?‚µ‚Ä
+ * func‚ğŒÄ‚Ô
+ * type!=0 ‚È‚ç‚»‚Ìí—Ş‚Ì‚İ
  *------------------------------------------*/
 int map_foreachinarea(int (*func)(struct block_list*,va_list), int m, int x0, int y0, int x1, int y1, int type, ...)
 {
@@ -809,10 +796,10 @@ int map_foreachinarea(int (*func)(struct block_list*,va_list), int m, int x0, in
 	if(bl_list_count>=BL_LIST_MAX)
 		ShowWarning("map_foreachinarea: block count too many!\n");
 
-	map_freeblock_lock();	// ãƒ¡ãƒ¢ãƒªã‹ã‚‰ã®è§£æ”¾ã‚’ç¦æ­¢ã™ã‚‹
+	map_freeblock_lock();	// ƒƒ‚ƒŠ‚©‚ç‚Ì‰ğ•ú‚ğ‹Ö~‚·‚é
 
 	for(i=blockcount;i<bl_list_count;i++)
-		if(bl_list[i]->prev)	// æœ‰?ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
+		if(bl_list[i]->prev)	// —L?‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
 		{
 			va_list ap;
 			va_start(ap, type);
@@ -820,7 +807,7 @@ int map_foreachinarea(int (*func)(struct block_list*,va_list), int m, int x0, in
 			va_end(ap);
 		}
 
-	map_freeblock_unlock();	// è§£æ”¾ã‚’è¨±å¯ã™ã‚‹
+	map_freeblock_unlock();	// ‰ğ•ú‚ğ‹–‰Â‚·‚é
 
 	bl_list_count = blockcount;
 	return returnCount;	//[Skotlex]
@@ -869,10 +856,10 @@ int map_forcountinarea(int (*func)(struct block_list*,va_list), int m, int x0, i
 	if(bl_list_count>=BL_LIST_MAX)
 		ShowWarning("map_foreachinarea: block count too many!\n");
 
-	map_freeblock_lock();	// ãƒ¡ãƒ¢ãƒªã‹ã‚‰ã®è§£æ”¾ã‚’ç¦æ­¢ã™ã‚‹
+	map_freeblock_lock();	// ƒƒ‚ƒŠ‚©‚ç‚Ì‰ğ•ú‚ğ‹Ö~‚·‚é
 
 	for(i=blockcount;i<bl_list_count;i++)
-		if(bl_list[i]->prev)	// æœ‰?ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
+		if(bl_list[i]->prev)	// —L?‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
 		{
 			va_list ap;
 			va_start(ap, type);
@@ -882,18 +869,18 @@ int map_forcountinarea(int (*func)(struct block_list*,va_list), int m, int x0, i
 				break;
 		}
 
-	map_freeblock_unlock();	// è§£æ”¾ã‚’è¨±å¯ã™ã‚‹
+	map_freeblock_unlock();	// ‰ğ•ú‚ğ‹–‰Â‚·‚é
 
 	bl_list_count = blockcount;
 	return returnCount;	//[Skotlex]
 }
 
 /*==========================================
- * çŸ©å½¢(x0,y0)-(x1,y1)ãŒ(dx,dy)ç§»å‹•ã—ãŸæš«?
- * é ˜åŸŸå¤–ã«ãªã‚‹é ˜åŸŸ(çŸ©å½¢ã‹Lå­—å½¢)?ã®objã«
- * ?ã—ã¦funcã‚’å‘¼ã¶
+ * ‹éŒ`(x0,y0)-(x1,y1)‚ª(dx,dy)ˆÚ“®‚µ‚½b?
+ * —ÌˆæŠO‚É‚È‚é—Ìˆæ(‹éŒ`‚©LšŒ`)?‚Ìobj‚É
+ * ?‚µ‚Äfunc‚ğŒÄ‚Ô
  *
- * dx,dyã¯-1,0,1ã®ã¿ã¨ã™ã‚‹ï¼ˆã©ã‚“ãªå€¤ã§ã‚‚ã„ã„ã£ã½ã„ï¼Ÿï¼‰
+ * dx,dy‚Í-1,0,1‚Ì‚İ‚Æ‚·‚éi‚Ç‚ñ‚È’l‚Å‚à‚¢‚¢‚Á‚Û‚¢Hj
  *------------------------------------------*/
 int map_foreachinmovearea(int (*func)(struct block_list*,va_list), struct block_list* center, int range, int dx, int dy, int type, ...)
 {
@@ -1007,7 +994,7 @@ int map_foreachinmovearea(int (*func)(struct block_list*,va_list), struct block_
 	if(bl_list_count>=BL_LIST_MAX)
 		ShowWarning("map_foreachinmovearea: block count too many!\n");
 
-	map_freeblock_lock();	// ãƒ¡ãƒ¢ãƒªã‹ã‚‰ã®è§£æ”¾ã‚’ç¦æ­¢ã™ã‚‹
+	map_freeblock_lock();	// ƒƒ‚ƒŠ‚©‚ç‚Ì‰ğ•ú‚ğ‹Ö~‚·‚é
 
 	for(i=blockcount;i<bl_list_count;i++)
 		if(bl_list[i]->prev)
@@ -1018,7 +1005,7 @@ int map_foreachinmovearea(int (*func)(struct block_list*,va_list), struct block_
 			va_end(ap);
 		}
 
-	map_freeblock_unlock();	// è§£æ”¾ã‚’è¨±å¯ã™ã‚‹
+	map_freeblock_unlock();	// ‰ğ•ú‚ğ‹–‰Â‚·‚é
 
 	bl_list_count = blockcount;
 	return returnCount;
@@ -1053,10 +1040,10 @@ int map_foreachincell(int (*func)(struct block_list*,va_list), int m, int x, int
 	if(bl_list_count>=BL_LIST_MAX)
 		ShowWarning("map_foreachincell: block count too many!\n");
 
-	map_freeblock_lock();	// ãƒ¡ãƒ¢ãƒªã‹ã‚‰ã®è§£æ”¾ã‚’ç¦æ­¢ã™ã‚‹
+	map_freeblock_lock();	// ƒƒ‚ƒŠ‚©‚ç‚Ì‰ğ•ú‚ğ‹Ö~‚·‚é
 
 	for(i=blockcount;i<bl_list_count;i++)
-		if(bl_list[i]->prev)	// æœ‰?ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
+		if(bl_list[i]->prev)	// —L?‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
 		{
 			va_list ap;
 			va_start(ap, type);
@@ -1064,7 +1051,7 @@ int map_foreachincell(int (*func)(struct block_list*,va_list), int m, int x, int
 			va_end(ap);
 		}
 
-	map_freeblock_unlock();	// è§£æ”¾ã‚’è¨±å¯ã™ã‚‹
+	map_freeblock_unlock();	// ‰ğ•ú‚ğ‹–‰Â‚·‚é
 
 	bl_list_count = blockcount;
 	return returnCount;
@@ -1290,10 +1277,10 @@ int map_foreachinmap(int (*func)(struct block_list*,va_list), int m, int type,..
 	if(bl_list_count>=BL_LIST_MAX)
 		ShowWarning("map_foreachinmap: block count too many!\n");
 
-	map_freeblock_lock();	// ãƒ¡ãƒ¢ãƒªã‹ã‚‰ã®è§£æ”¾ã‚’ç¦æ­¢ã™ã‚‹
+	map_freeblock_lock();	// ƒƒ‚ƒŠ‚©‚ç‚Ì‰ğ•ú‚ğ‹Ö~‚·‚é
 
 	for(i=blockcount;i<bl_list_count;i++)
-		if(bl_list[i]->prev)	// æœ‰?ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
+		if(bl_list[i]->prev)	// —L?‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
 		{
 			va_list ap;
 			va_start(ap, type);
@@ -1301,7 +1288,7 @@ int map_foreachinmap(int (*func)(struct block_list*,va_list), int m, int type,..
 			va_end(ap);
 		}
 
-	map_freeblock_unlock();	// è§£æ”¾ã‚’è¨±å¯ã™ã‚‹
+	map_freeblock_unlock();	// ‰ğ•ú‚ğ‹–‰Â‚·‚é
 
 	bl_list_count = blockcount;
 	return returnCount;
@@ -1381,7 +1368,7 @@ int map_pickrandominrange(int (*func)(struct block_list*,va_list), struct block_
 		bl_list[index2] = temp;
 	}
 	
-	map_freeblock_lock();	// ãƒ¡ãƒ¢ãƒªã‹ã‚‰ã®è§£æ”¾ã‚’ç¦æ­¢ã™ã‚‹
+	map_freeblock_lock();	// ƒƒ‚ƒŠ‚©‚ç‚Ì‰ğ•ú‚ğ‹Ö~‚·‚é
 
 	for( i = blockcount; i < bl_list_count; i ++ )
 	{
@@ -1438,12 +1425,12 @@ int map_get_new_object_id(void)
 }
 
 /*==========================================
- * åºŠã‚¢ã‚¤ãƒ†ãƒ ã‚’æ¶ˆã™
+ * °ƒAƒCƒeƒ€‚ğÁ‚·
  *
- * data==0ã®æš«ï¾timerã§æ¶ˆãˆãŸæ®Š * data!=0ã®æš«ï¾æ‹¾ã†ç­‰ã§æ¶ˆãˆãŸæš«ï¾†ã—ã¦å‹•?
+ * data==0‚ÌbÍtimer‚ÅÁ‚¦‚½ê * data!=0‚ÌbÍE‚¤“™‚ÅÁ‚¦‚½bÆ‚µ‚Ä“®?
  *
- * å¾Œè€…ã¯ã€map_clearflooritem(id)ã¸
- * map.h?ã§#defineã—ã¦ã‚ã‚‹
+ * ŒãÒ‚ÍAmap_clearflooritem(id)‚Ö
+ * map.h?‚Å#define‚µ‚Ä‚ ‚é
  *------------------------------------------*/
 int map_clearflooritem_timer(int tid, unsigned int tick, int id, intptr_t data)
 {
@@ -1584,9 +1571,9 @@ int map_search_freecell(struct block_list *src, int m, short *x,short *y, int rx
 }
 
 /*==========================================
- * (m,x,y)ã‚’ä¸­å¿ƒã«3x3ä»¥?ã«åºŠã‚¢ã‚¤ãƒ†ãƒ è¨­ç½®
+ * (m,x,y)‚ğ’†S‚É3x3ˆÈ?‚É°ƒAƒCƒeƒ€İ’u
  *
- * item_dataã¯amountä»¥å¤–ã‚’copyã™ã‚‹
+ * item_data‚ÍamountˆÈŠO‚ğcopy‚·‚é
  * type flag: &1 MVP item. &2 do stacking check.
  * type flag: &4 No greed allowed to get the item
  *------------------------------------------*/
@@ -1777,7 +1764,7 @@ void map_reqnickdb(struct map_session_data * sd, int charid)
 }
 
 /*==========================================
- * id_dbã¸blã‚’è¿½åŠ 
+ * id_db‚Öbl‚ğ’Ç‰Á
  *------------------------------------------*/
 void map_addiddb(struct block_list *bl)
 {
@@ -1805,7 +1792,7 @@ void map_addiddb(struct block_list *bl)
 }
 
 /*==========================================
- * id_dbã‹ã‚‰blã‚’å‰Šé™¤
+ * id_db‚©‚çbl‚ğíœ
  *------------------------------------------*/
 void map_deliddb(struct block_list *bl)
 {
@@ -1946,7 +1933,7 @@ int map_quit(struct map_session_data *sd)
 }
 
 /*==========================================
- * idç•ª?ã®PCã‚’æ¢ã™ã€‚å±…ãªã‘ã‚Œã°NULL
+ * id”Ô?‚ÌPC‚ğ’T‚·B‹‚È‚¯‚ê‚ÎNULL
  *------------------------------------------*/
 struct map_session_data * map_id2sd(int id)
 {
@@ -2064,8 +2051,8 @@ struct map_session_data * map_nick2sd(const char *nick)
 }
 
 /*==========================================
- * idç•ª?ã®ç‰©ã‚’æ¢ã™
- * ä¸€ä¸‰bjectã®å ´åˆã¯é…åˆ—ã‚’å¼•ãã®ã¿
+ * id”Ô?‚Ì•¨‚ğ’T‚·
+ * ˆêObject‚Ìê‡‚Í”z—ñ‚ğˆø‚­‚Ì‚İ
  *------------------------------------------*/
 struct block_list * map_id2bl(int id)
 {
@@ -2362,7 +2349,7 @@ bool mapit_exists(struct s_mapiterator* mapit)
 }
 
 /*==========================================
- * map.npcã¸è¿½åŠ  (warpç­‰ã®é ˜åŸŸæŒã¡ã®ã¿)
+ * map.npc‚Ö’Ç‰Á (warp“™‚Ì—Ìˆæ‚¿‚Ì‚İ)
  *------------------------------------------*/
 bool map_addnpc(int m,struct npc_data *nd)
 {
@@ -2485,7 +2472,7 @@ void map_removemobs(int m)
 }
 
 /*==========================================
- * mapåã‹ã‚‰mapç•ª?ã¸?æ›
+ * map–¼‚©‚çmap”Ô?‚Ö?Š·
  *------------------------------------------*/
 int map_mapname2mapid(const char* name)
 {
@@ -2513,7 +2500,7 @@ int map_mapindex2mapid(unsigned short mapindex)
 }
 
 /*==========================================
- * ä»–é¯–mapåã‹ã‚‰ip,port?æ›
+ * ‘¼Imap–¼‚©‚çip,port?Š·
  *------------------------------------------*/
 int map_mapname2ipport(unsigned short name, uint32* ip, uint16* port)
 {
@@ -2625,7 +2612,7 @@ int map_random_dir(struct block_list *bl, short *x, short *y)
 	return 0;
 }
 
-// gatç³»
+// gatŒn
 inline static struct mapcell map_gat2cell(int gat)
 {
 	struct mapcell cell = {0};
@@ -2658,7 +2645,7 @@ static int map_cell2gat(struct mapcell cell)
 }
 
 /*==========================================
- * (m,x,y)ã®çŠ¶æ…‹ã‚’èª¿ã¹ã‚‹
+ * (m,x,y)‚Ìó‘Ô‚ğ’²‚×‚é
  *------------------------------------------*/
 int map_getcell(int m,int x,int y,cell_chk cellchk)
 {
@@ -2904,7 +2891,7 @@ static void* create_map_data_other_server(DBKey key, va_list args)
 }
 
 /*==========================================
- * ä»–é¯–ç®¡ç†ã®ãƒãƒƒãƒ—ã‚’dbã«è¿½åŠ 
+ * ‘¼IŠÇ—‚Ìƒ}ƒbƒv‚ğdb‚É’Ç‰Á
  *------------------------------------------*/
 int map_setipport(unsigned short mapindex, uint32 ip, uint16 port)
 {
@@ -2925,7 +2912,7 @@ int map_setipport(unsigned short mapindex, uint32 ip, uint16 port)
 }
 
 /*==========================================
- * ä»–é¯–ç®¡ç†ã®ãƒãƒƒãƒ—ã‚’å…¨ã¦å‰Šé™¤
+ * ‘¼IŠÇ—‚Ìƒ}ƒbƒv‚ğ‘S‚Äíœ
  *------------------------------------------*/
 int map_eraseallipport_sub(DBKey key,void *data,va_list va)
 {
@@ -2944,7 +2931,7 @@ int map_eraseallipport(void)
 }
 
 /*==========================================
- * ä»–é¯–ç®¡ç†ã®ãƒãƒƒãƒ—ã‚’dbã‹ã‚‰å‰Šé™¤
+ * ‘¼IŠÇ—‚Ìƒ}ƒbƒv‚ğdb‚©‚çíœ
  *------------------------------------------*/
 int map_eraseipport(unsigned short mapindex, uint32 ip, uint16 port)
 {
@@ -3387,7 +3374,7 @@ int parse_console(const char* buf)
 }
 
 /*==========================================
- * è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã‚’?ã¿?ã‚€
+ * İ’èƒtƒ@ƒCƒ‹‚ğ?‚İ?‚Ş
  *------------------------------------------*/
 int map_config_read(char *cfgName)
 {
@@ -3712,7 +3699,7 @@ static int cleanup_db_sub(DBKey key,void *data,va_list va)
 }
 
 /*==========================================
- * mapé¯–çµ‚äº†ãƒ»ç†
+ * mapII—¹E—
  *------------------------------------------*/
 void do_final(void)
 {
@@ -4098,7 +4085,7 @@ int do_init(int argc, char *argv[])
 	do_init_faction();
 	do_init_region();
 
-	npc_event_do_oninit();	// npcã®OnInitã‚¤ãƒ™ãƒ³ãƒˆ?è¡Œ
+	npc_event_do_oninit();	// npc‚ÌOnInitƒCƒxƒ“ƒg?s
 
 	if( console )
 	{

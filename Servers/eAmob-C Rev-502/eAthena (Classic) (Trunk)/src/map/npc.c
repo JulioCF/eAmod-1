@@ -1,26 +1,13 @@
-/****************************************************************************!
-*                            _                                               *
-*                           / \                         _                    *
-*                   ___    / _ \   _ __ ___   ____  ___| |                   *
-*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
-*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
-*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
-*                                                                            *
-*                            eAmod Source File                               *
-*                                                                            *
-******************************************************************************
-* src/map/npc.c                                                              *
-******************************************************************************
-* Copyright (c) eAmod Dev Team                                               *
-* Copyright (c) rAthena Dev Team                                             *
-* Copyright (c) brAthena Dev Team                                            *
-* Copyright (c) Hercules Dev Team                                            *
-* Copyright (c) 3CeAM Dev Team                                               *
-* Copyright (c) Athena Dev Teams                                             *
-*                                                                            *
-* Licensed under GNU GPL                                                     *
-* For more information read the LICENSE file in the root of the emulator     *
-*****************************************************************************/
+// (c) 2008 - 2011 eAmod Project; Andres Garbanzo / Zephyrus
+//
+//  - gaiaro.staff@yahoo.com
+//  - MSN andresjgm.cr@hotmail.com
+//  - Skype: Zephyrus_cr
+//  - Site: http://dev.terra-gaming.com
+//
+// This file is NOT public - you are not allowed to distribute it.
+// Authorized Server List : http://dev.terra-gaming.com/index.php?/topic/72-authorized-eamod-servers/
+// eAmod is a non Free, extended version of eAthena Ragnarok Private Server.
 
 #include "../common/cbasetypes.h"
 #include "../common/timer.h"
@@ -151,9 +138,9 @@ int npc_ontouch2_event(struct map_session_data *sd, struct npc_data *nd)
 }
 
 /*==========================================
- * NPCã®ç„¡åŠ¹åŒ–/æœ‰åŠ¹åŒ–
+ * NPC‚Ì–³Œø‰»/—LŒø‰»
  * npc_enable
- * npc_enable_sub æœ‰åŠ¹æ™‚ã«OnTouchã‚¤ãƒ™ãƒ³ãƒˆã‚’å®Ÿè¡Œ
+ * npc_enable_sub —LŒø‚ÉOnTouchƒCƒxƒ“ƒg‚ğÀs
  *------------------------------------------*/
 int npc_enable_sub(struct block_list *bl, va_list ap)
 {
@@ -215,7 +202,7 @@ int npc_enable(const char* name, int flag)
 }
 
 /*==========================================
- * NPCã‚’åå‰ã§æ¢ã™
+ * NPC‚ğ–¼‘O‚Å’T‚·
  *------------------------------------------*/
 struct npc_data* npc_name2id(const char* name)
 {
@@ -223,7 +210,7 @@ struct npc_data* npc_name2id(const char* name)
 }
 
 /*==========================================
- * ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¥ãƒ¼ã®ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†
+ * ƒCƒxƒ“ƒgƒLƒ…[‚ÌƒCƒxƒ“ƒgˆ—
  *------------------------------------------*/
 int npc_event_dequeue(struct map_session_data* sd)
 {
@@ -258,7 +245,7 @@ int npc_event_dequeue(struct map_session_data* sd)
 
 /*==========================================
  * exports a npc event label
- * npc_parse_script->strdb_foreachã‹ã‚‰å‘¼ã°ã‚Œã‚‹
+ * npc_parse_script->strdb_foreach‚©‚çŒÄ‚Î‚ê‚é
  *------------------------------------------*/
 int npc_event_export(char* lname, void* data, va_list ap)
 {
@@ -269,7 +256,7 @@ int npc_event_export(char* lname, void* data, va_list ap)
 		struct event_data *ev;
 		char buf[EVENT_NAME_LENGTH];
 		char* p = strchr(lname, ':');
-		// ã‚¨ã‚¯ã‚¹ãƒãƒ¼ãƒˆã•ã‚Œã‚‹
+		// ƒGƒNƒXƒ|[ƒg‚³‚ê‚é
 		ev = (struct event_data *) aMalloc(sizeof(struct event_data));
 		if (ev==NULL) {
 			ShowFatalError("npc_event_export: out of memory !\n");
@@ -291,7 +278,7 @@ int npc_event_export(char* lname, void* data, va_list ap)
 
 int npc_event_sub(struct map_session_data* sd, struct event_data* ev, const char* eventname); //[Lance]
 /*==========================================
- * å…¨ã¦ã®NPCã®On*ã‚¤ãƒ™ãƒ³ãƒˆå®Ÿè¡Œ
+ * ‘S‚Ä‚ÌNPC‚ÌOn*ƒCƒxƒ“ƒgÀs
  *------------------------------------------*/
 int npc_event_doall_sub(DBKey key, void* data, va_list ap)
 {
@@ -376,7 +363,7 @@ bool npc_event_isspecial(const char* eventname)
 
 
 /*==========================================
- * æ™‚è¨ˆã‚¤ãƒ™ãƒ³ãƒˆå®Ÿè¡Œ
+ * ŒvƒCƒxƒ“ƒgÀs
  *------------------------------------------*/
 int npc_event_do_clock(int tid, unsigned int tick, int id, intptr_t data)
 {
@@ -423,7 +410,7 @@ int npc_event_do_clock(int tid, unsigned int tick, int id, intptr_t data)
 }
 
 /*==========================================
- * OnInitã‚¤ãƒ™ãƒ³ãƒˆå®Ÿè¡Œ(&æ™‚è¨ˆã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹)
+ * OnInitƒCƒxƒ“ƒgÀs(&ŒvƒCƒxƒ“ƒgŠJn)
  *------------------------------------------*/
 void npc_event_do_oninit(void)
 {
@@ -433,8 +420,8 @@ void npc_event_do_oninit(void)
 }
 
 /*==========================================
- * ã‚¿ã‚¤ãƒãƒ¼ã‚¤ãƒ™ãƒ³ãƒˆç”¨ãƒ©ãƒ™ãƒ«ã®å–ã‚Šè¾¼ã¿
- * npc_parse_script->strdb_foreachã‹ã‚‰å‘¼ã°ã‚Œã‚‹
+ * ƒ^ƒCƒ}[ƒCƒxƒ“ƒg—pƒ‰ƒxƒ‹‚Ìæ‚è‚İ
+ * npc_parse_script->strdb_foreach‚©‚çŒÄ‚Î‚ê‚é
  *------------------------------------------*/
 int npc_timerevent_import(char* lname, void* data, va_list ap)
 {
@@ -774,7 +761,7 @@ int npc_event_sub(struct map_session_data* sd, struct event_data* ev, const char
 }
 
 /*==========================================
- * ã‚¤ãƒ™ãƒ³ãƒˆå‹ã®NPCå‡¦ç†
+ * ƒCƒxƒ“ƒgŒ^‚ÌNPCˆ—
  *------------------------------------------*/
 int npc_event(struct map_session_data* sd, const char* eventname, int ontouch)
 {
@@ -853,7 +840,7 @@ int npc_touchnext_areanpc(struct map_session_data* sd, bool leavemap)
 }
 
 /*==========================================
- * æ¥è§¦å‹ã®NPCå‡¦ç†
+ * ÚGŒ^‚ÌNPCˆ—
  *------------------------------------------*/
 int npc_touch_areanpc(struct map_session_data* sd, int m, int x, int y)
 {
@@ -1064,7 +1051,7 @@ struct npc_data* npc_checknear(struct map_session_data* sd, struct block_list* b
 }
 
 /*==========================================
- * NPCã®ã‚ªãƒ¼ãƒ—ãƒ³ãƒãƒ£ãƒƒãƒˆç™ºè¨€
+ * NPC‚ÌƒI[ƒvƒ“ƒ`ƒƒƒbƒg”­Œ¾
  *------------------------------------------*/
 int npc_globalmessage(const char* name, const char* mes)
 {
@@ -1081,7 +1068,7 @@ int npc_globalmessage(const char* name, const char* mes)
 }
 
 /*==========================================
- * ã‚¯ãƒªãƒƒã‚¯æ™‚ã®NPCå‡¦ç†
+ * ƒNƒŠƒbƒN‚ÌNPCˆ—
  *------------------------------------------*/
 int npc_click(struct map_session_data* sd, struct npc_data* nd)
 {
@@ -1160,7 +1147,7 @@ int npc_buysellsel(struct map_session_data* sd, int id, int type)
 			sd->npc_id=0;
 		return 1;
 	}
-	if (nd->sc.option&OPTION_INVISIBLE)	// ç„¡åŠ¹åŒ–ã•ã‚Œã¦ã„ã‚‹
+	if (nd->sc.option&OPTION_INVISIBLE)	// –³Œø‰»‚³‚ê‚Ä‚¢‚é
 		return 1;
 
 	sd->npc_shopid=id;
@@ -2277,7 +2264,7 @@ static const char* npc_parse_shop(char* w1, char* w2, char* w3, char* w4, const 
 }
 
 /*==========================================
- * NPCã®ãƒ©ãƒ™ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ³ãƒãƒ¼ãƒˆ
+ * NPC‚Ìƒ‰ƒxƒ‹ƒf[ƒ^ƒRƒ“ƒo[ƒg
  *------------------------------------------*/
 int npc_convertlabel_db(DBKey key, void* data, va_list ap)
 {
@@ -2488,7 +2475,7 @@ static const char* npc_parse_script(char* w1, char* w2, char* w3, char* w4, cons
 	strdb_put(npcname_db, nd->exname, nd);
 
 	//-----------------------------------------
-	// ã‚¤ãƒ™ãƒ³ãƒˆç”¨ãƒ©ãƒ™ãƒ«ãƒ‡ãƒ¼ã‚¿ã®ã‚¨ã‚¯ã‚¹ãƒãƒ¼ãƒˆ
+	// ƒCƒxƒ“ƒg—pƒ‰ƒxƒ‹ƒf[ƒ^‚ÌƒGƒNƒXƒ|[ƒg
 	for (i = 0; i < nd->u.scr.label_list_num; i++)
 	{
 		char* lname = nd->u.scr.label_list[i].name;
@@ -2510,13 +2497,13 @@ static const char* npc_parse_script(char* w1, char* w2, char* w3, char* w4, cons
 	}
 
 	//-----------------------------------------
-	// ãƒ©ãƒ™ãƒ«ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã‚¿ã‚¤ãƒãƒ¼ã‚¤ãƒ™ãƒ³ãƒˆå–ã‚Šè¾¼ã¿
+	// ƒ‰ƒxƒ‹ƒf[ƒ^‚©‚çƒ^ƒCƒ}[ƒCƒxƒ“ƒgæ‚è‚İ
 	for (i = 0; i < nd->u.scr.label_list_num; i++){
 		int t = 0, k = 0;
 		char *lname = nd->u.scr.label_list[i].name;
 		int pos = nd->u.scr.label_list[i].pos;
 		if (sscanf(lname, "OnTimer%d%n", &t, &k) == 1 && lname[k] == '\0') {
-			// ã‚¿ã‚¤ãƒãƒ¼ã‚¤ãƒ™ãƒ³ãƒˆ
+			// ƒ^ƒCƒ}[ƒCƒxƒ“ƒg
 			struct npc_timerevent_list *te = nd->u.scr.timer_event;
 			int j, k = nd->u.scr.timeramount;
 			if (te == NULL)
@@ -2681,7 +2668,7 @@ const char* npc_parse_duplicate(char* w1, char* w2, char* w3, char* w4, const ch
 
 	//Handle labels
 	//-----------------------------------------
-	// ã‚¤ãƒ™ãƒ³ãƒˆç”¨ãƒ©ãƒ™ãƒ«ãƒ‡ãƒ¼ã‚¿ã®ã‚¨ã‚¯ã‚¹ãƒãƒ¼ãƒˆ
+	// ƒCƒxƒ“ƒg—pƒ‰ƒxƒ‹ƒf[ƒ^‚ÌƒGƒNƒXƒ|[ƒg
 	for (i = 0; i < nd->u.scr.label_list_num; i++)
 	{
 		char* lname = nd->u.scr.label_list[i].name;
@@ -2703,13 +2690,13 @@ const char* npc_parse_duplicate(char* w1, char* w2, char* w3, char* w4, const ch
 	}
 
 	//-----------------------------------------
-	// ãƒ©ãƒ™ãƒ«ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã‚¿ã‚¤ãƒãƒ¼ã‚¤ãƒ™ãƒ³ãƒˆå–ã‚Šè¾¼ã¿
+	// ƒ‰ƒxƒ‹ƒf[ƒ^‚©‚çƒ^ƒCƒ}[ƒCƒxƒ“ƒgæ‚è‚İ
 	for (i = 0; i < nd->u.scr.label_list_num; i++){
 		int t = 0, k = 0;
 		char *lname = nd->u.scr.label_list[i].name;
 		int pos = nd->u.scr.label_list[i].pos;
 		if (sscanf(lname, "OnTimer%d%n", &t, &k) == 1 && lname[k] == '\0') {
-			// ã‚¿ã‚¤ãƒãƒ¼ã‚¤ãƒ™ãƒ³ãƒˆ
+			// ƒ^ƒCƒ}[ƒCƒxƒ“ƒg
 			struct npc_timerevent_list *te = nd->u.scr.timer_event;
 			int j, k = nd->u.scr.timeramount;
 			if (te == NULL)
@@ -3276,7 +3263,7 @@ static const char* npc_parse_mob(char* w1, char* w2, char* w3, char* w4, const c
 }
 
 /*==========================================
- * ãƒãƒƒãƒ—ãƒ•ãƒ©ã‚°è¡Œã®è§£æ
+ * ƒ}ƒbƒvƒtƒ‰ƒOs‚Ì‰ğÍ
  *------------------------------------------*/
 static const char* npc_parse_mapflag(char* w1, char* w2, char* w3, char* w4, const char* start, const char* buffer, const char* filepath)
 {
@@ -3988,7 +3975,7 @@ int npc_reload(void)
 }
 
 /*==========================================
- * çµ‚äº†
+ * I—¹
  *------------------------------------------*/
 int do_final_npc(void)
 {

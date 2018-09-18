@@ -1,26 +1,5 @@
-/****************************************************************************!
-*                            _                                               *
-*                           / \                         _                    *
-*                   ___    / _ \   _ __ ___   ____  ___| |                   *
-*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
-*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
-*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
-*                                                                            *
-*                            eAmod Source File                               *
-*                                                                            *
-******************************************************************************
-* src/map/path.c                                                             *
-******************************************************************************
-* Copyright (c) eAmod Dev Team                                               *
-* Copyright (c) rAthena Dev Team                                             *
-* Copyright (c) brAthena Dev Team                                            *
-* Copyright (c) Hercules Dev Team                                            *
-* Copyright (c) 3CeAM Dev Team                                               *
-* Copyright (c) Athena Dev Teams                                             *
-*                                                                            *
-* Licensed under GNU GPL                                                     *
-* For more information read the LICENSE file in the root of the emulator     *
-*****************************************************************************/
+// Copyright (c) Athena Dev Teams - Licensed under GNU GPL
+// For more information, see LICENCE in the main folder
 
 #include "../common/cbasetypes.h"
 #include "../common/nullpo.h"
@@ -65,7 +44,7 @@ static void push_heap_path(int *heap,struct tmp_path *tp,int index)
 
 /*==========================================
  * heap update (helper function)
- * costãŒæ¸›ã£ãŸã®ã§æ ¹ã®æ–¹ã¸ç§»å‹•
+ * cost‚ªŒ¸‚Á‚½‚Ì‚Åª‚Ì•û‚ÖˆÚ“®
  *------------------------------------------*/
 static void update_heap_path(int *heap,struct tmp_path *tp,int index)
 {
@@ -168,7 +147,7 @@ static int add_path(int *heap,struct tmp_path *tp,int x,int y,int dist,int befor
 /*==========================================
  * Find the closest reachable cell, 'count' cells away from (x0,y0) in direction (dx,dy).
  * 
- * å¹ãé£›ã°ã—ãŸã‚ã¨ã®åº§æ¨™ã‚’æ‰€å¾—
+ * ‚«”ò‚Î‚µ‚½‚ ‚Æ‚ÌÀ•W‚ğŠ“¾
  *------------------------------------------*/
 int path_blownpos(int m,int x0,int y0,int dx,int dy,int count)
 {
@@ -363,7 +342,7 @@ bool path_search(struct walkpath_data *wpd,int m,int x0,int y0,int x1,int y1,int
 	tp[i].flag=0;
 	heap[0]=0;
 	push_heap_path(heap,tp,calc_index(x0,y0));
-	xs = md->xs-1; // ã‚ã‚‰ã‹ã˜ã‚ï¼‘æ¸›ç®—ã—ã¦ãŠã
+	xs = md->xs-1; // ‚ ‚ç‚©‚¶‚ß‚PŒ¸Z‚µ‚Ä‚¨‚­
 	ys = md->ys-1;
 
 	for(;;)
@@ -381,10 +360,10 @@ bool path_search(struct walkpath_data *wpd,int m,int x0,int y0,int x1,int y1,int
 		if(x==x1 && y==y1)
 			break;
 
-		// dc[0] : y++ ã®æ™‚ã®ã‚³ã‚¹ãƒˆå¢—åˆ†
-		// dc[1] : x-- ã®æ™‚ã®ã‚³ã‚¹ãƒˆå¢—åˆ†
-		// dc[2] : y-- ã®æ™‚ã®ã‚³ã‚¹ãƒˆå¢—åˆ†
-		// dc[3] : x++ ã®æ™‚ã®ã‚³ã‚¹ãƒˆå¢—åˆ†
+		// dc[0] : y++ ‚Ì‚ÌƒRƒXƒg‘•ª
+		// dc[1] : x-- ‚Ì‚ÌƒRƒXƒg‘•ª
+		// dc[2] : y-- ‚Ì‚ÌƒRƒXƒg‘•ª
+		// dc[3] : x++ ‚Ì‚ÌƒRƒXƒg‘•ª
 
 		if(y < ys && !map_getcellp(md,x  ,y+1,cell)) {
 			f |= 1; dc[0] = (y >= y1 ? 20 : 0);

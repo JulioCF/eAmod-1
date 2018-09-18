@@ -1,26 +1,5 @@
-/****************************************************************************!
-*                            _                                               *
-*                           / \                         _                    *
-*                   ___    / _ \   _ __ ___   ____  ___| |                   *
-*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
-*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
-*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
-*                                                                            *
-*                            eAmod Source File                               *
-*                                                                            *
-******************************************************************************
-* src/map/itemdb.c                                                           *
-******************************************************************************
-* Copyright (c) eAmod Dev Team                                               *
-* Copyright (c) rAthena Dev Team                                             *
-* Copyright (c) brAthena Dev Team                                            *
-* Copyright (c) Hercules Dev Team                                            *
-* Copyright (c) 3CeAM Dev Team                                               *
-* Copyright (c) Athena Dev Teams                                             *
-*                                                                            *
-* Licensed under GNU GPL                                                     *
-* For more information read the LICENSE file in the root of the emulator     *
-*****************************************************************************/
+// Copyright (c) Athena Dev Teams - Licensed under GNU GPL
+// For more information, see LICENCE in the main folder
 
 #include "../common/nullpo.h"
 #include "../common/malloc.h"
@@ -50,7 +29,7 @@ int coins_db[MAX_COIN_DB]; // Extended Vending System
 struct item_data dummy_item; //This is the default dummy item used for non-existant items. [Skotlex]
 
 /*==========================================
- * åå‰ã§æ¤œç´¢ç”¨
+ * –¼‘O‚ÅŒŸõ—p
  *------------------------------------------*/
 // name = item alias, so we should find items aliases first. if not found then look for "jname" (full name)
 static int itemdb_searchname_sub(DBKey key,void *data,va_list ap)
@@ -75,7 +54,7 @@ static int itemdb_searchname_sub(DBKey key,void *data,va_list ap)
 }
 
 /*==========================================
- * åå‰ã§æ¤œç´¢
+ * –¼‘O‚ÅŒŸõ
  *------------------------------------------*/
 struct item_data* itemdb_searchname(const char *str)
 {
@@ -157,7 +136,7 @@ int itemdb_searchname_array(struct item_data** data, int size, const char *str)
 
 
 /*==========================================
- * ç®±ç³»ã‚¢ã‚¤ãƒ†ãƒ æ¤œç´¢
+ * ” ŒnƒAƒCƒeƒ€ŒŸõ
  *------------------------------------------*/
 int itemdb_searchrandomid(int group)
 {
@@ -491,7 +470,7 @@ int itemdb_isidentified(int nameid)
 }
 
 /*==========================================
- * ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨å¯èƒ½ãƒ•ãƒ©ã‚°ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰
+ * ƒAƒCƒeƒ€g—p‰Â”\ƒtƒ‰ƒO‚ÌƒI[ƒo[ƒ‰ƒCƒh
  *------------------------------------------*/
 static bool itemdb_read_itemavail(char* str[], int columns, int current)
 {// <nameid>,<sprite>
@@ -742,7 +721,7 @@ static int itemdb_read_customrates(void)
 }
 
 /*==========================================
- * è£…å‚™åˆ¶é™ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿å‡ºã—
+ * ‘•”õ§ŒÀƒtƒ@ƒCƒ‹“Ç‚İo‚µ
  *------------------------------------------*/
 static bool itemdb_read_noequip(char* str[], int columns, int current)
 {// <nameid>,<mode>
@@ -1002,7 +981,7 @@ static bool itemdb_parse_dbrow(char** str, const char* source, int line, int scr
 }
 
 /*==========================================
- * ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã®èª­ã¿è¾¼ã¿
+ * ƒAƒCƒeƒ€ƒf[ƒ^ƒx[ƒX‚Ì“Ç‚İ‚İ
  *------------------------------------------*/
 static int itemdb_readdb(void)
 {

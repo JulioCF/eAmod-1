@@ -1,26 +1,5 @@
-/****************************************************************************!
-*                            _                                               *
-*                           / \                         _                    *
-*                   ___    / _ \   _ __ ___   ____  ___| |                   *
-*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
-*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
-*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
-*                                                                            *
-*                            eAmod Source File                               *
-*                                                                            *
-******************************************************************************
-* src/common/nullpo.h                                                        *
-******************************************************************************
-* Copyright (c) eAmod Dev Team                                               *
-* Copyright (c) rAthena Dev Team                                             *
-* Copyright (c) brAthena Dev Team                                            *
-* Copyright (c) Hercules Dev Team                                            *
-* Copyright (c) 3CeAM Dev Team                                               *
-* Copyright (c) Athena Dev Teams                                             *
-*                                                                            *
-* Licensed under GNU GPL                                                     *
-* For more information read the LICENSE file in the root of the emulator     *
-*****************************************************************************/
+// Copyright (c) Athena Dev Teams - Licensed under GNU GPL
+// For more information, see LICENCE in the main folder
 
 #ifndef _NULLPO_H_
 #define _NULLPO_H_
@@ -40,52 +19,52 @@
  *----------------------------------------------------------------------------
  */
 /*======================================
- * Nullãƒã‚§ãƒƒã‚¯ åŠã³ æƒ…å ±å‡ºåŠ›å¾Œ return
- *ãƒ»å±•é–‹ã™ã‚‹ã¨ifã¨ã‹returnç­‰ãŒå‡ºã‚‹ã®ã§
- *  ä¸€è¡Œå˜ä½“ã§ä½¿ã£ã¦ãã ã•ã„ã€‚
- *ãƒ»nullpo_ret(x = func());
- *  ã®ã‚ˆã†ãªä½¿ç”¨æ³•ã‚‚æƒ³å®šã—ã¦ã„ã¾ã™ã€‚
+ * Nullƒ`ƒFƒbƒN ‹y‚Ñ î•ño—ÍŒã return
+ *E“WŠJ‚·‚é‚Æif‚Æ‚©return“™‚ªo‚é‚Ì‚Å
+ *  ˆês’P‘Ì‚Åg‚Á‚Ä‚­‚¾‚³‚¢B
+ *Enullpo_ret(x = func());
+ *  ‚Ì‚æ‚¤‚Èg—p–@‚à‘z’è‚µ‚Ä‚¢‚Ü‚·B
  *--------------------------------------
  * nullpo_ret(t)
- *   æˆ»ã‚Šå€¤ 0å›ºå®š
- * [å¼•æ•°]
- *  t       ãƒã‚§ãƒƒã‚¯å¯¾è±¡
+ *   –ß‚è’l 0ŒÅ’è
+ * [ˆø”]
+ *  t       ƒ`ƒFƒbƒN‘ÎÛ
  *--------------------------------------
  * nullpo_retv(t)
- *   æˆ»ã‚Šå€¤ ãªã—
- * [å¼•æ•°]
- *  t       ãƒã‚§ãƒƒã‚¯å¯¾è±¡
+ *   –ß‚è’l ‚È‚µ
+ * [ˆø”]
+ *  t       ƒ`ƒFƒbƒN‘ÎÛ
  *--------------------------------------
  * nullpo_retr(ret, t)
- *   æˆ»ã‚Šå€¤ æŒ‡å®š
- * [å¼•æ•°]
+ *   –ß‚è’l w’è
+ * [ˆø”]
  *  ret     return(ret);
- *  t       ãƒã‚§ãƒƒã‚¯å¯¾è±¡
+ *  t       ƒ`ƒFƒbƒN‘ÎÛ
  *--------------------------------------
  * nullpo_ret_f(t, fmt, ...)
- *   è©³ç´°æƒ…å ±å‡ºåŠ›ç”¨
- *   æˆ»ã‚Šå€¤ 0
- * [å¼•æ•°]
- *  t       ãƒã‚§ãƒƒã‚¯å¯¾è±¡
- *  fmt ... vprintfã«æ¸¡ã•ã‚Œã‚‹
- *    å‚™è€ƒã‚„é–¢ä¿‚å¤‰æ•°ã®æ›¸ãå‡ºã—ãªã©ã«
+ *   Ú×î•ño—Í—p
+ *   –ß‚è’l 0
+ * [ˆø”]
+ *  t       ƒ`ƒFƒbƒN‘ÎÛ
+ *  fmt ... vprintf‚É“n‚³‚ê‚é
+ *    ”õl‚âŠÖŒW•Ï”‚Ì‘‚«o‚µ‚È‚Ç‚É
  *--------------------------------------
  * nullpo_retv_f(t, fmt, ...)
- *   è©³ç´°æƒ…å ±å‡ºåŠ›ç”¨
- *   æˆ»ã‚Šå€¤ ãªã—
- * [å¼•æ•°]
- *  t       ãƒã‚§ãƒƒã‚¯å¯¾è±¡
- *  fmt ... vprintfã«æ¸¡ã•ã‚Œã‚‹
- *    å‚™è€ƒã‚„é–¢ä¿‚å¤‰æ•°ã®æ›¸ãå‡ºã—ãªã©ã«
+ *   Ú×î•ño—Í—p
+ *   –ß‚è’l ‚È‚µ
+ * [ˆø”]
+ *  t       ƒ`ƒFƒbƒN‘ÎÛ
+ *  fmt ... vprintf‚É“n‚³‚ê‚é
+ *    ”õl‚âŠÖŒW•Ï”‚Ì‘‚«o‚µ‚È‚Ç‚É
  *--------------------------------------
  * nullpo_retr_f(ret, t, fmt, ...)
- *   è©³ç´°æƒ…å ±å‡ºåŠ›ç”¨
- *   æˆ»ã‚Šå€¤ æŒ‡å®š
- * [å¼•æ•°]
+ *   Ú×î•ño—Í—p
+ *   –ß‚è’l w’è
+ * [ˆø”]
  *  ret     return(ret);
- *  t       ãƒã‚§ãƒƒã‚¯å¯¾è±¡
- *  fmt ... vprintfã«æ¸¡ã•ã‚Œã‚‹
- *    å‚™è€ƒã‚„é–¢ä¿‚å¤‰æ•°ã®æ›¸ãå‡ºã—ãªã©ã«
+ *  t       ƒ`ƒFƒbƒN‘ÎÛ
+ *  fmt ... vprintf‚É“n‚³‚ê‚é
+ *    ”õl‚âŠÖŒW•Ï”‚Ì‘‚«o‚µ‚È‚Ç‚É
  *--------------------------------------
  */
 
@@ -103,9 +82,9 @@
 #define nullpo_retb(t) \
 	if (nullpo_chk(NLP_MARK, (void *)(t))) {break;}
 
-// å¯å¤‰å¼•æ•°ãƒã‚¯ãƒ­ã«é–¢ã™ã‚‹æ¡ä»¶ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
+// ‰Â•Ïˆø”ƒ}ƒNƒ‚ÉŠÖ‚·‚éğŒƒRƒ“ƒpƒCƒ‹
 #if __STDC_VERSION__ >= 199901L
-/* C99ã«å¯¾å¿œ */
+/* C99‚É‘Î‰ */
 #define nullpo_ret_f(t, fmt, ...) \
 	if (nullpo_chk_f(NLP_MARK, (void *)(t), (fmt), __VA_ARGS__)) {return(0);}
 
@@ -119,7 +98,7 @@
 	if (nullpo_chk_f(NLP_MARK, (void *)(t), (fmt), __VA_ARGS__)) {break;}
 
 #elif __GNUC__ >= 2
-/* GCCç”¨ */
+/* GCC—p */
 #define nullpo_ret_f(t, fmt, args...) \
 	if (nullpo_chk_f(NLP_MARK, (void *)(t), (fmt), ## args)) {return(0);}
 
@@ -134,7 +113,7 @@
 
 #else
 
-/* ãã®ä»–ã®å ´åˆãƒ»ãƒ»ãƒ» orz */
+/* ‚»‚Ì‘¼‚Ìê‡EEE orz */
 
 #endif
 
@@ -142,31 +121,31 @@
 /* No Nullpo check */
 
 // if((t)){;}
-// è‰¯ã„æ–¹æ³•ãŒæ€ã„ã¤ã‹ãªã‹ã£ãŸã®ã§ãƒ»ãƒ»ãƒ»è‹¦è‚‰ã®ç­–ã§ã™ã€‚
-// ä¸€å¿œãƒ¯ãƒ¼ãƒ‹ãƒ³ã‚°ã¯å‡ºãªã„ã¯ãš
+// —Ç‚¢•û–@‚ªv‚¢‚Â‚©‚È‚©‚Á‚½‚Ì‚ÅEEE‹ê“÷‚Ìô‚Å‚·B
+// ˆê‰ƒ[ƒjƒ“ƒO‚Ío‚È‚¢‚Í‚¸
 
 #define nullpo_ret(t) (void)(t)
 #define nullpo_retv(t) (void)(t)
 #define nullpo_retr(ret, t) (void)(t)
 #define nullpo_retb(t) (void)(t)
 
-// å¯å¤‰å¼•æ•°ãƒã‚¯ãƒ­ã«é–¢ã™ã‚‹æ¡ä»¶ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
+// ‰Â•Ïˆø”ƒ}ƒNƒ‚ÉŠÖ‚·‚éğŒƒRƒ“ƒpƒCƒ‹
 #if __STDC_VERSION__ >= 199901L
-/* C99ã«å¯¾å¿œ */
+/* C99‚É‘Î‰ */
 #define nullpo_ret_f(t, fmt, ...) (void)(t)
 #define nullpo_retv_f(t, fmt, ...) (void)(t)
 #define nullpo_retr_f(ret, t, fmt, ...) (void)(t)
 #define nullpo_retb_f(t, fmt, ...) (void)(t)
 
 #elif __GNUC__ >= 2
-/* GCCç”¨ */
+/* GCC—p */
 #define nullpo_ret_f(t, fmt, args...) (void)(t)
 #define nullpo_retv_f(t, fmt, args...) (void)(t)
 #define nullpo_retr_f(ret, t, fmt, args...) (void)(t)
 #define nullpo_retb_f(t, fmt, args...) (void)(t)
 
 #else
-/* ãã®ä»–ã®å ´åˆãƒ»ãƒ»ãƒ» orz */
+/* ‚»‚Ì‘¼‚Ìê‡EEE orz */
 #endif
 
 #endif /* NULLPO_CHECK */
@@ -177,14 +156,14 @@
  */
 /*======================================
  * nullpo_chk
- *   Nullãƒã‚§ãƒƒã‚¯ åŠã³ æƒ…å ±å‡ºåŠ›
- * [å¼•æ•°]
+ *   Nullƒ`ƒFƒbƒN ‹y‚Ñ î•ño—Í
+ * [ˆø”]
  *  file    __FILE__
  *  line    __LINE__
- *  func    __func__ (é–¢æ•°å)
- *    ã“ã‚Œã‚‰ã«ã¯ NLP_MARK ã‚’ä½¿ã†ã¨ã‚ˆã„
- *  target  ãƒã‚§ãƒƒã‚¯å¯¾è±¡
- * [è¿”ã‚Šå€¤]
+ *  func    __func__ (ŠÖ”–¼)
+ *    ‚±‚ê‚ç‚É‚Í NLP_MARK ‚ğg‚¤‚Æ‚æ‚¢
+ *  target  ƒ`ƒFƒbƒN‘ÎÛ
+ * [•Ô‚è’l]
  *  0 OK
  *  1 NULL
  *--------------------------------------
@@ -194,16 +173,16 @@ int nullpo_chk(const char *file, int line, const char *func, const void *target)
 
 /*======================================
  * nullpo_chk_f
- *   Nullãƒã‚§ãƒƒã‚¯ åŠã³ è©³ç´°ãªæƒ…å ±å‡ºåŠ›
- * [å¼•æ•°]
+ *   Nullƒ`ƒFƒbƒN ‹y‚Ñ Ú×‚Èî•ño—Í
+ * [ˆø”]
  *  file    __FILE__
  *  line    __LINE__
- *  func    __func__ (é–¢æ•°å)
- *    ã“ã‚Œã‚‰ã«ã¯ NLP_MARK ã‚’ä½¿ã†ã¨ã‚ˆã„
- *  target  ãƒã‚§ãƒƒã‚¯å¯¾è±¡
- *  fmt ... vprintfã«æ¸¡ã•ã‚Œã‚‹
- *    å‚™è€ƒã‚„é–¢ä¿‚å¤‰æ•°ã®æ›¸ãå‡ºã—ãªã©ã«
- * [è¿”ã‚Šå€¤]
+ *  func    __func__ (ŠÖ”–¼)
+ *    ‚±‚ê‚ç‚É‚Í NLP_MARK ‚ğg‚¤‚Æ‚æ‚¢
+ *  target  ƒ`ƒFƒbƒN‘ÎÛ
+ *  fmt ... vprintf‚É“n‚³‚ê‚é
+ *    ”õl‚âŠÖŒW•Ï”‚Ì‘‚«o‚µ‚È‚Ç‚É
+ * [•Ô‚è’l]
  *  0 OK
  *  1 NULL
  *--------------------------------------
@@ -215,12 +194,12 @@ int nullpo_chk_f(const char *file, int line, const char *func, const void *targe
 
 /*======================================
  * nullpo_info
- *   nullpoæƒ…å ±å‡ºåŠ›
- * [å¼•æ•°]
+ *   nullpoî•ño—Í
+ * [ˆø”]
  *  file    __FILE__
  *  line    __LINE__
- *  func    __func__ (é–¢æ•°å)
- *    ã“ã‚Œã‚‰ã«ã¯ NLP_MARK ã‚’ä½¿ã†ã¨ã‚ˆã„
+ *  func    __func__ (ŠÖ”–¼)
+ *    ‚±‚ê‚ç‚É‚Í NLP_MARK ‚ğg‚¤‚Æ‚æ‚¢
  *--------------------------------------
  */
 void nullpo_info(const char *file, int line, const char *func);
@@ -228,14 +207,14 @@ void nullpo_info(const char *file, int line, const char *func);
 
 /*======================================
  * nullpo_info_f
- *   nullpoè©³ç´°æƒ…å ±å‡ºåŠ›
- * [å¼•æ•°]
+ *   nullpoÚ×î•ño—Í
+ * [ˆø”]
  *  file    __FILE__
  *  line    __LINE__
- *  func    __func__ (é–¢æ•°å)
- *    ã“ã‚Œã‚‰ã«ã¯ NLP_MARK ã‚’ä½¿ã†ã¨ã‚ˆã„
- *  fmt ... vprintfã«æ¸¡ã•ã‚Œã‚‹
- *    å‚™è€ƒã‚„é–¢ä¿‚å¤‰æ•°ã®æ›¸ãå‡ºã—ãªã©ã«
+ *  func    __func__ (ŠÖ”–¼)
+ *    ‚±‚ê‚ç‚É‚Í NLP_MARK ‚ğg‚¤‚Æ‚æ‚¢
+ *  fmt ... vprintf‚É“n‚³‚ê‚é
+ *    ”õl‚âŠÖŒW•Ï”‚Ì‘‚«o‚µ‚È‚Ç‚É
  *--------------------------------------
  */
 void nullpo_info_f(const char *file, int line, const char *func, 

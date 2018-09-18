@@ -1,26 +1,13 @@
-/****************************************************************************!
-*                            _                                               *
-*                           / \                         _                    *
-*                   ___    / _ \   _ __ ___   ____  ___| |                   *
-*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
-*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
-*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
-*                                                                            *
-*                            eAmod Source File                               *
-*                                                                            *
-******************************************************************************
-* src/map/status.c                                                           *
-******************************************************************************
-* Copyright (c) eAmod Dev Team                                               *
-* Copyright (c) rAthena Dev Team                                             *
-* Copyright (c) brAthena Dev Team                                            *
-* Copyright (c) Hercules Dev Team                                            *
-* Copyright (c) 3CeAM Dev Team                                               *
-* Copyright (c) Athena Dev Teams                                             *
-*                                                                            *
-* Licensed under GNU GPL                                                     *
-* For more information read the LICENSE file in the root of the emulator     *
-*****************************************************************************/
+// (c) 2008 - 2011 eAmod Project; Andres Garbanzo / Zephyrus
+//
+//  - gaiaro.staff@yahoo.com
+//  - MSN andresjgm.cr@hotmail.com
+//  - Skype: Zephyrus_cr
+//  - Site: http://dev.terra-gaming.com
+//
+// This file is NOT public - you are not allowed to distribute it.
+// Authorized Server List : http://dev.terra-gaming.com/index.php?/topic/72-authorized-eamod-servers/
+// eAmod is a non Free, extended version of eAthena Ragnarok Private Server.
 
 #include "../common/cbasetypes.h"
 #include "../common/timer.h"
@@ -79,9 +66,9 @@ static int hp_sigma_val[CLASS_COUNT][MAX_LEVEL+1];
 static int sp_coefficient[CLASS_COUNT];
 static int shield_penalty[CLASS_COUNT]; // Renewal ShieldPenalty
 static int aspd_base[CLASS_COUNT][MAX_WEAPON_TYPE];	//[blackhole89]
-static int refinebonus[MAX_REFINE_BONUS][3];	// ç²¾éŒ¬ãƒœãƒ¼ãƒŠã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«(refine_db.txt)
-int percentrefinery[5][MAX_REFINE+1];	// ç²¾éŒ¬æˆåŠŸç‡(refine_db.txt)
-static int atkmods[3][MAX_WEAPON_TYPE];	// æ­¦å™¨ATKã‚µã‚¤ã‚ºä¿®æ­£(size_fix.txt)
+static int refinebonus[MAX_REFINE_BONUS][3];	// ¸˜Bƒ{[ƒiƒXƒe[ƒuƒ‹(refine_db.txt)
+int percentrefinery[5][MAX_REFINE+1];	// ¸˜B¬Œ÷—¦(refine_db.txt)
+static int atkmods[3][MAX_WEAPON_TYPE];	// •ŠíATKƒTƒCƒYC³(size_fix.txt)
 static char job_bonus[CLASS_COUNT][MAX_LEVEL];
 
 static struct eri *sc_data_ers; //For sc_data entries
@@ -935,7 +922,7 @@ static inline void status_cpy(struct status_data* a, const struct status_data* b
 
 
 /*==========================================
- * ç²¾éŒ¬ãƒœãƒ¼ãƒŠã‚¹
+ * ¸˜Bƒ{[ƒiƒX
  *------------------------------------------*/
 int status_getrefinebonus(int lv,int type)
 {
@@ -2331,7 +2318,7 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 	b_weight = sd->weight;
 	b_max_weight = sd->max_weight;
 
-	pc_calc_skilltree(sd);	// ã‚¹ã‚­ãƒ«ãƒ„ãƒª?ã®è¨ˆç®—
+	pc_calc_skilltree(sd);	// ƒXƒLƒ‹ƒcƒŠ?‚ÌŒvZ
 
 	sd->max_weight = max_weight_base[pc_class2idx(sd->status.class_)]+sd->status.str*300;
 
@@ -5509,8 +5496,8 @@ const char* status_get_name(struct block_list *bl)
 }
 
 /*==========================================
- * å¯¾è±¡ã®Classã‚’è¿”ã™(æ±ç”¨)
- * æˆ»ã‚Šã¯æ•´æ•°ã§0ä»¥ä¸Š
+ * ‘ÎÛ‚ÌClass‚ğ•Ô‚·(”Ä—p)
+ * –ß‚è‚Í®”‚Å0ˆÈã
  *------------------------------------------*/
 int status_get_class(struct block_list *bl)
 {
@@ -5528,8 +5515,8 @@ int status_get_class(struct block_list *bl)
 	return 0;
 }
 /*==========================================
- * å¯¾è±¡ã®ãƒ¬ãƒ™ãƒ«ã‚’è¿”ã™(æ±ç”¨)
- * æˆ»ã‚Šã¯æ•´æ•°ã§0ä»¥ä¸Š
+ * ‘ÎÛ‚ÌƒŒƒxƒ‹‚ğ•Ô‚·(”Ä—p)
+ * –ß‚è‚Í®”‚Å0ˆÈã
  *------------------------------------------*/
 int status_get_lv(struct block_list *bl)
 {
@@ -7253,7 +7240,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			status_zap(bl, diff, 0);
 		}
 		// fall through
-		case SC_POISON:				/* æ¯’ */
+		case SC_POISON:				/* “Å */
 		val3 = tick/1000; //Damage iterations
 		if(val3 < 1) val3 = 1;
 		tick = 1000;
@@ -7326,7 +7313,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			else
 				val4 |= battle_config.monster_cloak_check_type&7;
 			break;
-		case SC_SIGHT:			/* ã‚µã‚¤ãƒˆ/ãƒ«ã‚¢ãƒ• */
+		case SC_SIGHT:			/* ƒTƒCƒg/ƒ‹ƒAƒt */
 		case SC_RUWACH:
 		case SC_SIGHTBLASTER:
 			val3 = skill_get_splash(val2, val1); //Val2 should bring the skill-id.
@@ -8678,7 +8665,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 	return 1;
 }
 /*==========================================
- * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç•°å¸¸å…¨è§£é™¤
+ * ƒXƒe[ƒ^ƒXˆÙí‘S‰ğœ
  * type:
  * 0 - ???
  * 1 - ???
@@ -8757,7 +8744,7 @@ int status_change_clear(struct block_list* bl, int type)
 }
 
 /*==========================================
- * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç•°å¸¸çµ‚äº†
+ * ƒXƒe[ƒ^ƒXˆÙíI—¹
  *------------------------------------------*/
 int status_change_end(struct block_list* bl, enum sc_type type, int tid)
 {
@@ -9411,7 +9398,7 @@ int kaahi_heal_timer(int tid, unsigned int tick, int id, intptr_t data)
 }
 
 /*==========================================
- * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç•°å¸¸çµ‚äº†ã‚¿ã‚¤ãƒãƒ¼
+ * ƒXƒe[ƒ^ƒXˆÙíI—¹ƒ^ƒCƒ}[
  *------------------------------------------*/
 int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 {
@@ -9641,7 +9628,7 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 		}
 		break;
 
-	case SC_DANCING: //ãƒ€ãƒ³ã‚¹ã‚¹ã‚­ãƒ«ã®æ™‚é–“SPæ¶ˆè²»
+	case SC_DANCING: //ƒ_ƒ“ƒXƒXƒLƒ‹‚ÌŠÔSPÁ”ï
 		{
 			int s = 0;
 			int sp = 1;
@@ -10237,7 +10224,7 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 }
 
 /*==========================================
- * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç•°å¸¸ã‚¿ã‚¤ãƒãƒ¼ç¯„å›²å‡¦ç†
+ * ƒXƒe[ƒ^ƒXˆÙíƒ^ƒCƒ}[”ÍˆÍˆ—
  *------------------------------------------*/
 int status_change_timer_sub(struct block_list* bl, va_list ap)
 {
@@ -10255,14 +10242,14 @@ int status_change_timer_sub(struct block_list* bl, va_list ap)
 
 	switch( type )
 	{
-	case SC_SIGHT:	/* ã‚µã‚¤ãƒˆ */
+	case SC_SIGHT:	/* ƒTƒCƒg */
 	case SC_CONCENTRATE:
 		status_change_end(bl, SC_HIDING, INVALID_TIMER);
 		status_change_end(bl, SC_CLOAKING, INVALID_TIMER);
 		status_change_end(bl, SC_CLOAKINGEXCEED, INVALID_TIMER);
 		status_change_end(bl, SC_CAMOUFLAGE, INVALID_TIMER);
 		break;
-	case SC_RUWACH:	/* ãƒ«ã‚¢ãƒ• */
+	case SC_RUWACH:	/* ƒ‹ƒAƒt */
 		if( tsc && (tsc->data[SC_HIDING] || tsc->data[SC_CLOAKING] || tsc->data[SC_CLOAKINGEXCEED] || tsc->data[SC_CAMOUFLAGE]) )
 		{
 			status_change_end(bl, SC_HIDING, INVALID_TIMER);
@@ -10840,7 +10827,7 @@ int status_readdb(void)
 }
 
 /*==========================================
- * ã‚¹ã‚­ãƒ«é–¢ä¿‚åˆæœŸåŒ–å‡¦ç†
+ * ƒXƒLƒ‹ŠÖŒW‰Šú‰»ˆ—
  *------------------------------------------*/
 int do_init_status(void)
 {
