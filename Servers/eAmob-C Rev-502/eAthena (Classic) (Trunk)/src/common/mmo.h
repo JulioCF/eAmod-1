@@ -1,13 +1,26 @@
-// (c) 2008 - 2011 eAmod Project; Andres Garbanzo / Zephyrus
-//
-//  - gaiaro.staff@yahoo.com
-//  - MSN andresjgm.cr@hotmail.com
-//  - Skype: Zephyrus_cr
-//  - Site: http://dev.terra-gaming.com
-//
-// This file is NOT public - you are not allowed to distribute it.
-// Authorized Server List : http://dev.terra-gaming.com/index.php?/topic/72-authorized-eamod-servers/
-// eAmod is a non Free, extended version of eAthena Ragnarok Private Server.
+/****************************************************************************!
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
+*                                                                            *
+*                            eAmod Source File                               *
+*                                                                            *
+******************************************************************************
+* src/common/mmo.h                                                           *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
+*****************************************************************************/
 
 #ifndef	_MMO_H_
 #define	_MMO_H_
@@ -771,14 +784,14 @@ struct fame_list {
 };
 
 enum {
-	GBI_EXP	=1,		// ÉMÉãÉhÇÃEXP
-	GBI_GUILDLV,		// ÉMÉãÉhÇÃLv
-	GBI_SKILLPOINT,		// ÉMÉãÉhÇÃÉXÉLÉãÉ|ÉCÉìÉg
-	GBI_SKILLLV,		// ÉMÉãÉhÉXÉLÉãLv
+	GBI_EXP	=1,		// „ÇÆ„É´„Éâ„ÅÆEXP
+	GBI_GUILDLV,		// „ÇÆ„É´„Éâ„ÅÆLv
+	GBI_SKILLPOINT,		// „ÇÆ„É´„Éâ„ÅÆ„Çπ„Ç≠„É´„Éù„Ç§„É≥„Éà
+	GBI_SKILLLV,		// „ÇÆ„É´„Éâ„Çπ„Ç≠„É´Lv
 };
 
 enum {
-	GMI_POSITION	=0,		// ÉÅÉìÉoÅ[ÇÃñêEïœçX
+	GMI_POSITION	=0,		// „É°„É≥„Éê„Éº„ÅÆÂΩπËÅ∑Â§âÊõ¥
 	GMI_EXP,
 	GMI_HAIR,
 	GMI_HAIR_COLOR,

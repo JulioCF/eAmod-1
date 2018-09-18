@@ -1,5 +1,26 @@
-// Copyright (c) Athena Dev Teams - Licensed under GNU GPL
-// For more information, see LICENCE in the main folder
+/****************************************************************************!
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
+*                                                                            *
+*                            eAmod Source File                               *
+*                                                                            *
+******************************************************************************
+* src/char_sql/char.c                                                        *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
+*****************************************************************************/
 
 #include "../common/cbasetypes.h"
 #include "../common/core.h"
@@ -5426,7 +5447,7 @@ int do_init(int argc, char **argv)
 
 	ShowInfo("Finished reading the char-server configuration.\n");
 
-	inter_init_sql((argc > 2) ? argv[2] : inter_cfgName); // inter server �ʱ�ȭ
+	inter_init_sql((argc > 2) ? argv[2] : inter_cfgName); // inter server ÃÊ±âÈ­
 	ShowInfo("Finished reading the inter-server configuration.\n");
 	
 	ShowInfo("Initializing char server.\n");

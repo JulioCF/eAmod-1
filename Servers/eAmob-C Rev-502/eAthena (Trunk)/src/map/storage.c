@@ -1,5 +1,26 @@
-// Copyright (c) Athena Dev Teams - Licensed under GNU GPL
-// For more information, see LICENCE in the main folder
+/****************************************************************************!
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
+*                                                                            *
+*                            eAmod Source File                               *
+*                                                                            *
+******************************************************************************
+* src/map/storage.c                                                          *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
+*****************************************************************************/
 
 #include "../common/cbasetypes.h"
 #include "../common/db.h"
@@ -27,7 +48,7 @@
 static DBMap* guild_storage_db; // int guild_id -> struct guild_storage*
 
 /*==========================================
- * ‘qŒÉ“àƒAƒCƒeƒ€ƒ\[ƒg
+ * å€‰åº«å†…ã‚¢ã‚¤ãƒ†ãƒ ã‚½ãƒ¼ãƒˆ
  *------------------------------------------*/
 static int storage_comp_item(const void *_i1, const void *_i2)
 {
@@ -54,9 +75,9 @@ static void storage_sortitem(struct item* items, unsigned int size)
 }
 
 /*==========================================
- * ‰Šú‰»‚Æ‚©
+ * åˆæœŸåŒ–ã¨ã‹
  *------------------------------------------*/
-int do_init_storage(void) // map.c::do_init()‚©‚çŒÄ‚Î‚ê‚é
+int do_init_storage(void) // map.c::do_init()ã‹ã‚‰å‘¼ã°ã‚Œã‚‹
 {
 	guild_storage_db=idb_alloc(DB_OPT_RELEASE_DATA);
 	return 1;

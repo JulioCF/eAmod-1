@@ -1,5 +1,26 @@
-// Copyright (c) Athena Dev Teams - Licensed under GNU GPL
-// For more information, see LICENCE in the main folder
+/****************************************************************************!
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
+*                                                                            *
+*                            eAmod Source File                               *
+*                                                                            *
+******************************************************************************
+* src/map/skill.c                                                            *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
+*****************************************************************************/
 
 #include "../common/cbasetypes.h"
 #include "../common/timer.h"
@@ -2055,12 +2076,12 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 }
 
 /*==========================================
- * ƒXƒLƒ‹”Í??U?—p(map_foreachinarea‚©‚çŒÄ‚Î‚ê‚é)
- * flag‚É‚Â‚¢‚Ä?F16?i?‚ğŠm”F
+ * ã‚¹ã‚­ãƒ«ç¯„??U?ç”¨(map_foreachinareaã‹ã‚‰å‘¼ã°ã‚Œã‚‹)
+ * flagã«ã¤ã„ã¦?F16?i?ã‚’ç¢ºèª
  * MSB <- 00fTffff ->LSB
- *	T	=ƒ^?ƒQƒbƒg‘I?—p(BCT_*)
- *  ffff=©—R‚Ég—p‰Â”\
- *  0	=—\–ñ?B0‚ÉŒÅ’è
+ *	T	=ã‚¿?ã‚²ãƒƒãƒˆé¸?ç”¨(BCT_*)
+ *  ffff=è‡ªç”±ã«ä½¿ç”¨å¯èƒ½
+ *  0	=äºˆç´„?B0ã«å›ºå®š
  *------------------------------------------*/
 static int skill_area_temp[8];
 typedef int (*SkillFunc)(struct block_list *, struct block_list *, int, int, unsigned int, int);
