@@ -1,5 +1,26 @@
-// Copyright (c) Athena Dev Teams - Licensed under GNU GPL
-// For more information, see LICENCE in the main folder
+/****************************************************************************!
+*                            _                                               *
+*                           / \                         _                    *
+*                   ___    / _ \   _ __ ___   ____  ___| |                   *
+*                  / _ \  / /_\ \ | '_ ` _ \./  _ \/  _  |                   *
+*                 |  __/ /  ___  \| | | | | |  (_) ) (_) |                   *
+*                  \___|/__/   \__\_| |_| |_|\____/\_____/                   *
+*                                                                            *
+*                            eAmod Source File                               *
+*                                                                            *
+******************************************************************************
+* src/map/battle.h                                                           *
+******************************************************************************
+* Copyright (c) eAmod Dev Team                                               *
+* Copyright (c) rAthena Dev Team                                             *
+* Copyright (c) brAthena Dev Team                                            *
+* Copyright (c) Hercules Dev Team                                            *
+* Copyright (c) 3CeAM Dev Team                                               *
+* Copyright (c) Athena Dev Teams                                             *
+*                                                                            *
+* Licensed under GNU GPL                                                     *
+* For more information read the LICENSE file in the root of the emulator     *
+*****************************************************************************/
 
 #ifndef _BATTLE_H_
 #define _BATTLE_H_
@@ -14,7 +35,7 @@ typedef enum damage_lv {
 	ATK_DEF      // attack connected
 } damage_lv;
 
-// ƒ_ƒ[ƒW
+// ãƒ€ãƒ¡ãƒ¼ã‚¸
 struct Damage {
 	int damage,damage2;
 	int type,div_;
@@ -24,14 +45,14 @@ struct Damage {
 	enum damage_lv dmg_lv;	//ATK_LUCKY,ATK_FLEE,ATK_DEF
 };
 
-// ‘®«•\i“Ç‚İ‚İ‚Ípc.cAbattle_attr_fix‚Åg—pj
+// å±æ€§è¡¨ï¼ˆèª­ã¿è¾¼ã¿ã¯pc.cã€battle_attr_fixã§ä½¿ç”¨ï¼‰
 extern int attr_fix_table[4][10][10];
 
 struct map_session_data;
 struct mob_data;
 struct block_list;
 
-// ƒ_ƒ[ƒWŒvZ
+// ãƒ€ãƒ¡ãƒ¼ã‚¸è¨ˆç®—
 
 struct Damage battle_calc_attack(int attack_type,struct block_list *bl,struct block_list *target,int skill_num,int skill_lv,int count);
 
@@ -42,14 +63,14 @@ void battle_drain(struct map_session_data *sd, struct block_list *tbl, int rdama
 int battle_attr_ratio(int atk_elem,int def_type, int def_lv);
 int battle_attr_fix(struct block_list *src, struct block_list *target, int damage,int atk_elem,int def_type, int def_lv);
 
-// ƒ_ƒ[ƒWÅIŒvZ
+// ãƒ€ãƒ¡ãƒ¼ã‚¸æœ€çµ‚è¨ˆç®—
 int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damage *d,int damage,int skill_num,int skill_lv);
 int battle_calc_gvg_damage(struct block_list *src,struct block_list *bl,int damage,int div_,int skill_num,int skill_lv,int flag);
 int battle_calc_bg_damage(struct block_list *src,struct block_list *bl,int damage,int div_,int skill_num,int skill_lv,int flag);
 int battle_calc_pvpevent_damage(struct block_list *src, struct block_list *bl, int damage, int div_, int skill_num, int skill_lv, int flag);
 int battle_calc_faction_damage(struct block_list *src, struct block_list *bl, int damage, int div_, int skill_num, int skill_lv, int flag);
 
-enum {	// ÅIŒvZ‚Ìƒtƒ‰ƒO
+enum {	// æœ€çµ‚è¨ˆç®—ã®ãƒ•ãƒ©ã‚°
 	BF_WEAPON	= 0x0001,
 	BF_MAGIC	= 0x0002,
 	BF_MISC		= 0x0004,
@@ -64,10 +85,10 @@ enum {	// ÅIŒvZ‚Ìƒtƒ‰ƒO
 
 int battle_delay_damage (unsigned int tick, int amotion, struct block_list *src, struct block_list *target, int attack_type, int skill_id, int skill_lv, int damage, enum damage_lv dmg_lv, int ddelay, bool reflected);
 
-// ’ÊíUŒ‚ˆ—‚Ü‚Æ‚ß
+// é€šå¸¸æ”»æ’ƒå‡¦ç†ã¾ã¨ã‚
 enum damage_lv battle_weapon_attack( struct block_list *bl,struct block_list *target,unsigned int tick,int flag);
 
-// Šeíƒpƒ‰ƒ[ƒ^‚ğ“¾‚é
+// å„ç¨®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å¾—ã‚‹
 struct block_list* battle_get_master(struct block_list *src);
 struct block_list* battle_gettargeted(struct block_list *target);
 struct block_list* battle_getenemy(struct block_list *target, int type, int range);
@@ -95,7 +116,7 @@ int battle_check_target(struct block_list *src, struct block_list *target,int fl
 bool battle_check_range(struct block_list *src,struct block_list *bl,int range);
 
 void battle_consume_ammo(struct map_session_data* sd, int skill, int lv);
-// İ’è
+// è¨­å®š
 
 #define MIN_HAIR_STYLE battle_config.min_hair_style
 #define MAX_HAIR_STYLE battle_config.max_hair_style
